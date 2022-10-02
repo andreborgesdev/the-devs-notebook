@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import 'react-pro-sidebar/dist/css/styles.css';
 import ReactMarkdown from 'react-markdown'
 
-export const MarkdownRender = (
-    // subjectToFetch: string
-    ) => {
+interface MarkdownRenderProps {
+    subjectToFetch: string
+}
+
+export const MarkdownRender = ({subjectToFetch}: MarkdownRenderProps) => {
     const [markdown, setMarkdown] = useState("")
 
     useEffect(() => {
-        // import(`../resources/${subjectToFetch}.md`)
-        import(`../resources/crypto.md`)
+        import(`../resources/${subjectToFetch}.md`)
         .then(res => {
             fetch(res.default)
                 .then(response => response.text())

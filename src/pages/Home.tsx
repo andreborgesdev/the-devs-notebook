@@ -1,10 +1,5 @@
-import React, { useState } from "react";
-import { ColorModeSwitcher } from "../components/ColorModeSwitcher"
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarFooter, SidebarContent } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
-import { FaGem, FaHeart } from "react-icons/fa";
-import { Button, Switch, Text } from "@chakra-ui/react";
-import Sidebar from "../components/Sidebar";
+import { Text } from "@chakra-ui/react";
 
 export const Home = () => {
     return (

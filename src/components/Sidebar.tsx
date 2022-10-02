@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useIntl } from 'react-intl';
 import {
   ProSidebar,
   Menu,
@@ -12,6 +11,7 @@ import {
 import { FaTachometerAlt, FaGem, FaList, FaRegLaughWink, FaHeart, FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Link } from '@chakra-ui/react';
+import { Content } from '../resources/Content';
 
 interface SidebarProps {
     collapsed: boolean,
@@ -20,7 +20,7 @@ interface SidebarProps {
     toggleCollapse: () => void
 }
 
-const Sidebar = ({collapsed, toggled, handleToggleSidebar, toggleCollapse}: SidebarProps) => {    
+export const Sidebar = ({collapsed, toggled, handleToggleSidebar, toggleCollapse}: SidebarProps) => {    
     return (
         <ProSidebar
             collapsed={collapsed}
@@ -55,19 +55,17 @@ const Sidebar = ({collapsed, toggled, handleToggleSidebar, toggleCollapse}: Side
             </SidebarHeader>
 
             <SidebarContent>
-            <Menu iconShape="circle">
-                <MenuItem
-                icon={<FaTachometerAlt />}
-                suffix={<span className="badge red">new</span>}
-                >
-                dashboard
-                </MenuItem>
-                <MenuItem icon={<FaGem />}>
-                    <a href="/test"></a>
-                    components
-                </MenuItem>
-            </Menu>
-            <Menu iconShape="circle">
+                <Menu iconShape="circle">
+                {
+                    Content.map(content => {
+                        return  <MenuItem icon={<FaGem />}>
+                                    <a href={`${content.link}`}></a>
+                                    {content.title}
+                                </MenuItem>
+                    })
+                }
+                </Menu>
+            {/* <Menu iconShape="circle">
                 <SubMenu
                 suffix={<span className="badge yellow">3</span>}
                 title={'withSufix'}
@@ -87,19 +85,19 @@ const Sidebar = ({collapsed, toggled, handleToggleSidebar, toggleCollapse}: Side
                 <MenuItem>submenu' 3</MenuItem>
                 </SubMenu>
                 <SubMenu title={'multiLevel'} icon={<FaList />}>
-                <MenuItem>submenu 1 </MenuItem>
-                <MenuItem>submenu 2 </MenuItem>
-                <SubMenu title={`$submenu 3`}>
-                    <MenuItem>submenu 3.1 </MenuItem>
-                    <MenuItem>submenu 3.2 </MenuItem>
-                    <SubMenu title={`$submenu 3.3`}>
-                    <MenuItem>submenu 3.3.2 </MenuItem>
-                    <MenuItem>submenu 3.3.1 </MenuItem>
-                    <MenuItem>submenu 3.3.3 </MenuItem>
+                    <MenuItem>submenu 1 </MenuItem>
+                    <MenuItem>submenu 2 </MenuItem>
+                    <SubMenu title={`$submenu 3`}>
+                        <MenuItem>submenu 3.1 </MenuItem>
+                        <MenuItem>submenu 3.2 </MenuItem>
+                        <SubMenu title={`$submenu 3.3`}>
+                        <MenuItem>submenu 3.3.2 </MenuItem>
+                        <MenuItem>submenu 3.3.1 </MenuItem>
+                        <MenuItem>submenu 3.3.3 </MenuItem>
+                        </SubMenu>
                     </SubMenu>
                 </SubMenu>
-                </SubMenu>
-            </Menu>
+            </Menu> */}
             </SidebarContent>
 
             <SidebarFooter style={{ textAlign: 'center' }}>
@@ -108,5 +106,3 @@ const Sidebar = ({collapsed, toggled, handleToggleSidebar, toggleCollapse}: Side
         </ProSidebar>
   );
 }
-
-export default Sidebar;
