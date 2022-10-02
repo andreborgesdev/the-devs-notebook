@@ -1,38 +1,46 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Main } from '../components/Main';
 import { Sidebar } from '../components/Sidebar';
+import { usePersistedState } from '../helpers/PersistedState';
 
-export const PageLayout = () => {    
-    const [state, setState] = useState({
-        collapsed: false,
-        toggled: false
-    })
+interface test {
+    collapsed: boolean,
+    toggled: boolean
+}
+
+export const PageLayout = () => {  
+    const [collapsed, setCollapsed] = usePersistedState<boolean>(false, 'sidebar-collapsed');
+    const [toggled, setToggled] = usePersistedState<boolean>(false, 'sidebar-toggled');
+
+    // const [collapsed, setCollapsed] = useState<boolean>(() => {
+    //     const value = window.localStorage.getItem('sidebar-collapsed');
+    //     return value ? (JSON.parse(value) as boolean) : false;
+    // })
+
+    // const [toggled, setToggled] = useState<boolean>(() => {
+    //     const value = window.localStorage.getItem('sidebar-toggled');
+    //     return value ? (JSON.parse(value) as boolean) : false;
+    // })
 
     const handleToggleSidebar = (value: boolean) => {
-        setState({
-            ...state,
-            toggled: value
-        })
+        setToggled(value)
       }
 
     const toggleCollapse = () => {
-        setState({
-            ...state,
-            collapsed: !state.collapsed
-        })
+        setCollapsed(!collapsed)
     }
 
     return (
-        <div className={`app ${state.toggled ? 'toggled' : ''}`}>
+        <div className={`app ${toggled ? 'toggled' : ''}`}>
             <Sidebar
-                collapsed={state.collapsed}
-                toggled={state.toggled}
+                collapsed={collapsed}
+                toggled={toggled}
                 handleToggleSidebar={handleToggleSidebar}
                 toggleCollapse={toggleCollapse}
             />
             <Main
-                collapsed={state.collapsed}
-                toggled={state.toggled} 
+                collapsed={collapsed}
+                toggled={toggled} 
                 handleToggleSidebar={handleToggleSidebar}
                 toggleCollapse={toggleCollapse}
             />

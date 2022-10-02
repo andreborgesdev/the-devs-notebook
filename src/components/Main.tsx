@@ -13,7 +13,7 @@ export const Main = ({collapsed, toggled, handleToggleSidebar, toggleCollapse}: 
     return (
         <main>
             {
-                collapsed || toggled ? 
+                // collapsed || toggled ? 
                 <div>
                     <div className="btn-toggle" onClick={() => {
                             handleToggleSidebar(true);
@@ -25,7 +25,7 @@ export const Main = ({collapsed, toggled, handleToggleSidebar, toggleCollapse}: 
                         <Outlet />
                     </div>
                 </div>
-                : <Outlet />
+                // : <Outlet />
             }
         </main>
   )
