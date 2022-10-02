@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
 import {
   ProSidebar,
   Menu,
   MenuItem,
-  SubMenu,
   SidebarHeader,
   SidebarFooter,
   SidebarContent,
 } from 'react-pro-sidebar';
-import { FaTachometerAlt, FaGem, FaList, FaRegLaughWink, FaHeart, FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
+import { FaGem, FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Link } from '@chakra-ui/react';
 import { Content } from '../resources/Content';
@@ -58,7 +56,9 @@ export const Sidebar = ({collapsed, toggled, handleToggleSidebar, toggleCollapse
                 <Menu iconShape="circle">
                 {
                     Content.map(content => {
-                        return  <MenuItem icon={<FaGem />}>
+                        return  <MenuItem 
+                                    icon={content.icon}
+                                >
                                     <a href={`${content.link}`}></a>
                                     {content.title}
                                 </MenuItem>

@@ -33,6 +33,8 @@ export const PageLayout = () => {
             <Main
                 collapsed={state.collapsed}
                 toggled={state.toggled} 
+                handleToggleSidebar={handleToggleSidebar}
+                toggleCollapse={toggleCollapse}
             />
       </div>
   )

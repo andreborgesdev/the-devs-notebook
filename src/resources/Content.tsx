@@ -1,10 +1,11 @@
+import { ReactNode } from "react";
 import { IconType } from "react-icons";
-import { FaGem } from "react-icons/fa";
+import { FaBrain, FaDatabase, FaGem, FaHome, FaSortAmountDown, FaTree, FaUnlockAlt } from "react-icons/fa";
 
 interface ContentItem {
     title: string;
     link: string;
-    icon: IconType;
+    icon: ReactNode;
     subContent?: ContentItem[]
 }
 
@@ -13,33 +14,33 @@ export const Content: Array<ContentItem> = [
     {
         title: 'Home',
         link: '/',
-        icon: FaGem
+        icon: <FaHome />
     },
     {
         title: 'Algorithms',
         link: 'algorithms',
-        icon: FaGem,
+        icon: <FaBrain />,
         subContent: [{
             title: 'Sort',
             link: 'sort-algorithm',
-            icon: FaGem,
+            icon: <FaSortAmountDown />,
             subContent: []
         }]
     },
     {
         title: 'Data Structures',
         link: 'data-structures',
-        icon: FaGem,
+        icon: <FaDatabase />,
         subContent: [{
             title: 'tree',
             link: 'ds-tree',
-            icon: FaGem,
+            icon: <FaTree />,
             subContent: []
         }]
     },
     {
         title: 'Cryptography',
         link: 'crypto',
-        icon: FaGem
+        icon: <FaUnlockAlt />
     }
 ]
