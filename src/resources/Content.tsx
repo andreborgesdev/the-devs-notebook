@@ -5,7 +5,7 @@ import { FaBrain, FaDatabase, FaGem, FaHome, FaSortAmountDown, FaTree, FaUnlockA
 interface ContentItem {
     title: string;
     link: string;
-    icon: ReactNode;
+    icon: ReactNode | string;
     subContent?: ContentItem[]
 }
 
@@ -14,12 +14,12 @@ export const Content: Array<ContentItem> = [
     {
         title: 'Home',
         link: '/',
-        icon: <FaHome />
+        icon: '🏠'
     },
     {
         title: 'Algorithms',
         link: 'algorithms',
-        icon: <FaBrain />,
+        icon: '🧠',
         subContent: [{
             title: 'Sort',
             link: 'sort-algorithm',
@@ -30,7 +30,7 @@ export const Content: Array<ContentItem> = [
     {
         title: 'Data Structures',
         link: 'data-structures',
-        icon: <FaDatabase />,
+        icon: '💾',
         subContent: [{
             title: 'tree',
             link: 'ds-tree',
@@ -39,8 +39,23 @@ export const Content: Array<ContentItem> = [
         }]
     },
     {
+        title: 'Design Patterns',
+        link: 'design-patterns',
+        icon: '🌍'
+    },
+    {
+        title: 'OOP',
+        link: 'oop',
+        icon: '🚙'
+    },
+    {
+        title: 'Clean Code',
+        link: 'clean-code',
+        icon: '📚'
+    },
+    {
         title: 'Cryptography',
         link: 'crypto',
-        icon: <FaUnlockAlt />
+        icon: '🔐'
     }
 ]

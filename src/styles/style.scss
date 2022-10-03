@@ -6,7 +6,7 @@ $submenu-bg-color: rgba(255, 255, 255, 0.05);
 $submenu-bg-color-collapsed: rgba(#0c1e35, 0.95);
 $sidebar-color: #b3b8d4;
 $highlight-color: #dee2ec;
-$icon-bg-color: rgba(255, 255, 255, 0.05);
+$icon-bg-color: rgba(255, 255, 255, 0.01);
 $icon-size: 35px;
 
 @import '~react-pro-sidebar/dist/scss/styles.scss';
@@ -142,6 +142,10 @@ blockquote {
 	border-left: 3px solid rgb(55, 53, 47);
 }
 
+.pro-icon {
+  font-size: 1.5em;
+}
+
 #root {
   height: 100%;
 }
@@ -155,15 +159,17 @@ blockquote {
     cursor: pointer;
     width: 35px;
     height: 35px;
-    background: #353535;
     color: #fff;
     text-align: center;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
+    font-size: 2em;
     // display: none;
+    :hover {
+      background: #353535;
+      border-radius: 50%;
+    }
   }
 
   .sidebar-btn-wrapper {
