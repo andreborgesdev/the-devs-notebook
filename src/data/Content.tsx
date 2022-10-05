@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
-import { IconType } from "react-icons";
-import { FaBrain, FaDatabase, FaGem, FaHome, FaSortAmountDown, FaTree, FaUnlockAlt } from "react-icons/fa";
+import { FaSortAmountDown, FaTree } from "react-icons/fa";
 
 interface ContentItem {
     title: string;

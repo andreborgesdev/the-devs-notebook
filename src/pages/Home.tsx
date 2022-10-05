@@ -7,6 +7,8 @@ export const Home = () => {
         <div>
             <Stack spacing={3}>
                 <Text fontSize='xl'>A community made from devs to devs</Text>
+                <Text fontSize='m'>Do your remember those really well put together notes that someone made on college that just
+                saved your life for a test? That's what this community aspires to do!</Text>
                 <Text fontSize='m'>This platform was initally designed with the goal of sharing my notes to some of my personal friends.
                 However, it was clear that the added value of these notes being shared with everyone for them to also learn and improve them
                 would have an even bigger impact in our educational journey in IT.</Text>

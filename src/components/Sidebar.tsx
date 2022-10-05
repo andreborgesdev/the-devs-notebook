@@ -2,14 +2,16 @@ import {
   ProSidebar,
   Menu,
   MenuItem,
+  SubMenu,
   SidebarHeader,
   SidebarFooter,
   SidebarContent,
 } from 'react-pro-sidebar';
-import { FaGem, FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
+import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Link } from '@chakra-ui/react';
-import { Content } from '../resources/Content';
+import { Content } from '../data/Content';
+import { SettingsModal } from './SettingsModal';
 
 interface SidebarProps {
     collapsed: boolean,
@@ -56,11 +58,17 @@ export const Sidebar = ({collapsed, toggled, handleToggleSidebar, toggleCollapse
                 <Menu iconShape="circle">
                 {
                     Content.map(content => {
-                        return  <MenuItem 
-                                    icon={content.icon}
-                                >
-                                    <a href={`${content.link}`}></a>
-                                    {content.title}
+
+                        // if (content.subContent) {
+
+                        // }
+
+                        // return  <SubMenu icon={content.icon}>
+                        //             <Link href={`${content.link}`}>{content.title}</Link>
+                        //         </SubMenu>
+
+                        return  <MenuItem icon={content.icon}>
+                                    <Link href={`${content.link}`}>{content.title}</Link>
                                 </MenuItem>
                     })
                 }
@@ -101,6 +109,7 @@ export const Sidebar = ({collapsed, toggled, handleToggleSidebar, toggleCollapse
             </SidebarContent>
 
             <SidebarFooter style={{ textAlign: 'center' }}>
+                <SettingsModal />
                 <ColorModeSwitcher />
             </SidebarFooter>
         </ProSidebar>

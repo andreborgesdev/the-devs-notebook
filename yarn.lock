@@ -4040,6 +4040,13 @@ case-sensitive-paths-webpack-plugin@^2.4.0:
   resolved "https://registry.yarnpkg.com/case-sensitive-paths-webpack-plugin/-/case-sensitive-paths-webpack-plugin-2.4.0.tgz#db64066c6422eed2e08cc14b986ca43796dbc6d4"
   integrity sha512-roIFONhcxog0JSSWbvVAh3OocukmSgpqOH6YpMkCvav/ySIV3JKg4Dc8vYtQjYi/UxpNE36r/9v+VqTQqgkYmw==
 
+chakra-ui-markdown-renderer@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/chakra-ui-markdown-renderer/-/chakra-ui-markdown-renderer-4.1.0.tgz#f50b76151455f404900a7b9da9f0f43dcd8d4088"
+  integrity sha512-kcRy5d2aSAEgLVvAQ3p/pMdOLY1sR6d/hOU2pl6zNXHuTzrUhjhGxEBDskyU0ffpIilsR/f1/NIAxMCXhSoREQ==
+  dependencies:
+    deepmerge "^4.2.2"
+
 chalk@^2.0.0, chalk@^2.4.1:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"

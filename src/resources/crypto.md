@@ -10,5 +10,3 @@ RSA is what's known as an asymmetric cipher where you use one key (your “publi
 - Symmetric encryption is an old technique while asymmetric encryption is relatively new.
 - Asymmetric encryption was introduced to complement the inherent problem of the need to share the key in symmetric encryption model, eliminating the need to share the key by using a pair of public-private keys.
 - Asymmetric encryption takes relatively more time than the symmetric encryption.
-
-[Untitled](https://www.notion.so/554bc42ae2034f8ea6de88d2c346ab11)
