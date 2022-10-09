@@ -14,15 +14,17 @@ export const MyCustomRouter = () => {
     
         contentItem.forEach(it => {
             if (it.subContent !== undefined && it.subContent.length > 0) {
-                result += `<Route path='${it.link}'> <MarkdownRender contentTitle='${it.title}' contentLink='${it.link}' contentIcon='${it.icon}' /> </Route>`
+                result += `<Route path='${it.link}'> 
+                                <MarkdownRender contentTitle='${it.title}' contentLink='${it.link}' contentIcon='${it.icon}' /> 
+                            </Route>`
                 result += getAllContent(it.subContent)
             } else {
-                result += `<Route path='${it.link}'> <MarkdownRender contentTitle='${it.title}' contentLink='${it.link}' contentIcon='${it.icon}' /> </Route>`
+                result += `<Route path='${it.link}'> 
+                                <MarkdownRender contentTitle='${it.title}' contentLink='${it.link}' contentIcon='${it.icon}' />
+                            </Route>`
             }
         })
         
-        console.log(result)
-    
         return result;
     }
 

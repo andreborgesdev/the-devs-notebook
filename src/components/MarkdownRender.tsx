@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from "react"
 import 'react-pro-sidebar/dist/css/styles.css'
 import ReactMarkdown from 'react-markdown'
-import { Spinner, Text } from "@chakra-ui/react"
+import { Spinner } from "@chakra-ui/react"
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer'
 
 interface MarkdownRenderProps {

@@ -1,12 +1,6 @@
-import { useEffect, useState } from 'react';
 import { Main } from '../components/Main';
 import { Sidebar } from '../components/Sidebar';
 import { usePersistedState } from '../helpers/PersistedState';
-
-interface test {
-    collapsed: boolean,
-    toggled: boolean
-}
 
 export const PageLayout = () => {  
     const [collapsed, setCollapsed] = usePersistedState<boolean>(false, 'sidebar-collapsed');

@@ -1,5 +1,6 @@
 import { Button, IconButton, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from "@chakra-ui/react"
-import { FaSun, FaWrench } from "react-icons/fa"
+import { FaWrench } from "react-icons/fa"
+import { Text } from "@chakra-ui/react"
 
 export const SettingsModal = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -13,7 +14,9 @@ export const SettingsModal = () => {
             <ModalHeader>Settings</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              <h1>Coming soon...</h1>
+              <Text fontSize={'xl'}>Coming soon...</Text>
+              <br />
+              <Text>The settings will allow you to customize the text part to your preference to make the read experience more pleasant.</Text>
             </ModalBody>
   
             <ModalFooter>

@@ -13,6 +13,7 @@ import { Link } from '@chakra-ui/react';
 import { Content, ContentItem } from '../data/Content';
 import { SettingsModal } from './SettingsModal';
 import parse, { HTMLReactParserOptions, domToReact }  from 'html-react-parser';
+import { useNavigate } from "react-router-dom";
 
 interface SidebarProps {
     collapsed: boolean,
@@ -30,7 +31,7 @@ function getAllContent(contentItem: ContentItem[]): string {
             result += getAllContent(it.subContent)
             result += "</SubMenu>"
         } else {
-            result += `<MenuItem icon='${it.icon}'>
+            result += `<MenuItem icon='${it.icon}' href='${it.link}' title='${it.title}'>
                             <Link href='${it.link}'>${it.title}</Link>
                         </MenuItem>`
         }
@@ -45,15 +46,14 @@ const options: HTMLReactParserOptions = {
 
         if (name === "menuitem") {
             return (
-                <MenuItem icon={attribs.icon}>
+                <MenuItem   icon={attribs.icon}         
+                            onClick={() => {
+                                window.history.pushState({}, attribs.title, attribs.href);
+                                window.location.reload();
+                            }}
+                >
                     {domToReact(children, options)}
                 </MenuItem>
-            )
-        }
-
-        if (name === "link") {
-            return (
-                <Link href={attribs.href}>{domToReact(children, options)}</Link>
             )
         }
 
@@ -66,6 +66,8 @@ const options: HTMLReactParserOptions = {
 }
 
 export const Sidebar = ({collapsed, toggled, handleToggleSidebar, toggleCollapse}: SidebarProps) => {  
+    const navigate = useNavigate()
+    
     return (
         <ProSidebar
             collapsed={collapsed}
@@ -86,7 +88,9 @@ export const Sidebar = ({collapsed, toggled, handleToggleSidebar, toggleCollapse
                 whiteSpace: 'nowrap',
                 }}
             >
-                <Link href='/'>A dev's notebook</Link>
+                <Link href='/'>
+                    A dev's notebook
+                </Link>
                 <div className='collapse-button-sidebar' onClick={() => {
                         return toggleCollapse();
                     }}>
