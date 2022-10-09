@@ -9,7 +9,7 @@ import {
 } from 'react-pro-sidebar';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Link } from '@chakra-ui/react';
+import { Box, Link, useColorModeValue } from '@chakra-ui/react';
 import { Content, ContentItem } from '../data/Content';
 import { SettingsModal } from './SettingsModal';
 import parse, { HTMLReactParserOptions, domToReact }  from 'html-react-parser';
@@ -67,13 +67,18 @@ const options: HTMLReactParserOptions = {
 
 export const Sidebar = ({collapsed, toggled, handleToggleSidebar, toggleCollapse}: SidebarProps) => {  
     const navigate = useNavigate()
+
+    //const color = useColorModeValue('rgb(55, 53, 47)', 'rgba(255, 255, 255, 0.81)')
+    // const bg = useColorModeValue('rgb(251, 251, 250)', 'rgb(25, 25, 25)')
+    //const bg = useColorModeValue('red', 'red')
     
     return (
         <ProSidebar
             collapsed={collapsed}
             toggled={toggled}
-            breakPoint="md"
+            breakPoint="xxl"
             onToggle={handleToggleSidebar}
+            //style={{color: color}}
         >
             <SidebarHeader>
             <div
@@ -104,7 +109,7 @@ export const Sidebar = ({collapsed, toggled, handleToggleSidebar, toggleCollapse
             </SidebarHeader>
 
             <SidebarContent>
-                <Menu iconShape="circle">
+                <Menu>
                 { 
                     parse(getAllContent(Content), options)
                 }

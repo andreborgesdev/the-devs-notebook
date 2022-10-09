@@ -1,13 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-// $sidebar-bg-color: rgb(251, 251, 250); light mode
-$sidebar-bg-color: rgb(32, 32, 32);
-$submenu-bg-color: rgba(255, 255, 255, 0.05);
+//$submenu-bg-color: rgba(#0c1e35, 0.95);
 $submenu-bg-color-collapsed: rgba(#0c1e35, 0.95);
-$sidebar-color: #b3b8d4;
-$highlight-color: #dee2ec;
-$icon-bg-color: rgba(255, 255, 255, 0.01);
-$icon-size: 35px;
+$highlight-color: #EDF2F7;
 
 @import '~react-pro-sidebar/dist/scss/styles.scss';
 
@@ -15,141 +10,12 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  color: #353535;
-  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-	border-collapse: collapse;
-}
-
-table {
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style-type: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1.25em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
 }
 
 .spinner {
   display: block !important;
   margin-left: auto;
   margin-right: auto;
-}
-
-.pro-icon {
-  font-size: 1.5em;
 }
 
 #root {
@@ -173,45 +39,7 @@ blockquote {
     font-size: 2em;
     // display: none;
     :hover {
-      background: #353535;
-      border-radius: 50%;
-    }
-  }
-
-  .sidebar-btn-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .sidebar-btn {
-      transition: width 0.3s;
-      width: 150px;
-      padding: 1px 15px;
-      border-radius: 40px;
-      background: rgba(255, 255, 255, 0.05);
-      color: #adadad;
-      text-decoration: none;
-      margin: 0 auto;
-      height: 35px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      span {
-        margin-left: 5px;
-        font-size: 13px;
-      }
-      &:hover {
-        color: $highlight-color;
-      }
-    }
-  }
-
-  .collapsed {
-    .sidebar-btn {
-      display: inline-block;
-      line-height: 40px;
-      padding: 0;
+      opacity: 0.8;
     }
   }
 
@@ -221,34 +49,6 @@ blockquote {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    header {
-      margin-bottom: 40px;
-      border-bottom: 1px solid #efefef;
-      h1 {
-        display: flex;
-        align-items: center;
-        transform: translateX(-20px);
-      }
-    }
-
-    footer {
-      margin-top: auto;
-      color: #888;
-      text-align: center;
-      a {
-        text-decoration: none;
-        color: #888;
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-  .social-bagdes {
-    margin-top: 10px;
-    img {
-      margin: 5px;
-    }
   }
 
   .block {
@@ -258,49 +58,21 @@ blockquote {
     }
   }
 
-  &.rtl {
-    direction: rtl;
-    text-align: right;
-
-    header {
-      h1 {
-        transform: translateX(20px);
-      }
-    }
-    .block {
-      direction: rtl;
-      > span {
-        margin-left: 0;
-        margin-right: 10px;
-      }
-    }
-    .sidebar-btn-wrapper {
-      .sidebar-btn {
-        span {
-          margin-left: 0;
-          margin-right: 5px;
-        }
-      }
-    }
-  }
-
   @media (max-width: 767.98px) {
     overflow-x: hidden;
-    header {
-      h1 {
-        font-size: 24px;
-      }
-    }
   }
-  @media (max-width: $breakpoint-md) {
+
+  @media (max-width: $breakpoint-xxl) {
     .btn-toggle {
+      opacity: 1;
       display: flex;
     }
+  }
 
-    &.rtl {
-      .btn-toggle {
-        margin-left: auto;
-      }
+  @media (min-width: $breakpoint-xxl) {
+    .btn-toggle {
+      opacity: 0;
+      display: none;
     }
   }
 }
@@ -317,21 +89,6 @@ blockquote {
   cursor: pointer;
 }
 
-.badge {
-  padding: 3px 6px;
-  font-size: 9px;
-  letter-spacing: 1px;
-  border-radius: 15px;
-  &.red {
-    color: #ffffff;
-    background: #d63030;
-  }
-  &.gray {
-    color: #ffffff;
-    background: #777777;
-  }
-  &.yellow {
-    color: #000000;
-    background: #ffd331;
-  }
+.pro-icon {
+  font-size: 1.5em;
 }
