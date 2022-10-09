@@ -62,8 +62,6 @@ const options: HTMLReactParserOptions = {
                 <SubMenu title={attribs.title} icon={attribs.icon}>{domToReact(children, options)}</SubMenu>
             )
         }
-
-        return;
     }
 }
 
