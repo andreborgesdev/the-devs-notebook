@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { FaSortAmountDown, FaTree } from "react-icons/fa";
 
-interface ContentItem {
+export interface ContentItem {
     title: string;
     link: string;
     icon: ReactNode | string;
@@ -9,7 +9,7 @@ interface ContentItem {
 }
 
 // Declare all subjects here
-export const Content: Array<ContentItem> = [
+export const Content: ContentItem[] = [
     {
         title: 'Home',
         link: '/',
@@ -21,9 +21,13 @@ export const Content: Array<ContentItem> = [
         icon: '🧠',
         subContent: [{
             title: 'Sort',
-            link: 'sort-algorithm',
-            icon: <FaSortAmountDown />,
-            subContent: []
+            link: 'algorithms/sort-algorithm',
+            icon: '📊',
+            subContent: [{
+                title: 'Sortiiiiiiii',
+                link: 'test/algo/sort-algorithmiiiiiiiii',
+                icon: '📊',
+            }]
         }]
     },
     {
@@ -31,9 +35,9 @@ export const Content: Array<ContentItem> = [
         link: 'data-structures',
         icon: '💾',
         subContent: [{
-            title: 'tree',
-            link: 'ds-tree',
-            icon: <FaTree />,
+            title: 'Trees',
+            link: 'data-structures/ds-tree',
+            icon: '🌲',
             subContent: []
         }]
     },

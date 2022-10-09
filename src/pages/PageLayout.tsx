@@ -12,16 +12,6 @@ export const PageLayout = () => {
     const [collapsed, setCollapsed] = usePersistedState<boolean>(false, 'sidebar-collapsed');
     const [toggled, setToggled] = usePersistedState<boolean>(false, 'sidebar-toggled');
 
-    // const [collapsed, setCollapsed] = useState<boolean>(() => {
-    //     const value = window.localStorage.getItem('sidebar-collapsed');
-    //     return value ? (JSON.parse(value) as boolean) : false;
-    // })
-
-    // const [toggled, setToggled] = useState<boolean>(() => {
-    //     const value = window.localStorage.getItem('sidebar-toggled');
-    //     return value ? (JSON.parse(value) as boolean) : false;
-    // })
-
     const handleToggleSidebar = (value: boolean) => {
         setToggled(value)
       }

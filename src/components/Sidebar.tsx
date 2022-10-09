@@ -10,8 +10,9 @@ import {
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { Link } from '@chakra-ui/react';
-import { Content } from '../data/Content';
+import { Content, ContentItem } from '../data/Content';
 import { SettingsModal } from './SettingsModal';
+import parse, { HTMLReactParserOptions, domToReact }  from 'html-react-parser';
 
 interface SidebarProps {
     collapsed: boolean,
@@ -20,7 +21,53 @@ interface SidebarProps {
     toggleCollapse: () => void
 }
 
-export const Sidebar = ({collapsed, toggled, handleToggleSidebar, toggleCollapse}: SidebarProps) => {    
+function getAllContent(contentItem: ContentItem[]): string {
+    let result: string = "";
+
+    contentItem.forEach(it => {
+        if (it.subContent !== undefined && it.subContent.length > 0) {
+            result += `<SubMenu title='${it.title}' icon='${it.icon}'>`
+            result += getAllContent(it.subContent)
+            result += "</SubMenu>"
+        } else {
+            result += `<MenuItem icon='${it.icon}'>
+                            <Link href='${it.link}'>${it.title}</Link>
+                        </MenuItem>`
+        }
+    })
+
+    return result;
+}
+
+const options: HTMLReactParserOptions = {
+    replace: ({ name, attribs, children }: any) => {
+        if (!name) return;
+
+        if (name === "menuitem") {
+            return (
+                <MenuItem icon={attribs.icon}>
+                    {domToReact(children, options)}
+                </MenuItem>
+            )
+        }
+
+        if (name === "link") {
+            return (
+                <Link href={attribs.href}>{domToReact(children, options)}</Link>
+            )
+        }
+
+        if (name === "submenu") {
+            return (
+                <SubMenu title={attribs.title} icon={attribs.icon}>{domToReact(children, options)}</SubMenu>
+            )
+        }
+
+        return;
+    }
+}
+
+export const Sidebar = ({collapsed, toggled, handleToggleSidebar, toggleCollapse}: SidebarProps) => {  
     return (
         <ProSidebar
             collapsed={collapsed}
@@ -56,56 +103,10 @@ export const Sidebar = ({collapsed, toggled, handleToggleSidebar, toggleCollapse
 
             <SidebarContent>
                 <Menu iconShape="circle">
-                {
-                    Content.map(content => {
-
-                        // if (content.subContent) {
-
-                        // }
-
-                        // return  <SubMenu icon={content.icon}>
-                        //             <Link href={`${content.link}`}>{content.title}</Link>
-                        //         </SubMenu>
-
-                        return  <MenuItem icon={content.icon}>
-                                    <Link href={`${content.link}`}>{content.title}</Link>
-                                </MenuItem>
-                    })
+                { 
+                    parse(getAllContent(Content), options)
                 }
                 </Menu>
-            {/* <Menu iconShape="circle">
-                <SubMenu
-                suffix={<span className="badge yellow">3</span>}
-                title={'withSufix'}
-                icon={<FaRegLaughWink />}
-                >
-                <MenuItem>submenu 1</MenuItem>
-                <MenuItem>submenu 2</MenuItem>
-                <MenuItem>submenu 3</MenuItem>
-                </SubMenu>
-                <SubMenu
-                prefix={<span className="badge gray">3</span>}
-                title={'withPrefix'}
-                icon={<FaHeart />}
-                >
-                <MenuItem>submenu' 1</MenuItem>
-                <MenuItem>submenu' 2</MenuItem>
-                <MenuItem>submenu' 3</MenuItem>
-                </SubMenu>
-                <SubMenu title={'multiLevel'} icon={<FaList />}>
-                    <MenuItem>submenu 1 </MenuItem>
-                    <MenuItem>submenu 2 </MenuItem>
-                    <SubMenu title={`$submenu 3`}>
-                        <MenuItem>submenu 3.1 </MenuItem>
-                        <MenuItem>submenu 3.2 </MenuItem>
-                        <SubMenu title={`$submenu 3.3`}>
-                        <MenuItem>submenu 3.3.2 </MenuItem>
-                        <MenuItem>submenu 3.3.1 </MenuItem>
-                        <MenuItem>submenu 3.3.3 </MenuItem>
-                        </SubMenu>
-                    </SubMenu>
-                </SubMenu>
-            </Menu> */}
             </SidebarContent>
 
             <SidebarFooter style={{ textAlign: 'center' }}>
