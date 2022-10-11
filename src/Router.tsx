@@ -24,8 +24,6 @@ export const MyCustomRouter = () => {
                             </Route>`
             }
         })
-
-        console.log(result)
         
         return result;
     }

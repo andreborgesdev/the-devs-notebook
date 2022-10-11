@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import { Code, Spinner } from "@chakra-ui/react"
 import ChakraUIRenderer from 'chakra-ui-markdown-renderer'
 import { CopyBlock, dracula } from "react-code-blocks"
+import remarkGfm from 'remark-gfm'
 
 interface MarkdownRenderProps {
     contentTitle: string,
@@ -72,7 +73,7 @@ export const MarkdownRender = ({contentTitle, contentLink, contentIcon}: Markdow
             {
                 loading ? 
                     <Spinner className="spinner" /> :
-                    <ReactMarkdown components={ChakraUIRenderer(newTheme)} children={markdown} skipHtml />
+                    <ReactMarkdown components={ChakraUIRenderer(newTheme)} children={markdown} remarkPlugins={[remarkGfm]} skipHtml />
             }
         </>
     );

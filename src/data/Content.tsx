@@ -42,6 +42,11 @@ export const Content: ContentItem[] = [
         }]
     },
     {
+        title: 'API',
+        link: 'api',
+        icon: '🧩'
+    },
+    {
         title: 'Design Patterns',
         link: 'design-patterns',
         icon: '🌍'
