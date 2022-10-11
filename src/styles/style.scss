@@ -62,14 +62,14 @@ body {
     overflow-x: hidden;
   }
 
-  @media (max-width: $breakpoint-xxl) {
+  @media (max-width: $breakpoint-md) {
     .btn-toggle {
       opacity: 1;
       display: flex;
     }
   }
 
-  @media (min-width: $breakpoint-xxl) {
+  @media (min-width: $breakpoint-md) {
     .btn-toggle {
       opacity: 0;
       display: none;

@@ -24,6 +24,8 @@ export const MyCustomRouter = () => {
                             </Route>`
             }
         })
+
+        console.log(result)
         
         return result;
     }
@@ -54,7 +56,7 @@ export const MyCustomRouter = () => {
     <Router>
         <Routes>
             <Route path="/" element={<PageLayout />}>
-                <Route path="" element={<Home />} />
+                <Route index element={<Home />} />
                 {
                     parse(getAllContent(Content), options)
                 }

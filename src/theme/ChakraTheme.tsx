@@ -1,6 +1,6 @@
 import { extendTheme, type ThemeConfig } from '@chakra-ui/react'
 import { StyleConfig, mode } from "@chakra-ui/theme-tools";
-import { type StyleFunctionProps, MultiStyleConfig  } from '@chakra-ui/styled-system'
+import { type StyleFunctionProps  } from '@chakra-ui/styled-system'
 
 const config: ThemeConfig = {
     initialColorMode: 'dark',
@@ -8,6 +8,12 @@ const config: ThemeConfig = {
 }
 
 const components: Record<string, StyleConfig> = {
+    // variants: {
+    // },
+    // defaultProps: ({ colorMode }) => ({
+    //   variant: 'test'
+    //   // colorScheme: mode('rgb(55, 53, 47)', 'rgba(255, 255, 255, 0.81)')
+    // }),
   // ProSidebar: {
   //   baseStyle: ({ colorMode }) => ({
   //     bg: colorMode === "dark" ? "red.300" : "green.500",
