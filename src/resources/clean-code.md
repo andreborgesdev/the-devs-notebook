@@ -100,4 +100,4 @@ Code is clean if it can be understood easily – by everyone on the team. Clean 
 
 ## Cheat sheet
 
-![test.png](./images/clean-code-cheat-sheet.png)
+![clean-code-cheat-sheet](./images/clean-code-cheat-sheet.png)

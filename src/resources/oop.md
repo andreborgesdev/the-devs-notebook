@@ -62,13 +62,13 @@ Encapsulation is the process of binding the data members and the methods togethe
 
 It’s a basic concept that most Java developers use without a lot of thought. In essence, it’s simply how you design a Java class. You bundle a set of attributes that store the current state of the object with a set of methods using these attributes.
 
-[https://cdn.buttercms.com/yolhvNrTMqWdqyk29ejF](https://cdn.buttercms.com/yolhvNrTMqWdqyk29ejF)
+![encapsulation](./images/encapsulation.png)
 
 ### **What is an abstraction?**
 
 Abstraction is a useful feature of OOPS, and it shows only the necessary details to the client of an object. Meaning, it shows only required details for an object, not the inner constructors, of an object. Example – When you want to switch on the television, it is not necessary to know the inner circuitry/mechanism needed to switch on the TV. Whatever is required to switch on TV will be shown by using an abstract class.
 
-![https://www.journaldev.com/wp-content/uploads/2019/09/data-abstraction.png](https://www.journaldev.com/wp-content/uploads/2019/09/data-abstraction.png)
+![abstraction](./images/abstraction.jpg)
 
 ## Difference between encapsulation and abstraction
 
@@ -104,7 +104,7 @@ Before mentioning anything about abstraction, we can take three different users 
 
 **The car's operation is completely abstracted from you and it is partially implemented to Local Mechanic Entity and fully implemented to Expert Entity. So you are an abstract class having only abstract methods, Local Mechanic Entity has extended You(Since he is also an ordinary user) and he implemented some of the methods and last our expert Entity extending Local Mechanic and implementing all the methods**.
 
-![Screenshot 2022-04-20 at 23.35.16.png](OOP%20e25432f605f54cd8b3a34d36b588814f/Screenshot_2022-04-20_at_23.35.16.png)
+![abstraction-vs-encapsulation](./images/abstraction-vs-encapsulation.png)
 
 ### **What is Polymorphism?**
 
@@ -271,9 +271,7 @@ Java doesn’t have:
 
 If a class has no modifier (the default, also known as package-private), it is visible only within its own package
 
-![Screenshot_2.png](OOP%20e25432f605f54cd8b3a34d36b588814f/Screenshot_2.png)
-
-![Captura de ecrã 2022-02-18, às 11.18.51.png](OOP%20e25432f605f54cd8b3a34d36b588814f/Captura_de_ecra_2022-02-18_as_11.18.51.png)
+![access-modifiers](./images/access-modifiers.png)
 
 ### **What are access specifiers and what is their significance?**
 
@@ -587,7 +585,7 @@ Also, an abstract class can contain abstract methods as well as non-abstract met
 
 ### **What is the difference between abstract classes and interfaces?**
 
-![Untitled](OOP%20e25432f605f54cd8b3a34d36b588814f/Untitled.png)
+![abstract-classes-vs-interfaces](./images/abstract-classes-vs-interfaces.png)
 
 ### **Can we run a Java application without implementing the OOPs concept?**
 
@@ -690,7 +688,13 @@ Error - Errors are problems that should not be encountered by applications
 
 Exception - Conditions that an application might try to catch
 
-[Untitled](https://www.notion.so/4caf90adf5f747e990c2be6177afcf3d)
+|                            	| Error                           	| Exception                                  	|
+|----------------------------	|---------------------------------	|--------------------------------------------	|
+| Type                       	| Classified as an unchecked type 	| Classified as checked and unchecked        	|
+| Package                    	| It belongs to java.lang.error   	| It belongs to java.lang.Exception          	|
+| Recoverable/ Irrecoverable 	| It is irrecoverable             	| It is recoverable                          	|
+|                            	| It can't occur at compile time  	| It can occur at run time compile time both 	|
+| Example                    	| OutOfMemoryError ,IOError       	| NullPointerException , SqlException        	|
 
 Exceptions and errors both are subclasses of Throwable class. The error indicates a problem that mainly occurs due to the lack of system resources and our application should not catch these types of problems. Some of the examples of errors are system crash error and out of memory error. Errors mostly occur at runtime that's they belong to an unchecked type.
 

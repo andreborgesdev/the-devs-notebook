@@ -2,9 +2,9 @@
 
 # Idempotent HTTP Methods
 
-An HTTP method is **idempotent** if an identical request can be made once or several times in a row with the same effect while leaving the server in the same state. In other words, an idempotent method should not have any side-effects (except for keeping statistics). Implemented correctly, the `[GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET)`, `[HEAD](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD)`, `[PUT](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT)`, and `[DELETE](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE)` methods are **idempotent**, but not the `[POST](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST)` method. All [safe](https://developer.mozilla.org/en-US/docs/Glossary/Safe/HTTP) methods are also idempotent.
+An HTTP method is **idempotent** if an identical request can be made once or several times in a row with the same effect while leaving the server in the same state. In other words, an idempotent method should not have any side-effects (except for keeping statistics). Implemented correctly, the GET, HEAD, PUT, and DELETE methods are **idempotent**, but not the POST method. All safe methods are also idempotent.
 
-To be idempotent, only the actual back-end state of the server is considered, the status code returned by each request may differ: the first call of a `[DELETE](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE)` will likely return a `[200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)`, while successive ones will likely return a `[404](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404)`. Another implication of `[DELETE](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE)` being idempotent is that developers should not implement RESTful APIs with a *delete last entry* functionality using the `DELETE` method.
+To be idempotent, only the actual back-end state of the server is considered, the status code returned by each request may differ: the first call of a DELETE will likely return a 200, while successive ones will likely return a 404. Another implication of DELETE being idempotent is that developers should not implement RESTful APIs with a *delete last entry* functionality using the DELETE method.
 
 Note that the idempotence of a method is not guaranteed by the server and some applications may incorrectly break the idempotence constraint.
 
@@ -34,15 +34,15 @@ There are 2 types of URI:
 
 - **URN:** Uniform Resource Name identifies the resource by means of a name that is both unique and persistent.
     - URN doesn’t always specify where to locate the resource on the internet. They are used as templates that are used by other parsers to identify the resource.
-    - These follow the `urn` scheme and usually prefixed with `urn:`. Examples include
-        - `urn:isbn:1234567890` is used for identification of book based on the ISBN number in a library application.
-        - `urn:mpeg:mpeg7:schema:2001` is the default namespace rules for metadata of MPEG-7 video.
+    - These follow the urn scheme and usually prefixed with urn:. Examples include
+        - urn:isbn:1234567890 is used for identification of book based on the ISBN number in a library application.
+        - urn:mpeg:mpeg7:schema:2001 is the default namespace rules for metadata of MPEG-7 video.
     - Whenever a URN identifies a document, they are easily translated into a URL by using “resolver” after which the document can be downloaded.
 - **URL:** Uniform Resource Locator has the information regarding fetching of a resource from its location.
     - Examples include:
-        - `http://abc.com/samplePage.html`
-        - `ftp://sampleServer.com/sampleFile.zip`
-        - `file:///home/interviewbit/sampleFile.txt`
+        - http://abc.com/samplePage.html
+        - ftp://sampleServer.com/sampleFile.zip
+        - file:///home/interviewbit/sampleFile.txt
     - URLs start with a protocol (like ftp, http etc) and they have the information of the network hostname (sampleServer.com) and the path to the document(/samplePage.html). It can also have query parameters.
 
 ![https://s3.ap-south-1.amazonaws.com/myinterviewtrainer-domestic/public_assets/assets/000/000/462/original/uri_example.png?1622557125](https://s3.ap-south-1.amazonaws.com/myinterviewtrainer-domestic/public_assets/assets/000/000/462/original/uri_example.png?1622557125)
@@ -123,7 +123,7 @@ The technique of sending a message from the REST client to the REST server in th
 
 # **Differentiate between SOAP and REST?**
 
-![Captura de ecrã 2022-01-24, às 21.46.14.png](APIs%200554c0d88bdb4425b5046664b375f49f/Captura_de_ecra_2022-01-24_as_21.46.14.png)
+![rest-vs-soap](./images/rest-vs-soap.png)
 
 ### **While creating URI for web services, what are the best practices that needs to be followed?**
 
@@ -165,7 +165,7 @@ RESTful web services use REST API as means of implementation using the HTTP prot
 - Good security practices are a must while developing REST APIs. The client-server communication must be private due to the nature of data sensitivity. Hence, incorporating SSL/TLS becomes the most important step while developing APIs as they facilitate establishing secure communication. SSL certificates are easier to get and load on the server.
     - Apart from the secure channels, we need to ensure that not everyone should be able to access the resource. For example, normal users should not access the data of admins or another user. Hence, role-based access controls should be in place to make sure only the right set of users can access the right set of data.
 - Since REST supports the feature of caching, we can use this feature to cache the data in order to improve the application performance. Caching is done to avoid querying the database for a request repeated times. Caching makes data retrieval fast. However, care must be taken to ensure that the cache has updated data and not outdated ones. Frequent cache update measures need to be incorporated. There are many cache providers like Redis that can assist in caching.
-- API Versioning: Versioning needs to be done in case we are planning to make any changes with the existing endpoints. We do not want to break communication between our application and the apps that consume our application while we are working on the API release. The transition has to be seamless. Semantic versioning can be followed. For example, 3.0.1 represents 3rd major version with the first patch. Usually, in the API endpoints, we define `/v1`,`/v2`, etc at the beginning of the API path.
+- API Versioning: Versioning needs to be done in case we are planning to make any changes with the existing endpoints. We do not want to break communication between our application and the apps that consume our application while we are working on the API release. The transition has to be seamless. Semantic versioning can be followed. For example, 3.0.1 represents 3rd major version with the first patch. Usually, in the API endpoints, we define /v1, /v2, etc at the beginning of the API path.
 
 ### **What are Idempotent methods? How is it relevant in RESTful web services domain?**
 
@@ -177,11 +177,11 @@ The meaning of idempotent is that even after calling a single request multiple t
     - Methods like GET, OPTIONS, TRACE, and HEAD are idempotent because they do not change the state of resources on the server. They are meant for resource retrieval whenever called. They do not result in write operations on the server thereby making it idempotent.
     - PUT methods are generally used for updating the state of resources. If you call PUT methods N times, the first request updates the resource and the subsequent requests will be overwriting the same resource again and again without changing anything. Hence, PUT methods are idempotent.
     - DELETE methods are said to be idempotent because when calling them for N times, the first request results in successful deletion (Status Code 200), and the next subsequent requests result in nothing - Status Code 204. The response is different, but there is no change of resources on the server-side.
-        - However, if you are attempting to delete the resource present, at last, every time you hit the API, such as the request `DELETE /user/last` which deletes the last user record, then calling the request N times would delete N resources on the server. This does not make DELETE idempotent. In such cases, as part of good practices, it is advisable to use POST requests.
+        - However, if you are attempting to delete the resource present, at last, every time you hit the API, such as the request **DELETE /user/last** which deletes the last user record, then calling the request N times would delete N resources on the server. This does not make DELETE idempotent. In such cases, as part of good practices, it is advisable to use POST requests.
 
 ## **What are the differences between REST and AJAX?**
 
-![Captura de ecrã 2022-01-24, às 21.57.10.png](APIs%200554c0d88bdb4425b5046664b375f49f/Captura_de_ecra_2022-01-24_as_21.57.10.png)
+![rest-vs-ajax](./images/rest-vs-ajax.png)
 
 ### **Can you tell what constitutes the core components of HTTP Request?**
 
@@ -216,7 +216,7 @@ Addressing is the process of locating a single/multiple resources that are prese
 
 ## **What are the differences between PUT and POST in REST?**
 
-![Captura de ecrã 2022-01-24, às 21.59.41.png](APIs%200554c0d88bdb4425b5046664b375f49f/Captura_de_ecra_2022-01-24_as_21.59.41.png)
+![put-vs-post.png](./images/put-vs-post.png.png)
 
 ### **What makes REST services to be easily scalable?**
 
@@ -253,11 +253,11 @@ Following are the questions you need to ask to help you decide which service can
 
 ## **We can develop webservices using web sockets as well as REST. What are the differences between these two?**
 
-![Captura de ecrã 2022-01-24, às 22.03.06.png](APIs%200554c0d88bdb4425b5046664b375f49f/Captura_de_ecra_2022-01-24_as_22.03.06.png)
+![rest-vs-web-sockets](./images/rest-vs-web-sockets.png)
 
 The request flow difference between the REST and Web Socket is shown below:
 
-![Untitled](APIs%200554c0d88bdb4425b5046664b375f49f/Untitled.png)
+![request-diff-between-rest-and-web-sockets](./images/request-diff-between-rest-and-web-sockets.png)
 
 ### **Can we implement transport layer security (TLS) in REST?**
 
@@ -294,7 +294,7 @@ While implementing Basic Authentication as part of APIs, the user must provide t
 
 According to [restcookbook.com](https://restcookbook.com/), the following is the table that describes what methods are idempotent and what is safe.
 
-![Captura de ecrã 2022-01-24, às 22.12.13.png](APIs%200554c0d88bdb4425b5046664b375f49f/Captura_de_ecra_2022-01-24_as_22.12.13.png)
+![http-idempotent-vs-safe-methods](./images/http-idempotent-vs-safe-methods.png)
 
 ## **Mention whether you can use GET request instead of PUT to create a resource?**
 
@@ -312,5 +312,3 @@ The different integration styles include
 ## **Mention what is the difference between RPC or document style web services? How you determine to which one to choose?**
 
 In document style web services, we can transport an XML message as part of SOAP request which is not possible in RPC style web service. Document style web service is most appropriate in some application where XML message behaves as document and content of that document can alter and intention of web service does not rely on the content of XML message.
-
-[**Spring RESTful Web Services**](APIs%200554c0d88bdb4425b5046664b375f49f/Spring%20RESTful%20Web%20Services%20f9d26ae224704f5e81d1f3cfb83efb23.md)
