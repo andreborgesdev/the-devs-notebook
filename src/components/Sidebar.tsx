@@ -44,8 +44,6 @@ const options: HTMLReactParserOptions = {
     replace: ({ name, attribs, children }: any) => {
         if (!name) return;
 
-        console.log(attribs.href)
-
         if (name === "menuitem") {
             return (
                 <MenuItem   icon={attribs.icon}         
