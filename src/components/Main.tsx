@@ -1,7 +1,6 @@
-import React from 'react';
 import { FaBars } from 'react-icons/fa';
 import { Outlet } from 'react-router-dom';
-import { Box, useStyleConfig, useColorModeValue } from '@chakra-ui/react';
+import { useColorModeValue } from '@chakra-ui/react';
 
 interface MainProps {
     collapsed: boolean,
@@ -21,7 +20,7 @@ export const Main = ({collapsed, toggled, handleToggleSidebar, toggleCollapse}: 
                     }}>
                     <FaBars color={color} />
                 </div> 
-                <div className="block ">
+                <div className="block " style={{}}>
                     <Outlet />
                 </div>
             </div>

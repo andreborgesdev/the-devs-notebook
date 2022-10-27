@@ -42,6 +42,77 @@ export const Content: ContentItem[] = [
         }]
     },
     {
+        title: 'Java',
+        link: 'java',
+        icon: '☕',
+        subContent: [
+            {
+                title: 'Introduction',
+                link: 'java',
+                icon: '💡',
+            },
+            {
+                title: 'Spring',
+                link: 'spring',
+                icon: '🍃',
+                subContent: [
+                    {
+                        title: 'Introduction',
+                        link: 'spring',
+                        icon: '💡',
+                    },
+                    {
+                        title: 'Security',
+                        link: 'spring-security',
+                        icon: '🔒',
+                    },
+                    {
+                        title: 'JPA',
+                        link: 'spring-jpa',
+                        icon: '💾',
+                    },
+                    {
+                        title: 'Caching',
+                        link: 'spring-caching',
+                        icon: '💾',
+                    },
+                    {
+                        title: 'Interview Questions',
+                        link: 'spring-interview-questions',
+                        icon: '❓',
+                        subContent: [
+                            {
+                                title: 'Spring Core',
+                                link: 'spring-core-interview-questions',
+                                icon: '❓',  
+                            },
+                            {
+                                title: 'Spring 5',
+                                link: 'spring-5-interview-questions',
+                                icon: '❓',  
+                            },
+                            {
+                                title: 'Spring Data Access',
+                                link: 'spring-data-access-interview-questions',
+                                icon: '❓',  
+                            },
+                            {
+                                title: 'Spring Web MVC',
+                                link: 'springs-web-mvc-interview-questions',
+                                icon: '❓',  
+                            },
+                            {
+                                title: 'Spring Aspect Oriented Programming',
+                                link: 'spring-aspect-oriented-interview-questions',
+                                icon: '❓',  
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
         title: 'APIs',
         link: 'apis',
         icon: '🧩',
@@ -62,6 +133,11 @@ export const Content: ContentItem[] = [
         title: 'Design Patterns',
         link: 'design-patterns',
         icon: '🌍'
+    },
+    {
+        title: 'Microservices',
+        link: 'microservices',
+        icon: '🗺️'
     },
     {
         title: 'System Design',
