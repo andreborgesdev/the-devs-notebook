@@ -27,13 +27,85 @@ export const Content: ContentItem[] = [
             },
             {
                 title: 'Sort',
-                link: 'algorithms/sort-algorithm',
+                link: 'sort',
                 icon: '📊',
                 subContent: [
                     {
-                        title: 'Sortiiiiiiii',
-                        link: 'test/algo/sort-algorithmiiiiiiiii',
+                        title: 'Introduction',
+                        link: 'sort',
+                        icon: '💡',
+                    },
+                    {
+                        title: 'Bogo sort',
+                        link: 'bogo-sort',
                         icon: '📊',
+                    },
+                    {
+                        title: 'Bubble Sort',
+                        link: 'bubble-sort',
+                        icon: '📊',
+                    },
+                    {
+                        title: 'Selection Sort',
+                        link: 'selection-sort',
+                        icon: '📊',
+                    },
+                    {
+                        title: 'Merge Sort',
+                        link: 'merge-sort',
+                        icon: '📊',
+                    },
+                    {
+                        title: 'Quick Sort',
+                        link: 'quick-sort',
+                        icon: '📊',
+                    },
+                    {
+                        title: 'Radix Sort',
+                        link: 'radix-sort',
+                        icon: '📊',
+                    },
+                    {
+                        title: 'Insertion Sort',
+                        link: 'insertion-sort',
+                        icon: '📊',
+                    },
+                    {
+                        title: 'Bucket Sort',
+                        link: 'bucket-sort',
+                        icon: '📊',
+                    }
+                ]
+            },
+            {
+                title: 'Search',
+                link: 'search',
+                icon: '🔎',
+                subContent: [
+                    {
+                        title: 'Linear Search',
+                        link: 'linear-search',
+                        icon: '🔎',
+                    },
+                    {
+                        title: 'Binary Search',
+                        link: 'binary-search',
+                        icon: '🔎',
+                    },
+                    {
+                        title: 'BFS',
+                        link: 'bfs',
+                        icon: '🔎',
+                    },
+                    {
+                        title: 'DFS',
+                        link: 'dfs',
+                        icon: '🔎',
+                    },
+                    {
+                        title: 'DFS vs BFS',
+                        link: 'dfs-vs-bfs',
+                        icon: '🔎',
                     }
                 ]
             },
