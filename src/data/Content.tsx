@@ -8,7 +8,7 @@ export interface ContentItem {
     subContent?: ContentItem[]
 }
 
-// Declare all subjects here
+// Declare all content here to be able to see it on the UI
 export const Content: ContentItem[] = [
     {
         title: 'Home',
@@ -689,23 +689,6 @@ export const Content: ContentItem[] = [
         icon: '🚙'
     },
     {
-        title: 'IT Books Summarized',
-        link: 'it-books',
-        icon: '📚',
-        subContent: [
-            {
-                title: 'Clean code',
-                link: 'clean-code',
-                icon: '🧹',
-            },
-            {
-                title: 'Clean Architecture',
-                link: 'clean-architecture',
-                icon: '🧹',
-            },
-        ]
-    },
-    {
         title: 'Blockchain',
         link: 'blockchain',
         icon: '🔗',
@@ -731,6 +714,23 @@ export const Content: ContentItem[] = [
         title: 'Cryptography',
         link: 'cryptography',
         icon: '🔐'
+    },
+    {
+        title: 'IT Books Summarized',
+        link: 'it-books',
+        icon: '📚',
+        subContent: [
+            {
+                title: 'Clean code',
+                link: 'clean-code',
+                icon: '🧹',
+            },
+            {
+                title: 'Clean Architecture',
+                link: 'clean-architecture',
+                icon: '🧹',
+            },
+        ]
     },
     {
         title: 'Misc',
