@@ -1,4 +1,4 @@
-# A dev's network
+# A dev's notebook 📚
 
 ## A community made from devs to devs
 
