@@ -94,7 +94,7 @@ export const Sidebar = ({collapsed, toggled, handleToggleSidebar, toggleCollapse
                 }}
             >
                 <Link href='/'>
-                    A dev's notebook
+                    The dev's notebook
                 </Link>
                 <div className='collapse-button-sidebar' onClick={() => {
                         return toggleCollapse();

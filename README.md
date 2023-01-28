@@ -1,6 +1,6 @@
 # The dev's notebook 📚
 
-## The community made from devs to devs
+## This community was made with ❤️ from devs to devs
 
 Do your remember those really well put together notes that someone made on college that just saved your life for a test? That's what this community aspires to do!
 
