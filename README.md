@@ -1,6 +1,6 @@
-# A dev's notebook 📚
+# The dev's notebook 📚
 
-## A community made from devs to devs
+## The community made from devs to devs
 
 Do your remember those really well put together notes that someone made on college that just saved your life for a test? That's what this community aspires to do!
 
@@ -62,7 +62,7 @@ This is a platform made from devs to devs! Everyone is welcomed and encouraged t
 - Improve the platform itself. This can be done either by:
   - Improving the UI/UX to make the experience smoother and more enjoyable
   - Improving the codebase and infrastructure of the project
-- You can take a look at [open issues](https://github.com/andreborgesdev/a-devs-notebook/issues) for getting more information about current or upcoming tasks
+- You can take a look at [open issues](https://github.com/andreborgesdev/the-devs-notebook/issues) for getting more information about current or upcoming tasks
 
 ## How to contribute ❓
 
@@ -88,4 +88,4 @@ NOTE: Since the `link` field is both used for the URL slug and markdown file res
 
 ## Want to discuss? 💬
 
-Have any questions, doubts or want to present your opinions, views? You're always welcome. You can [start discussions](https://github.com/andreborgesdev/a-devs-notebook/discussions).
+Have any questions, doubts or want to present your opinions, views? You're always welcome. You can [start discussions](https://github.com/andreborgesdev/the-devs-notebook/discussions).
