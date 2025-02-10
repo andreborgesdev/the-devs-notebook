@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRight, type LucideIcon } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import {
   Collapsible,
   CollapsibleContent,
@@ -20,13 +20,12 @@ import {
 export type ContentItem = {
   title: string;
   url: string;
-  icon?: LucideIcon;
+  icon?: string;
   isActive?: boolean;
   items?: ContentItem[];
 };
 
 function NavItem({ item, depth }: { item: ContentItem; depth: number }) {
-  const Icon = item.icon;
   const hasChildren = item.items && item.items.length > 0;
   const isTopLevel = depth === 0;
   const Wrapper = isTopLevel ? SidebarMenuItem : SidebarMenuSubItem;
@@ -38,7 +37,7 @@ function NavItem({ item, depth }: { item: ContentItem; depth: number }) {
         <Wrapper>
           <CollapsibleTrigger asChild>
             <Button tooltip={item.title}>
-              {Icon && <Icon />}
+              <span>{item.icon}</span>
               <span>{item.title}</span>
               <ChevronRight className="transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
             </Button>
@@ -59,7 +58,7 @@ function NavItem({ item, depth }: { item: ContentItem; depth: number }) {
     <Wrapper>
       <Button asChild tooltip={item.title}>
         <a href={item.url}>
-          {Icon && <Icon />}
+          <span>{item.icon}</span>
           <span>{item.title}</span>
         </a>
       </Button>

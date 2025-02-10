@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 93, "column": 0}, "map": {"version":3,"sources":["file:///Users/sudre/Projects/the-devs-notebook/src/app/%5B...slug%5D/page.tsx"],"sourcesContent":["import { notFound } from \"next/navigation\";\nimport path from \"path\";\nimport Markdown from \"react-markdown\";\nimport fs from \"fs\";\n\nexport default async function ContentPage({\n  params,\n}: {\n  params: { slug?: string[] };\n}) {\n  // Check if slug exists and has at least one element.\n  if (!params.slug || params.slug.length === 0) {\n    return notFound();\n  }\n\n  const filePath = `${params.slug.join(\"/\")}.md`;\n  const absoluteFilePath = path.join(process.cwd(), \"public\", \"md\", filePath);\n\n  if (!fs.existsSync(absoluteFilePath)) {\n    return notFound();\n  }\n\n  const fileContents = fs.readFileSync(absoluteFilePath, \"utf8\");\n\n  return (\n    <Markdown className=\"markdown-content mx-auto p-4\">{fileContents}</Markdown>\n  );\n}\n"],"names":[],"mappings":";;;;AAAA;AACA;AAEA;AADA;AAFA;;;;;;AAKe,eAAe,YAAY,EACxC,MAAM,EAGP;IACC,qDAAqD;IACrD,IAAI,CAAC,OAAO,IAAI,IAAI,OAAO,IAAI,CAAC,MAAM,KAAK,GAAG;QAC5C,OAAO,CAAA,GAAA,qLAAA,CAAA,WAAQ,AAAD;IAChB;IAEA,MAAM,WAAW,GAAG,OAAO,IAAI,CAAC,IAAI,CAAC,KAAK,GAAG,CAAC;IAC9C,MAAM,mBAAmB,iGAAA,CAAA,UAAI,CAAC,IAAI,CAAC,QAAQ,GAAG,IAAI,UAAU,MAAM;IAElE,IAAI,CAAC,6FAAA,CAAA,UAAE,CAAC,UAAU,CAAC,mBAAmB;QACpC,OAAO,CAAA,GAAA,qLAAA,CAAA,WAAQ,AAAD;IAChB;IAEA,MAAM,eAAe,6FAAA,CAAA,UAAE,CAAC,YAAY,CAAC,kBAAkB;IAEvD,qBACE,8OAAC,wLAAA,CAAA,UAAQ;QAAC,WAAU;kBAAgC;;;;;;AAExD"}},
+    {"offset": {"line": 127, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 138, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
+    {"offset": {"line": 138, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

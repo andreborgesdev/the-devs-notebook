@@ -1,76 +1,57 @@
-import { AppSidebar } from "@/src/components/app-sidebar";
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-  BreadcrumbPage,
-} from "@/src/components/ui/breadcrumb";
-import {
-  SidebarProvider,
-  SidebarInset,
-  SidebarTrigger,
-} from "@/src/components/ui/sidebar";
-import { Separator } from "@radix-ui/react-separator";
-import path from "path";
-import fs from "fs";
-import { notFound } from "next/navigation";
-import { remark } from "remark";
-import Markdown from "react-markdown";
+import Link from "next/link";
+import { Button } from "../components/ui/button";
+import { Github } from "lucide-react";
 
-// export async function generateMetadata({
-//   params,
-// }: {
-//   params: { slug: string[] };
-// }) {
-//   return {
-//     title: params.slug.join("/"),
-//   };
-// }
-
-export default async function Home({ params }: { params: { slug: string[] } }) {
-  // const slugPath = params.slug.join("/");
-  // const filePath = path.join(process.cwd(), "public", slugPath, "index.md");
-  const filePath = path.join(process.cwd(), "public", "md", "algorithms.md");
-
-  if (!fs.existsSync(filePath)) {
-    return notFound();
-  }
-
-  const fileContents = fs.readFileSync(filePath, "utf8");
-
+export default async function Home() {
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-          <div className="flex items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1" />
-            <Separator orientation="vertical" className="mr-2 h-4" />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Building Your Application
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
-        </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min">
-            <Markdown className="markdown-content mx-auto p-4">
-              {fileContents}
-            </Markdown>
-          </div>
-        </div>
-      </SidebarInset>
-    </SidebarProvider>
+    <div className="p-4">
+      <div className="flex flex-col gap-3">
+        <p className="text-2xl font-bold">
+          This community was made with ❤️ from devs to devs
+        </p>
+        <p className="text-md">
+          Do you remember those really well put together notes that someone made
+          in college that just saved your life for a test? That's what this
+          community aspires to do!
+        </p>
+        <p className="text-md">
+          We can all learn from each other, so there is clearly an added value
+          in these notes being shared and editable by everyone. By having the
+          community improve and create new content this would massively make
+          everyone's educational IT journey a lot better.
+        </p>
+        <p className="text-md">
+          This platform can be a great tool, not only to study for job
+          interviews, but also to use in our daily lives as IT professionals.
+          For example, it is a place where we can quickly refresh our memory on
+          a specific topic we haven't worked with for a while, or even to learn
+          something new quickly.
+        </p>
+        <p className="text-md">
+          The main goal is that the notes stay as concise and informative as
+          possible. Plus, we should strive to have a Q&A/quiz for each topic
+          because sometimes the best way to learn is by asking the right
+          questions. Also, it would be good to have some kind of cheatsheet per
+          topic for a fast information check. The topics can range over all
+          kinds of IT related fields.
+        </p>
+        <p>Let the journey begin!</p>
+        <Link
+          href="https://github.com/andreborgesdev/the-devs-notebook"
+          target="_blank"
+          rel="noopener noreferrer"
+          id="gitHubLink"
+          className="w-full pt-2"
+        >
+          <Button
+            id="gitHubLinkButton"
+            className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white w-full"
+          >
+            <Github />
+            Consider contributing :)
+          </Button>
+        </Link>
+      </div>
+    </div>
   );
 }

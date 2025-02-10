@@ -2,110 +2,18 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { BookOpen, Bot, SquareTerminal } from "lucide-react";
-
-import { ContentItem, NavMain } from "@/src/components/nav-main";
+import { NavMain } from "@/src/components/nav-main";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuItem,
   SidebarRail,
   useSidebar,
 } from "@/src/components/ui/sidebar";
 import { ThemeToggle } from "./theme-toggle";
 import { cn } from "../lib/utils";
-
-const data: ContentItem[] = [
-  {
-    title: "Algorithms",
-    url: "alogrithms",
-    icon: SquareTerminal,
-    items: [
-      {
-        title: "Introduction",
-        url: "algorithms",
-      },
-      {
-        title: "History",
-        url: "#",
-        icon: SquareTerminal,
-        items: [
-          {
-            title: "Playground",
-            url: "#",
-            icon: SquareTerminal,
-            items: [
-              {
-                title: "Playground",
-                url: "#",
-                icon: SquareTerminal,
-                items: [],
-              },
-            ],
-          },
-        ],
-      },
-      {
-        title: "Starred",
-        url: "#",
-      },
-      {
-        title: "Settings",
-        url: "#",
-      },
-    ],
-  },
-  // {
-  //   title: "Home",
-  //   link: "/",
-  //   icon: "🏠",
-  // },
-  {
-    title: "Models",
-    url: "#",
-    icon: Bot,
-    items: [
-      {
-        title: "Genesis",
-        url: "#",
-      },
-      {
-        title: "Explorer",
-        url: "#",
-      },
-      {
-        title: "Quantum",
-        url: "#",
-      },
-    ],
-  },
-  {
-    title: "Documentation",
-    url: "#",
-    icon: BookOpen,
-    items: [
-      {
-        title: "Introduction",
-        url: "#",
-      },
-      {
-        title: "Get Started",
-        url: "#",
-      },
-      {
-        title: "Tutorials",
-        url: "#",
-      },
-      {
-        title: "Changelog",
-        url: "#",
-      },
-    ],
-  },
-];
+import { Content } from "../data/Content";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { open } = useSidebar();
@@ -125,7 +33,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </a>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data} />
+        <NavMain items={Content} />
       </SidebarContent>
       <SidebarFooter>
         <ThemeToggle className="flex justify-center" />

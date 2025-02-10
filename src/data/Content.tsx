@@ -1,467 +1,474 @@
+import { SquareTerminal, Bot, BookOpen } from "lucide-react";
 import { ReactNode } from "react";
 
 export interface ContentItem {
   title: string;
-  link: string;
+  url: string;
   icon: ReactNode | string;
-  subContent?: ContentItem[];
+  items?: ContentItem[];
 }
 
 // Declare all content here to be able to see it on the UI
 export const Content: ContentItem[] = [
   {
-    title: "Home",
-    link: "/",
-    icon: "🏠",
-  },
-  {
     title: "Algorithms",
-    link: "algorithms",
+    url: "/algorithms",
     icon: "🧠",
-    subContent: [
+    items: [
       {
         title: "Introduction",
-        link: "algorithms",
+        url: "/algorithms/algorithms",
         icon: "💡",
       },
       {
         title: "Sort",
-        link: "sort",
+        url: "/algorithms/sort",
         icon: "📊",
-        subContent: [
+        items: [
           {
             title: "Introduction",
-            link: "sort",
+            url: "/algorithms/sort/sort",
             icon: "💡",
           },
           {
             title: "Bogo sort",
-            link: "bogo-sort",
+            url: "/algorithms/sort/bogo-sort",
             icon: "📊",
           },
           {
             title: "Bubble Sort",
-            link: "bubble-sort",
+            url: "/algorithms/sort/bubble-sort",
             icon: "📊",
           },
           {
             title: "Selection Sort",
-            link: "selection-sort",
+            url: "/algorithms/sort/selection-sort",
             icon: "📊",
           },
           {
             title: "Merge Sort",
-            link: "merge-sort",
+            url: "/algorithms/sort/merge-sort",
             icon: "📊",
           },
           {
             title: "Quick Sort",
-            link: "quick-sort",
+            url: "/algorithms/sort/quick-sort",
             icon: "📊",
           },
           {
             title: "Radix Sort",
-            link: "radix-sort",
+            url: "/algorithms/sort/radix-sort",
             icon: "📊",
           },
           {
             title: "Insertion Sort",
-            link: "insertion-sort",
+            url: "/algorithms/sort/insertion-sort",
             icon: "📊",
           },
           {
             title: "Bucket Sort",
-            link: "bucket-sort",
+            url: "/algorithms/sort/bucket-sort",
             icon: "📊",
           },
         ],
       },
       {
         title: "Search",
-        link: "search",
+        url: "/algorithms/search",
         icon: "🔎",
-        subContent: [
+        items: [
           {
             title: "Linear Search",
-            link: "linear-search",
+            url: "/algorithms/search/linear-search",
             icon: "🔎",
           },
           {
             title: "Binary Search",
-            link: "binary-search",
+            url: "/algorithms/search/binary-search",
             icon: "🔎",
           },
           {
             title: "BFS",
-            link: "bfs",
+            url: "/algorithms/search/bfs",
             icon: "🔎",
           },
           {
             title: "DFS",
-            link: "dfs",
+            url: "/algorithms/search/dfs",
             icon: "🔎",
           },
           {
             title: "DFS vs BFS",
-            link: "dfs-vs-bfs",
+            url: "/algorithms/search/dfs-vs-bfs",
             icon: "🔎",
           },
         ],
       },
       {
         title: "Big O",
-        link: "big-o",
+        url: "/algorithms/big-o",
         icon: "📝",
       },
       {
         title: "Tree traversal",
-        link: "tree-traversal",
+        url: "/algorithms/tree-traversal",
         icon: "🌲",
       },
       {
         title: "Kruskal’s Minimum Spanning Tree",
-        link: "kruskal-minimum-spanning-tree",
+        url: "/algorithms/kruskal-minimum-spanning-tree",
         icon: "🌲",
       },
       {
         title: "Bit manipulation",
-        link: "bit-manipulation",
+        url: "/algorithms/bit-manipulation",
         icon: "📝",
       },
       {
         title: "Dynamic programming",
-        link: "dynamic-programming",
+        url: "/algorithms/dynamic-programming",
         icon: "📝",
       },
       {
         title: "Cheat sheets",
-        link: "algorithms-cheat-sheets",
+        url: "/algorithms/algorithms-cheat-sheets",
         icon: "📝",
       },
       {
         title: "Notes",
-        link: "algorithms-notes",
+        url: "/algorithms/algorithms-notes",
         icon: "📝",
-        subContent: [
+        items: [
           {
             title: "General notes",
-            link: "algorithms-notes",
+            url: "/algorithms/algorithms-notes",
             icon: "💡",
           },
           {
             title: "Sliding window",
-            link: "sliding-window",
+            url: "/algorithms/algorithms-notes/sliding-window",
             icon: "🪟",
           },
           {
             title: "Two pointers/iterators",
-            link: "two-pointers",
+            url: "/algorithms/algorithms-notes/two-pointers",
             icon: "2️",
           },
           {
             title: "Fast and slow pointers",
-            link: "fast-and-slow-pointers",
+            url: "/algorithms/algorithms-notes/fast-and-slow-pointers",
             icon: "💾",
           },
           {
             title: "Merge intervals",
-            link: "merge-intervals",
+            url: "/algorithms/algorithms-notes/merge-intervals",
             icon: "💾",
           },
           {
             title: "Cyclic sort",
-            link: "cyclic-sort",
+            url: "/algorithms/algorithms-notes/cyclic-sort",
             icon: "💾",
           },
           {
-            title: "In-place reversal of linked list",
-            link: "in-place-reversal-of-linked-list",
+            title: "In-place reversal of urled list",
+            url: "/algorithms/algorithms-notes/in-place-reversal-of-urled-list",
             icon: "💾",
           },
           {
             title: "Tree BFS",
-            link: "tree-bfs",
+            url: "/algorithms/algorithms-notes/tree-bfs",
             icon: "🌲",
           },
           {
             title: "Tree DFS",
-            link: "tree-dfs",
+            url: "/algorithms/algorithms-notes/tree-dfs",
             icon: "🌲",
           },
           {
             title: "Two heaps",
-            link: "two-heaps",
+            url: "/algorithms/algorithms-notes/two-heaps",
             icon: "💾",
           },
           {
             title: "Subsets",
-            link: "subsets",
+            url: "/algorithms/algorithms-notes/subsets",
             icon: "💾",
           },
           {
             title: "Modified binary search",
-            link: "modified-binary-search",
+            url: "/algorithms/algorithms-notes/modified-binary-search",
             icon: "💾",
           },
           {
             title: "Top K elements",
-            link: "top-k-elements",
+            url: "/algorithms/algorithms-notes/top-k-elements",
             icon: "💾",
           },
           {
             title: "K-way Merge",
-            link: "k-way-merge",
+            url: "/algorithms/algorithms-notes/k-way-merge",
             icon: "💾",
           },
           {
             title: "Topological sort",
-            link: "topological-sort",
+            url: "/algorithms/algorithms-notes/topological-sort",
             icon: "💾",
           },
         ],
       },
       {
         title: "Leetcode exercises",
-        link: "leet-code-exercises",
+        url: "/algorithms/leetcode-exercises",
         icon: "📝",
       },
     ],
   },
   {
     title: "Data Structures",
-    link: "data-structures",
+    url: "/data-structures",
     icon: "💾",
-    subContent: [
+    items: [
       {
         title: "Introduction",
-        link: "data-structures",
+        url: "/data-structures/data-structures",
         icon: "💡",
       },
       {
         title: "Array",
-        link: "array",
+        url: "/data-structures/array",
         icon: "💾",
-        subContent: [
-          {
-            title: "Introduction",
-            link: "array",
-            icon: "💡",
-          },
+        items: [
+          // TODO: Add introduction
+          // {
+          //   title: "Introduction",
+          //   url: "/data-structures/array",
+          //   icon: "💡",
+          // },
           {
             title: "Longest Common Prefix Array",
-            link: "longest-common-prefix-array",
+            url: "/data-structures/array/longest-common-prefix-array",
             icon: "💾",
           },
           {
             title: "Suffix Arrays",
-            link: "suffix-arrays",
+            url: "/data-structures/array/suffix-arrays",
             icon: "💾",
           },
         ],
       },
-      {
-        title: "List",
-        link: "list",
-        icon: "💾",
-      },
-      {
-        title: "Linked List",
-        link: "linked-list",
-        icon: "💾",
-      },
-      {
-        title: "Set",
-        link: "set",
-        icon: "💾",
-      },
-      {
-        title: "Stack",
-        link: "stack",
-        icon: "💾",
-      },
+      // TODO: Add introduction
+      // {
+      //   title: "List",
+      //   url: "/data-structures/list",
+      //   icon: "💾",
+      // },
+      // {
+      //   title: "Linked List",
+      //   url: "/data-structures/linked-list",
+      //   icon: "💾",
+      // },
+      // {
+      //   title: "Set",
+      //   url: "/data-structures/set",
+      //   icon: "💾",
+      // },
+      // {
+      //   title: "Stack",
+      //   url: "/data-structures/stack",
+      //   icon: "💾",
+      // },
       {
         title: "Queue",
-        link: "queue",
+        url: "/data-structures/queue",
         icon: "💾",
-        subContent: [
-          {
-            title: "Introduction",
-            link: "queue",
-            icon: "💡",
-          },
+        items: [
+          // {
+          //   title: "Introduction",
+          //   url: "/data-structures/queue/queue",
+          //   icon: "💡",
+          // },
           {
             title: "Priority Queue",
-            link: "priority-queue",
+            url: "/data-structures/queue/priority-queue",
             icon: "💾",
           },
         ],
       },
       {
         title: "Map",
-        link: "map",
+        url: "/data-structures/map",
         icon: "🗺️",
-        subContent: [
-          {
-            title: "Introduction",
-            link: "map",
-            icon: "💡",
-          },
+        items: [
+          // TODO: Add introduction
+          // {
+          //   title: "Introduction",
+          //   url: "/data-structures/map/map",
+          //   icon: "💡",
+          // },
           {
             title: "HashMap",
-            link: "hash-map",
+            url: "/data-structures/map/hash-map",
             icon: "🗺️",
           },
           {
             title: "Hash collision resolution",
-            link: "hash-collision-resolution",
+            url: "/data-structures/map/hash-collision-resolution",
             icon: "🗺️",
           },
         ],
       },
       {
         title: "Tree",
-        link: "tree",
+        url: "/data-structures/tree",
         icon: "🌲",
-        subContent: [
-          {
-            title: "Introduction",
-            link: "tree",
-            icon: "💡",
-          },
+        items: [
+          // TODO: Add introduction
+          // {
+          //   title: "Introduction",
+          //   url: "/data-structures/tree/tree",
+          //   icon: "💡",
+          // },
           {
             title: "Binary Tree",
-            link: "binary-tree",
+            url: "/data-structures/tree/binary-tree",
             icon: "🌲",
           },
           {
             title: "Fenwick Tree",
-            link: "fenwick-tree",
+            url: "/data-structures/tree/fenwick-tree",
             icon: "🌲",
           },
           {
             title: "Heap",
-            link: "heap",
+            url: "/data-structures/tree/heap",
             icon: "🌲",
           },
         ],
       },
       {
         title: "Union Find",
-        link: "union-find",
+        url: "/data-structures/union-find",
         icon: "🔗",
       },
     ],
   },
   {
     title: "Java",
-    link: "java",
+    url: "/java",
     icon: "☕",
-    subContent: [
-      {
-        title: "Introduction",
-        link: "java",
-        icon: "💡",
-      },
+    items: [
+      // TODO: Add introduction
+      // {
+      //   title: "Introduction",
+      //   url: "/java/java",
+      //   icon: "💡",
+      // },
       {
         title: "Collections",
-        link: "java-collections",
+        url: "/java/collections/java-collections",
         icon: "💾",
       },
       {
         title: "Cheat sheets",
-        link: "java-cheat-sheets",
+        url: "/java/java-cheat-sheets",
         icon: "📝",
       },
       {
         title: "Date API",
-        link: "java-date-api",
+        url: "/java/java-date-api",
         icon: "📅",
       },
       {
         title: "Memory Management",
-        link: "java-memory-management",
+        url: "/java/java-memory-management",
         icon: "💾",
       },
       {
         title: "Unit Testing",
-        link: "java-unit-testing",
+        url: "/java/java-unit-testing",
         icon: "🧪",
       },
       {
         title: "Beans",
-        link: "java-beans",
+        url: "/java/java-beans",
         icon: "🫘",
       },
       {
         title: "How to",
-        link: "java",
+        url: "/java/java-how-to",
         icon: "⁉️",
-        subContent: [
+        items: [
           {
             title: "Create a good HashCode",
-            link: "java-create-a-good-hash-code",
+            url: "/java/how-to/java-create-a-good-hash-code",
             icon: "⁉️",
           },
           {
             title: "Create a library",
-            link: "java-creating-libs",
+            url: "/java/how-to/java-creating-libs",
             icon: "⁉️",
           },
         ],
       },
       {
         title: "Spring",
-        link: "spring",
+        url: "/java/spring",
         icon: "🍃",
-        subContent: [
+        items: [
+          // TODO: Add introduction
+          // {
+          //   title: "Introduction",
+          //   url: "/java/spring/spring",
+          //   icon: "💡",
+          // },
           {
-            title: "Introduction",
-            link: "spring",
-            icon: "💡",
+            title: "APIs",
+            url: "/java/spring/spring-apis",
+            icon: "🍃",
           },
           {
             title: "Security",
-            link: "spring-security",
+            url: "/java/spring/spring-security",
             icon: "🔒",
           },
           {
             title: "JPA",
-            link: "spring-jpa",
+            url: "/java/spring/spring-jpa",
             icon: "💾",
           },
           {
             title: "Caching",
-            link: "spring-caching",
+            url: "/java/spring/spring-caching",
             icon: "💾",
           },
           {
             title: "Interview Questions",
-            link: "spring-interview-questions",
+            url: "/java/spring/spring-interview-questions",
             icon: "❓",
-            subContent: [
+            items: [
               {
                 title: "Spring Core",
-                link: "spring-core-interview-questions",
+                url: "/java/spring/interview-questions/spring-core-interview-questions",
                 icon: "❓",
               },
               {
                 title: "Spring 5",
-                link: "spring-5-interview-questions",
+                url: "/java/spring/interview-questions/spring-5-interview-questions",
                 icon: "❓",
               },
               {
                 title: "Spring Data Access",
-                link: "spring-data-access-interview-questions",
+                url: "/java/spring/interview-questions/spring-data-access-interview-questions",
                 icon: "❓",
               },
               {
                 title: "Spring Web MVC",
-                link: "springs-web-mvc-interview-questions",
+                url: "/java/spring/interview-questions/spring-web-mvc-interview-questions",
                 icon: "❓",
               },
               {
                 title: "Spring Aspect Oriented Programming",
-                link: "spring-aspect-oriented-interview-questions",
+                url: "/java/spring/interview-questions/spring-aspect-oriented-interview-questions",
                 icon: "❓",
               },
             ],
@@ -470,77 +477,77 @@ export const Content: ContentItem[] = [
       },
       {
         title: "Interview questions",
-        link: "java-interview-questions",
+        url: "/java/java-interview-questions",
         icon: "❓",
-        subContent: [
+        items: [
           {
             title: "Collections",
-            link: "java-collections-interview-questions",
+            url: "/java/interview-questions/java-collections-interview-questions",
             icon: "❓",
           },
           {
             title: "Memory Management",
-            link: "java-memory-management-interview-questions",
+            url: "/java/interview-questions/java-memory-management-interview-questions",
             icon: "❓",
           },
           {
             title: "Concurrency",
-            link: "java-concurrency-interview-questions",
+            url: "/java/interview-questions/java-concurrency-interview-questions",
             icon: "❓",
           },
           {
             title: "Type System",
-            link: "java-type-system-interview-questions",
+            url: "/java/interview-questions/java-type-system-interview-questions",
             icon: "❓",
           },
           {
             title: "Class structure and initialization",
-            link: "java-class-structure-and-initialization-interview-questions",
+            url: "/java/interview-questions/java-class-structure-and-initialization-interview-questions",
             icon: "❓",
           },
           {
             title: "Java 8",
-            link: "java-8-interview-questions",
+            url: "/java/interview-questions/java-8-interview-questions",
             icon: "❓",
           },
           {
             title: "Generics",
-            link: "java-generics-interview-questions",
+            url: "/java/interview-questions/java-generics-interview-questions",
             icon: "❓",
           },
           {
             title: "Flow control",
-            link: "java-flow-control-interview-questions",
+            url: "/java/interview-questions/java-flow-control-interview-questions",
             icon: "❓",
           },
           {
             title: "Exceptions",
-            link: "java-exceptions-interview-questions",
+            url: "/java/interview-questions/java-exceptions-interview-questions",
             icon: "❓",
           },
           {
             title: "Annotations",
-            link: "java-annotations-interview-questions",
+            url: "/java/interview-questions/java-annotations-interview-questions",
             icon: "❓",
           },
           {
             title: "Streams",
-            link: "java-streams-interview-questions",
+            url: "/java/interview-questions/java-streams-interview-questions",
             icon: "❓",
           },
           {
             title: "Kafka",
-            link: "java-kafka-interview-questions",
+            url: "/java/interview-questions/java-kafka-interview-questions",
             icon: "❓",
           },
           {
             title: "Tests",
-            link: "java-tests-interview-questions",
+            url: "/java/interview-questions/java-tests-interview-questions",
             icon: "❓",
           },
           {
             title: "Multidisciplinary questions",
-            link: "java-multidisciplinary-interview-questions",
+            url: "/java/interview-questions/java-multidisciplinary-interview-questions",
             icon: "❓",
           },
         ],
@@ -549,133 +556,135 @@ export const Content: ContentItem[] = [
   },
   {
     title: "APIs",
-    link: "apis",
+    url: "/apis",
     icon: "🧩",
-    subContent: [
+    items: [
       {
         title: "Introduction",
-        link: "apis",
+        url: "/apis/apis",
         icon: "💡",
-      },
-      {
-        title: "Spring APIs",
-        link: "spring-apis",
-        icon: "🍃",
       },
     ],
   },
   {
     title: "Design Patterns",
-    link: "design-patterns",
+    url: "/design-patterns",
     icon: "🌍",
-  },
-  {
-    title: "Microservices",
-    link: "microservices",
-    icon: "🗺️",
+    items: [
+      {
+        title: "Introduction",
+        url: "/design-patterns/design-patterns",
+        icon: "💡",
+      },
+    ],
   },
   {
     title: "System Design",
-    link: "system-design",
+    url: "/system-design",
     icon: "🗺️",
-    subContent: [
+    items: [
       {
         title: "Introduction",
-        link: "system-design",
+        url: "/system-design/system-design",
         icon: "💡",
       },
       {
+        title: "Microservices",
+        url: "/system-design/microservices",
+        icon: "🗺️",
+      },
+      {
         title: "Distributed Systems",
-        link: "distributed-systems",
+        url: "/system-design/distributed-systems",
         icon: "🌍",
       },
       {
         title: "Caching",
-        link: "caching",
+        url: "/system-design/caching",
         icon: "💾",
       },
       {
         title: "Load Balancer",
-        link: "load-balancer",
+        url: "/system-design/load-balancer",
         icon: "⚖️",
       },
       {
         title: "Scaling",
-        link: "scaling",
+        url: "/system-design/scaling",
         icon: "⬆️",
       },
       {
         title: "CDN",
-        link: "cdn",
+        url: "/system-design/cdn",
         icon: "🌍",
       },
       {
         title: "Message Queues",
-        link: "message-queues",
+        url: "/system-design/message-queues",
         icon: "📥",
       },
       {
         title: "Processing Queues",
-        link: "processing-queues",
+        url: "/system-design/processing-queues",
         icon: "📥",
       },
       {
         title: "Storage",
-        link: "storage",
+        url: "/system-design/storage",
         icon: "💾",
       },
       {
         title: "Distributed file system",
-        link: "distributed-file-system",
+        url: "/system-design/distributed-file-system",
         icon: "🌍",
       },
       {
         title: "Communication",
-        link: "communication",
+        url: "/system-design/communication",
         icon: "☎️",
-        subContent: [
+        items: [
           {
             title: "HTTP",
-            link: "http",
+            url: "/system-design/communication/http",
             icon: "🌍",
           },
           {
             title: "Web Sockets",
-            link: "web-sockets",
+            url: "/system-design/communication/web-sockets",
             icon: "🌍",
           },
         ],
       },
       {
         title: "Interview Questions",
-        link: "system-design-interview-questions",
+        url: "/system-design/system-design-interview-questions",
         icon: "❓",
       },
     ],
   },
   {
     title: "Databases",
-    link: "databases",
+    url: "/databases",
     icon: "💾",
-    subContent: [
+    items: [
       {
         title: "Introduction",
-        link: "databases",
+        url: "/databases/databases",
         icon: "💡",
       },
       {
         title: "SQL",
-        link: "sql",
+        url: "/databases/sql",
         icon: "💾",
-        subContent: [
+        items: [
           {
             title: "Introduction",
-            link: "sql",
+            url: "/databases/sql/sql",
             icon: "💡",
           },
           {
             title: "Oracle",
-            link: "oracle",
+            url: "/databases/sql/oracle",
             icon: "⭕",
           },
         ],
@@ -684,81 +693,81 @@ export const Content: ContentItem[] = [
   },
   {
     title: "OOP",
-    link: "oop",
+    url: "/oop",
     icon: "🚙",
   },
-  {
-    title: "Blockchain",
-    link: "blockchain",
-    icon: "🔗",
-    subContent: [
-      {
-        title: "Introduction",
-        link: "blockchain",
-        icon: "💡",
-      },
-      {
-        title: "Bitcoin",
-        link: "bitcoin",
-        icon: "🪙",
-      },
-      {
-        title: "Ethereum",
-        link: "ethereum",
-        icon: "🪙",
-      },
-    ],
-  },
+  // {
+  //   title: "Blockchain",
+  //   url: "blockchain",
+  //   icon: "🔗",
+  //   items: [
+  //     {
+  //       title: "Introduction",
+  //       url: "blockchain",
+  //       icon: "💡",
+  //     },
+  //     {
+  //       title: "Bitcoin",
+  //       url: "bitcoin",
+  //       icon: "🪙",
+  //     },
+  //     {
+  //       title: "Ethereum",
+  //       url: "ethereum",
+  //       icon: "🪙",
+  //     },
+  //   ],
+  // },
   {
     title: "Cryptography",
-    link: "cryptography",
+    url: "/cryptography/cryptography",
     icon: "🔐",
   },
   {
     title: "IT Books Summarized",
-    link: "it-books",
+    url: "/it-books",
     icon: "📚",
-    subContent: [
+    items: [
       {
         title: "Clean code",
-        link: "clean-code",
+        url: "/it-books/clean-code",
         icon: "🧹",
       },
       {
         title: "Clean Architecture",
-        link: "clean-architecture",
+        url: "/it-books/clean-architecture",
         icon: "🧹",
       },
     ],
   },
   {
     title: "Misc",
-    link: "misc",
+    url: "/misc",
     icon: "🗺️",
-    subContent: [
+    items: [
       {
         title: "TDD",
-        link: "tdd",
+        url: "/misc/tdd",
         icon: "🗺️",
       },
       {
         title: "DDD",
-        link: "ddd",
+        url: "/misc/ddd",
         icon: "🗺️",
       },
       {
         title: "MVC",
-        link: "mvc",
+        url: "/misc/mvc",
         icon: "🗺️",
       },
       {
         title: "Three tier architecture",
-        link: "three-tier-architecture",
+        url: "/misc/three-tier-architecture",
         icon: "🗺️",
       },
       {
         title: "Unit tests",
-        link: "unit-tests",
+        url: "/misc/unit-tests",
         icon: "🗺️",
       },
     ],
