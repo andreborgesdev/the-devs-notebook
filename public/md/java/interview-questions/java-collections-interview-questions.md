@@ -1,46 +1,46 @@
 # Collections
 
-# **Describe the Collections Type Hierarchy. What Are the Main Interfaces, and What Are the Differences Between Them?**
+# Describe the Collections Type Hierarchy. What Are the Main Interfaces, and What Are the Differences Between Them?
 
-The ***Iterable*** interface represents any collection that can be iterated using the *for-each* loop. The ***Collection*** interface inherits from *Iterable* and adds generic methods for checking if an element is in a collection, adding and removing elements from the collection, determining its size etc.
+The **_Iterable_** interface represents any collection that can be iterated using the *for-each* loop. The **_Collection_** interface inherits from *Iterable* and adds generic methods for checking if an element is in a collection, adding and removing elements from the collection, determining its size etc.
 
-The ***List***, ***Set***, and ***Queue*** interfaces inherit from the *Collection* interface.
+The **_List_**, **_Set_**, and **_Queue_** interfaces inherit from the *Collection* interface.
 
-***List*** is an ordered collection, and its elements can be accessed by their index in the list.
+**_List_** is an ordered collection, and its elements can be accessed by their index in the list.
 
-***Set*** is an unordered collection with distinct elements, similar to the mathematical notion of a set.
+**_Set_** is an unordered collection with distinct elements, similar to the mathematical notion of a set.
 
-***Queue*** is a collection with additional methods for adding, removing and examining elements, useful for holding elements prior to processing.
+**_Queue_** is a collection with additional methods for adding, removing and examining elements, useful for holding elements prior to processing.
 
-***Map*** interface is also a part of the collection framework, yet it does not extend *Collection*. This is by design, to stress the difference between collections and mappings which are hard to gather under a common abstraction. The *Map* interface represents a key-value data structure with unique keys and no more than one value for each key.
+**_Map_** interface is also a part of the collection framework, yet it does not extend *Collection*. This is by design, to stress the difference between collections and mappings which are hard to gather under a common abstraction. The *Map* interface represents a key-value data structure with unique keys and no more than one value for each key.
 
-# **Describe Various Implementations of the Map Interface and Their Use Case Differences.**
+# Describe Various Implementations of the Map Interface and Their Use Case Differences.
 
-One of the most often used implementations of the *Map* interface is the ***HashMap***. It is a typical hash map data structure that allows accessing elements in constant time, or O(1), but **does not preserve order and is not thread-safe**.
+One of the most often used implementations of the *Map* interface is the **_HashMap_**. It is a typical hash map data structure that allows accessing elements in constant time, or O(1), but **does not preserve order and is not thread-safe**.
 
-To preserve insertion order of elements, you can use the ***LinkedHashMap*** class which extends the *HashMap* and additionally ties the elements into a linked list, with foreseeable overhead.
+To preserve insertion order of elements, you can use the **_LinkedHashMap_** class which extends the *HashMap* and additionally ties the elements into a linked list, with foreseeable overhead.
 
-The ***TreeMap*** class stores its elements in a red-black tree structure, which allows accessing elements in logarithmic time, or O(log(n)). It is slower than the *HashMap* for most cases, but it allows keeping the elements in order according to some *Comparator*.
+The **_TreeMap_** class stores its elements in a red-black tree structure, which allows accessing elements in logarithmic time, or O(log(n)). It is slower than the *HashMap* for most cases, but it allows keeping the elements in order according to some *Comparator*.
 
 The **ConcurrentHashMap** is a thread-safe implementation of a hash map. It provides full concurrency of retrievals (as the *get* operation does not entail locking) and high expected concurrency of updates.
 
-The ***Hashtable*** class has been in Java since version 1.0. It is not deprecated but is mostly considered obsolete. It is a thread-safe hash map, but unlike *ConcurrentHashMap*, all its methods are simply *synchronized*, which means that all operations on this map block, even retrieval of independent values.
+The **_Hashtable_** class has been in Java since version 1.0. It is not deprecated but is mostly considered obsolete. It is a thread-safe hash map, but unlike *ConcurrentHashMap*, all its methods are simply *synchronized*, which means that all operations on this map block, even retrieval of independent values.
 
-# **Explain the Difference Between Linkedlist and Arraylist.**
+# Explain the Difference Between Linkedlist and Arraylist.
 
-***ArrayList*** is an implementation of the *List* interface that is based on an array. *ArrayList* internally handles resizing of this array when the elements are added or removed. You can access its elements in constant time by their index in the array. However, inserting or removing an element infers shifting all consequent elements which may be slow if the array is huge and the inserted or removed element is close to the beginning of the list.
+**_ArrayList_** is an implementation of the *List* interface that is based on an array. *ArrayList* internally handles resizing of this array when the elements are added or removed. You can access its elements in constant time by their index in the array. However, inserting or removing an element infers shifting all consequent elements which may be slow if the array is huge and the inserted or removed element is close to the beginning of the list.
 
-***LinkedList*** is a doubly-linked list: single elements are put into *Node* objects that have references to previous and next *Node*. This implementation may appear more efficient than *ArrayList* if you have lots of insertions or deletions in different parts of the list, especially if the list is large.
+**_LinkedList_** is a doubly-linked list: single elements are put into *Node* objects that have references to previous and next *Node*. This implementation may appear more efficient than *ArrayList* if you have lots of insertions or deletions in different parts of the list, especially if the list is large.
 
 In most cases, however, *ArrayList* outperforms *LinkedList*. Even elements shifting in *ArrayList*, while being an O(n) operation, is implemented as a very fast *System.arraycopy()* call. It can even appear faster than the *LinkedList*‘s O(1) insertion which requires instantiating a *Node* object and updating multiple references under the hood. *LinkedList* also can have a large memory overhead due to a creation of multiple small *Node* objects.
 
-# **What Is the Difference Between Hashset and Treeset?**
+# What Is the Difference Between Hashset and Treeset?
 
-Both ***HashSet*** and ***TreeSet*** classes implement the *Set* interface and represent sets of distinct elements. Additionally, *TreeSet* implements the *NavigableSet* interface. This interface defines methods that take advantage of the ordering of elements.
+Both **_HashSet_** and **_TreeSet_** classes implement the *Set* interface and represent sets of distinct elements. Additionally, *TreeSet* implements the *NavigableSet* interface. This interface defines methods that take advantage of the ordering of elements.
 
 *HashSet* is internally based on a *HashMap*, and *TreeSet* is backed by a *TreeMap* instance, which defines their properties: *HashSet* does not keep elements in any particular order. Iteration over the elements in a *HashSet* produces them in a shuffled order. *TreeSet*, on the other hand, produces elements in order according to some predefined *Comparator*.
 
-# **How Is Hashmap Implemented in Java? How Does Its Implementation Use Hashcode and Equals Methods of Objects? What Is the Time Complexity of Putting and Getting an Element from Such Structure?**
+# How Is Hashmap Implemented in Java? How Does Its Implementation Use Hashcode and Equals Methods of Objects? What Is the Time Complexity of Putting and Getting an Element from Such Structure?
 
 The *HashMap* class represents a typical hash map data structure with certain design choices.
 
@@ -56,7 +56,7 @@ To retrieve the object by its key, the *HashMap* again has to calculate the *
 
 When the *HashMap* internal array is filled (more on that in the next question), it is automatically resized to be twice as large. This operation infers rehashing (rebuilding of internal data structures), which is costly, so you should plan the size of your *HashMap* beforehand.
 
-# **What Is the Purpose of the Initial Capacity and Load Factor Parameters of a Hashmap? What Are Their Default Values?**
+# What Is the Purpose of the Initial Capacity and Load Factor Parameters of a Hashmap? What Are Their Default Values?
 
 The *initialCapacity* argument of the *HashMap* constructor affects the size of the internal data structure of the *HashMap*, but reasoning about the actual size of a map is a bit tricky. The *HashMap*‘s internal data structure is an array with the power-of-two size. So the *initialCapacity* argument value is increased to the next power-of-two (for instance, if you set it to 10, the actual size of the internal array will be 16).
 
@@ -68,7 +68,7 @@ Consequently, it is not trivial to come up with *initialCapacity* that satisfi
 
 # **Describe Special Collections for Enums. What Are the Benefits of Their Implementation Compared to Regular Collections?**
 
-***EnumSet*** and ***EnumMap*** are special implementations of *Set* and *Map* interfaces correspondingly. You should always use these implementations when you're dealing with enums because they are very efficient.
+**_EnumSet_** and **_EnumMap_** are special implementations of *Set* and *Map* interfaces correspondingly. You should always use these implementations when you're dealing with enums because they are very efficient.
 
 An *EnumSet* is just a bit vector with “ones” in the positions corresponding to ordinal values of enums present in the set. To check if an enum value is in the set, the implementation simply has to check if the corresponding bit in the vector is a “one”, which is a very easy operation. Similarly, an *EnumMap* is an array accessed with enum's ordinal value as an index. In the case of *EnumMap*, there is no need to calculate hash codes or resolve collisions.
 
@@ -90,7 +90,7 @@ The *Comparable* interface usually is implemented using natural ordering of th
 
 The class of the objects you want to sort does not need to implement this interface. You simply create an implementing class and define the *compare* method which receives two objects and decides how to order them. You may then use the instance of this class to override the natural ordering of the *Collections.sort()* method or *SortedSet* and *SortedMap* instances.
 
-As the *Comparator* interface is a functional interface, you may replace it with a lambda expression, as in the following example. It shows ordering a list using a natural ordering (*Integer*‘s *Comparable* interface) and using a custom iterator (*Comparator<Integer>* interface).
+As the *Comparator* interface is a functional interface, you may replace it with a lambda expression, as in the following example. It shows ordering a list using a natural ordering (_Integer_‘s *Comparable* interface) and using a custom iterator (*Comparator<Integer>* interface).
 
 ```java
 List<Integer> list1 = Arrays.asList(5, 2, 3, 4, 1);

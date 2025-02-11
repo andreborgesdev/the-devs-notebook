@@ -1,10 +1,10 @@
 # OOP
 
-### **What is Object Oriented Programming?**
+### What is Object Oriented Programming?
 
 Object-Oriented Programming (OOPs) is a type of programming that is based on objects rather than just functions and procedures. Individual objects are grouped into classes. OOPs implements real-world entities like inheritance, polymorphism, hiding, etc into programming. It also allows binding data and code together.
 
-### **Why use OOPs?**
+### Why use OOPs?
 
 - OOPs allows clarity in programming thereby allowing simplicity in solving complex problems
 - Code can be reused through inheritance thereby reducing redundancy
@@ -52,11 +52,11 @@ One can visualize Encapsulation as the method of putting everything that is requ
 
 Encapsulation can also be defined in two different ways:
 
-1) **Data hiding:**
+1. **Data hiding:**
 
 Encapsulation is the process of hiding unwanted information, such as restricting access to any member of an object.
 
-2) **Data binding:**
+2. **Data binding:**
 
 Encapsulation is the process of binding the data members and the methods together as a whole, as a class
 
@@ -74,9 +74,9 @@ Abstraction is a useful feature of OOPS, and it shows only the necessary details
 
 **Abstraction is the method of hiding the unwanted information. Whereas encapsulation is a method to hide the data in a single entity or unit along with a method to protect information from outside**. We can implement abstraction using abstract class and interfaces.
 
-*Encapsulation:* **Information hiding**
+_Encapsulation:_ **Information hiding**
 
-*Abstraction:* **Implementation hiding**
+_Abstraction:_ **Implementation hiding**
 
 **Encapsulation** is to hide the variables or something inside a class, preventing unauthorized parties to use. So the public methods like getter and setter access it and the other classes call these methods for accessing
 
@@ -84,13 +84,13 @@ Abstraction is a useful feature of OOPS, and it shows only the necessary details
 
 Consider the below real time example:
 
-*Encapsulation*: **As a driver you know how to start the car by pressing the start button and internal details of the starting operations are hidden from you. So the entire starting process is hidden from you otherwise we can tell starting operation is encapsulated from you.**
+_Encapsulation_: **As a driver you know how to start the car by pressing the start button and internal details of the starting operations are hidden from you. So the entire starting process is hidden from you otherwise we can tell starting operation is encapsulated from you.**
 
-*OR*
+_OR_
 
 **The driving wheel is encapsulated the process of rotating the wheel from you**.
 
-*Abstraction*:
+_Abstraction_:
 
 Before mentioning anything about abstraction, we can take three different users here (I am calling them as entity)
 
@@ -192,7 +192,7 @@ void add(Long a, Long b);
 
 ### **What is operator overloading?**
 
-Operator overloading is a function where different operators are applied and depends on the arguments. Operator,-,* can be used to pass through the function, and it has its own precedence to execute
+Operator overloading is a function where different operators are applied and depends on the arguments. Operator,-,\* can be used to pass through the function, and it has its own precedence to execute
 
 Java doesn't supports **operator overloading** because it's just a choice made by its creators who wanted to keep the language more simple.
 
@@ -301,16 +301,16 @@ Dynamic or Run time polymorphism is also known as method **overriding** in which
 
 ### **What is Compile time Polymorphism and how is it different from Runtime Polymorphism?**
 
-Compile Time Polymorphism (Overloading): 
+Compile Time Polymorphism (Overloading):
 
 Compile time polymorphism, also known as Static Polymorphism, refers to the type of Polymorphism that happens at compile time. What it means is that the compiler decides what shape or value has to be taken by the entity in the picture.
 
 ```java
-// In this program, we will see how multiple functions are created with the same name, 
+// In this program, we will see how multiple functions are created with the same name,
 // but the compiler decides which function to call easily at the compile time itself.
 class CompileTimePolymorphism{
    // 1st method with name add
-   public int add(int x, int y){ 
+   public int add(int x, int y){
    return x+y;
    }
    // 2nd method with name add
@@ -318,11 +318,11 @@ class CompileTimePolymorphism{
    return x+y+z;
    }
    // 3rd method with name add
-   public int add(double x, int y){ 
+   public int add(double x, int y){
    return (int)x+y;
    }
    // 4th method with name add
-   public int add(int x, double y){ 
+   public int add(int x, double y){
    return x+(int)y;
    }
 }
@@ -336,7 +336,7 @@ class Test{
    // Similarly, in the below statement, the compiler calls method 4
    System.out.println(demo.add(2,3.4));
    // Similarly, in the below statement, the compiler calls method 3
-   System.out.println(demo.add(2.5,3)); 
+   System.out.println(demo.add(2.5,3));
    }
 }
 ```
@@ -362,10 +362,10 @@ class Test{
    public static void main(String[] args){
    AnyVehicle vehicle = new Bike();
    // In the above statement, as you can see, the object vehicle is of type AnyVehicle
-   // But the output of the below statement will be “Bike can move too!!”, 
+   // But the output of the below statement will be “Bike can move too!!”,
    // because the actual implementation of object ‘vehicle’ is decided during runtime vehicle.move();
    vehicle = new AnyVehicle();
-   // Now, the output of the below statement will be “Any vehicle should move!!”, 
+   // Now, the output of the below statement will be “Any vehicle should move!!”,
    vehicle.move();
    }
 }
@@ -421,7 +421,7 @@ public class NewClass {
             System.out.println("print in subclass.");
         }
     }
-  
+
     public static void main(String[] args)
     {
         superclass A = new superclass();
@@ -447,7 +447,7 @@ public class NewClass {
             System.out.println("print in superclass.");
         }
     }
-  
+
     public static class subclass extends superclass {
         @Override
         void print()
@@ -455,7 +455,7 @@ public class NewClass {
             System.out.println("print in subclass.");
         }
     }
-  
+
     public static void main(String[] args)
     {
         superclass A = new superclass();
@@ -489,7 +489,7 @@ Following are the operators that cannot be overloaded -.
 
 1. Scope Resolution (::)
 2. Member Selection (.)
-3. Member selection through a pointer to function (.*)
+3. Member selection through a pointer to function (.\*)
 
 **Java doesn't support operator overloading.**
 
@@ -688,13 +688,13 @@ Error - Errors are problems that should not be encountered by applications
 
 Exception - Conditions that an application might try to catch
 
-|                            	| Error                           	| Exception                                  	|
-|----------------------------	|---------------------------------	|--------------------------------------------	|
-| Type                       	| Classified as an unchecked type 	| Classified as checked and unchecked        	|
-| Package                    	| It belongs to java.lang.error   	| It belongs to java.lang.Exception          	|
-| Recoverable/ Irrecoverable 	| It is irrecoverable             	| It is recoverable                          	|
-|                            	| It can't occur at compile time  	| It can occur at run time compile time both 	|
-| Example                    	| OutOfMemoryError ,IOError       	| NullPointerException , SqlException        	|
+|                            | Error                           | Exception                                  |
+| -------------------------- | ------------------------------- | ------------------------------------------ |
+| Type                       | Classified as an unchecked type | Classified as checked and unchecked        |
+| Package                    | It belongs to java.lang.error   | It belongs to java.lang.Exception          |
+| Recoverable/ Irrecoverable | It is irrecoverable             | It is recoverable                          |
+|                            | It can't occur at compile time  | It can occur at run time compile time both |
+| Example                    | OutOfMemoryError ,IOError       | NullPointerException , SqlException        |
 
 Exceptions and errors both are subclasses of Throwable class. The error indicates a problem that mainly occurs due to the lack of system resources and our application should not catch these types of problems. Some of the examples of errors are system crash error and out of memory error. Errors mostly occur at runtime that's they belong to an unchecked type.
 

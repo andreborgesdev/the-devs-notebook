@@ -42,7 +42,7 @@ function NavItem({ item, depth }: { item: ContentItem; depth: number }) {
         tooltip={sidebarOpen ? item.title : undefined}
         className="flex w-full justify-between"
       >
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2">
           <span>{item.icon}</span>
           <span>{item.title}</span>
         </div>
