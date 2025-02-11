@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import { ThemeToggle } from "@/src/components/theme-toggle";
 import { Separator } from "@radix-ui/react-separator";
 import { AppSidebar } from "../components/app-sidebar";
 import {
@@ -18,6 +17,7 @@ import {
   SidebarInset,
   SidebarTrigger,
 } from "../components/ui/sidebar";
+import { Breadcrumbs } from "@/src/components/breadcrumbs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +40,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // const pathname = usePathname();
+  // const paths = pathname.split("/").filter(Boolean);
+
   return (
     <html lang="en">
       <body
@@ -58,19 +61,7 @@ export default function RootLayout({
                 <div className="flex items-center gap-2 px-4">
                   <SidebarTrigger className="-ml-1" />
                   <Separator orientation="vertical" className="mr-2 h-4" />
-                  <Breadcrumb>
-                    <BreadcrumbList>
-                      <BreadcrumbItem className="hidden md:block">
-                        <BreadcrumbLink href="#">
-                          Building Your Application
-                        </BreadcrumbLink>
-                      </BreadcrumbItem>
-                      <BreadcrumbSeparator className="hidden md:block" />
-                      <BreadcrumbItem>
-                        <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                      </BreadcrumbItem>
-                    </BreadcrumbList>
-                  </Breadcrumb>
+                  <Breadcrumbs />
                 </div>
               </header>
               <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
