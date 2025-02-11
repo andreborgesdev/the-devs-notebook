@@ -18,6 +18,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/src/components/ui/tooltip";
+import { useLayoutEffect } from "react";
 
 const SIDEBAR_COOKIE_NAME = "sidebar:state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -47,6 +48,21 @@ function useSidebar() {
   return context;
 }
 
+function getInitialStateFromCookie(defaultOpen: boolean): boolean {
+  if (typeof document === "undefined") return defaultOpen;
+
+  const cookie = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith(SIDEBAR_COOKIE_NAME));
+
+  if (cookie) {
+    const value = cookie.split("=")[1];
+    return value === "true";
+  }
+
+  return defaultOpen;
+}
+
 const SidebarProvider = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> & {
@@ -70,9 +86,19 @@ const SidebarProvider = React.forwardRef<
     const isMobile = useIsMobile();
     const [openMobile, setOpenMobile] = React.useState(false);
 
-    // This is the internal state of the sidebar.
-    // We use openProp and setOpenProp for control from outside the component.
-    const [_open, _setOpen] = React.useState(defaultOpen);
+    // Initialize state with the cookie value
+    const [_open, _setOpen] = React.useState(() =>
+      getInitialStateFromCookie(defaultOpen)
+    );
+
+    // Use useLayoutEffect to read cookie as soon as possible
+    useLayoutEffect(() => {
+      const initialState = getInitialStateFromCookie(defaultOpen);
+      if (initialState !== _open) {
+        _setOpen(initialState);
+      }
+    }, [defaultOpen]);
+
     const open = openProp ?? _open;
     const setOpen = React.useCallback(
       (value: boolean | ((value: boolean) => boolean)) => {
@@ -83,7 +109,6 @@ const SidebarProvider = React.forwardRef<
           _setOpen(openState);
         }
 
-        // This sets the cookie to keep the sidebar state.
         document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
       },
       [setOpenProp, open]
@@ -142,6 +167,7 @@ const SidebarProvider = React.forwardRef<
             }
             className={cn(
               "group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar",
+              "motion-reduce:transition-none",
               className
             )}
             ref={ref}
