@@ -17,7 +17,7 @@ export const Content: ContentItem[] = [
     items: [
       {
         title: "Introduction",
-        url: "/data-structures/data-structures",
+        url: "/data-structures/introduction",
         icon: "💡",
       },
       {
@@ -146,7 +146,7 @@ export const Content: ContentItem[] = [
     items: [
       {
         title: "Introduction",
-        url: "/algorithms/algorithms",
+        url: "/algorithms/introduction",
         icon: "💡",
       },
       {
@@ -161,7 +161,7 @@ export const Content: ContentItem[] = [
         items: [
           {
             title: "Introduction",
-            url: "/algorithms/sort/sort",
+            url: "/algorithms/sort/introduction",
             icon: "💡",
           },
           {

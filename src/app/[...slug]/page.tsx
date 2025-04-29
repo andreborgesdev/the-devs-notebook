@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import path from "path";
-import Markdown, { Options } from "react-markdown";
+import MarkdownHooks from "react-markdown";
 import fs from "fs";
 import { TableOfContents } from "@/src/components/table-of-contents";
 import { ScrollToTop } from "@/src/components/scroll-to-top";
@@ -53,7 +53,7 @@ export default async function ContentPage({
   return (
     <div className="relative">
       <article className="prose prose-slate dark:prose-invert mx-auto max-w-4xl p-4">
-        <Markdown
+        <MarkdownHooks
           className="markdown-content"
           remarkPlugins={[remarkMath]}
           rehypePlugins={[rehypeKatex]}
@@ -127,7 +127,7 @@ export default async function ContentPage({
           }}
         >
           {fileContents}
-        </Markdown>
+        </MarkdownHooks>
       </article>
       <TableOfContents content={fileContents} />
       <ScrollToTop />
