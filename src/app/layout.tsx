@@ -18,6 +18,7 @@ import {
   SidebarTrigger,
 } from "../components/ui/sidebar";
 import { Breadcrumbs } from "@/src/components/breadcrumbs";
+import "katex/dist/katex.min.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

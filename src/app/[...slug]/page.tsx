@@ -1,9 +1,12 @@
 import { notFound } from "next/navigation";
 import path from "path";
-import Markdown from "react-markdown";
+import Markdown, { Options } from "react-markdown";
 import fs from "fs";
 import { TableOfContents } from "@/src/components/table-of-contents";
 import { ScrollToTop } from "@/src/components/scroll-to-top";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import rehypePrettyCode from "rehype-pretty-code";
 
 export default async function ContentPage({
   params,
@@ -24,13 +27,37 @@ export default async function ContentPage({
 
   const fileContents = fs.readFileSync(absoluteFilePath, "utf8");
 
+  const prettyCodeOptions = {
+    // Use one of Shiki's packaged themes
+    theme: "github-dark", // Or 'one-dark-pro', 'material-theme-palenight', etc.
+    // Keep the background or use a transparent one
+    keepBackground: true,
+    // Callback hooks for customization if needed
+    onVisitLine(node: any) {
+      // Prevent lines from collapsing in `display: grid` mode, and allow empty
+      // lines to be copy/pasted
+      if (node.children.length === 0) {
+        node.children = [{ type: "text", value: " " }];
+      }
+    },
+    onVisitHighlightedLine(node: any) {
+      // Each line node by default has `class="line"`.
+      node.properties.className.push("highlighted");
+    },
+    onVisitHighlightedWord(node: any) {
+      // Each word node has no className by default.
+      node.properties.className = ["word"];
+    },
+  };
+
   return (
     <div className="relative">
       <article className="prose prose-slate dark:prose-invert mx-auto max-w-4xl p-4">
         <Markdown
           className="markdown-content"
+          remarkPlugins={[remarkMath]}
+          rehypePlugins={[rehypeKatex]}
           components={{
-            // Add IDs to headings for scroll targeting
             h1: ({ children, ...props }) => {
               const id = children
                 ?.toString()

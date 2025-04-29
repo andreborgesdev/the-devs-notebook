@@ -11,219 +11,6 @@ export interface ContentItem {
 // Declare all content here to be able to see it on the UI
 export const Content: ContentItem[] = [
   {
-    title: "Algorithms",
-    url: "/algorithms",
-    icon: "🧠",
-    items: [
-      {
-        title: "Introduction",
-        url: "/algorithms/algorithms",
-        icon: "💡",
-      },
-      {
-        title: "Sort",
-        url: "/algorithms/sort",
-        icon: "📊",
-        items: [
-          {
-            title: "Introduction",
-            url: "/algorithms/sort/sort",
-            icon: "💡",
-          },
-          {
-            title: "Bogo sort",
-            url: "/algorithms/sort/bogo-sort",
-            icon: "📊",
-          },
-          {
-            title: "Bubble Sort",
-            url: "/algorithms/sort/bubble-sort",
-            icon: "📊",
-          },
-          {
-            title: "Selection Sort",
-            url: "/algorithms/sort/selection-sort",
-            icon: "📊",
-          },
-          {
-            title: "Merge Sort",
-            url: "/algorithms/sort/merge-sort",
-            icon: "📊",
-          },
-          {
-            title: "Quick Sort",
-            url: "/algorithms/sort/quick-sort",
-            icon: "📊",
-          },
-          {
-            title: "Radix Sort",
-            url: "/algorithms/sort/radix-sort",
-            icon: "📊",
-          },
-          {
-            title: "Insertion Sort",
-            url: "/algorithms/sort/insertion-sort",
-            icon: "📊",
-          },
-          {
-            title: "Bucket Sort",
-            url: "/algorithms/sort/bucket-sort",
-            icon: "📊",
-          },
-        ],
-      },
-      {
-        title: "Search",
-        url: "/algorithms/search",
-        icon: "🔎",
-        items: [
-          {
-            title: "Linear Search",
-            url: "/algorithms/search/linear-search",
-            icon: "🔎",
-          },
-          {
-            title: "Binary Search",
-            url: "/algorithms/search/binary-search",
-            icon: "🔎",
-          },
-          {
-            title: "BFS",
-            url: "/algorithms/search/bfs",
-            icon: "🔎",
-          },
-          {
-            title: "DFS",
-            url: "/algorithms/search/dfs",
-            icon: "🔎",
-          },
-          {
-            title: "DFS vs BFS",
-            url: "/algorithms/search/dfs-vs-bfs",
-            icon: "🔎",
-          },
-        ],
-      },
-      {
-        title: "Big O",
-        url: "/algorithms/big-o",
-        icon: "📝",
-      },
-      {
-        title: "Tree traversal",
-        url: "/algorithms/tree-traversal",
-        icon: "🌲",
-      },
-      {
-        title: "Kruskal’s Minimum Spanning Tree",
-        url: "/algorithms/kruskal-minimum-spanning-tree",
-        icon: "🌲",
-      },
-      {
-        title: "Bit manipulation",
-        url: "/algorithms/bit-manipulation",
-        icon: "📝",
-      },
-      {
-        title: "Dynamic programming",
-        url: "/algorithms/dynamic-programming",
-        icon: "📝",
-      },
-      {
-        title: "Cheat sheets",
-        url: "/algorithms/algorithms-cheat-sheets",
-        icon: "📝",
-      },
-      {
-        title: "Notes",
-        url: "/algorithms/algorithms-notes",
-        icon: "📝",
-        items: [
-          {
-            title: "General notes",
-            url: "/algorithms/algorithms-notes",
-            icon: "💡",
-          },
-          {
-            title: "Sliding window",
-            url: "/algorithms/algorithms-notes/sliding-window",
-            icon: "🪟",
-          },
-          {
-            title: "Two pointers/iterators",
-            url: "/algorithms/algorithms-notes/two-pointers",
-            icon: "2️",
-          },
-          {
-            title: "Fast and slow pointers",
-            url: "/algorithms/algorithms-notes/fast-and-slow-pointers",
-            icon: "💾",
-          },
-          {
-            title: "Merge intervals",
-            url: "/algorithms/algorithms-notes/merge-intervals",
-            icon: "💾",
-          },
-          {
-            title: "Cyclic sort",
-            url: "/algorithms/algorithms-notes/cyclic-sort",
-            icon: "💾",
-          },
-          {
-            title: "In-place reversal of urled list",
-            url: "/algorithms/algorithms-notes/in-place-reversal-of-urled-list",
-            icon: "💾",
-          },
-          {
-            title: "Tree BFS",
-            url: "/algorithms/algorithms-notes/tree-bfs",
-            icon: "🌲",
-          },
-          {
-            title: "Tree DFS",
-            url: "/algorithms/algorithms-notes/tree-dfs",
-            icon: "🌲",
-          },
-          {
-            title: "Two heaps",
-            url: "/algorithms/algorithms-notes/two-heaps",
-            icon: "💾",
-          },
-          {
-            title: "Subsets",
-            url: "/algorithms/algorithms-notes/subsets",
-            icon: "💾",
-          },
-          {
-            title: "Modified binary search",
-            url: "/algorithms/algorithms-notes/modified-binary-search",
-            icon: "💾",
-          },
-          {
-            title: "Top K elements",
-            url: "/algorithms/algorithms-notes/top-k-elements",
-            icon: "💾",
-          },
-          {
-            title: "K-way Merge",
-            url: "/algorithms/algorithms-notes/k-way-merge",
-            icon: "💾",
-          },
-          {
-            title: "Topological sort",
-            url: "/algorithms/algorithms-notes/topological-sort",
-            icon: "💾",
-          },
-        ],
-      },
-      {
-        title: "Leetcode exercises",
-        url: "/algorithms/leetcode-exercises",
-        icon: "📝",
-      },
-    ],
-  },
-  {
     title: "Data Structures",
     url: "/data-structures",
     icon: "💾",
@@ -349,6 +136,219 @@ export const Content: ContentItem[] = [
         title: "Union Find",
         url: "/data-structures/union-find",
         icon: "🔗",
+      },
+    ],
+  },
+  {
+    title: "Algorithms",
+    url: "/algorithms",
+    icon: "🧠",
+    items: [
+      {
+        title: "Introduction",
+        url: "/algorithms/algorithms",
+        icon: "💡",
+      },
+      {
+        title: "Big O",
+        url: "/algorithms/big-o",
+        icon: "📝",
+      },
+      {
+        title: "Sort",
+        url: "/algorithms/sort",
+        icon: "📊",
+        items: [
+          {
+            title: "Introduction",
+            url: "/algorithms/sort/sort",
+            icon: "💡",
+          },
+          {
+            title: "Bogo sort",
+            url: "/algorithms/sort/bogo-sort",
+            icon: "📊",
+          },
+          {
+            title: "Bubble Sort",
+            url: "/algorithms/sort/bubble-sort",
+            icon: "📊",
+          },
+          {
+            title: "Bucket Sort",
+            url: "/algorithms/sort/bucket-sort",
+            icon: "📊",
+          },
+          {
+            title: "Insertion Sort",
+            url: "/algorithms/sort/insertion-sort",
+            icon: "📊",
+          },
+          {
+            title: "Merge Sort",
+            url: "/algorithms/sort/merge-sort",
+            icon: "📊",
+          },
+          {
+            title: "Quick Sort",
+            url: "/algorithms/sort/quick-sort",
+            icon: "📊",
+          },
+          {
+            title: "Radix Sort",
+            url: "/algorithms/sort/radix-sort",
+            icon: "📊",
+          },
+          {
+            title: "Selection Sort",
+            url: "/algorithms/sort/selection-sort",
+            icon: "📊",
+          },
+        ],
+      },
+      {
+        title: "Search",
+        url: "/algorithms/search",
+        icon: "🔎",
+        items: [
+          {
+            title: "Linear Search",
+            url: "/algorithms/search/linear-search",
+            icon: "🔎",
+          },
+          {
+            title: "Binary Search",
+            url: "/algorithms/search/binary-search",
+            icon: "🔎",
+          },
+          {
+            title: "BFS",
+            url: "/algorithms/search/bfs",
+            icon: "🔎",
+          },
+          {
+            title: "DFS",
+            url: "/algorithms/search/dfs",
+            icon: "🔎",
+          },
+          {
+            title: "DFS vs BFS",
+            url: "/algorithms/search/dfs-vs-bfs",
+            icon: "🔎",
+          },
+        ],
+      },
+      {
+        title: "Tree traversal",
+        url: "/algorithms/tree-traversal",
+        icon: "🌲",
+      },
+      {
+        title: "Kruskal’s Minimum Spanning Tree",
+        url: "/algorithms/kruskal-minimum-spanning-tree",
+        icon: "🌲",
+      },
+      {
+        title: "Bit manipulation",
+        url: "/algorithms/bit-manipulation",
+        icon: "📝",
+      },
+      {
+        title: "Dynamic programming",
+        url: "/algorithms/dynamic-programming",
+        icon: "📝",
+      },
+      {
+        title: "Cheat sheets",
+        url: "/algorithms/algorithms-cheat-sheets",
+        icon: "📝",
+      },
+      {
+        title: "Notes",
+        url: "/algorithms/algorithms-notes",
+        icon: "📝",
+        items: [
+          {
+            title: "General notes",
+            url: "/algorithms/algorithms-notes",
+            icon: "💡",
+          },
+          {
+            title: "Sliding window",
+            url: "/algorithms/algorithms-notes/sliding-window",
+            icon: "🪟",
+          },
+          {
+            title: "Two pointers/iterators",
+            url: "/algorithms/algorithms-notes/two-pointers",
+            icon: "2️",
+          },
+          {
+            title: "Fast and slow pointers",
+            url: "/algorithms/algorithms-notes/fast-and-slow-pointers",
+            icon: "💾",
+          },
+          {
+            title: "Merge intervals",
+            url: "/algorithms/algorithms-notes/merge-intervals",
+            icon: "💾",
+          },
+          {
+            title: "Cyclic sort",
+            url: "/algorithms/algorithms-notes/cyclic-sort",
+            icon: "💾",
+          },
+          {
+            title: "In-place reversal of urled list",
+            url: "/algorithms/algorithms-notes/in-place-reversal-of-urled-list",
+            icon: "💾",
+          },
+          {
+            title: "Tree BFS",
+            url: "/algorithms/algorithms-notes/tree-bfs",
+            icon: "🌲",
+          },
+          {
+            title: "Tree DFS",
+            url: "/algorithms/algorithms-notes/tree-dfs",
+            icon: "🌲",
+          },
+          {
+            title: "Two heaps",
+            url: "/algorithms/algorithms-notes/two-heaps",
+            icon: "💾",
+          },
+          {
+            title: "Subsets",
+            url: "/algorithms/algorithms-notes/subsets",
+            icon: "💾",
+          },
+          {
+            title: "Modified binary search",
+            url: "/algorithms/algorithms-notes/modified-binary-search",
+            icon: "💾",
+          },
+          {
+            title: "Top K elements",
+            url: "/algorithms/algorithms-notes/top-k-elements",
+            icon: "💾",
+          },
+          {
+            title: "K-way Merge",
+            url: "/algorithms/algorithms-notes/k-way-merge",
+            icon: "💾",
+          },
+          {
+            title: "Topological sort",
+            url: "/algorithms/algorithms-notes/topological-sort",
+            icon: "💾",
+          },
+        ],
+      },
+      {
+        title: "Leetcode exercises",
+        url: "/algorithms/leetcode-exercises",
+        icon: "📝",
       },
     ],
   },
