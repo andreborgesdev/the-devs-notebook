@@ -18,7 +18,9 @@ If we repeatedly partition the array (and its sub-arrays) around an element, the
 
 ![https://www.geeksforgeeks.org/wp-content/uploads/gq/2014/01/QuickSort2.png](https://www.geeksforgeeks.org/wp-content/uploads/gq/2014/01/QuickSort2.png)
 
-```java
+### Example in Java
+
+```java showLineNumbers
 void quickSort(int[] arr, int left, int right) {
  int index = partition(arr, left, right);
 

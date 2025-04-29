@@ -7,6 +7,7 @@ import { ScrollToTop } from "@/src/components/scroll-to-top";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypePrettyCode from "rehype-pretty-code";
+import { transformerCopyButton } from "@rehype-pretty/transformers";
 
 export default async function ContentPage({
   params,
@@ -29,7 +30,10 @@ export default async function ContentPage({
 
   const prettyCodeOptions = {
     // Use one of Shiki's packaged themes
-    theme: "monokai",
+    theme: {
+      dark: "dark-plus",
+      light: "github-light",
+    },
     // Callback hooks for customization if needed
     onVisitLine(node: any) {
       // Prevent lines from collapsing in `display: grid` mode, and allow empty
@@ -46,6 +50,12 @@ export default async function ContentPage({
       // Each word node has no className by default.
       node.properties.className = ["word"];
     },
+    transformers: [
+      transformerCopyButton({
+        visibility: "always",
+        feedbackDuration: 3_000,
+      }),
+    ],
   };
 
   return (
