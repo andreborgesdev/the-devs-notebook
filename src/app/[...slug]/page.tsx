@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import path from "path";
-import MarkdownHooks from "react-markdown";
+import { MarkdownAsync } from "react-markdown";
 import fs from "fs";
 import { TableOfContents } from "@/src/components/table-of-contents";
 import { ScrollToTop } from "@/src/components/scroll-to-top";
@@ -29,9 +29,7 @@ export default async function ContentPage({
 
   const prettyCodeOptions = {
     // Use one of Shiki's packaged themes
-    theme: "github-dark", // Or 'one-dark-pro', 'material-theme-palenight', etc.
-    // Keep the background or use a transparent one
-    keepBackground: true,
+    theme: "monokai",
     // Callback hooks for customization if needed
     onVisitLine(node: any) {
       // Prevent lines from collapsing in `display: grid` mode, and allow empty
@@ -53,10 +51,10 @@ export default async function ContentPage({
   return (
     <div className="relative">
       <article className="prose prose-slate dark:prose-invert mx-auto max-w-4xl p-4">
-        <MarkdownHooks
+        <MarkdownAsync
           className="markdown-content"
           remarkPlugins={[remarkMath]}
-          rehypePlugins={[rehypeKatex]}
+          rehypePlugins={[[rehypePrettyCode, prettyCodeOptions], rehypeKatex]}
           components={{
             h1: ({ children, ...props }) => {
               const id = children
@@ -127,7 +125,7 @@ export default async function ContentPage({
           }}
         >
           {fileContents}
-        </MarkdownHooks>
+        </MarkdownAsync>
       </article>
       <TableOfContents content={fileContents} />
       <ScrollToTop />
