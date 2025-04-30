@@ -33,9 +33,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const pathname = usePathname();
-  // const paths = pathname.split("/").filter(Boolean);
-
   return (
     <html lang="en">
       <body

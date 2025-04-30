@@ -8,6 +8,7 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypePrettyCode from "rehype-pretty-code";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
+import remarkGfm from "remark-gfm";
 
 export default async function ContentPage({
   params,
@@ -63,7 +64,7 @@ export default async function ContentPage({
       <article className="prose prose-slate dark:prose-invert mx-auto max-w-4xl p-4">
         <MarkdownAsync
           className="markdown-content"
-          remarkPlugins={[remarkMath]}
+          remarkPlugins={[remarkMath, remarkGfm]}
           rehypePlugins={[[rehypePrettyCode, prettyCodeOptions], rehypeKatex]}
           components={{
             h1: ({ children, ...props }) => {

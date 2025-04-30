@@ -1,74 +1,144 @@
-# Big O notation
+# Big O Notation
 
-Big O notation, written O(), is the mathematical notation of the complexity of an algorithm as a function of size.
+**Big O notation** is a mathematical way to describe the **time or space complexity** of an algorithm as a function of input size `n`.
 
-The O() notation puts an upper bound on the value of the thing we're measuring (time, memory, and so on), and it is determined by the step that takes longer (for example, in triathlon, if we are bad at one of the modalities, we’re bound to it and it is irrelevant if we improve the other two).
+It provides an **upper bound** on the growth rate of an algorithm—helping us understand performance as inputs scale. Think of it like a triathlon: if you're bad at one event, your overall time is limited by that event, no matter how good you are at the others.
 
-Sometimes, we come up with fairly complex O() functions, but because the highest-order term will dominate the values as _n_ increases, the convention is to remove all lower-order terms, and not to bother any constant multiplying factors:
+## ✂️ Simplification Rules
 
-$$
-O\!\Bigl(\frac{n^2}{2} + 3n\Bigr) = O\!\Bigl(\frac{n^2}{2}\Bigr) = O(n^2)
-$$
+As `n` becomes large:
 
-One algorithm can be faster than another for small inputs, but slower for larger inputs. Big O notation helps to determine the performance of an algorithm as the input size grows.
+- Drop lower-order terms
+- Drop constant multipliers
 
-### Time complexity
+> Example:  
+> $$O\left(\frac{n^2}{2} + 3n\right) = O\left(\frac{n^2}{2}\right) = O(n^2)$$
 
-Time complexity is how the algorithm works on the worst case scenario. It can never perform worst than the worst scenario (upper bound). It helps to quantify the performance as the input size becomes arbitrarily large.
+## ⏱️ Time Complexity
 
-### Space complexity
+- Describes how the **runtime** of an algorithm grows in the **worst-case scenario**
+- Helps compare algorithms as input size increases
 
-- Concerns memory usage. It is also determined by the worst case scenario. Space complexity doesn’t care about measuring how much additional storage we need if our list grows.
-- It cares about which additional storage is needed as the algorithm runs and tries to find a solution.
+## 🧠 Space Complexity
 
-### Complexity
+- Describes how **memory usage** grows
+- Focuses on the **additional memory** needed as input grows
+- Also considers temporary memory during algorithm execution
 
-O → Big O / Order of magnitude of complexity
+## 🚀 Common Time Complexities
 
-There is no fixed list of possible runtimes, but the most common ones are:
+|   Complexity | Name         | Description / Example                      |
+| -----------: | ------------ | ------------------------------------------ |
+|       `O(1)` | Constant     | Array access by index                      |
+|   `O(log n)` | Logarithmic  | Binary search                              |
+|       `O(n)` | Linear       | Loop through array once                    |
+| `O(n log n)` | Linearithmic | Merge sort, quicksort (avg)                |
+|      `O(n²)` | Quadratic    | Nested loops (e.g. bubble sort)            |
+|      `O(n³)` | Cubic        | Triple nested loops, matrix multiplication |
+|      `O(2ⁿ)` | Exponential  | Recursive Fibonacci                        |
+|      `O(n!)` | Factorial    | Permutations, traveling salesman           |
 
-O(1) → Constant runtime → The time it takes to run the algorithm is constant and does not depend on the size of the input. For example, accessing an element in an array by index is O(1) because it takes the same amount of time regardless of the size of the array.
+> Any mathematical expression containing `n` can be wrapped in Big O:
+>
+> - `O(n + c) = O(n)`
+> - `O(cn) = O(n)` where `c > 0`
 
-O(log n) → Logarithmic/Sublinear runtime → The time it takes to run the algorithm grows logarithmically in relation to the input size. For example, binary search is O(log n) because it cuts the input size in half with each iteration. 2³ = 8 ↔ log2(8) = 3
+## 📌 Notes
 
-O(n) → Linear runtime → The time it takes to run the algorithm grows linearly in relation to the input size. For example, a simple loop that iterates through an array is O(n) because it processes each element once.
+- Algorithms with better **Big O** may still be slower on small inputs
+- Focus on the **dominant term**
+- Constants don’t matter in Big O (since `∞ * c = ∞`)
 
-O(n log n) → Linearithmic/Quasilinear runtime → The time it takes to run the algorithm grows in relation to the input size and the logarithm of the input size. For example, merge sort is O(n log n) because it divides the input in half and processes each half separately.
+## 📏 Best, Worst, and Average Case
 
-O(n²) → Quadratic/Square runtime → The time it takes to run the algorithm grows quadratically in relation to the input size. For example, a nested loop that iterates through an array is O(n²) because it processes each element for every other element.
+Big O notation typically describes the **worst-case** complexity, but understanding all three cases is crucial:
 
-O(n³) → Cubic runtime → The time it takes to run the algorithm grows cubically in relation to the input size. For example, a triple nested loop that iterates through an array is O(n³) because it processes each element for every other element for every other element. Same as multiplying two n x n matrices.
+| Case        | Description                           | Example (Quick Sort)                              |
+| ----------- | ------------------------------------- | ------------------------------------------------- |
+| **Best**    | Optimal input scenario                | O(n) – all elements are equal                     |
+| **Average** | Expected performance over many inputs | O(n log n)                                        |
+| **Worst**   | Pathological input                    | O(n²) – always chose the biggest element as pivot |
 
-O(X^n) → Exponential runtime → The time it takes to run the algorithm grows exponentially in relation to the input size. For example, the Fibonacci sequence can be calculated using an exponential algorithm that takes O(2^n) time because it branches out into two recursive calls for each element.
+> 🧠 Be prepared to discuss all three cases for common algorithms.
 
-O(n^K) → Polynomial runtime → The time it takes to run the algorithm grows polynomially in relation to the input size. For example, a polynomial function of degree K is O(n^K) because it processes each element K times.
+## 🧮 Amortized Time Complexity
 
-O(n!) → Factorial/Combinatorial runtime → The time it takes to run the algorithm grows factorially in relation to the input size. For example, generating all permutations of a set of n elements is O(n!) because it processes each element in every possible order. F.e. Travel salesman problem. 3! = 3 x 2 x 1 = 6
+Some operations are costly occasionally but cheap on average:
 
-Any math expression containing n can be wrapped around a big O.
+- **Example**: Appending to a dynamic array
+  - Usually `O(1)`
+  - Occasionally `O(n)` during resize
+  - **Amortized** time per operation is still `O(1)`
 
-O(n+c) = O(n)
+> 📌 **Amortized ≠ Average case**: It refers to the cost spread over a series of operations, not different inputs.
 
-O(cn) = O(n), c > 0
+## 🔁 Common Pitfalls in Interviews
 
-If we multiply a constant by infinite we get infinite. So, we can ignore constants. We stay with the biggest/most dominant term in the function
+- Confusing **log(n)** with **n log n**
+- Underestimating how quickly **quadratic time (O(n²))** grows
+- Forgetting constant-time operations in **nested loops**
+- Misidentifying recursion complexity — always analyze:
+  - Using a **recurrence relation**
+  - Or a **recursion tree method**
 
-### Big O Cheat Sheet
+## 📚 Big O in Common Data Structures
 
-![big-o](../../images/big-o-3.png)
+| Data Structure             | Access   | Search   | Insert   | Delete   |
+| -------------------------- | -------- | -------- | -------- | -------- |
+| Array                      | O(1)     | O(n)     | O(n)     | O(n)     |
+| Stack / Queue              | O(n)     | O(n)     | O(1)     | O(1)     |
+| Hash Table (average case)  | O(1)     | O(1)     | O(1)     | O(1)     |
+| Linked List                | O(n)     | O(n)     | O(1)\*   | O(1)\*   |
+| Binary Search Tree (avg)   | O(log n) | O(log n) | O(log n) | O(log n) |
+| Binary Search Tree (worst) | O(n)     | O(n)     | O(n)     | O(n)     |
 
-![big-o](../../images/big-o-1.png)
+## Common Data Structure Operations
 
-![big-o](../../images/big-o-2.png)
+| Data Structure         | Time Complexity (Average) |          |           |          | Time Complexity (Worst) |          |           |          | Space Complexity |
+| ---------------------- | ------------------------- | -------- | --------- | -------- | ----------------------- | -------- | --------- | -------- | ---------------- |
+|                        | Access                    | Search   | Insertion | Deletion | Access                  | Search   | Insertion | Deletion | Worst            |
+| **Array**              | O(1)                      | O(n)     | O(n)      | O(n)     | O(1)                    | O(n)     | O(n)      | O(n)     | O(n)             |
+| **Stack**              | O(n)                      | O(n)     | O(1)      | O(1)     | O(n)                    | O(n)     | O(1)      | O(1)     | O(n)             |
+| **Queue**              | O(n)                      | O(n)     | O(1)      | O(1)     | O(n)                    | O(n)     | O(1)      | O(1)     | O(n)             |
+| **Singly-Linked List** | O(n)                      | O(n)     | O(1)      | O(1)     | O(n)                    | O(n)     | O(1)      | O(1)     | O(n)             |
+| **Doubly-Linked List** | O(n)                      | O(n)     | O(1)      | O(1)     | O(n)                    | O(n)     | O(1)      | O(1)     | O(n)             |
+| **Skip List**          | O(log n)                  | O(log n) | O(log n)  | O(log n) | O(n)                    | O(n)     | O(n)      | O(n)     | O(n log n)       |
+| **Hash Table**         | N/A                       | O(1)     | O(1)      | O(1)     | N/A                     | O(n)     | O(n)      | O(n)     | O(n)             |
+| **Binary Search Tree** | O(log n)                  | O(log n) | O(log n)  | O(log n) | O(n)                    | O(n)     | O(n)      | O(n)     | O(n)             |
+| **Cartesian Tree**     | N/A                       | O(log n) | O(log n)  | O(log n) | N/A                     | O(n)     | O(n)      | O(n)     | O(n)             |
+| **B-Tree**             | O(log n)                  | O(log n) | O(log n)  | O(log n) | O(log n)                | O(log n) | O(log n)  | O(log n) | O(n)             |
+| **Red-Black Tree**     | O(log n)                  | O(log n) | O(log n)  | O(log n) | O(log n)                | O(log n) | O(log n)  | O(log n) | O(n)             |
+| **Splay Tree**         | N/A                       | O(log n) | O(log n)  | O(log n) | O(log n)                | O(log n) | O(log n)  | O(log n) | O(n)             |
+| **AVL Tree**           | O(log n)                  | O(log n) | O(log n)  | O(log n) | O(log n)                | O(log n) | O(log n)  | O(log n) | O(n)             |
+| **KD Tree**            | O(log n)                  | O(log n) | O(log n)  | O(log n) | O(n)                    | O(n)     | O(n)      | O(n)     | O(n)             |
 
-![https://www.bigocheatsheet.com/img/big-o-cheat-sheet-poster.png](https://www.bigocheatsheet.com/img/big-o-cheat-sheet-poster.png)
+> `*` Insert/Delete assumes access to head/tail or known position.  
+> Balanced BSTs like **AVL** or **Red-Black Trees** maintain `O(log n)` in all operations.
 
-### Big O, Big Theta, and Big Omega
+## 📊 Big O Cheat Sheet
 
-The differences between big O, big theta, and big omega are subtle but important. In academia, the definitions are as follows:
+![big-o-3](../../images/big-o-3.png)  
+![big-o-1](../../images/big-o-1.png)  
+![big-o-2](../../images/big-o-2.png)  
+![Big O Poster](https://www.bigocheatsheet.com/img/big-o-cheat-sheet-poster.png)
 
-- **O (big O):** In academia, big O describes an upper bound on the time. An algorithm that prints all the values in an array could be described as O(N), but it could also be described as O(n²), O(n³), or O(2N) (or many other big O times). The algorithm is at least as fast as each of these; therefore they are upper bounds on the runtime. This is similar to a less-than-or-equal-to relationship. If Bob is X years old (I'll assume no one lives past age 130), then you could say X <= 130. It would also be correct to say that X <= 1, 000 or X <= 1,000,000. It's technically true (although not terribly useful). Likewise, a simple algorithm to print the values in an array is O(N) as well as O(n³) or any runtime bigger than O(N).
-- Ω (big omega): In academia, Ω is the equivalent concept but for lower bound. Printing the values in an array is Ω(N) as well as Ω(log N) and Ω(1). After all, you know that it won't be faster than those runtimes.
-- Θ (big theta): In academia, Θ means both O and Ω. That is, an algorithm is Θ(N) if it is both Θ(N) and Ω(N). Θ gives a tight bound on runtime.
+## ⚖️ Big O, Big Θ (Theta), and Big Ω (Omega)
 
-In industry (and therefore in interviews), people seem to have merged Θ and O together. Industry's meaning of big O is closer to what academics mean by 0, in that it would be seen as incorrect to describe printing an array as O(n²). Industry would just say this is O(N).
+| Notation | Meaning     | Analogy / Bound  |
+| -------- | ----------- | ---------------- |
+| `O`      | Upper bound | ≤ — Worst-case   |
+| `Ω`      | Lower bound | ≥ — Best-case    |
+| `Θ`      | Tight bound | ≈ — Exact growth |
+
+### Example
+
+For printing elements of an array:
+
+- **O(n)** – Worst-case upper bound
+- **Ω(n)** – Best-case lower bound
+- **Θ(n)** – Tight bound (it’s always `n`)
+
+> 💬 **Industry vs Academia**:
+>
+> - In **academia**, `O(n²)` is technically valid for a linear algorithm—it’s just a loose upper bound.
+> - In **industry** and interviews, we typically express the **tightest** possible bound, e.g., say `O(n)` not `O(n²)` for a linear loop.

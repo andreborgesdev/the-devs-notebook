@@ -164,3 +164,48 @@ code[data-theme*=" "] span {
   color: var(--shiki-dark);
   background-color: var(--shiki-dark-bg);
 }
+
+/* Custom styles for prose tables */
+.prose table {
+  @apply w-full my-6 border-collapse border border-slate-300 dark:border-slate-600;
+}
+
+.prose th,
+.prose td {
+  @apply border border-slate-300 dark:border-slate-600 px-4 py-2 text-left;
+  /* Ensure left alignment for better readability, overriding markdown alignment if needed */
+  text-align: left;
+}
+
+/* Override right-alignment specifically for the first column header if desired */
+/* .prose thead th:first-child {
+    @apply text-right; 
+} */
+
+/* Override right-alignment specifically for the first column cells if desired */
+/* .prose tbody td:first-child {
+    @apply text-right font-mono; 
+} */
+
+.prose thead th {
+  @apply bg-slate-100 dark:bg-slate-800 font-semibold;
+}
+
+.prose tbody tr:nth-child(even) {
+  @apply bg-slate-50 dark:bg-slate-800/50; /* Subtle zebra striping */
+}
+
+.prose tbody tr:hover {
+  @apply bg-slate-100 dark:bg-slate-700/50; /* Hover effect */
+}
+
+/* Ensure code within tables is styled appropriately */
+.prose td code {
+  @apply font-mono text-sm bg-slate-200 dark:bg-slate-700 px-1 py-0.5 rounded;
+  /* Prevent prose code styles from adding quotes */
+  quotes: none;
+  &::before,
+  &::after {
+    content: none;
+  }
+}

@@ -76,7 +76,7 @@ export function TableOfContents({ content }: TableOfContentsProps) {
             <button
               onClick={() => handleClick(item.id)}
               className={cn(
-                "hover:text-foreground text-muted-foreground",
+                "text-left hover:text-foreground text-muted-foreground",
                 "transition-colors duration-200",
                 activeId === item.id && "font-medium text-foreground"
               )}

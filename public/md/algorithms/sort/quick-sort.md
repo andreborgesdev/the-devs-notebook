@@ -1,55 +1,116 @@
 # Quick Sort
 
-QuickSort is a sorting algorithm based on the Divide and Conquer that picks an element as a pivot and partitions the given array around the picked pivot by placing the pivot in its correct position in the sorted array.
+Quick Sort is a highly efficient **divide-and-conquer** sorting algorithm. It works by selecting a **pivot** element and partitioning the array such that:
 
-Runtime: O(N log N) average, O(N²) worst case. Memory: O(log N)
+- Elements **less than the pivot** are placed to the **left**.
+- Elements **greater than the pivot** are placed to the **right**.
 
-Relies on recursion. Uses divide and conquer. Uses a pivot and 2 lists, one with numbers less than the pivot and one greater than the pivot. Quick sort is a bit faster than merge sort to sort numbers. Even though it has a bigger big o time complexity.
+This process is recursively applied to the left and right subarrays until the entire array is sorted.
 
-Quicksort is a sorting algorithm based on the **divide and conquer approach** where:
+## 🧠 Key Concepts
 
-1. An array is divided into subarrays by selecting a **pivot element** (element selected from the array).While dividing the array, the pivot element should be positioned in such a way that elements less than pivot are kept on the left side and elements greater than pivot are on the right side of the pivot.
-2. The left and right subarrays are also divided using the same approach. This process continues until each subarray contains a single element.
-3. At this point, elements are already sorted. Finally, elements are combined to form a sorted array.
+- **Average Time Complexity**: `O(n log n)`
+- **Worst Case Time Complexity**: `O(n²)` (when the smallest or largest element is always picked as pivot)
+- **Space Complexity**: `O(log n)` due to recursion stack
+- **In-place**: Yes (no need for extra arrays)
+- **Stable**: No
+- **Faster than Merge Sort in practice** for most inputs, despite the worse worst-case complexity
 
-In quick sort, we pick a random element and partition the array, such that all numbers that are less than the partitioning come before all elements that are greater than it. The partitioning can be performed through a series of swaps.
+## 🔁 Algorithm Steps
 
-If we repeatedly partition the array (and its sub-arrays) around an element, the array will eventually become sorted. However, as the partitioned element is not guaranteed to be the median (or anywhere near the median), our sorting could be very slow. This is the reason for the 0( n 2) worst case runtime.
+1. Choose a pivot element (commonly middle, first, last, or random).
+2. Rearrange elements so that:
+   - All items < pivot are moved to the left.
+   - All items > pivot are moved to the right.
+3. Recursively apply the above steps to left and right subarrays.
 
-![https://www.geeksforgeeks.org/wp-content/uploads/gq/2014/01/QuickSort2.png](https://www.geeksforgeeks.org/wp-content/uploads/gq/2014/01/QuickSort2.png)
+> **Note**: Pivot selection is crucial. Randomized pivot selection helps avoid the worst-case `O(n²)` time.
 
-### Example in Java
+## 🔍 Visualization
+
+![QuickSort Partitioning](https://www.geeksforgeeks.org/wp-content/uploads/gq/2014/01/QuickSort2.png)
+
+## 💡 Example: Java Implementation
 
 ```java showLineNumbers
 void quickSort(int[] arr, int left, int right) {
- int index = partition(arr, left, right);
+    int index = partition(arr, left, right);
 
- if (left< index - 1) { // Sort left half
-  quickSort(arr, left, index - 1);
- }
- if (index< right) { // Sort right half
-  quickSort(arr, index, right);
- }
+    if (left < index - 1) {
+        quickSort(arr, left, index - 1);  // Sort left half
+    }
+    if (index < right) {
+        quickSort(arr, index, right);     // Sort right half
+    }
 }
 
 int partition(int[] arr, int left, int right) {
- int pivot = arr[(left + right) / 2]; // Pick pivot point
+    int pivot = arr[(left + right) / 2];  // Choose middle element as pivot
 
- while (left<= right) {
-  // Find element on left that should be on right
-  while (arr[left] < pivot) left++;
+    while (left <= right) {
+        while (arr[left] < pivot) left++;
+        while (arr[right] > pivot) right--;
 
-  // Find element on right that should be on left
-  while (arr[right] > pivot) right--;
-
- // Swap elements, and move left and right indices
-  if (left<= right) {
-   swap(arr, left, right); // swaps elements
-   left++;
-   right--;
-  }
- }
-
- return left;
+        if (left <= right) {
+            swap(arr, left, right);  // Swap elements
+            left++;
+            right--;
+        }
+    }
+    return left;
 }
 ```
+
+## ✅ When to Use Quick Sort
+
+- When average-case performance matters more than worst-case
+- When working in memory-constrained environments (it's in-place)
+- When data can be randomized to avoid worst-case behavior
+
+## ❌ When to Avoid Quick Sort
+
+While Quick Sort performs well on average, there are scenarios where it might not be ideal:
+
+- **Unstable**: It does **not preserve the order** of equal elements.
+- **Worst-case `O(n²)`**: Especially when pivot selection is poor (e.g., already sorted arrays).
+- **Poor for linked lists**: Linked lists don't support efficient random access; Merge Sort is better suited.
+
+## 🔐 Interview Tips
+
+Be prepared to explain:
+
+- Why Quick Sort is **fast in practice** despite the `O(n²)` worst-case.
+- The importance of **pivot strategy**:
+  - First/last/middle element
+  - **Random element** _(recommended to avoid worst case)_
+  - **Median-of-three**: average of first, middle, and last element
+- The **in-place partitioning process**.
+- How to **convert it to an iterative version** (with a stack).
+- What the **call stack depth** is (up to `O(log n)`).
+
+## 📌 In-Place vs Non-In-Place
+
+Quick Sort is typically **in-place**, requiring no extra memory apart from the recursion stack.
+
+> ⚠️ Merge Sort, by comparison, needs `O(n)` additional space.
+
+## 📈 Optimizations
+
+- **Tail recursion optimization**:
+  - Always recurse on the smaller subarray first to minimize stack depth.
+  - Use a loop for the larger half.
+- **Switch to Insertion Sort for small partitions** (commonly `n < 10`):
+  - Helps reduce overhead and improve cache performance.
+- **Hybrid algorithms**:
+  - **Introsort** (used in C++ STL): switches to Heap Sort when recursion goes too deep.
+  - **Timsort** (used in Python): optimized Merge Sort that handles real-world data more efficiently.
+
+## 🧪 Test Edge Cases
+
+Make sure your implementation handles:
+
+- ✅ An empty array
+- ✅ An array with a single element
+- ✅ Already sorted input (ascending/descending)
+- ✅ Arrays with **many duplicate elements**
+- ✅ Arrays with **all elements the same**
