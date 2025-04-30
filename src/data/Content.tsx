@@ -25,12 +25,11 @@ export const Content: ContentItem[] = [
         url: "/data-structures/array",
         icon: "💾",
         items: [
-          // TODO: Add introduction
-          // {
-          //   title: "Introduction",
-          //   url: "/data-structures/array",
-          //   icon: "💡",
-          // },
+          {
+            title: "Introduction",
+            url: "/data-structures/array/introduction",
+            icon: "💡",
+          },
           {
             title: "Longest Common Prefix Array",
             url: "/data-structures/array/longest-common-prefix-array",
@@ -364,9 +363,21 @@ export const Content: ContentItem[] = [
       //   icon: "💡",
       // },
       {
-        title: "Collections",
-        url: "/java/collections/java-collections",
+        title: "Data Structures",
+        url: "/java/data-structures",
         icon: "💾",
+        items: [
+          {
+            title: "Introduction",
+            url: "/java/data-structures/introduction",
+            icon: "💡",
+          },
+          {
+            title: "ArrayList",
+            url: "/java/data-structures/array-list",
+            icon: "💾",
+          },
+        ],
       },
       {
         title: "Cheat sheets",

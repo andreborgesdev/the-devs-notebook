@@ -9,6 +9,7 @@ import rehypeKatex from "rehype-katex";
 import rehypePrettyCode from "rehype-pretty-code";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
 export default async function ContentPage({
   params,
@@ -65,7 +66,11 @@ export default async function ContentPage({
         <MarkdownAsync
           className="markdown-content"
           remarkPlugins={[remarkMath, remarkGfm]}
-          rehypePlugins={[[rehypePrettyCode, prettyCodeOptions], rehypeKatex]}
+          rehypePlugins={[
+            [rehypePrettyCode, prettyCodeOptions],
+            rehypeKatex,
+            rehypeRaw,
+          ]}
           components={{
             h1: ({ children, ...props }) => {
               const id = children

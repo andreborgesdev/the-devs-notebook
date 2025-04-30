@@ -11,7 +11,7 @@ body {
 }
 
 .markdown-content h2 {
-  @apply scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0 my-3;
+  @apply scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0 my-3;
 }
 
 .markdown-content h3 {
@@ -23,15 +23,15 @@ body {
 }
 
 .markdown-content p {
-  @apply leading-7 [&:not(:first-child)]:mt-6;
+  @apply leading-7;
 }
 
 .markdown-content blockquote {
-  @apply mt-6 border-l-2 pl-6 italic;
+  @apply my-3 border-l-2 pl-6 italic;
 }
 
 .markdown-content ul {
-  @apply my-6 ml-6 list-disc [&>li]:mt-2;
+  @apply ml-6 list-disc [&>li]:mt-2;
 }
 
 .markdown-content code {
