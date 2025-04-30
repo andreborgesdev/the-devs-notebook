@@ -20,16 +20,22 @@ It provides an **upper bound** on the growth rate of an algorithm—helping us u
 
 As `n` becomes large:
 
-- Drop lower-order/non-dominant terms
+- Drop lower-order/non-dominant terms (only for sums)
+  - When we have multiplication of variables or terms for a runtime, we cannot drop the lower-order/non-dominant terms.
 - Drop constant multipliers
 
-> Example:  
+> Example:
+>
 > $$O\left(\frac{n^2}{2} + 3n\right) = O\left(\frac{n^2}{2}\right) = O(n^2)$$
+>
+> $$O(n * n log n) = O(n^2 log n)$$
 
 We might still have a sum in a runtime if we don't have special knowledge about the terms and cannot reduce them
 
 > Example:  
 > $$O(B^2 + A)$$
+
+The base of a log doesn't matter for Big O since the logs of different bases are only different by a constant factor. However, this does not apply to exponents. The base of an exponent does matter. Compare `O(2^n)` and `O(8^n)`. If you expand `O(8^n)`, you get `O(2^(3n))`, which equals 2^3n, which equals 2^2n \* 2^n. As you can see, 8^n and 2^n are different by a factor of 2^2n, which is a polynomial factor. So the base of an exponent does matter.
 
 ## Common Time Complexities
 
@@ -48,6 +54,10 @@ We might still have a sum in a runtime if we don't have special knowledge about 
 >
 > - `O(n + c) = O(n)`
 > - `O(cn) = O(n)` where `c > 0`
+
+## Big O Complexity Chart
+
+![big-o-3](../../images/big-o-3.png)
 
 ## Notes
 
@@ -120,14 +130,22 @@ Some operations are costly occasionally but cheap on average:
 | **Counting Sort**  | <span style="background-color: #00ff00; color: black; padding: 2px 4px; border-radius: 3px;">Ω(n + k)</span>   | <span style="background-color: #00ff00; color: black; padding: 2px 4px; border-radius: 3px;">Θ(n + k)</span>      | <span style="background-color: #00ff00; color: black; padding: 2px 4px; border-radius: 3px;">O(n + k)</span>      | <span style="background-color: #ffff00; color: black; padding: 2px 4px; border-radius: 3px;">O(k)</span>     |
 | **Cubesort**       | <span style="background-color: #ffa500; color: black; padding: 2px 4px; border-radius: 3px;">Θ(n log n)</span> | <span style="background-color: #ffa500; color: black; padding: 2px 4px; border-radius: 3px;">Θ(n log n)</span>    | <span style="background-color: #ffa500; color: black; padding: 2px 4px; border-radius: 3px;">Θ(n log n)</span>    | <span style="background-color: #ffff00; color: black; padding: 2px 4px; border-radius: 3px;">O(n)</span>     |
 
-## Big O Complexity Chart
-
-![big-o-3](../../images/big-o-3.png)
-
 ## Add vs Multiply
 
 - If your algorithm is in the form of "do this, then, when you're all done, do that", you **add** runtimes.
 - If your algorithm is in the form of "do this for each time you do that", you **multiply** runtimes.
+
+## Log N runtines
+
+When you see a problem where the number of elements in the problem space gets halved each time, you can usually assume that the algorithm is **O(log n)**. For example binary search, where you halve the number of elements in the array each time.
+
+## Recursive runtimes
+
+When you have a recursive function that makes multiple calls, the runtime will often (but not always) look like O(branches^depth), where branches is the number of times each recursive call branches.
+
+## Tips
+
+- Sometimes, we can optimize exponential time recursive algorithms using **memoization** or **dynamic programming**.
 
 ## Common Pitfalls in Interviews
 

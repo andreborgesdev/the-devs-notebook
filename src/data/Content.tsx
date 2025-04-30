@@ -108,12 +108,11 @@ export const Content: ContentItem[] = [
         url: "/data-structures/tree",
         icon: "🌲",
         items: [
-          // TODO: Add introduction
-          // {
-          //   title: "Introduction",
-          //   url: "/data-structures/tree/tree",
-          //   icon: "💡",
-          // },
+          {
+            title: "Introduction",
+            url: "/data-structures/tree/introduction",
+            icon: "💡",
+          },
           {
             title: "Binary Tree",
             url: "/data-structures/tree/binary-tree",
