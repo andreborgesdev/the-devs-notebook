@@ -209,3 +209,19 @@ code[data-theme*=" "] span {
     content: none;
   }
 }
+
+/* Hide browser default clear button on search inputs */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="search"]::-ms-clear, /* For IE/Edge */
+input[type="search"]::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
