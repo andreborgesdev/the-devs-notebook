@@ -41,12 +41,12 @@ export function NavItem({ item, depth }: { item: ContentItem; depth: number }) {
       >
         <div className="flex items-center gap-2">
           <span>{item.icon}</span>
-          <span>{item.title}</span>
+          {sidebarOpen && <span>{item.title}</span>}
         </div>
         <ChevronRight
           className="transition-transform duration-200"
           style={{
-            transform: `rotate(${open ? "90deg" : "0deg"})`,
+            transform: `rotate(${sidebarOpen ? "90deg" : "0deg"})`,
           }}
         />
       </Button>
@@ -82,7 +82,7 @@ export function NavItem({ item, depth }: { item: ContentItem; depth: number }) {
   const linkContent = (
     <a href={item.url} className="flex gap-2">
       <span>{item.icon}</span>
-      <span>{item.title}</span>
+      {sidebarOpen && <span>{item.title}</span>}
     </a>
   );
 
