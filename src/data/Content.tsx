@@ -782,4 +782,31 @@ export const Content: ContentItem[] = [
       },
     ],
   },
+  {
+    title: "Interviews",
+    url: "/interviews",
+    icon: "💼",
+    items: [
+      // {
+      //   title: "Introduction",
+      //   url: "/interviews/interviews",
+      //   icon: "💡",
+      // },
+      // {
+      //   title: "Interview Questions",
+      //   url: "/interviews/interview-questions",
+      //   icon: "❓",
+      // },
+      {
+        title: "Technical questions tips",
+        url: "/interviews/solving-algorithms-tips",
+        icon: "💡",
+      },
+      {
+        title: "Optimize & Solve Techniques",
+        url: "/interviews/optimize-solve-techniques",
+        icon: "💡",
+      },
+    ],
+  },
 ];
