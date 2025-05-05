@@ -1,99 +1,152 @@
 # Spring Security
 
-It gives us form based authentication out of the box without us having to do anything.
+Spring Security provides robust security features for Java applications, offering **authentication**, **authorization**, and protection against common exploits out of the box.
 
-Default user is "user" and the password is automatically generated on the java console
+By default, Spring Security:
 
-## Basic Auth
+- Provides **form-based authentication**.
+- Creates a default user (`user`) with a randomly generated password (displayed in the console at startup).
 
-![basic-auth](./images/basic-auth.png)
+## Basic Authentication
 
-To use basic auth we have to add .httpBasic() to the security config.
+```java
+http
+    .authorizeRequests()
+        .anyRequest().authenticated()
+    .and()
+    .httpBasic();
+```
 
-We send the username and password on the request header as base64 on every single request!
+- **Credentials** (username & password) are sent as **Base64** in the `Authorization` header with **every request**.
+- Browsers prompt a native **login pop-up**.
+- Useful for simple APIs or internal tools.
 
-The basic auth from a browser shows us a browser pop up for the login instead of the login page on the form based auth
+## Overriding Security Configurations
 
-To override the security configs we have to create a config class 
+- Create a configuration class extending `WebSecurityConfigurerAdapter`.
+- Use `antMatchers()` to **whitelist** URLs.
+- Always implement a `PasswordEncoder` to encode passwords.
 
-We can use ant matchers to whitelist pages
+```java
+@Bean
+public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+}
+```
 
-We are required to implement a password encoder in our security config
+## Authorities vs Roles
 
-Authorities = Permissions
+- **Authorities** = **Permissions**.
+- Can be defined in the security configuration or using method-level annotations.
 
-![permissions-and-roles](./images/permissions-and-roles.png)
+```java
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 
-We can define the authority/permissions either on the security config file or directly with an annotation on the method level
+@PreAuthorize("hasAuthority('admin:read')")
+public void secureMethod() {
+    // secure code here
+}
+```
 
-For the method level we have to add the annotation `@EnableGlobalMethodSecurity(prePostEnabled = *true)` to our security config file and as the annotation we can use* `@PreAuthorize("hasAuthority('admin:read')")`  there is hasAuthority, hasAnyAuthority, hasRole, hasAnyRole
+- Use `hasAuthority`, `hasAnyAuthority`, `hasRole`, `hasAnyRole`.
+- **Order of `antMatchers` matters**: first match wins.
 
-The order in which we define the ant matchers DOES MATTER. Once it hits a “true” on the matchers it return true
+[Read more](https://www.baeldung.com/spring-security-granted-authority-vs-role)
 
-[https://www.baeldung.com/spring-security-granted-authority-vs-role](https://www.baeldung.com/spring-security-granted-authority-vs-role)
+## CSRF (Cross-Site Request Forgery)
 
-## CSRF (CROSS SITE REQUEST FORGERY)
+CSRF protects against malicious websites performing unauthorized actions on behalf of an authenticated user.
 
-![https://www.imperva.com/learn/wp-content/uploads/sites/13/2019/01/csrf-cross-site-request-forgery.png](https://www.imperva.com/learn/wp-content/uploads/sites/13/2019/01/csrf-cross-site-request-forgery.png)
+```java
+.csrf().disable() // for stateless APIs like JWT
+```
 
-![csrf-token-flow](./images/csrf-token-flow.png)
+**CSRF token header**: `X-XSRF-TOKEN`
 
-![when-to-use-csrf](./images/when-to-use-csrf.png)
+**When to use CSRF**:
 
-The name of the request header is X-XSRF-TOKEN
+- Enable for **stateful** apps (session-based).
+- Disable for **stateless** apps (JWT or API token-based).
 
-## Form based authentication
+## Form-Based Authentication
 
-![form-based-auth](./images/form-based-auth.png)
+```java
+http
+    .formLogin()
+        .loginPage("/custom-login")
+        .permitAll();
+```
 
-By default spring security uses an in-memory db but we can use our own RDBMS
+- Default uses an **in-memory user store**.
+- Can integrate with a **database (JDBC)**.
+- Supports a **remember-me** option (cookie-based, stores username + expiration time hashed with MD5).
 
-To use the form based auth we have to add .formLogin to our configuration.
+```java
+http
+    .rememberMe()
+        .key("uniqueKey")
+        .tokenValiditySeconds(1209600); // 2 weeks
+```
 
-By default a sessionid expires after 30 mins of inactivity. We can extend it by using the rememberMe option which defaults to 2 weeks but we can extend it even more. This remember me option is normally the checkbox that we have bellow the login form.
+- **Session ID** is **stateful** and expires after 30 minutes (by default).
 
-The remember me also has a cookie that is stored in a DB, same as sessionID.
+## Logout
 
-The remember me cookies contains 2 things, the username and expiration time. These 2 values are hashed with md5.
-
-We can override the default login form by using .loginPage(page) and using thymeleaf for the templating
-
-sessionID is stateful
-
-![logout-url](./images/logout-url.png)
-
-We can change the name of the parameters for username, password, and remember-me.
+```java
+http
+    .logout()
+        .logoutUrl("/custom-logout")
+        .logoutSuccessUrl("/login?logout");
+```
 
 ## Database Authentication
 
-We can either use the JDBC implementation that already comes out of the box or create our own
+Options:
 
-## JWT (JSON Web Token)
+1. **JDBC Authentication** (built-in).
+2. Custom **UserDetailsService**.
 
-JSON Web Token (JWT) is an open standard ([RFC 7519](https://tools.ietf.org/html/rfc7519)) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret (with the **HMAC** algorithm) or a public/private key pair using **RSA** or **ECDSA**.
+```java
+@Override
+protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth.jdbcAuthentication().dataSource(dataSource);
+}
+```
 
-Although JWTs can be encrypted to also provide secrecy between parties, we will focus on *signed* tokens. Signed tokens can verify the *integrity* of the claims contained within it, while encrypted tokens *hide* those claims from other parties. When tokens are signed using public/private key pairs, the signature also certifies that only the party holding the private key is the one that signed it.
+## JWT (JSON Web Tokens)
 
-It is basically a way for an application to transmit information. It's small, self-contained, and security.
+JWT is a **stateless** authentication mechanism.
 
-![jwt](./image/jwt.png)
+- Transmits claims as a **signed** JSON object.
+- Used for **stateless** APIs.
 
-![authentication-and-authorization](./images/authentication-and-authorization.png)
+### JWT Structure:
 
-With JWT, authentication is the first time the user logs in and we give him the token. Authorization is when they send subsequent requests and we verify is it is valid and it has the permissions to access that resource.
+- **Header**: Signing algorithm (e.g., HMAC, RSA).
+- **Payload**: Claims (e.g., user ID, roles).
+- **Signature**: Verifies data integrity.
 
-JWT is stateless
+**JWT flow**:
 
-![security-with-jwt](./images/security-with-jwt.png)
+1. User authenticates and receives a token.
+2. Token included in `Authorization: Bearer <token>` header.
+3. Each request is validated without server-side session storage.
 
-Refresh token is used to give new access token to not keep asking the user login if the expiration is due
+```java
+http
+    .csrf().disable()
+    .authorizeRequests()
+        .anyRequest().authenticated()
+    .and()
+    .sessionManagement()
+        .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+```
 
-# **Stateless Spring API**
+**Refresh Tokens**: Provide a new access token without requiring re-login when the old token expires.
 
-Let's review the case of a stateless Spring API consumed by a frontend.
+## Stateless Spring API & CSRF
 
-As explained in [our dedicated article](https://www.baeldung.com/csrf-stateless-rest-api), we need to understand if CSRF protection is required for our stateless API.
+- **JWT/token-based authentication** → CSRF **disabled**.
+- **Session cookie-based authentication** → CSRF **enabled**.
 
-**If our stateless API uses token-based authentication, like JWT, we don't need CSRF protection and we must disable it as we saw earlier.**
-
-**However, if our stateless API uses a session cookie authentication, we need to enable CSRF protection** **as we'll see next**.
+[More details](https://www.baeldung.com/csrf-stateless-rest-api)

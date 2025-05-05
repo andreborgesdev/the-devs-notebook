@@ -1,105 +1,113 @@
 # Spring JPA
 
-[https://www.baeldung.com/jpa-vs-jdbc](https://www.baeldung.com/jpa-vs-jdbc)
+**JPA (Java Persistence API)** is a **specification** that defines a standard for ORM (Object Relational Mapping) in Java. It’s not an implementation itself.
 
-[https://en.wikipedia.org/wiki/Object–relational_impedance_mismatch](https://en.wikipedia.org/wiki/Object%E2%80%93relational_impedance_mismatch)
+Hibernate, EclipseLink, and Apache OpenJPA are popular **implementations** of JPA. Spring Data JPA builds on top of these implementations to provide even more abstraction and reduce boilerplate code.
 
-JPA is a specification. Hibernate, and EclipseLink are a couple of its implementations.
+## Key Concepts
 
-You have to specify the persistence provider(Hibernate, EclipseLink) in order to use the JPA implementation. The persistence providers have the implementation classes for JPA specifications.
+### JPA vs JDBC
 
-**JPA:** It Is just a specification. In simpler words. Set of interfaces.
+| Feature          | JPA                                                        | JDBC                      |
+| ---------------- | ---------------------------------------------------------- | ------------------------- |
+| Level            | Higher-level abstraction                                   | Lower-level               |
+| Boilerplate Code | Minimal (Spring Data JPA reduces it further)               | More boilerplate required |
+| Mapping          | Maps Java objects to relational tables                     | Manual mapping            |
+| Flexibility      | Easy to use with domain models                             | Better for exotic schemas |
+| Caching          | Built-in caching support (especially second-level caching) | Manual caching (if any)   |
 
-**Hibernate, Eclipse Link, Apache OpenJPA:** A few of the many implementations of JPA. In addition to providing the basic implementations for the JPA specifications, Hibernate and other implementations provide their additional functionalities. You can choose based on your need
+**[Detailed comparison](https://www.baeldung.com/jpa-vs-jdbc)**
 
-**Spring Data:**
+## Spring Data JPA
 
-- It provides additional abstraction.
-- When you use Hibernate/Eclipse Link you still have to write some boilerplate code. By using Spring JPA you can avoid that.
-- The most important thing to note is Spring data uses Hibernate by Default due to Springboot's Opinionated nature. You can change the default behavior if you would like.
-- When you run the following command in a Springboot project that uses Spring JPA(with default configuration), you will see Hibernate jars being used.
+**Spring Data** provides a layer of abstraction over JPA implementations like Hibernate:
 
-> Maven: mvn dependency:tree
-> 
-> 
-> Gradle: `gradle dependencies`
-> 
+- Reduces boilerplate code
+- Supports **method name queries** and **JPQL**
+- Integrates seamlessly with Spring Boot
+- Uses Hibernate as the default JPA provider, but you can change it
 
-Use Spring JdbcTemplate if you don't want to access your database schema via a domain model. Using JdbcTemplate you are using a lower level access, with more flexibility, but probably also more boilerplate.
+```java
+public interface UserRepository extends JpaRepository<User, Long> {
+    List<User> findByLastName(String lastName);
+}
+```
 
-Spring JdbcTemplate can be more easily used with exotic database schemas and a stored procedure focus. Using JPA you need to make sure that database schema maps correctly to the domain model.
+## ORM & Impedance Mismatch
 
-Both technologies need developers knowing relational databases, SQL and transactions. With JPA you get more hidden complexity though.
+JPA attempts to solve the **Object–Relational Impedance Mismatch**, which refers to the conceptual differences between the object-oriented model and the relational database model.
 
-JPA is to my knowledge more easily pluggable to data caching layers, since the object oriented focus makes cache entry identification, update and invalidation easier.
+**[More details](https://en.wikipedia.org/wiki/Object–relational_impedance_mismatch)**
 
-You can fine tune JdbcTemplate based backends better, but there is for most cases more code involved.
+## Domain Model First vs Relational Model First
 
-Some other aspect to consider is that although with JPA you get a domain model for your database schema you will often need to use additional DTO classes. Using JdbcTemplate you can directly operate with DTO classes.
+- **Domain model centric**: Code drives the database design.
+- **Relational model centric**: Database design comes first, followed by the code.
 
-![https://vertabelo.com/blog/orms-under-the-hood/object-first-approach.png](https://vertabelo.com/blog/orms-under-the-hood/object-first-approach.png)
+![Domain Model First](https://vertabelo.com/blog/orms-under-the-hood/object-first-approach.png)
+![Database First](https://vertabelo.com/blog/orms-under-the-hood/database-first-approach.png)
 
-![https://vertabelo.com/blog/orms-under-the-hood/database-first-approach.png](https://vertabelo.com/blog/orms-under-the-hood/database-first-approach.png)
+**[Read more](https://vertabelo.com/blog/orms-under-the-hood/)**
 
-Generally, there are two approaches that are followed. The first one is **“Domain model centric”**
- in which the code drives database design, while the second one, **“Relational model centric”**
-, places database design as the first step followed by the code.
+## Common Relationships
 
-[https://vertabelo.com/blog/orms-under-the-hood/](https://vertabelo.com/blog/orms-under-the-hood/)
+| Relationship | Description                                             | Resources                                                   |
+| ------------ | ------------------------------------------------------- | ----------------------------------------------------------- |
+| One-to-One   | Each entity instance relates to one instance of another | [Baeldung](https://www.baeldung.com/jpa-one-to-one)         |
+| One-to-Many  | One entity relates to many instances of another         | [Baeldung](https://www.baeldung.com/hibernate-one-to-many)  |
+| Many-to-Many | Each instance of one entity relates to many of another  | [Baeldung](https://www.baeldung.com/hibernate-many-to-many) |
 
-[https://www.baeldung.com/hibernate-inheritance](https://www.baeldung.com/hibernate-inheritance)
+**Join Column**: [@JoinColumn guide](https://www.baeldung.com/jpa-join-column)
+**JoinColumn vs MappedBy**: [Explanation](https://www.baeldung.com/jpa-joincolumn-vs-mappedby)
 
-[https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/joined-table-inheritance.html](https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/joined-table-inheritance.html)
+## Cascade Types
 
-# 3.3 Relations
+| Type    | Effect                                         |
+| ------- | ---------------------------------------------- |
+| PERSIST | Cascade save() / persist() to related entities |
+| MERGE   | Cascade merge                                  |
+| REFRESH | Cascade refresh                                |
+| REMOVE  | Cascade delete                                 |
+| DETACH  | Cascade detach                                 |
+| ALL     | Shorthand for all above                        |
 
-## 3.3.1 One to One
+**Note**: No default cascade type in JPA.
 
-[https://www.baeldung.com/jpa-one-to-one](https://www.baeldung.com/jpa-one-to-one)
+**[More info](https://techrocking.com/cascade-in-jpa-and-hibernate/)**
 
-## 3.3.2 One to Many
+## Inheritance
 
-[https://www.baeldung.com/hibernate-one-to-many](https://www.baeldung.com/hibernate-one-to-many)
+JPA supports several inheritance strategies:
 
-## 3.3.3 Many to Many
+- **Single Table**
+- **Joined**
+- **Table per Class**
 
-[https://www.baeldung.com/hibernate-many-to-many](https://www.baeldung.com/hibernate-many-to-many)
+**[Hibernate Inheritance](https://www.baeldung.com/hibernate-inheritance)**
+**[Joined Table Inheritance Example](https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/joined-table-inheritance.html)**
 
-## 3.3.4 Join Column
+## Lazy Loading
 
-[https://www.baeldung.com/jpa-join-column](https://www.baeldung.com/jpa-join-column)
+**Lazy loading** delays the loading of related data until it’s explicitly accessed.
 
-[https://www.baeldung.com/jpa-joincolumn-vs-mappedby](https://www.baeldung.com/jpa-joincolumn-vs-mappedby)
+**[Lazy Loading Workaround](https://www.baeldung.com/hibernate-lazy-loading-workaround)**
 
-## 3.3.5 Cascade Types
+## N+1 Query Problem
 
-[https://www.baeldung.com/jpa-cascade-types](https://www.baeldung.com/jpa-cascade-types)
+When fetching related entities lazily in a loop, it may cause excessive queries (one for the parent and one per child entity).
 
-## 3.3.6 Inheritance
+**[N+1 Problem Explained](https://vladmihalcea.com/n-plus-1-query-problem/)**
 
-[https://www.baeldung.com/hibernate-inheritance](https://www.baeldung.com/hibernate-inheritance)
+## Tips
 
-## 3.3.7 Lazy Loading Issue
+- Use **Spring JdbcTemplate** if you prefer full control over SQL and don’t want to map database schemas to Java objects.
+- Use **JPA/Spring Data JPA** for domain-driven design and object-centric development.
+- Be mindful of **LazyInitializationException** when using lazy loading outside the persistence context.
+- Prefer **DTO projections** for performance when dealing with large queries or complex object graphs.
 
-[https://www.baeldung.com/hibernate-lazy-loading-workaround](https://www.baeldung.com/hibernate-lazy-loading-workaround)
+## Resources
 
-## 3.3.8 N+1 Query Problem
-
-[https://vladmihalcea.com/n-plus-1-query-problem/](https://vladmihalcea.com/n-plus-1-query-problem/)
-
-# 3.4 Cascade types
-
-The following JPA cascade types can be used in a relation:
-
-- CascadeType.PERSIST: save() or persist() operations cascade to related entities
-- CascadeType.MERGE: related entities are merged when the owning entity is merged
-- CascadeType.REFRESH: does the same thing for the refresh() operation
-- CascadeType.REMOVE: removes all related entities association with this setting when the owning entity is deleted
-- CascadeType.DETACH: detaches all related entities if a “manual detach” occurs
-- CascadeType.ALL: shorthand for all of the above cascade operations
-
-***Note***: There is no default cascade type in JPA, by default no operations are cascaded.
-
-More information about JPA and Hibernate cascade types:
-
-[https://techrocking.com/cascade-in-jpa-and-hibernate/](https://techrocking.com/cascade-in-jpa-and-hibernate/)
+- [JPA vs JDBC](https://www.baeldung.com/jpa-vs-jdbc)
+- [Hibernate Inheritance](https://www.baeldung.com/hibernate-inheritance)
+- [Vertabelo ORM Guide](https://vertabelo.com/blog/orms-under-the-hood/)
+- [Object–relational impedance mismatch](https://en.wikipedia.org/wiki/Object–relational_impedance_mismatch)

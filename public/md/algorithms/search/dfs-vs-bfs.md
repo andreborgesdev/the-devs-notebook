@@ -1,14 +1,44 @@
 # DFS vs BFS
 
-| BFS                                                                                                                                                              	| DFS                                                                                                                                                                       	|
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------	|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
-| BFS(Breadth First Search) uses Queue data structure for finding the shortest path.                                                                               	| DFS(Depth First Search) uses Stack data structure.                                                                                                                        	|
-| BFS stands for Breadth First Search.                                                                                                                             	| DFS stands for Depth First Search.                                                                                                                                        	|
-| BFS can be used to find single source shortest path in an unweighted graph, because in BFS, we reach a vertex with minimum number of edges from a source vertex. 	| In DFS, we might traverse through more edges to reach a destination vertex from a source.                                                                                 	|
-| BFS is more suitable for searching vertices which are closer to the given source.                                                                                	| DFS is more suitable when there are solutions away from source.                                                                                                           	|
-| BFS considers all neighbors first and therefore not suitable for decision making trees used in games or puzzles.                                                 	| DFS is more suitable for game or puzzle problems. We make a decision, then explore all paths through this decision. And if this decision leads to win situation, we stop. 	|
-| The Time complexity of BFS is O(V + E) when Adjacency List is used and O(V^2) when Adjacency Matrix is used, where V stands for vertices and E stands for edges. 	| The Time complexity of DFS is also O(V + E) when Adjacency List is used and O(V^2) when Adjacency Matrix is used, where V stands for vertices and E stands for edges.     	|
-| Here, siblings are visited before the children                                                                                                                   	| Here, children are visited before the siblings                                                                                                                            	|
+Both **Depth-First Search (DFS)** and **Breadth-First Search (BFS)** are fundamental graph traversal algorithms.  
+Each has its strengths and ideal use cases.
+
+## Core Concepts
+
+- **DFS (Depth-First Search)** → Explores as deep as possible along each branch before backtracking.
+- **BFS (Breadth-First Search)** → Explores all neighbors at the current depth before moving to nodes at the next depth level.
+
+## Data Structures Used
+
+| Algorithm | Data Structure                               |
+| --------- | -------------------------------------------- |
+| DFS       | Stack (explicit or call stack via recursion) |
+| BFS       | Queue (FIFO)                                 |
+
+## Time and Space Complexity
+
+| Algorithm | Time     | Space |
+| --------- | -------- | ----- |
+| DFS       | O(V + E) | O(V)  |
+| BFS       | O(V + E) | O(V)  |
+
+V = number of vertices  
+E = number of edges
+
+_(Complexity is the same for both when using adjacency lists. Using adjacency matrices results in O(V²) time.)_
+
+## Key Differences
+
+| BFS                                                             | DFS                                                                       |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Uses **Queue**                                                  | Uses **Stack** (or recursion)                                             |
+| Visits all neighbors at current depth first                     | Explores a full path/branch deeply before backtracking                    |
+| Guarantees finding the **shortest path** in an unweighted graph | May not find the shortest path                                            |
+| More suitable for **closer solutions**                          | Better for solutions located **far from the root/source**                 |
+| Ideal for **shortest path problems, level-order traversal**     | Ideal for **cycle detection, topological sorting, backtracking, puzzles** |
+| Siblings visited **before children**                            | Children visited **before siblings**                                      |
+
+## Visual Comparison
 
 ![https://miro.medium.com/max/1280/1*GT9oSo0agIeIj6nTg3jFEA.gif](https://miro.medium.com/max/1280/1*GT9oSo0agIeIj6nTg3jFEA.gif)
 
@@ -16,7 +46,41 @@
 
 ![DFS & BFS Algorithms](https://miro.medium.com/max/1400/1*Js-o5Lsxh7v0DmTmsLavTg.gif)
 
-DFS & BFS Algorithms
+## Example (BFS vs DFS Output)
 
-- **Depth-First Search (DFS) Algorithm:** It starts with the root node and first visits all nodes of one branch as deep as possible of the chosen Node and before backtracking, it visits all other branches in a similar fashion. There are three sub-types under this, which we will cover in this article.
-- **Breadth-First Search (BFS) Algorithm:** It also starts from the root node and visits all nodes of current depth before moving to the next depth in the tree. We will cover one algorithm of BFS type in the upcoming section.
+```
+Graph:
+        A
+       / \
+      B   C
+     /   / \
+    D   E   F
+```
+
+- **BFS Output:** A, B, C, D, E, F
+- **DFS Output:** A, B, D, C, E, F
+
+## Typical Applications
+
+| BFS                                      | DFS                                      |
+| ---------------------------------------- | ---------------------------------------- |
+| Shortest path in unweighted graphs       | Cycle detection                          |
+| Level-order traversal                    | Topological sorting                      |
+| Finding connected components             | Backtracking (e.g., mazes, puzzles)      |
+| Social networks (friend recommendations) | Solving constraint satisfaction problems |
+
+## Important Notes
+
+- **DFS may use less memory** than BFS when the graph has many neighbors at each level.
+- **BFS guarantees shortest path** only in **unweighted graphs**.
+- DFS can be easily implemented **recursively**.
+- BFS is often implemented using a **queue** and is inherently **iterative**.
+
+## Interview Tip
+
+When solving problems:
+
+- **Closer or shortest solution → BFS**.
+- **Deeper exploration or all solutions → DFS**.
+
+Understanding when to choose BFS or DFS based on problem requirements is often more important than the implementation itself in interviews.

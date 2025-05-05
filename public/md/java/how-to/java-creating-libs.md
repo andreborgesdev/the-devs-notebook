@@ -1,29 +1,98 @@
-# Creating Libs
+# Creating Libraries in Java
 
-When using spring to create a lib we can just delete the application class and we should use beans instead of services. Using services can cause problems when trying to import the lib’s classes to the project that wants to use it because the lib could be exposing directly the application main.
+Creating a Java library allows you to package and share common code across multiple projects efficiently.
 
-# **Transitive Dependency**
+## Using Spring to Create a Library
 
-**There are two types of dependencies in Maven: direct and transitive.**
+When building a library with **Spring**, keep the following in mind:
 
-Direct dependencies are the ones that we explicitly include in the project.
+- **Remove the main application class**  
+  Delete any `@SpringBootApplication` annotated class. A library should not define an application entry point.
 
-These can be included using *<dependency>* tags:
+- **Prefer `@Bean` over `@Service`**  
+  Define beans explicitly in configuration classes rather than using `@Service`.  
+  This avoids accidental application context scanning and potential conflicts when the library is consumed.
 
+```java
+@Configuration
+public class MyLibraryConfig {
+@Bean
+public MyService myService() {
+return new MyService();
+}
+}
 ```
+
+If you use `@Service` and the consuming application scans for components, you might expose unwanted classes or cause bean registration issues.
+
+## Structuring the Library
+
+- Keep packages well-structured and avoid leaking internal classes.
+- Expose only the necessary classes as `public`.
+- Use JavaDocs to document the public API.
+
+## Maven Considerations
+
+### Direct vs Transitive Dependencies
+
+- **Direct dependencies**:  
+  Explicitly declared in your library’s `pom.xml`.
+
+```xml
 <dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-    <version>4.12</version>
+<groupId>org.apache.commons</groupId>
+<artifactId>commons-lang3</artifactId>
+<version>3.12.0</version>
 </dependency>
 ```
 
-**On the other hand, transitive dependencies are required by direct dependencies.** Maven automatically includes required transitive dependencies in our project.
+- **Transitive dependencies**:  
+  Automatically included when your direct dependencies rely on other libraries. You can inspect them using:
 
-We can list all dependencies including transitive dependencies in the project using *mvn dependency:tree* command.
+```
+mvn dependency:tree
+```
 
-Use one of these because of transitive dependencies.
+### Optional Dependencies
 
-[https://www.baeldung.com/maven-optional-dependency](https://www.baeldung.com/maven-optional-dependency)
+Sometimes, you might want to expose an optional dependency that the consuming project can choose to include:
 
-[https://www.baeldung.com/maven-dependency-scopes](https://www.baeldung.com/maven-dependency-scopes)
+```xml
+<dependency>
+<groupId>com.example</groupId>
+<artifactId>optional-lib</artifactId>
+<version>1.0</version>
+<optional>true</optional>
+</dependency>
+```
+
+### Dependency Scopes
+
+Use appropriate scopes for dependencies:
+
+| Scope      | Description                                                                      |
+| ---------- | -------------------------------------------------------------------------------- |
+| `compile`  | Available at compile-time and runtime. Default scope.                            |
+| `provided` | Required for compilation but expected to be provided by the runtime environment. |
+| `runtime`  | Not needed for compilation but required during execution.                        |
+| `test`     | Used only for testing purposes.                                                  |
+
+## Testing Your Library
+
+- Write **unit tests** for your public APIs.
+- Use **integration tests** to validate how the library interacts with real-world scenarios.
+- If using Spring, consider writing tests using `@SpringBootTest` or context slices.
+
+## Publishing Your Library
+
+Once the library is ready:
+
+- Package it as a `.jar`.
+- Deploy to:
+  - **Internal repositories** like Nexus or Artifactory.
+  - **Public repositories** like Maven Central or JCenter (if open source).
+
+## Useful Links
+
+- [Baeldung: Maven Optional Dependency](https://www.baeldung.com/maven-optional-dependency)
+- [Baeldung: Maven Dependency Scopes](https://www.baeldung.com/maven-dependency-scopes)

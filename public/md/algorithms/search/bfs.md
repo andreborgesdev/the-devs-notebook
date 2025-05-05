@@ -1,21 +1,41 @@
-# BFS
+# Breadth-First Search (BFS)
 
-## BFS
+**Breadth-First Search (BFS)** is a **vertex-based graph traversal algorithm** that explores all the neighbors of a node before moving to the next level of neighbors.  
+It uses a **Queue** data structure (**First-In-First-Out**, FIFO).
 
-**[BFS stands for Breadth First Search](https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/)** is a ***vertex*** based technique for finding a shortest path in graph. It uses a **[Queue data structure](https://www.geeksforgeeks.org/queue-data-structure/)** which follows first in first out. 
+BFS is commonly used to find:
 
-In BFS, one vertex is selected at a time when it is visited and marked then its adjacent are visited and stored in the queue. 
+- The **shortest path** in unweighted graphs.
+- Connected components.
+- Level-order traversal in trees.
 
-It is slower than DFS.
+## Key Concepts
 
-The goal is to start at a node and traverse the entire graph. 
+- Start from a given node (**source**).
+- Visit and mark the node.
+- Add all unvisited neighbors to the **queue**.
+- Continue visiting nodes from the front of the queue and expanding their neighbors.
 
-- First by visiting all the neighbours of the starting node
-- Then by visiting all the neighbours of the second node we visited and so on so forth, expanding through all the neighbours as we go.
+## Time and Space Complexity
 
-We can think about each iteration of the BFS as expanding the frontier from one node outwards at each iteration as we go on.
+|       | Complexity |
+| ----- | ---------- |
+| Time  | O(V + E)   |
+| Space | O(V)       |
 
-Input:
+V = number of vertices, E = number of edges.
+
+## How It Works
+
+Each iteration expands the "frontier" outwards:
+
+1. Visit all the neighbors of the current node.
+2. For each visited neighbor, visit their neighbors.
+3. Continue until all reachable nodes are visited.
+
+## Example
+
+**Input graph:**
 
 ```
         A
@@ -25,6 +45,81 @@ Input:
     D   E   F
 ```
 
-Output:
-
+**BFS Output:**  
 `A, B, C, D, E, F`
+
+## Java Example
+
+```java showLineNumbers
+import java.util.*;
+
+class Graph {
+private Map<Character, List<Character>> adjList = new HashMap<>();
+
+    public void addEdge(char u, char v) {
+        adjList.computeIfAbsent(u, k -> new ArrayList<>()).add(v);
+        adjList.computeIfAbsent(v, k -> new ArrayList<>()).add(u); // For undirected graph
+    }
+
+    public void bfs(char start) {
+        Set<Character> visited = new HashSet<>();
+        Queue<Character> queue = new LinkedList<>();
+
+        visited.add(start);
+        queue.add(start);
+
+        while (!queue.isEmpty()) {
+            char node = queue.poll();
+            System.out.print(node + " ");
+
+            for (char neighbor : adjList.getOrDefault(node, new ArrayList<>())) {
+                if (!visited.contains(neighbor)) {
+                    visited.add(neighbor);
+                    queue.add(neighbor);
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Graph g = new Graph();
+        g.addEdge('A', 'B');
+        g.addEdge('A', 'C');
+        g.addEdge('B', 'D');
+        g.addEdge('C', 'E');
+        g.addEdge('C', 'F');
+
+        System.out.println("BFS Traversal starting from A:");
+        g.bfs('A'); // Output: A B C D E F
+    }
+
+}
+```
+
+## BFS vs DFS
+
+|                  | BFS                         | DFS                               |
+| ---------------- | --------------------------- | --------------------------------- |
+| Data Structure   | Queue                       | Stack (or Recursion)              |
+| Space Complexity | O(V)                        | O(V)                              |
+| Time Complexity  | O(V + E)                    | O(V + E)                          |
+| Use Cases        | Shortest paths, Level-order | Cycle detection, Topological sort |
+
+## Applications
+
+- Shortest path finding in unweighted graphs.
+- Web crawling.
+- Social networking sites (friend recommendations).
+- Peer-to-peer networks.
+- Level-order traversal of trees.
+- Solving puzzles (e.g., sliding puzzles, chess problems).
+
+## Interview Tips
+
+- **Key idea:** Visit neighbors level by level.
+- Know how to implement BFS using both **adjacency list** and **adjacency matrix**.
+- Be ready to apply BFS for:
+  - Shortest path in unweighted graphs.
+  - Cycle detection in undirected graphs.
+  - Level-order traversal in trees.
+- Be able to explain **why BFS guarantees shortest path** in unweighted graphs.

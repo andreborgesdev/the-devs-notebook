@@ -1,4 +1,4 @@
-# Kafka
+# Kafka Interview Questions
 
 ### **[What is event streaming?](https://kafka.apache.org/intro#intro_streaming)**
 

@@ -237,6 +237,11 @@ export const Content: ContentItem[] = [
             icon: "🔎",
           },
           {
+            title: "Tree traversal",
+            url: "/algorithms/search/tree-traversal",
+            icon: "🌲",
+          },
+          {
             title: "BFS",
             url: "/algorithms/search/bfs",
             icon: "🔎",
@@ -253,11 +258,7 @@ export const Content: ContentItem[] = [
           },
         ],
       },
-      {
-        title: "Tree traversal",
-        url: "/algorithms/tree-traversal",
-        icon: "🌲",
-      },
+
       {
         title: "Kruskal’s Minimum Spanning Tree",
         url: "/algorithms/kruskal-minimum-spanning-tree",
@@ -281,6 +282,12 @@ export const Content: ContentItem[] = [
       {
         title: "Notes",
         url: "/algorithms/algorithms-notes",
+        icon: "📝",
+      },
+      // TODO: Curate this
+      {
+        title: "Techniques",
+        url: "/algorithms/Techniques",
         icon: "📝",
         items: [
           {
@@ -360,11 +367,6 @@ export const Content: ContentItem[] = [
           },
         ],
       },
-      {
-        title: "Leetcode exercises",
-        url: "/algorithms/leetcode-exercises",
-        icon: "📝",
-      },
     ],
   },
   {
@@ -416,6 +418,11 @@ export const Content: ContentItem[] = [
         icon: "📅",
       },
       {
+        title: "Streams",
+        url: "/java/java-streams",
+        icon: "💧",
+      },
+      {
         title: "Memory Management",
         url: "/java/java-memory-management",
         icon: "💾",
@@ -452,12 +459,11 @@ export const Content: ContentItem[] = [
         url: "/java/spring",
         icon: "🍃",
         items: [
-          // TODO: Add introduction
-          // {
-          //   title: "Introduction",
-          //   url: "/java/spring/spring",
-          //   icon: "💡",
-          // },
+          {
+            title: "Introduction",
+            url: "/java/spring/introduction",
+            icon: "💡",
+          },
           {
             title: "APIs",
             url: "/java/spring/spring-apis",
@@ -467,6 +473,11 @@ export const Content: ContentItem[] = [
             title: "Security",
             url: "/java/spring/spring-security",
             icon: "🔒",
+          },
+          {
+            title: "Data",
+            url: "/java/spring/spring-data",
+            icon: "💾",
           },
           {
             title: "JPA",
@@ -573,11 +584,6 @@ export const Content: ContentItem[] = [
             icon: "❓",
           },
           {
-            title: "Kafka",
-            url: "/java/interview-questions/java-kafka-interview-questions",
-            icon: "❓",
-          },
-          {
             title: "Tests",
             url: "/java/interview-questions/java-tests-interview-questions",
             icon: "❓",
@@ -592,14 +598,41 @@ export const Content: ContentItem[] = [
     ],
   },
   {
+    title: "Kafka",
+    url: "/kafka",
+    icon: "📥",
+    items: [
+      {
+        title: "Introduction",
+        url: "/kafka/introduction",
+        icon: "💡",
+      },
+      {
+        title: "Kafka Streams",
+        url: "/kafka/streams",
+        icon: "📥",
+      },
+      {
+        title: "Interview Questions",
+        url: "/kafka/interview-questions",
+        icon: "❓",
+      },
+    ],
+  },
+  {
     title: "APIs",
     url: "/apis",
     icon: "🧩",
     items: [
       {
         title: "Introduction",
-        url: "/apis/apis",
+        url: "/apis/introduction",
         icon: "💡",
+      },
+      {
+        title: "Interview Questions",
+        url: "/apis/interview-questions",
+        icon: "❓",
       },
     ],
   },
@@ -610,7 +643,7 @@ export const Content: ContentItem[] = [
     items: [
       {
         title: "Introduction",
-        url: "/design-patterns/design-patterns",
+        url: "/design-patterns/introduction",
         icon: "💡",
       },
     ],
@@ -732,6 +765,18 @@ export const Content: ContentItem[] = [
     title: "OOP",
     url: "/oop",
     icon: "🚙",
+    items: [
+      {
+        title: "Introduction",
+        url: "/oop/introduction",
+        icon: "💡",
+      },
+      {
+        title: "Interview Questions",
+        url: "/oop/interview-questions",
+        icon: "❓",
+      },
+    ],
   },
   // {
   //   title: "Blockchain",

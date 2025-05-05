@@ -1,28 +1,112 @@
-# Spring RESTful Web Services
+# Spring and RESTful Web Services
 
-### **Define RestTemplate in Spring.**
+## Overview
 
-The RestTemplate is the main class meant for the client-side access for Spring-based RESTful services. The communication to the server is accomplished using the REST constraints. This is similar to other template classes such as JdbcTemplate, HibernateTemplate, etc provided by Spring. The RestTemplate provides high-level implementation details for the HTTP Methods like GET, POST, PUT, etc, and gives the methods to communicate using the URI template, URI path params, request/response types, request object, etc as part of arguments.
+Spring makes it easy to create RESTful APIs by providing powerful annotations, simplified request mapping, and easy HTTP client tools like **RestTemplate**. RESTful services follow standard HTTP methods and response codes, making integration with other systems straightforward.
 
-- Commonly used annotations like @GetMapping, @PostMapping, @PutMapping, etc are provided by this class from Spring 4.3. Prior to that, Spring provided (and still provides) @RequestMapping annotation to indicate what methods were being used.
+## RestTemplate
 
-### **What is the use of @RequestMapping?**
+`RestTemplate` is Spring's main class for **client-side HTTP access**.  
+It simplifies consuming RESTful services:
 
-- The annotation is used for mapping requests to specific handler classes or methods.
-- In spring, all the incoming web request routing is handled by Dispatcher Servlet. When it gets the request, it determines which controller is meant for processing the request by means of request handlers. The Dispatcher Servlet scans all the classes annotated with @Controller. The process of routing requests depends on @RequestMapping annotations that are declared inside the controller classes and their methods.
+- Supports methods like **GET**, **POST**, **PUT**, **DELETE**.
+- Handles URI templates, path parameters, and request/response mapping.
+- Similar in style to Spring's `JdbcTemplate` and `HibernateTemplate`.
 
-## **What are the differences between the annotations @Controller and @RestController?**
+```java
+RestTemplate restTemplate = new RestTemplate();
+String result = restTemplate.getForObject("http://api.example.com/data", String.class);
+```
+
+> 🔎 **Note**: As of Spring 5, consider using the **WebClient** from Spring WebFlux for reactive and non-blocking calls.
+
+## Core Annotations for REST APIs
+
+| Annotation                                                     | Purpose                                                                        |
+| -------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `@RequestMapping`                                              | Maps HTTP requests to controller methods.                                      |
+| `@GetMapping`, `@PostMapping`, `@PutMapping`, `@DeleteMapping` | Shorthand for `@RequestMapping` with specific HTTP methods (since Spring 4.3). |
+| `@PathVariable`                                                | Binds a URL path variable to a method parameter.                               |
+| `@RequestBody`                                                 | Maps the body of a request to a Java object.                                   |
+| `@ResponseBody`                                                | Returns Java objects as JSON/XML in the HTTP response.                         |
+| `@RestController`                                              | A convenience annotation combining `@Controller` and `@ResponseBody`.          |
+
+## Example: Basic REST Controller
+
+```java
+@RestController
+@RequestMapping("/api")
+public class ProductController {
+
+    @GetMapping("/products/{id}")
+    public Product getProduct(@PathVariable Long id) {
+        return productService.getById(id);
+    }
+
+    @PostMapping("/products")
+    public Product addProduct(@RequestBody Product product) {
+        return productService.save(product);
+    }
+}
+```
+
+## @Controller vs @RestController
+
+| `@Controller`                                        | `@RestController`                         |
+| ---------------------------------------------------- | ----------------------------------------- |
+| Returns **views** (like JSP or Thymeleaf templates). | Returns **JSON/XML** by default.          |
+| Needs `@ResponseBody` to return data.                | `@ResponseBody` is automatically applied. |
 
 ![controller-vs-rest-controller](./images/controller-vs-rest-controller.png)
 
-### **What does the annotation @PathVariable do?**
+## DispatcherServlet & Request Mapping
 
-@PathVariable annotation is used for passing the parameter with the URL that is required to get the data. Spring MVC provides support for URL customization for data retrieval using @PathVariable annotation.
+- The **DispatcherServlet** routes incoming HTTP requests to appropriate controllers.
+- It scans for `@Controller` or `@RestController` annotations.
+- Uses `@RequestMapping` (and related annotations) to map methods to request paths.
 
-### **Is it necessary to keep Spring MVC in the classpath for developing RESTful web services?**
+## @PathVariable
 
-Yes. **[Spring MVC](https://www.interviewbit.com/spring-interview-questions/)** needs to be on the classpath of the application while developing RESTful web services using Spring. This is because, the Spring MVC provides the necessary annotations like @RestController, @RequestBody, @PathVariable, etc. Hence the spring-mvc.jar needs to be on the classpath or the corresponding Maven entry in the pom.xml.
+`@PathVariable` extracts data from the URI.
 
-### **Define HttpMessageConverter in terms of Spring REST?**
+```java
+@GetMapping("/users/{id}")
+public User getUser(@PathVariable("id") Long id) {
+    return userService.findById(id);
+}
+```
 
-HttpMessageConverter is a strategic interface that specified a converter for conversion between HTTP Requests and responses. Spring REST uses the HttpMessageConverter for converting responses to various data formats like JSON, XML, etc. Spring makes use of the “Accept” header for determining the type of content the client expects. Based on this, Spring would find the registered message converter interface that is capable of this conversion.
+## HttpMessageConverter
+
+Spring uses **HttpMessageConverter** to:
+
+- Convert Java objects to HTTP responses (JSON, XML, etc.).
+- Parse HTTP requests into Java objects.
+
+**Content negotiation** uses the `Accept` header to determine which `HttpMessageConverter` to apply.
+
+> ✅ **Tip**: Spring Boot auto-configures common message converters (e.g., Jackson for JSON).
+
+## Spring MVC Dependency
+
+Spring MVC (`spring-webmvc`) **must be included** when building RESTful services. It provides:
+
+- Core annotations like `@RestController`, `@RequestMapping`, `@RequestBody`.
+- Infrastructure for request handling and message conversion.
+
+**Maven dependency example**:
+
+```xml
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-webmvc</artifactId>
+</dependency>
+```
+
+## Summary
+
+- Use `RestTemplate` (or WebClient) for consuming APIs.
+- Annotate controllers with `@RestController`.
+- Use `@RequestMapping` or `@GetMapping`/`@PostMapping` for routing.
+- Handle data binding with `@RequestBody` and `@PathVariable`.
+- Let Spring auto-convert responses using `HttpMessageConverter`.
