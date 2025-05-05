@@ -1,66 +1,126 @@
 # Merge Sort
 
-Runtime: O(N log N) average and worst case. Memory: Depends but normally it is O(n)
+**Merge Sort** is a **divide and conquer** algorithm that divides the array into halves, sorts each half, and then merges them back together. The **merge** step does the heavy lifting by combining sorted subarrays into a sorted whole.
 
-O(N log N) because we have n number of merge steps multiplied by a log N number of splits of the original list
+## How It Works
 
-Space complexity → O(n) because we don’t keep plenty of arrays in parallel to track status, only one, even when we split/merge.
+1. **Divide** the array into two halves.
+2. **Recursively sort** each half.
+3. **Merge** the two sorted halves.
 
-Works like binary search in the sense that it splits the problem into subproblems, but takes the process one step further because we’ll split the arrays until we have a single element arrays. Then, the elements start merging and comparing the values to order them. We use recursion a lot for this operations. We can return a new sorted list or sort the list passed (”sort in place”).
+This process continues until you’re merging two single-element arrays.
 
-Merge sort is a divide and conquer algorithm. It divides the array in half, sorts each of those halves, and then merges them back together. Each of those halves have the same sorting algorithm applied to it. Eventually, you are merging just two single element arrays. It is the “merge” part that does all the heavy lifting.
+## Time and Space Complexity
 
-The merge method operates by copying all the elements from the target array segment into a helper array, keeping track of where the start of the left and right halves should be (helperLeft and helperRight). We then iterate through helper, copying the smaller element from each half into the array. At the end, we copy any remaining elements into the target array.
+| Case    | Time Complexity |
+| ------- | --------------- |
+| Best    | O(n log n)      |
+| Average | O(n log n)      |
+| Worst   | O(n log n)      |
 
-![https://res.cloudinary.com/practicaldev/image/fetch/s--A-kq2byS--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/xokw1fxci67ttscu23vy.gif](https://res.cloudinary.com/practicaldev/image/fetch/s--A-kq2byS--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/xokw1fxci67ttscu23vy.gif)
+| Space Complexity | O(n) |
+| ---------------- | ---- |
 
-![https://res.cloudinary.com/practicaldev/image/fetch/s--iTGTEOAp--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/bowug91fuof69su39fwd.png](https://res.cloudinary.com/practicaldev/image/fetch/s--iTGTEOAp--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/bowug91fuof69su39fwd.png)
+**Why O(n log n)?**
 
-```java
-void mergesort(int[] array) {
-	int[] helper = new int[array.length];
-	mergesort(array, helper, 0, array.length - 1);
-}
+- **log n** → Number of times the array is split.
+- **n** → Work done during each merge step.
 
-void mergesort(int[] array, int[] helper, int low, int high) {
-	if (low < high) {
-	int middle = (low + high) / 2;
-	mergesort(array, helper, low, middle); // Sort left half
-	mergesort(array, helper, middle + l, high); // Sort right half
-	merge(array, helper, low, middle, high); // Merge them
-}
+## Key Characteristics
 
-void merge(int[] array, int[] helper, int low, int middle, int high) {
- /* Copy both halves into a helper array*/
- for (int i= low; i <= high; i++) {
- helper[i] = array[i];
- int helperleft = low;
- int helperRight =middle + l;
- int current = low;
+- **Stable** sort.
+- **Not in-place** (requires additional space for merging).
+- Works similarly to **binary search** in how it splits the array.
 
- /* Iterate through helper array. Compare the left and right half, copying back
- * the smaller element from the two halves into the original array. */
- while (helperLeft <= middle && helperRight <= high) {
-  if (helper[helperleft] <= helper[helperRight]) {
-	 array[current] = helper[helperleft];
-	 helperleft++;
-  } else {//If right element is smaller than left element
-   array[current] = helper[helperRight];
-   helperRight++;
-  }
+## Visualization
 
- current++;
- }
+![Merge Sort Animation](https://res.cloudinary.com/practicaldev/image/fetch/s--A-kq2byS--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/xokw1fxci67ttscu23vy.gif)
 
- /* Copy the rest of the left side of the array into the target array*/
- int remaining = middle - helperleft;
+## Java Example
 
- for (int i= 0; i <= remaining; i++) {
-  array[current + i] = helper[helperleft + i];
- }
+```java showLineNumbers
+public class MergeSort {
+
+    public static void mergesort(int[] array) {
+        int[] helper = new int[array.length];
+        mergesort(array, helper, 0, array.length - 1);
+    }
+
+    private static void mergesort(int[] array, int[] helper, int low, int high) {
+        if (low < high) {
+            int middle = (low + high) / 2;
+            mergesort(array, helper, low, middle);          // Sort left half
+            mergesort(array, helper, middle + 1, high);     // Sort right half
+            merge(array, helper, low, middle, high);        // Merge them
+        }
+    }
+
+    private static void merge(int[] array, int[] helper, int low, int middle, int high) {
+        // Copy both halves into the helper array
+        for (int i = low; i <= high; i++) {
+            helper[i] = array[i];
+        }
+
+        int helperLeft = low;
+        int helperRight = middle + 1;
+        int current = low;
+
+        // Compare and copy the smaller element from each half into the original array
+        while (helperLeft <= middle && helperRight <= high) {
+            if (helper[helperLeft] <= helper[helperRight]) {
+                array[current] = helper[helperLeft];
+                helperLeft++;
+            } else {
+                array[current] = helper[helperRight];
+                helperRight++;
+            }
+            current++;
+        }
+
+        // Copy the rest of the left side into the target array
+        int remaining = middle - helperLeft;
+        for (int i = 0; i <= remaining; i++) {
+            array[current + i] = helper[helperLeft + i];
+        }
+        // No need to copy the right half — it's already in place
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        mergesort(arr);
+        System.out.println("Sorted array:");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+
 }
 ```
 
-You may notice that only the remaining elements from the left half of the helper array are copied into the target array. Why not the right half? The right half doesn't need to be copied because it's already there. Consider, for example, an array like [ 1, 4, 5 11 2, 8, 9] (the" 11 "indicates the partition point). Prior to merging the two halves, both the helper array and the target array segment will end with [ 8, 9]. Once we copy over four elements (1, 4, 5, and 2) into the target array, the [ 8, 9] will still be in place in both arrays. There's no need to copy them over.
+## Why We Don’t Copy the Right Half at the End
 
-The space complexity of merge sort is 0( n) due to the auxiliary space used to merge parts of the array.
+When merging, once the smaller elements are copied from the left half, the remaining elements in the right half are **already in the correct position** in both the helper and target arrays. No additional copying is needed.
+
+## Advantages
+
+- **Consistent O(n log n)** time complexity.
+- Performs well on large datasets.
+- **Stable** (preserves order of equal elements).
+- Predictable performance — worst case is the same as the average case.
+
+## Disadvantages
+
+- Requires **extra memory** (O(n) space).
+- Not in-place.
+- Usually slower than in-place algorithms like Quick Sort for small datasets.
+
+## Interview Tips
+
+- Know the **divide and conquer strategy**.
+- Be able to write the recursive Merge Sort algorithm.
+- Understand the **merge step** thoroughly.
+- Mention that it’s often used in **external sorting** (sorting data too large to fit into memory).
+
+## Summary
+
+**Merge Sort** is a reliable, stable, divide and conquer sorting algorithm with **O(n log n)** time in all cases. It divides the data into smaller parts, sorts them, and merges them back into a sorted array. Its extra space requirement is the primary trade-off for its predictability and performance.

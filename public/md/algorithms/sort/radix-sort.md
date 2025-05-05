@@ -1,95 +1,136 @@
 # Radix Sort
 
-Runtime: O(K N)
+**Radix Sort** is a **non-comparison sorting algorithm** ideal for sorting integers (and some other data types).  
+It works by sorting elements **digit by digit**, starting from the least significant digit (LSD) to the most significant digit (MSD), using a **stable sorting algorithm** (usually Counting Sort) at each digit level.
 
-Radix sort is a sorting algorithm for integers (and some other data types) that takes advantage of the fact the integers have a finite number of bits. In radix sort, we iterate through each digit of the number, grouping number by each digit. For example, if we have an array of integers, we might first sort by the first digit, so that the 0s are grouped together. Then, we sort each of these groupings by the next digit. We repeat this process sorting by each subsequent digit, until finally the whole array is sorted.
+## Key Concepts
 
-Unlike comparison sorting algorithms, which cannot perform better than O(N log N) in the average case, radix sort has a runtime of O(K N), where n is the number of elements and k is the number of passes of the sorting algorithm.
+| Property             | Description                                                                |
+| -------------------- | -------------------------------------------------------------------------- |
+| **Time Complexity**  | O(K \* N), where N is the number of elements and K is the number of digits |
+| **Space Complexity** | O(N + K)                                                                   |
+| **Stable**           | Yes                                                                        |
+| **In-place**         | No (requires auxiliary storage)                                            |
 
-```
-Original, unsorted list:
-170, 45, 75, 90, 802, 24, 2, 66
+> Unlike comparison-based algorithms (which have a lower bound of O(N log N)), **Radix Sort can achieve linear time** for certain data types.
 
-Sorting by least significant digit (1s place) gives:
-[*Notice that we keep 802 before 2, because 802 occurred
-before 2 in the original list, and similarly for pairs
-170 & 90 and 45 & 75.]
+## How It Works
 
-170, 90, 802,2, 24, 45, 75, 66
+1. **Find the maximum number** to determine the number of digits (`K`).
+2. **Sort the array** starting from the least significant digit (LSD) to the most significant digit (MSD).
+3. **Repeat** for each digit using a stable sorting algorithm.
 
-Sorting by next digit (10s place) gives:
-[*Notice that 802 again comes before 2 as 802 comes before
-2 in the previous list.]
+## Example
 
-802, 2,24,45,66, 170,75,90
+Unsorted list:
+`170, 45, 75, 90, 802, 24, 2, 66`
 
-Sorting by the most significant digit (100s place) gives:
-2, 24, 45, 66, 75, 90,170,802
-```
+### Pass 1 (1s place):
 
-```java
+`170, 90, 802, 2, 24, 45, 75, 66`
+
+### Pass 2 (10s place):
+
+`802, 2, 24, 45, 66, 170, 75, 90`
+
+### Pass 3 (100s place):
+
+`2, 24, 45, 66, 75, 90, 170, 802`
+
+The array is now sorted.
+
+## Visualization
+
+Imagine the digits of each number in **columns**, and sorting is done **column by column** from right to left.
+
+## Java Example
+
+```java showLineNumbers
 import java.util.Arrays;
 
 class RadixSort {
 
-  // Using counting sort to sort the elements in the basis of significant places
-  void countingSort(int array[], int size, int place) {
-    int[] output = new int[size + 1];
-    int max = array[0];
-    for (int i = 1; i < size; i++) {
-      if (array[i] > max)
-        max = array[i];
+    // Counting sort based on the digit at 'place'
+    void countingSort(int[] array, int size, int place) {
+        int[] output = new int[size];
+        int[] count = new int[10];
+
+        // Count occurrences of digits
+        for (int i = 0; i < size; i++) {
+            int digit = (array[i] / place) % 10;
+            count[digit]++;
+        }
+
+        // Calculate cumulative count
+        for (int i = 1; i < 10; i++) {
+            count[i] += count[i - 1];
+        }
+
+        // Build the output array (stable sort)
+        for (int i = size - 1; i >= 0; i--) {
+            int digit = (array[i] / place) % 10;
+            output[count[digit] - 1] = array[i];
+            count[digit]--;
+        }
+
+        // Copy the sorted values back to the original array
+        for (int i = 0; i < size; i++) {
+            array[i] = output[i];
+        }
     }
-    int[] count = new int[max + 1];
 
-    for (int i = 0; i < max; ++i)
-      count[i] = 0;
+    // Main Radix Sort function
+    void radixSort(int[] array) {
+        int max = getMax(array);
 
-    // Calculate count of elements
-    for (int i = 0; i < size; i++)
-      count[(array[i] / place) % 10]++;
-
-    // Calculate cumulative count
-    for (int i = 1; i < 10; i++)
-      count[i] += count[i - 1];
-
-    // Place the elements in sorted order
-    for (int i = size - 1; i >= 0; i--) {
-      output[count[(array[i] / place) % 10] - 1] = array[i];
-      count[(array[i] / place) % 10]--;
+        // Apply counting sort for each digit place
+        for (int place = 1; max / place > 0; place *= 10) {
+            countingSort(array, array.length, place);
+        }
     }
 
-    for (int i = 0; i < size; i++)
-      array[i] = output[i];
-  }
+    // Utility to find the maximum value in the array
+    int getMax(int[] array) {
+        int max = array[0];
+        for (int num : array) {
+            if (num > max) max = num;
+        }
+        return max;
+    }
 
-  // Function to get the largest element from an array
-  int getMax(int array[], int n) {
-    int max = array[0];
-    for (int i = 1; i < n; i++)
-      if (array[i] > max)
-        max = array[i];
-    return max;
-  }
+    // Test the algorithm
+    public static void main(String[] args) {
+        int[] data = {121, 432, 564, 23, 1, 45, 788};
+        RadixSort sorter = new RadixSort();
+        sorter.radixSort(data);
+        System.out.println("Sorted Array:");
+        System.out.println(Arrays.toString(data));
+    }
 
-  // Main function to implement radix sort
-  void radixSort(int array[], int size) {
-    // Get maximum element
-    int max = getMax(array, size);
-
-    // Apply counting sort to sort elements based on place value.
-    for (int place = 1; max / place > 0; place *= 10)
-      countingSort(array, size, place);
-  }
-
-  // Driver code
-  public static void main(String args[]) {
-    int[] data = { 121, 432, 564, 23, 1, 45, 788 };
-    int size = data.length;
-    RadixSort rs = new RadixSort();
-    rs.radixSort(data, size);
-    System.out.println("Sorted Array in Ascending Order: ");
-    System.out.println(Arrays.toString(data));
-  }
 }
 ```
+
+## Advantages
+
+- **Linear time** for small ranges of numbers.
+- Great for **large datasets of fixed-length keys** (e.g., integers, strings of equal length).
+- **Stable sort** — preserves the order of equal elements.
+
+## Disadvantages
+
+- Not comparison-based — **data must be sortable by digits or positions**.
+- Requires **extra space** for counting sort.
+- Efficiency depends on the number of digits (K).
+
+## Interview Tips
+
+- Be ready to explain **why it’s faster than O(N log N)** for fixed-size digit inputs.
+- Understand how **Counting Sort is used as a stable sorter** at each digit level.
+- Know when to **prefer Radix Sort over other algorithms**:
+  - When working with **large arrays of integers** or **fixed-size strings**.
+  - When **constant-time digit access** is possible.
+
+## Summary
+
+**Radix Sort** is a fast, non-comparison-based sorting algorithm that works especially well for integers and other data types with fixed-length representations.  
+By processing digits from least to most significant, it avoids the O(N log N) lower bound of comparison sorts and achieves O(K \* N) time.

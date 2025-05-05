@@ -1,49 +1,78 @@
 # Bubble Sort
 
-Runtime: O(N²) average and worst case. Memory O(1)
+**Bubble Sort** is a simple comparison-based sorting algorithm where adjacent elements are compared and swapped if they are in the wrong order.  
+In each pass, the largest unsorted element "bubbles up" to its correct position at the end of the list.
 
-In bubble sort, we start at the beginning of the array and swap the first two elements if the first is greater than the second. Then, we go to the next pair, and so on, continuously making sweeps of the array until it is sorted. In doing so, the smaller items slowly “bubble” up to the beginning of the list
+## How It Works
 
-![bubble-sort-example](./images/bubble-sort-example.png)
+1. Start at the beginning of the array.
+2. Compare the first two elements.
+3. Swap them if the first is greater than the second.
+4. Move to the next pair and repeat.
+5. Continue looping through the array until no swaps are needed.
 
-![https://res.cloudinary.com/practicaldev/image/fetch/s--9WGwov3j--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/3m00apvur6vmr44yjq1a.gif](https://res.cloudinary.com/practicaldev/image/fetch/s--9WGwov3j--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/3m00apvur6vmr44yjq1a.gif)
+**Visualization**:  
+![bubble-sort-example](../../../images/bubble-sort-example.png)
 
-![https://res.cloudinary.com/practicaldev/image/fetch/s--C0CI1OCj--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/ubhywp9xh8zk6on4caql.gif](https://res.cloudinary.com/practicaldev/image/fetch/s--C0CI1OCj--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/ubhywp9xh8zk6on4caql.gif)
+## Time and Space Complexity
 
-```java
-class BubbleSort
-{
-	// perform the bubble sort
-  static void bubbleSort(int array[]) {
-    int size = array.length;
-    
-    // loop to access each array element
-    for (int i = 0; i < size - 1; i++) {
-    
-      // loop to compare array elements
-      for (int j = 0; j < size - i - 1; j++)
+| Case    | Time Complexity                         |
+| ------- | --------------------------------------- |
+| Best    | O(n) (when optimized with a swap check) |
+| Average | O(n²)                                   |
+| Worst   | O(n²)                                   |
 
-        // compare two adjacent elements
-        // change > to < to sort in descending order
-        if (array[j] > array[j + 1]) {
+| Space Complexity | O(1) (in-place) |
+| ---------------- | --------------- |
 
-          // swapping occurs if elements
-          // are not in the intended order
-          int temp = array[j];
-          array[j] = array[j + 1];
-          array[j + 1] = temp;
+## Java Example
+
+```java showLineNumbers
+class BubbleSort {
+
+    static void bubbleSort(int array[]) {
+        int size = array.length;
+        boolean swapped;
+
+        for (int i = 0; i < size - 1; i++) {
+            swapped = false;
+
+            for (int j = 0; j < size - i - 1; j++) {
+                // Compare adjacent elements
+                if (array[j] > array[j + 1]) {
+                    // Swap if out of order
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                    swapped = true;
+                }
+            }
+
+            // Optimization: If no swaps, the array is sorted
+            if (!swapped) break;
         }
-	  }
-
-    // Driver method to test above
-    public static void main(String args[])
-    {
-        BubbleSort ob = new BubbleSort();
-        int arr[] = {64, 34, 25, 12, 22, 11, 90};
-        ob.bubbleSort(arr);
-        System.out.println("Sorted array");
     }
+
+    public static void main(String args[]) {
+        int arr[] = {64, 34, 25, 12, 22, 11, 90};
+        bubbleSort(arr);
+        System.out.println("Sorted array:");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+
 }
 ```
 
-![https://res.cloudinary.com/practicaldev/image/fetch/s--AIAlZIhq--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/euz62qdpc74m9w4gcg09.png](https://res.cloudinary.com/practicaldev/image/fetch/s--AIAlZIhq--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/euz62qdpc74m9w4gcg09.png)
+## Interview Tips
+
+- Be ready to explain why **Bubble Sort** is rarely used in practice (inefficient for large datasets).
+- Mention its **simplicity** and **educational value** — useful for teaching sorting concepts.
+- Know how to implement the **optimization** that stops early if no swaps occur during a pass (best case O(n)).
+- Be aware that although Bubble Sort is a **stable sort** and works **in-place**, better algorithms exist for real-world sorting.
+
+## Summary
+
+**Bubble Sort** is a simple, easy-to-understand sorting algorithm where the largest unsorted elements "bubble up" to the end of the array through repeated comparisons and swaps.  
+While inefficient for large datasets, it serves as a great introduction to sorting concepts and algorithmic thinking.

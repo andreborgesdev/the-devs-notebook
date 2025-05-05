@@ -1,72 +1,117 @@
 # Selection Sort
 
-Runtime: O(N²) average and worst case. Memory: O(1)
+**Selection Sort** is a simple **comparison-based sorting algorithm**.  
+It divides the input into a **sorted** and an **unsorted** region. In each iteration, it selects the smallest element from the unsorted region and moves it to the end of the sorted region.
 
-We have 2 lists, one unsorted and the other one sorted. We go through the unsorted list and for each iteration, we find the smallest number and move it into the sorted list. We repeat this process until the unsorted list is empty.
+## How It Works
 
-Selection sort is the child’s algorithm: simple, but inefficient. Find the smallest element using a linear scan and move it to the front (swapping it with the front element). Then, find the second smallest and move it, and doing a linear scan. Continue doing this until all the elements are in place.
+1. Start with the entire array as the **unsorted list**.
+2. **Find the smallest element** in the unsorted list.
+3. Swap it with the **first unsorted element** (expanding the sorted list by one).
+4. Repeat for the remaining unsorted elements until the array is sorted.
 
-```
-arr[] = 64 25 12 22 11
+## Time and Space Complexity
 
-// Find the minimum element in arr[0...4]
-// and place it at beginning
-1125 12 22 64
+| Case    | Time Complexity |
+| ------- | --------------- |
+| Best    | O(n²)           |
+| Average | O(n²)           |
+| Worst   | O(n²)           |
 
-// Find the minimum element in arr[1...4]
-// and place it at beginning of arr[1...4]
-111225 22 64
+| Space Complexity | O(1) (in-place) |
+| ---------------- | --------------- |
 
-// Find the minimum element in arr[2...4]
-// and place it at beginning of arr[2...4]
-11 122225 64
+**Note**: Selection Sort always performs the same number of comparisons, regardless of input order.
 
-// Find the minimum element in arr[3...4]
-// and place it at beginning of arr[3...4]
-11 12 222564
-```
+## Example
 
-![https://res.cloudinary.com/practicaldev/image/fetch/s--musoV4Rk--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/vweh1mcmiap8q3onqxz8.gif](https://res.cloudinary.com/practicaldev/image/fetch/s--musoV4Rk--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/vweh1mcmiap8q3onqxz8.gif)
+Initial array:
+`64, 25, 12, 22, 11`
 
-![https://res.cloudinary.com/practicaldev/image/fetch/s--wJDCsONw--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/mbzjewb2l897eiidkr14.gif](https://res.cloudinary.com/practicaldev/image/fetch/s--wJDCsONw--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/mbzjewb2l897eiidkr14.gif)
+### Pass 1:
 
-![https://media.geeksforgeeks.org/wp-content/cdn-uploads/Selection-sort-flowchart.jpg](https://media.geeksforgeeks.org/wp-content/cdn-uploads/Selection-sort-flowchart.jpg)
+Find min (11) → Swap with first element.  
+`11, 25, 12, 22, 64`
 
-```java
+### Pass 2:
+
+Find min (12) → Swap with second element.  
+`11, 12, 25, 22, 64`
+
+### Pass 3:
+
+Find min (22) → Swap with third element.  
+`11, 12, 22, 25, 64`
+
+### Pass 4:
+
+Find min (25) → Already in place.
+
+Sorted array:
+`11, 12, 22, 25, 64`
+
+## Visualizations
+
+![Selection Sort Animation 1](https://res.cloudinary.com/practicaldev/image/fetch/s--musoV4Rk--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/vweh1mcmiap8q3onqxz8.gif)
+
+## Java Example
+
+```java showLineNumbers
 import java.util.Arrays;
 
 class SelectionSort {
-  void selectionSort(int array[]) {
-    int size = array.length;
 
-    for (int step = 0; step < size - 1; step++) {
-      int min_idx = step;
+    void selectionSort(int array[]) {
+        int size = array.length;
 
-      for (int i = step + 1; i < size; i++) {
+        for (int step = 0; step < size - 1; step++) {
+            int min_idx = step;
 
-        // To sort in descending order, change > to < in this line.
-        // Select the minimum element in each loop.
-        if (array[i] < array[min_idx]) {
-          min_idx = i;
+            for (int i = step + 1; i < size; i++) {
+                // Find the minimum element
+                if (array[i] < array[min_idx]) {
+                    min_idx = i;
+                }
+            }
+
+            // Swap the found minimum with the first unsorted element
+            int temp = array[step];
+            array[step] = array[min_idx];
+            array[min_idx] = temp;
         }
-      }
-
-      // put min at the correct position
-      int temp = array[step];
-      array[step] = array[min_idx];
-      array[min_idx] = temp;
     }
-  }
 
-  // driver code
-  public static void main(String args[]) {
-    int[] data = { 20, 12, 10, 15, 2 };
-    SelectionSort ss = new SelectionSort();
-    ss.selectionSort(data);
-    System.out.println("Sorted Array in Ascending Order: ");
-    System.out.println(Arrays.toString(data));
-  }
+    public static void main(String args[]) {
+        int[] data = { 20, 12, 10, 15, 2 };
+        SelectionSort ss = new SelectionSort();
+        ss.selectionSort(data);
+        System.out.println("Sorted Array in Ascending Order: ");
+        System.out.println(Arrays.toString(data));
+    }
+
 }
 ```
 
-![https://res.cloudinary.com/practicaldev/image/fetch/s--992IFucj--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/43gibzc1hne0ie73cmp1.png](https://res.cloudinary.com/practicaldev/image/fetch/s--992IFucj--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/43gibzc1hne0ie73cmp1.png)
+## Advantages
+
+- **Simple** and easy to understand.
+- **In-place**: Requires no additional memory.
+- **Performs well on small datasets**.
+
+## Disadvantages
+
+- **Inefficient on large datasets**.
+- **Not stable**: Equal elements might not maintain their relative order.
+- Performs the same number of comparisons regardless of array state.
+
+## Interview Tips
+
+- Know how to **write Selection Sort from scratch**.
+- Be ready to explain why it’s **inefficient for large arrays**.
+- Understand the difference between **Selection Sort** and **Bubble Sort** (Selection Sort minimizes the number of swaps but does not reduce comparisons).
+- Mention that Selection Sort is often considered a **teaching algorithm** to introduce sorting concepts.
+
+## Summary
+
+**Selection Sort** repeatedly selects the minimum element from the unsorted part and places it at the beginning.  
+It’s simple but inefficient for large datasets, making it mostly useful for educational purposes or very small arrays.

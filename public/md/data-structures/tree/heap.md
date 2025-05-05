@@ -28,6 +28,18 @@ A **Heap** is a special **complete binary tree** data structure that satisfies t
 | Peek min/max         | O(1)            |
 | Heapify (build heap) | O(n)            |
 
+## Example (Min-Heap)
+
+Array representation: `[2, 4, 5, 7, 6, 8]`
+
+```
+        2
+      /   \
+     4     5
+    / \   /
+   7   6 8
+```
+
 ## Use Cases
 
 - **Priority Queues**
@@ -90,14 +102,16 @@ PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder())
 
 ## Interview Tips
 
-- Know how to **build a heap from an array** (heapify).
-- Be able to implement a **heap manually using an array**.
-- Understand **how to maintain the heap property** after insertions and deletions (percolate up and percolate down).
-- Practice problems:
-  - Find K largest/smallest elements.
-  - Merge K sorted lists.
-  - Running median using two heaps.
-- Be aware of **d-ary heap** for improving performance in algorithms like Dijkstra’s on dense graphs.
+- Know how to implement a heap using an **array**.
+  - For node at index `i`:
+    - Left child → `2*i + 1`
+    - Right child → `2*i + 2`
+    - Parent → `(i - 1) / 2`
+- Understand the difference between a **heap** and a **binary search tree (BST)**:
+  - Heaps guarantee order between parent and children, **but not between siblings or across the tree**.
+  - BSTs guarantee full ordering → in-order traversal returns sorted data.
+- Be ready to discuss the **Heapify process** and its O(n) build time.
+- Mention that heaps can be used for **Top K** problems, **streaming medians**, and **task scheduling**.
 
 ## Common Pitfalls
 

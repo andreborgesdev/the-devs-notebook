@@ -1,25 +1,56 @@
 # Algorithms
 
-A set of steps/instructions for completing a task.
+An **algorithm** is a set of **well-defined steps** or **instructions** to complete a task or solve a problem.
 
-Algorithmic thinking is really what we want to achieve to more easily and with more agility solve problems.
+## What Makes an Algorithm
 
-- Clearly defined problem statement, input, and output
-- The steps in the algorithm need to be in a very specific order
-- The steps also need to be distinct
-- The algorithm should produce a result
-- The algorithm should complete in a finite amount of time
+An algorithm should have:
 
-We can evaluate an algorithm on **correctness** and **efficiency**.
+- A **clearly defined problem statement**, input, and output.
+- Steps arranged in a **specific, logical order**.
+- **Distinct steps** — no ambiguity.
+- Must produce a **result**.
+- Must complete in a **finite amount of time**.
 
-Divide and conquer: Solving a problem by recursively breaking down the problem into subproblems until it is easily solved.
+## Why Algorithms Matter
 
-[Sort](Algorithms%20ba49a374446b474db19c4efada987dc7/Sort%20a14f6db93c094e04b61b20bb41e85264.md)
+- Algorithms are the **core of problem-solving** in programming.
+- They allow us to solve problems **efficiently** and **scalably**.
+- Mastery of algorithms leads to better **coding interviews**, **software design**, and **system performance**.
 
-[Search](Algorithms%20ba49a374446b474db19c4efada987dc7/Search%20de89660f0f024fe2a642a3e9cb4c75fc.md)
+**Algorithmic thinking** is the ultimate goal:
 
-[Kruskal’s Minimum Spanning Tree](Algorithms%20ba49a374446b474db19c4efada987dc7/Kruskal%E2%80%99s%20Minimum%20Spanning%20Tree%20ba997a525a854e998038026658d25bdc.md)
+- Breaking down complex problems.
+- Identifying efficient approaches.
+- Applying patterns like divide and conquer.
 
-[Tree traversal](Algorithms%20ba49a374446b474db19c4efada987dc7/Tree%20traversal%20cf24ef51fce94948bf67269236bcb753.md)
+## Evaluating Algorithms
 
-[Grokking the code interview](Algorithms%20ba49a374446b474db19c4efada987dc7/Grokking%20the%20code%20interview%20c5f9a769d96149e7ae7f33b93a84edce.md)
+| Criterion       | Description                                                                    |
+| --------------- | ------------------------------------------------------------------------------ |
+| **Correctness** | Does the algorithm provide the correct result for all valid inputs?            |
+| **Efficiency**  | How much time and memory does it use? Often expressed with **Big O notation**. |
+
+## Common Algorithm Paradigms
+
+| Paradigm                | Description                                                                              |
+| ----------------------- | ---------------------------------------------------------------------------------------- |
+| **Divide and Conquer**  | Break down problems into subproblems, solve them independently, and combine the results. |
+| **Greedy**              | Make the locally optimal choice at each step.                                            |
+| **Dynamic Programming** | Break problems into overlapping subproblems and store results to avoid recomputation.    |
+| **Backtracking**        | Build up solutions and abandon partial solutions that fail.                              |
+| **Branch and Bound**    | Systematically search for solutions while cutting off unpromising branches.              |
+
+## Key Operations Algorithms Perform
+
+- **Searching**
+- **Sorting**
+- **Traversing**
+- **Optimizing**
+- **Graph processing**
+- **Mathematical computations**
+
+## Summary
+
+An algorithm is not just code — it’s a **blueprint for problem-solving**.  
+Mastering algorithms means mastering the ability to write efficient, correct solutions for a wide variety of problems.

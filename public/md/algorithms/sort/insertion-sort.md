@@ -1,15 +1,83 @@
 # Insertion Sort
 
-Best: O(N), Worst: O(N²)
+**Insertion Sort** is a simple comparison-based sorting algorithm that builds the final sorted array **one item at a time**. It is intuitive and easy to implement, often used for small datasets or nearly sorted arrays.
 
-The **insertion sort** algorithm builds the final sorted array one value at a time. The process looks something like this:
+## How It Works
 
-1. Assume the first element is already sorted.
-2. Compare the first and second elements - should the second value stay in its place or be inserted before the first value?
-3. Next, you can do a similar comparison with the third value - should it be inserted in the first, second, or third position? And so on...
+1. **Assume** the first element is already sorted.
+2. For each subsequent element:
+   - Compare it to the elements before it.
+   - Shift larger elements one position to the right.
+   - **Insert** the current element into its correct position.
+3. Repeat until the entire array is sorted.
 
-![https://res.cloudinary.com/practicaldev/image/fetch/s--6pvtQQNP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/tl0warawos46qnenoq33.gif](https://res.cloudinary.com/practicaldev/image/fetch/s--6pvtQQNP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/tl0warawos46qnenoq33.gif)
+## Time and Space Complexity
 
-![https://res.cloudinary.com/practicaldev/image/fetch/s---bIcRugF--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/osft7ojymgp8jroekxxu.gif](https://res.cloudinary.com/practicaldev/image/fetch/s---bIcRugF--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_66%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/osft7ojymgp8jroekxxu.gif)
+| Case    | Time Complexity                         |
+| ------- | --------------------------------------- |
+| Best    | O(n) (when the array is already sorted) |
+| Average | O(n²)                                   |
+| Worst   | O(n²)                                   |
 
-![https://res.cloudinary.com/practicaldev/image/fetch/s--98gGOQtF--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/kdcqz1o3weeqjxwcdfpq.png](https://res.cloudinary.com/practicaldev/image/fetch/s--98gGOQtF--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/kdcqz1o3weeqjxwcdfpq.png)
+| Space Complexity | O(1) (in-place) |
+| ---------------- | --------------- |
+
+## Visualization
+
+![Insertion Sort Diagram](https://res.cloudinary.com/practicaldev/image/fetch/s--98gGOQtF--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/kdcqz1o3weeqjxwcdfpq.png)
+
+## Java Example
+
+```java showLineNumbers
+public class InsertionSort {
+
+    static void insertionSort(int[] arr) {
+        int n = arr.length;
+
+        for (int i = 1; i < n; i++) {
+            int key = arr[i];
+            int j = i - 1;
+
+            // Move elements greater than key to one position ahead
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = { 12, 11, 13, 5, 6 };
+        insertionSort(arr);
+        System.out.println("Sorted array:");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+
+}
+```
+
+## Advantages
+
+- **Simple** to understand and implement.
+- **Efficient** for small or nearly sorted datasets.
+- **Stable** sorting algorithm (preserves the order of equal elements).
+- **In-place** (no extra memory required).
+
+## Disadvantages
+
+- Inefficient for large datasets (**O(n²)** time in the worst case).
+
+## Interview Tips
+
+- Be able to **code it from scratch** quickly.
+- Know why it’s good for **small or nearly sorted arrays**.
+- Understand how the shifting process works compared to swapping in other algorithms.
+- Mention its use as a **helper algorithm** inside more complex sorts like **Bucket Sort** (for sorting individual buckets efficiently).
+
+## Summary
+
+**Insertion Sort** builds the sorted array one element at a time by inserting each new element into its proper position.  
+It is efficient for small or nearly sorted datasets and provides a solid introduction to sorting algorithms and algorithmic thinking.

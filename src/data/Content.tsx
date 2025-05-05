@@ -141,6 +141,11 @@ export const Content: ContentItem[] = [
             icon: "🌲",
           },
           {
+            title: "Trie",
+            url: "/data-structures/tree/trie",
+            icon: "🌲",
+          },
+          {
             title: "Union Find",
             url: "/data-structures/tree/union-find",
             icon: "🔗",

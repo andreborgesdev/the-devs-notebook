@@ -12,27 +12,7 @@ This is an open source, community project, and I am grateful for all the help I 
 
 This project now has actual code challenges! This challenges are meant to cover the topics you'll read below. Maybe you'll see them in an interview and maybe you won't. Either way you'll probably learn something new. [Click here for more](./challenges/README.md)
 
-# Table of Content
-
-- [Asymptotic Notation](#asymptotic-notation)
-- [Data Structures](#data-structures)
-  - [Array](#array)
-  - [Linked List](#linked-list)
-  - [Hash Table or Hash Map](#hash)
-  - [Binary Tree](#binary-tree)
-- [Algorithms](#algorithms)
-  - [Algorithm Basics](#algorithm-basics)
-  - [Search Algorithms](#search-algorithms)
-    - [Breadth First Search](#breadth-first-search)
-    - [Depth First Search](#depth-first-search)
-  - [Sorting Algorithms](#sorting-algorithms)
-    - [Selection Sort](#selection-sort)
-    - [Insertion Sort](#insertion-sort)
-    - [Merge Sort](#merge-sort)
-    - [Quick Sort](#quick-sort)
-- [Additional Resources](#additional-resources)
-
-# <a id="asymptotic-notation"></a>Asymptotic Notation
+# Asymptotic Notation
 
 ### Definition:
 
@@ -79,9 +59,9 @@ Big-Theta refers to the tight bound of time or space complexity of an algorithm.
 - Best Case and Big Omega are generally not helpful since Best Cases are rare in the real world and lower bound might be very different than an upper bound.
 - Big-O isn't everything. On paper merge sort is faster than quick sort, but in practice quick sort is superior.
 
-# <a id="data-structures"></a>Data Structures
+# Data Structures
 
-### <a id="array"></a> Array
+### Array
 
 #### Definition
 
@@ -105,7 +85,7 @@ Big-Theta refers to the tight bound of time or space complexity of an algorithm.
 - Optimized Search: Linear array: `O(log n)`, Dynamic array: `O(log n)`
 - Insertion: Linear array: n/a, Dynamic array: `O(n)`
 
-### <a id="linked-list"></a> Linked List
+### Linked List
 
 #### Definition
 
@@ -134,7 +114,7 @@ Big-Theta refers to the tight bound of time or space complexity of an algorithm.
 - Prepend: Linked Lists: `O(1)`
 - Insertion: Linked Lists: `O(n)`
 
-### <a id="hash"></a> Hash Table or Hash Map
+### Hash Table or Hash Map
 
 #### Definition
 
@@ -157,7 +137,7 @@ Big-Theta refers to the tight bound of time or space complexity of an algorithm.
 - Search: Hash Tables: `O(1)`
 - Insertion: Hash Tables: `O(1)`
 
-### <a id="binary-tree"></a> Binary Tree
+### Binary Tree
 
 #### Definition
 
@@ -184,9 +164,9 @@ For a full binary-tree reference see [Here](https://www.scaler.com/topics/data-s
 - Search: Binary Search Tree: `O(log n)`
 - Insertion: Binary Search Tree: `O(log n)`
 
-# <a id="algorithms"></a> Algorithms
+# Algorithms
 
-## <a id="algorithm-basics"></a> Algorithm Basics
+## Algorithm Basics
 
 ### Recursive Algorithms
 
@@ -270,9 +250,9 @@ greedy algorithm (array)
 
 This algorithm never needed to compare all the differences to one another, saving it an entire iteration.
 
-## <a id="search-algorithms"></a>Search Algorithms
+## Search Algorithms
 
-### <a id="breadth-first-search"></a>Breadth First Search
+### Breadth First Search
 
 #### Definition
 
@@ -295,7 +275,7 @@ This algorithm never needed to compare all the differences to one another, savin
 - E is number of edges
 - V is number of vertices
 
-### <a id="depth-first-search"></a>Depth First Search
+### Depth First Search
 
 #### Definition
 
@@ -331,9 +311,9 @@ This algorithm never needed to compare all the differences to one another, savin
 - Breadth First Search tends to be a looping algorithm.
 - Depth First Search tends to be a recursive algorithm.
 
-## <a id="sorting-algorithms"></a>Sorting Algorithms
+## Sorting Algorithms
 
-### <a id="selection-sort"></a>Selection Sort
+### Selection Sort
 
 #### Definition
 
@@ -367,7 +347,7 @@ This algorithm never needed to compare all the differences to one another, savin
 
 [(source: Wikipedia, _Selection Sort_)](https://en.wikipedia.org/wiki/Selection_sort)
 
-### <a id="insertion-sort"></a>Insertion Sort
+### Insertion Sort
 
 #### Definition
 
@@ -398,7 +378,7 @@ This algorithm never needed to compare all the differences to one another, savin
 
 [(source: Wikipedia, _Insertion Sort_)](https://en.wikipedia.org/wiki/Insertion_sort)
 
-### <a id="merge-sort"></a>Merge Sort
+### Merge Sort
 
 #### Definition
 
@@ -428,7 +408,7 @@ This algorithm never needed to compare all the differences to one another, savin
 
 [(source: Wikipedia, _Merge Sort_)](https://en.wikipedia.org/wiki/Merge_sort)
 
-### <a id="quick-sort"></a>Quicksort
+### Quicksort
 
 #### Definition
 
@@ -465,7 +445,7 @@ This algorithm never needed to compare all the differences to one another, savin
 - Merge Sort divides the set into the smallest possible groups immediately then reconstructs the incrementally as it sorts the groupings.
 - Quicksort continually partitions the data set by a pivot, until the set is recursively sorted.
 
-## <a id="additional-resources"></a>Additional Resources
+## Additional Resources
 
 [Khan Academy's Algorithm Course](https://www.khanacademy.org/computing/computer-science/algorithms)
 [Graph Data Structure & Algorithms](https://www.interviewbit.com/courses/programming/graph-data-structure-algorithms/)
