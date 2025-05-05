@@ -11,6 +11,11 @@ export interface ContentItem {
 // Declare all content here to be able to see it on the UI
 export const Content: ContentItem[] = [
   {
+    title: "Cheat Sheet",
+    url: "/cheat-sheet",
+    icon: "💾",
+  },
+  {
     title: "Data Structures",
     url: "/data-structures",
     icon: "💾",
@@ -31,48 +36,49 @@ export const Content: ContentItem[] = [
             icon: "💡",
           },
           {
-            title: "Longest Common Prefix Array",
-            url: "/data-structures/array/longest-common-prefix-array",
-            icon: "💾",
-          },
-          {
             title: "Suffix Arrays",
             url: "/data-structures/array/suffix-arrays",
             icon: "💾",
           },
         ],
       },
-      // TODO: Add introduction
-      // {
-      //   title: "List",
-      //   url: "/data-structures/list",
-      //   icon: "💾",
-      // },
-      // {
-      //   title: "Linked List",
-      //   url: "/data-structures/linked-list",
-      //   icon: "💾",
-      // },
-      // {
-      //   title: "Set",
-      //   url: "/data-structures/set",
-      //   icon: "💾",
-      // },
-      // {
-      //   title: "Stack",
-      //   url: "/data-structures/stack",
-      //   icon: "💾",
-      // },
+      {
+        title: "List",
+        url: "/data-structures/list",
+        icon: "💾",
+        items: [
+          {
+            title: "Introduction",
+            url: "/data-structures/list/introduction",
+            icon: "💡",
+          },
+          {
+            title: "Linked List",
+            url: "/data-structures/list/linked-list",
+            icon: "💾",
+          },
+        ],
+      },
+      {
+        title: "Set",
+        url: "/data-structures/set",
+        icon: "💾",
+      },
+      {
+        title: "Stack",
+        url: "/data-structures/stack",
+        icon: "💾",
+      },
       {
         title: "Queue",
         url: "/data-structures/queue",
         icon: "💾",
         items: [
-          // {
-          //   title: "Introduction",
-          //   url: "/data-structures/queue/queue",
-          //   icon: "💡",
-          // },
+          {
+            title: "Introduction",
+            url: "/data-structures/queue/introduction",
+            icon: "💡",
+          },
           {
             title: "Priority Queue",
             url: "/data-structures/queue/priority-queue",
@@ -85,21 +91,27 @@ export const Content: ContentItem[] = [
         url: "/data-structures/map",
         icon: "🗺️",
         items: [
-          // TODO: Add introduction
-          // {
-          //   title: "Introduction",
-          //   url: "/data-structures/map/map",
-          //   icon: "💡",
-          // },
           {
-            title: "HashMap",
-            url: "/data-structures/map/hash-map",
-            icon: "🗺️",
+            title: "Introduction",
+            url: "/data-structures/map/introduction",
+            icon: "💡",
           },
           {
-            title: "Hash collision resolution",
-            url: "/data-structures/map/hash-collision-resolution",
+            title: "Hash Collision",
+            url: "/data-structures/map/hash-collision",
             icon: "🗺️",
+          },
+        ],
+      },
+      {
+        title: "Graph",
+        url: "/data-structures/graph",
+        icon: "🌐",
+        items: [
+          {
+            title: "Introduction",
+            url: "/data-structures/graph/introduction",
+            icon: "💡",
           },
         ],
       },
@@ -128,12 +140,12 @@ export const Content: ContentItem[] = [
             url: "/data-structures/tree/heap",
             icon: "🌲",
           },
+          {
+            title: "Union Find",
+            url: "/data-structures/tree/union-find",
+            icon: "🔗",
+          },
         ],
-      },
-      {
-        title: "Union Find",
-        url: "/data-structures/union-find",
-        icon: "🔗",
       },
     ],
   },
@@ -387,6 +399,11 @@ export const Content: ContentItem[] = [
         title: "Cheat sheets",
         url: "/java/java-cheat-sheets",
         icon: "📝",
+      },
+      {
+        title: "Strings",
+        url: "/java/java-strings",
+        icon: "🔤",
       },
       {
         title: "Date API",

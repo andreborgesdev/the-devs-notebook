@@ -1,60 +1,109 @@
 # Heap
 
-A heap is a tree based DS that satisfies the heap invariant (also called heap property):
+A **Heap** is a special **complete binary tree** data structure that satisfies the **heap property**:
 
-**If A is a parent node of B, then A is ordered with respect to B for all node A, B in the heap.**
+- **Max-Heap**: Every parent node is greater than or equal to its children.
+- **Min-Heap**: Every parent node is less than or equal to its children.
 
-What this means is the value of the parent node is always ≥ to the value of the child node for all nodes, or the other way around, ≤.
+## Characteristics
 
-![https://www.geeksforgeeks.org/wp-content/uploads/MinHeapAndMaxHeap.png](https://www.geeksforgeeks.org/wp-content/uploads/MinHeapAndMaxHeap.png)
+- **Complete Binary Tree**: All levels are fully filled except possibly the last, which is filled from left to right.
+- **Heap Property**: Maintained during insertion and deletion.
+- **Efficient Priority Queue Implementation**.
 
-**Max-Heap**: In a Max-Heap the key present at the root node must be greatest among the keys present at all of it’s children. The same property must be recursively true for all sub-trees in that Binary Tree.
+## Types of Heaps
 
-**Min-Heap**: In a Min-Heap the key present at the root node must be minimum among the keys present at all of it’s children. The same property must be recursively true for all sub-trees in that Binary Tree.
+| Type       | Property                                         |
+| ---------- | ------------------------------------------------ |
+| Max-Heap   | Largest element is at the root.                  |
+| Min-Heap   | Smallest element is at the root.                 |
+| d-ary Heap | Generalized heap where each node has d children. |
 
-A binary heap is a binary tree that supports the heap invariant (parent > children). In a BT every node has exactly two children (one can be null, or two in the case of the leaves).
+## Time Complexity
 
-Binomial heaps can have any number of branches.
+| Operation            | Time Complexity |
+| -------------------- | --------------- |
+| Insert               | O(log n)        |
+| Remove min/max       | O(log n)        |
+| Peek min/max         | O(1)            |
+| Heapify (build heap) | O(n)            |
 
-There are many types of heaps, including:
+## Use Cases
 
-- Binary heap
-- Fibonacci heap
-- Binomial heap
-- Pairing heap
-- ...
+- **Priority Queues**
+- **Dijkstra’s algorithm** (for shortest path)
+- **Heap Sort**
+- **Scheduling systems**
+- **Top-K elements problems**
+- **Median maintenance (using two heaps)**
 
-We can represent a heap using arrays or objects and pointers and recursively add and remove nodes as needed. Arrays are faster and more elegant.
+## Heap vs Binary Search Tree
 
-Let i be the parent node index (zero based)
+| Feature                  | Heap                      | Binary Search Tree        |
+| ------------------------ | ------------------------- | ------------------------- |
+| Structure                | Complete Binary Tree      | Binary Search Tree        |
+| Order property           | Parent-child relationship | In-order traversal sorted |
+| Access min/max           | O(1)                      | O(log n)                  |
+| Search arbitrary element | O(n)                      | O(log n)                  |
 
-Left child index = 2i + 1
+## Java Example: Min-Heap Using PriorityQueue
 
-Right child index = 2i + 2
+```java showLineNumbers
+import java.util.PriorityQueue;
 
-Adding elements to a binary heap:
+public class MinHeapExample {
+public static void main(String[] args) {
+PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 
-If we want to insert a new root to the tree, we add it normally to the left-most possible spot and then do a “bubbling up”, “swimming”, or “sifting up”. The idea is that we compare it with the parent and swap them if the value is smaller. We do this operation for all values inserted to keep the heap consistent (invariant).
+        minHeap.add(10);
+        minHeap.add(5);
+        minHeap.add(20);
 
-Removing elements from root of a binary heap (polling):
+        System.out.println("Min element: " + minHeap.peek()); // 5
 
-When we do this we have to swap the root (first element) with the last one and then we delete the root that is now at the last position (right-most position). Now, we are not satisfying the heap invariant because we have a high value as root, so we have to bubble it down. On bubble down, we swap positions with the smallest child until the child is > than the value. In case we have a tie between children swap with the left one.
+        System.out.println("Removed: " + minHeap.poll());     // 5
+        System.out.println("Next Min: " + minHeap.peek());    // 10
+    }
 
-Removing elements from a binary heap (other than the root):
+}
+```
 
-We first do a linear search to look for the element we want to remove. When we find its position we swap it with the last node and delete it. Finally, we have to move the node until the heap invariant is satisfied.
+## Custom Max-Heap Example
 
-| Operation | Complexity |
-| --- | --- |
-| O(n log n) | Polling |
-| O(n) | Removing |
+```java showLineNumbers
+import java.util.Collections;
+import java.util.PriorityQueue;
 
-Removing elements from a binary heap in O(log n):
+public class MaxHeapExample {
+public static void main(String[] args) {
+PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
 
-The inefficiency of the removal algo comes from the fact that we have to perform a linear search to find out where an element is indexed at. What if instead we did a lookup using an HT to find out where a node is indexed at?
+        maxHeap.add(10);
+        maxHeap.add(5);
+        maxHeap.add(20);
 
-- A HT provides a O(1) time lookup and update for a mapping from a key (the node value) to a value (the index). Of course, if we have 2 or more equal values we’ll have a problem. We can solve it by instead of mapping one value to one position we will map one value to multiple positions. We can maintain a Set or TreeSet of indexes for which a particular node value (key) maps to.
-- For repeated nodes (values), it doesn’t matter which one we remove as long as we satisfy the heap invariant in the end.
-- When we do a node swap we have to update the indexes on the HT (swap the indexes between the nodes).
+        System.out.println("Max element: " + maxHeap.peek()); // 20
+    }
 
-We can use the heapify (it takes O(n) instead of O(n log n)) process if we know all the elements it will have.
+}
+```
+
+## Interview Tips
+
+- Know how to **build a heap from an array** (heapify).
+- Be able to implement a **heap manually using an array**.
+- Understand **how to maintain the heap property** after insertions and deletions (percolate up and percolate down).
+- Practice problems:
+  - Find K largest/smallest elements.
+  - Merge K sorted lists.
+  - Running median using two heaps.
+- Be aware of **d-ary heap** for improving performance in algorithms like Dijkstra’s on dense graphs.
+
+## Common Pitfalls
+
+- Forgetting that **heap is not a search structure** — searching for arbitrary elements is slow (O(n)).
+- Misunderstanding the difference between **balanced BSTs** (which keep in-order traversal sorted) and **heaps** (which only maintain the min/max property).
+
+## Summary
+
+A **Heap** is a complete binary tree used to implement efficient priority queues. It supports fast access to the highest or lowest element and is a key tool in many classic algorithms and interview problems.

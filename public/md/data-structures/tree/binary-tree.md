@@ -51,6 +51,20 @@ Explore as far down one branch as possible before backtracking. Uses a stack (im
 3.  **Post-order (LRN - Left, Right, Node)**: Recursively traverse the left subtree, then the right subtree, then visit the current node.
     - _Use Case_: Deleting nodes safely (process children before parent), getting postfix expression.
 
+```
+Example Binary Tree:
+        1
+       / \
+      2   3
+     / \   \
+    4   5   6
+
+Pre-order: 1, 2, 4, 5, 3, 6
+In-order: 4, 2, 5, 1, 3, 6
+Post-order: 4, 5, 2, 6, 3, 1
+Level-order: 1, 2, 3, 4, 5, 6
+```
+
 ### Breadth-First Search (BFS) / Level Order
 
 Visit nodes level by level, from left to right. Uses a queue.
@@ -221,3 +235,18 @@ For a BST it can be seen as a two step process:
 2 - Replace the node we want to remove with its successor (if any) to maintain the BST invariant.
 
 Augmenting the remove algorithm from a plain BST implementation to an AVL tree is just as easy as adding two lines of code to update the balance factor and rebalance the tree.
+
+## Tree Related Algorithms
+
+- **Morris Traversal**: O(n) time, O(1) space in-order traversal
+- **Threaded Binary Trees**: Store "threads" to inorder predecessor/successor
+- **Segment Trees**: Store intervals or segments for range queries
+- **Fenwick Trees (Binary Indexed Trees)**: Efficient prefix sum computation
+
+## Tips for Tree Problems
+
+1. **Recursion is your friend**: Most tree problems can be elegantly solved using recursion
+2. **Think about traversal order**: Different traversal methods can simplify different problems
+3. **Base cases**: Always handle empty trees and leaf nodes
+4. **Use helper functions**: For tracking additional state (e.g., height, path sum)
+5. **Consider both bottom-up and top-down approaches**

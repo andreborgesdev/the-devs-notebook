@@ -1,54 +1,113 @@
 # Fenwick Tree (Binary Indexed Tree)
 
-A prefix sum array is great for static arrays, but takes O(n) for updates. And this is why the Fenwick Tree (FT) was created.
+A **Fenwick Tree**, also called a **Binary Indexed Tree (BIT)**, is a tree-structured array that supports **efficient prefix sum queries and element updates**.
 
-It is a DS that supports sum range queries as well as setting values in a static array and getting the value of the prefix sum up some index efficiently.
+## Characteristics
 
-| Complexity | Operation |
-| --- | --- |
-| O(n) | Construction |
-| O(log n) | Point Update |
-| O(log n) | Range Sum |
-| O(log n) | Range Update |
-| N/A | Adding Index |
-| N/A | Removing Index |
+- **Time Complexity**:
+  - Prefix sum query: O(log n)
+  - Update: O(log n)
+- **Space Complexity**: O(n)
+- **1-based indexing** is typically used.
+- Common in competitive programming and interview problems involving **dynamic cumulative sums**.
 
-We can’t add or remove elements from the array
+## Use Cases
 
-Unlike a regular array, in a FT a specific cell is responsible for other cells as well. The position of the least significant bit (LSB) determines the range of responsibility that cell has to the cells bellow itself.
+- Dynamic **range sum queries**.
+- **Counting inversions** in arrays.
+- **Frequency table updates**.
+- **2D range sum queries** (advanced variants).
 
-Index 12 in binary is 1100
+## Core Operations
 
-LSB is at position 3, so this index is responsible for 2^(3-1) = 4 cells bellow itself.
+| Operation                 | Purpose                 | Time Complexity |
+| ------------------------- | ----------------------- | --------------- |
+| `update(index, delta)`    | Add delta to an element | O(log n)        |
+| `query(index)`            | Prefix sum up to index  | O(log n)        |
+| `rangeQuery(left, right)` | Sum of a subarray       | O(log n)        |
 
-10 = 1010 → 2^(2-1) = 2 cells bellow itself
+## Key Concept
 
-11 = 1011 → 2^(1-1) = 1 cells bellow itself
+A Fenwick Tree stores cumulative data in an array where:
 
-All odd values have their first LSB set in the first position, so they are only responsible for themselves.
+- Each element represents a cumulative sum over a specific range.
+- The range is determined by the **least significant bit** in the index’s binary representation.
 
-**Range queries:**
+To **move up** the tree:  
+`index -= index & -index`  
+To **move to the next responsible node**:  
+`index += index & -index`
 
-In a FT we may compute the **prefix sum** **up to a certain index, which ultimately lets us perform range sum queries.
+## Java Example: Fenwick Tree
 
-Idea: Suppose we want to find the prefix sum of [1,i], then we start at i and cascade downwards until we reach zero, adding the value at each of the indices we encounter.
+```java showLineNumbers
+class FenwickTree {
+private int[] bit;
+private int n;
 
-![https://media.geeksforgeeks.org/wp-content/cdn-uploads/BITSum.png](https://media.geeksforgeeks.org/wp-content/cdn-uploads/BITSum.png)
+    public FenwickTree(int size) {
+        this.n = size;
+        this.bit = new int[n + 1]; // 1-based indexing
+    }
 
-If we want the internal sum between [x,y] but they don’t have a connection we have to compute the prefix sum of [1,y], then we will compute the prefix sum of [1,11] (not inclusive, we want the value at position 11) and get the difference.
+    // Add delta to index
+    public void update(int index, int delta) {
+        while (index <= n) {
+            bit[index] += delta;
+            index += index & -index;
+        }
+    }
 
-Worst case, a range query might make us have to do two queries that cost log2(n) operations.
+    // Query prefix sum up to index
+    public int query(int index) {
+        int sum = 0;
+        while (index > 0) {
+            sum += bit[index];
+            index -= index & -index;
+        }
+        return sum;
+    }
 
-**Fenwick Tree point updates:**
+    // Query sum between left and right (inclusive)
+    public int rangeQuery(int left, int right) {
+        return query(right) - query(left - 1);
+    }
 
-Point updates are the opposite of the previous. Here, we want to add the LSB to propagate the value up to the cells responsible for us.
+}
 
-**Fenwick Tree construction:**
+public class FenwickTreeExample {
+public static void main(String[] args) {
+FenwickTree ft = new FenwickTree(10);
 
-We initialize it with the values from the array that this FT belongs to. Then, add the value in the current cell to the immediate cell that is responsible for it (parents). Similar to what we did for point updates but only one cell at a time. This will make the “cascading” effect in range queries possible by propagating the value in each cell throughout the tree.
+        ft.update(3, 5);  // Add 5 at index 3
+        ft.update(5, 2);  // Add 2 at index 5
+        ft.update(7, 7);  // Add 7 at index 7
 
-Let i be the current index. The immediate cell above us is at position j given by:
+        System.out.println("Sum of first 5 elements: " + ft.query(5));     // 7
+        System.out.println("Sum from index 3 to 7: " + ft.rangeQuery(3, 7)); // 14
+    }
 
-j := i + LSB(i)
+}
+```
 
-If one cell doesn’t have parents we ignore it (don’t do the sum)
+## Interview Tips
+
+- Be ready to **implement Fenwick Trees from scratch**.
+- Understand **why O(log n) updates** are better than O(n) in brute-force prefix sum arrays.
+- Practice solving:
+  - **Range sum queries**.
+  - **Dynamic frequency counting**.
+  - **Counting inversions in O(n log n)**.
+- Know the difference between **Fenwick Tree** and **Segment Tree**:
+  - Fenwick Tree is **simpler** and usually faster for prefix sums.
+  - Segment Tree supports **range updates and queries** more flexibly.
+
+## Common Pitfalls
+
+- **Off-by-one errors**: 1-based indexing is standard.
+- Forgetting to handle **updates properly** when dealing with negative values or deletions.
+- Not differentiating **point updates** (Fenwick Tree) vs **range updates** (Segment Tree).
+
+## Summary
+
+A **Fenwick Tree** offers a fast and memory-efficient way to handle prefix sums and updates. It’s essential for many interview problems involving dynamic cumulative operations and a must-know for competitive programming.

@@ -1,35 +1,95 @@
 # Suffix Arrays
 
-A suffix is a substring at the end of a string of characters. For our purposes, suffixes are non empty.
+A **Suffix Array (SA)** is an array of the starting positions of all the **sorted suffixes** of a string.  
+It provides a **space-efficient alternative to suffix trees** (which themselves are compressed Tries).
 
-A SA is an array which contains the sorted suffixes of a string. 
+| Term             | Definition                                                                                                                   |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **Suffix**       | A non-empty substring at the end of a string. Example: S = "banana", suffixes → "banana", "anana", "nana", "ana", "na", "a". |
+| **Suffix Array** | An array storing the starting indices of all sorted suffixes.                                                                |
 
-It provides a space efficient alternative to a suffix tree which itself is a compressed version of a Trie.
+**Note**:  
+A **Suffix Array + Longest Common Prefix (LCP) array** can do everything a suffix tree can, often more efficiently in practice.
 
-Note: SA can do everything suffix trees can with some additional information such as Longest Common Prefix (LCP) array.
+## Why Use Suffix Arrays?
 
-**Longest Common Substring (LCS) (K-common substring problem):**
+- **Efficient pattern matching**.
+- **Space-saving** vs suffix trees.
+- Crucial in **bioinformatics**, **data compression**, **plagiarism detection**, and **search engines**.
+- Solves problems like:
+  - **Longest Common Substring (LCS)**.
+  - **Longest Repeated Substring (LRS)**.
+  - **Pattern matching** (like fast search).
 
-Suppose we have n string, how do we find the longest common substring that appears in at least 2≤k≤n of the strings?
+## How Suffix Arrays Work
 
-There are some ways but with SA we can find the solution in linear time proportional to the sum of the string lengths O(n1+n2+n3+nm)
+Given `S = "banana"`:
 
-To find the LCS first create a new larger string T which is the concatenation of all the strings Si separated by unique sentinels.
+| Suffix   | Starting index |
+| -------- | -------------- |
+| "a"      | 5              |
+| "ana"    | 3              |
+| "anana"  | 1              |
+| "banana" | 0              |
+| "na"     | 4              |
+| "nana"   | 2              |
 
-T = S1 + “#” + S2 + “$” + S3 + “%”
+**Suffix Array** = [5, 3, 1, 0, 4, 2]
 
-The sentinels must be unique and lexicographically less than any of the characters contained in any of the strings Si.
+The **Suffix Array** contains the starting indices of the lexicographically sorted suffixes.
 
-If suffixes colours on the SA are not adjacent we can use a sliding window to capture the correct amount of suffix colours.
+## Longest Common Prefix (LCP) Array
 
-At each step advance the bottom endpoint or adjust the top endpoint such that the window contains exactly k suffixes of different colours.
+An auxiliary array that stores the length of the longest common prefix between consecutive suffixes in the Suffix Array.
 
-For each valid window perform a range query on the LCP array between the bottom and top endpoints. The LCS will be the maximum LCP value for all possible windows. Lucky for us, the minimum sliding range query problem can be solved in a total of O(n) time for all windows.
+Used to answer substring queries efficiently.
 
-Alternatively, we can use min range query DS such as a segment tree to perform queries in log(n) time which may be easier but slightly slower running for a total of O(n log n).
+## Key Applications
 
-**Longest Repeated Substring (LRS)**
+### Longest Common Substring (LCS)
 
-We use the LCS for a most efficient approach
+**Problem**: Find the longest common substring shared among `k` strings.
 
-Find the maximum LCP value
+**Approach**:
+
+1. Concatenate the `k` strings into a single string `T` using unique **sentinels** (characters not found in the strings) to separate them.  
+   Example: `T = S1 + "#" + S2 + "$" + S3 + "%"`.
+2. Build the **Suffix Array** and **LCP array** for `T`.
+3. Slide a window over the Suffix Array to find ranges containing suffixes from at least `k` different strings (**suffix colors**).
+4. For each window, query the minimum LCP value → the largest among these is the **LCS** length.
+
+**Complexity**:
+
+- Total time → **O(n1 + n2 + ... + nk)** (linear in total string length).
+- Alternatively, using a segment tree → **O(n log n)**.
+
+### Longest Repeated Substring (LRS)
+
+**Problem**: Find the longest substring that repeats within the same string.
+
+**Approach**:
+
+1. Build the **Suffix Array** and **LCP array**.
+2. The **maximum LCP value** is the length of the longest repeated substring.
+
+## Suffix Array vs Suffix Tree
+
+| Feature           | Suffix Array                                                                             | Suffix Tree                                                       |
+| ----------------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Space             | Lower                                                                                    | Higher                                                            |
+| Construction time | O(n log n)                                                                               | O(n)                                                              |
+| Supports LCP      | With additional LCP array                                                                | Yes                                                               |
+| Practical use     | Preferred in many applications due to better space efficiency and simpler implementation | Used for advanced substring matching and theoretical applications |
+
+## Interview Tips
+
+- Understand the **concept of sorted suffixes and their indices**.
+- Know how to **build a suffix array** (at least conceptually — building in O(n log n) can be complex to implement from scratch).
+- Be familiar with the **LCP array** and why it’s essential for solving **LCS** and **LRS**.
+- Be ready to explain the **sliding window technique** for multi-string LCS problems.
+- Understand when a **segment tree** or other range query data structure might be used alongside Suffix Arrays.
+
+## Summary
+
+A **Suffix Array** provides a compact, efficient way to perform complex substring operations.  
+With an **LCP array**, it can efficiently handle tasks like **Longest Common Substring** and **Longest Repeated Substring** problems — crucial for text processing, data compression, and bioinformatics.

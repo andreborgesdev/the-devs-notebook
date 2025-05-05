@@ -2,7 +2,7 @@
 
 **When implementing hashCode :**
 
-1. Use a the same fields that are used in equals (or a subset thereof).
+1. Use the same fields that are used in equals (or a subset thereof).
 2. Better not include mutable fields.
 3. Consider not calling hashCode on collections.
 4. Use a common algorithm unless patterns in input data counteract them.
