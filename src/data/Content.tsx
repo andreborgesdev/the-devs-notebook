@@ -376,6 +376,11 @@ export const Content: ContentItem[] = [
             url: "/java/data-structures/array-list",
             icon: "💾",
           },
+          {
+            title: "HashMap",
+            url: "/java/data-structures/hash-map",
+            icon: "🗺️",
+          },
         ],
       },
       {
