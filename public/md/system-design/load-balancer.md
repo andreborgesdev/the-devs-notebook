@@ -1,50 +1,70 @@
-# Load balancer
+# Load Balancer
 
-[https://www.nginx.com/resources/glossary/load-balancing/](https://www.nginx.com/resources/glossary/load-balancing/)
+## What is a Load Balancer?
 
-- Balance incoming traffic to multiple servers
-- Software or hardware based
-- Used to improve reliability and scalability of the applicaion
-- Nginx, HAProxy, F5, Citrix
+A **Load Balancer (LB)** distributes incoming network traffic across multiple backend servers to:
 
-![lb-simple-website](./images/lb-simple-website.png)
+- Improve application **reliability** and **availability**
+- Enhance **scalability** by balancing the load
+- Prevent any single server from becoming a bottleneck or point of failure
 
-![lb-basic-setup](./images/lb-basic-setup.png)
+Load balancers can be **software-based** or **hardware-based**.
 
-![https://www.nginx.com/wp-content/uploads/2014/07/what-is-load-balancing-diagram-NGINX.png](https://www.nginx.com/wp-content/uploads/2014/07/what-is-load-balancing-diagram-NGINX.png)
+**Common tools:** NGINX, HAProxy, F5, Citrix
 
-### Load Balancing Algorithms (Routing Methods)
+## Key Benefits
 
-Different load balancing algorithms provide different benefits; the choice of load balancing method depends on your needs:
+- **Distributes client requests** efficiently to avoid overloading any single server
+- **Improves fault tolerance** by rerouting traffic if a server fails
+- **Enhances scalability** to handle increased user demand
+- Supports **zero-downtime deployments** by draining traffic from servers needing maintenance or updates
 
-- **Round Robin** – Requests are distributed across the group of servers sequentially.
-    - Simple type of routing
-    - Can result in uneven traffic
-- **Least Connections** – A new request is sent to the server with the fewest current connections to clients. The relative computing capacity of each server is factored into determining which one has the least connections.
-    - Routes based on number of clients connections to server
-    - Useful for chat or streaming applications
-- **Least Time** – Sends requests to the server selected by a formula that combines thefastest response time and fewest active connections. Exclusive to NGINX Plus.
-    - Routes based on how quickly servers respond
-- **Hash** – Distributes requests based on a key you define, such as the client IP address orthe request URL. NGINX Plus can optionally apply a consistent hash to minimize redistributionof loads if the set of upstream servers changes.
-- **IP Hash** – The IP address of the client is used to determine which server receives the request.
-    - Routes client to server based on IP
-    - Useful for stateful sessions
-- **Random with Two Choices** – Picks two servers at random and sends the request to theone that is selected by then applying the Least Connections algorithm (or for NGINX Plusthe Least Time algorithm, if so configured).
+## Load Balancing Algorithms
 
-## Layer 4 and 7
+| Algorithm                   | Description                                                                                       | Best For                             |
+| --------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| **Round Robin**             | Sequentially distributes requests to servers                                                      | Simple use cases                     |
+| **Least Connections**       | Sends requests to the server with the fewest active connections                                   | Chat, streaming, and real-time apps  |
+| **Least Time**              | Chooses server with the fastest response time and fewest active connections (NGINX Plus only)     | Time-sensitive workloads             |
+| **Hash**                    | Distributes requests based on a user-defined key (e.g., client IP, request URL)                   | Custom routing needs                 |
+| **IP Hash**                 | Assigns clients to servers based on their IP address                                              | Stateful sessions, sticky sessions   |
+| **Random with Two Choices** | Picks two servers at random, then uses Least Connections or Least Time to choose the final server | Balanced randomness with performance |
 
-- Layer 4
-    - Only has access to TCP and UDP data
-    - Faster
-    - Lack of information can lead to uneven traffic
-- Layer 7
-    - Full access to HTTP protocol and data
-    - SSL termination
-    - Check for authentication
-    - Smarter routing options
+## Load Balancing Layers
 
-![lb-redundant-setup](./images/lb-redundant-setup.png)
+| Layer                     | Characteristics                                                                                        |
+| ------------------------- | ------------------------------------------------------------------------------------------------------ |
+| **Layer 4 (Transport)**   | Works at TCP/UDP level. Fast but limited in routing decisions.                                         |
+| **Layer 7 (Application)** | Full access to HTTP/HTTPS protocols. Enables SSL termination, authentication, and intelligent routing. |
 
-## Consistent hashing
+## Consistent Hashing
 
-Consistent Hashing is a distributed hashing scheme that operates independently of the number of servers or objects in a distributed *hash table* by assigning them a position on an abstract circle, or *hash ring*. This allows servers and objects to scale without affecting the overall system.
+**Consistent Hashing** assigns servers and objects a position on a virtual hash ring:
+
+- Efficiently handles dynamic changes in the number of servers
+- Minimizes load redistribution when servers are added or removed
+- Useful for **stateful** systems and caching solutions
+
+## Common Deployment Patterns
+
+- **Basic Setup**: Single load balancer distributing traffic to backend servers.
+- **Redundant Setup**: Multiple load balancers to avoid single points of failure.
+
+## Example Use Case
+
+**Scenario**: A website receiving high volumes of traffic.
+
+**Solution**:  
+Use a load balancer to distribute incoming requests across multiple application servers. Choose **Least Connections** for real-time applications (e.g., chat or video streaming), or **Round Robin** for standard web traffic.
+
+## Visuals
+
+# Redundant LB setup
+
+```plaintext
+ User ---> Internet ---> Load Balancers ---> Web Servers ---> Application
+                        |
+                        |-- example.com (active LB)
+                        |
+                        |-- Passive (standby LB)
+```

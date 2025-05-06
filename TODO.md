@@ -1,8 +1,1 @@
-[] Add memory stack vs heap
-[] Add power of 2 table
-[] Add scala
-[] Add kotlin
-[] Add js
-[] Add ts
-[] Add react
-[] Add react native
+dont forget that the content should be complete, professional, and Markdown-friendly content, ideal for cheatsheets, interviews, and quick study. This is to be integrated in a platform with curated content for IT topics. Save this into memory

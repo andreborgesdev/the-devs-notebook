@@ -1,4 +1,5 @@
 import { SquareTerminal, Bot, BookOpen } from "lucide-react";
+import { title } from "process";
 import { ReactNode } from "react";
 
 export interface ContentItem {
@@ -19,7 +20,28 @@ export const Content: ContentItem[] = [
     title: "Computer Science",
     url: "/computer-science",
     icon: "💻",
-    items: [],
+    items: [
+      {
+        title: "Memory",
+        url: "/computer-science/memory",
+        icon: "💾",
+      },
+      {
+        title: "Processor",
+        url: "/computer-science/processor",
+        icon: "💻",
+      },
+      {
+        title: "Networking",
+        url: "/computer-science/networking",
+        icon: "🌐",
+      },
+      {
+        title: "Operating System",
+        url: "/computer-science/operating-system",
+        icon: "💻",
+      },
+    ],
   },
   {
     title: "Data Structures",
@@ -390,12 +412,11 @@ export const Content: ContentItem[] = [
     url: "/java",
     icon: "☕",
     items: [
-      // TODO: Add introduction
-      // {
-      //   title: "Introduction",
-      //   url: "/java/java",
-      //   icon: "💡",
-      // },
+      {
+        title: "Introduction",
+        url: "/java/java",
+        icon: "💡",
+      },
       {
         title: "Data Structures",
         url: "/java/data-structures",
@@ -610,6 +631,45 @@ export const Content: ContentItem[] = [
             icon: "❓",
           },
         ],
+      },
+    ],
+  },
+  {
+    title: "Kotlin",
+    url: "/kotlin",
+    icon: "🦙",
+    items: [
+      {
+        title: "Introduction",
+        url: "/kotlin/introduction",
+        icon: "💡",
+      },
+      {
+        title: "Coroutines",
+        url: "/kotlin/coroutines",
+        icon: "🔄",
+      },
+      {
+        title: "Interview Questions",
+        url: "/kotlin/interview-questions",
+        icon: "❓",
+      },
+    ],
+  },
+  {
+    title: "Scala",
+    url: "/scala",
+    icon: "🦙",
+    items: [
+      {
+        title: "Introduction",
+        url: "/scala/introduction",
+        icon: "💡",
+      },
+      {
+        title: "Interview Questions",
+        url: "/scala/interview-questions",
+        icon: "❓",
       },
     ],
   },
@@ -837,6 +897,23 @@ export const Content: ContentItem[] = [
     ],
   },
   {
+    title: "Functional Programming",
+    url: "/functional-programming",
+    icon: "🔄",
+    items: [
+      {
+        title: "Introduction",
+        url: "/functional-programming/introduction",
+        icon: "💡",
+      },
+      {
+        title: "Interview Questions",
+        url: "/functional-programming/interview-questions",
+        icon: "❓",
+      },
+    ],
+  },
+  {
     title: "Cryptography",
     url: "/cryptography/cryptography",
     icon: "🔐",
@@ -898,6 +975,74 @@ export const Content: ContentItem[] = [
     ],
   },
   {
+    title: "JavaScript",
+    url: "/javascript",
+    icon: "🧩",
+    items: [
+      {
+        title: "Introduction",
+        url: "/javascript/introduction",
+        icon: "💡",
+      },
+      {
+        title: "Interview Questions",
+        url: "/javascript/interview-questions",
+        icon: "❓",
+      },
+    ],
+  },
+  {
+    title: "Typescript",
+    url: "/typescript",
+    icon: "🧩",
+    items: [
+      {
+        title: "Introduction",
+        url: "/typescript/introduction",
+        icon: "💡",
+      },
+      {
+        title: "Interview Questions",
+        url: "/typescript/interview-questions",
+        icon: "❓",
+      },
+    ],
+  },
+  {
+    title: "React",
+    url: "/react",
+    icon: "⚛️",
+    items: [
+      {
+        title: "Introduction",
+        url: "/react/introduction",
+        icon: "💡",
+      },
+      {
+        title: "Interview Questions",
+        url: "/react/interview-questions",
+        icon: "❓",
+      },
+    ],
+  },
+  {
+    title: "React Native",
+    url: "/react-native",
+    icon: "⚛️",
+    items: [
+      {
+        title: "Introduction",
+        url: "/react-native/introduction",
+        icon: "💡",
+      },
+      {
+        title: "Interview Questions",
+        url: "/react-native/interview-questions",
+        icon: "❓",
+      },
+    ],
+  },
+  {
     title: "Interviews",
     url: "/interviews",
     icon: "💼",
@@ -910,6 +1055,11 @@ export const Content: ContentItem[] = [
       {
         title: "Optimize & Solve Techniques",
         url: "/interviews/optimize-solve-techniques",
+        icon: "💡",
+      },
+      {
+        title: "Cheat Sheets",
+        url: "/interviews/cheat-sheets",
         icon: "💡",
       },
     ],

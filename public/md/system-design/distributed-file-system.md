@@ -63,3 +63,5 @@ Distributed file systems may offer different consistency guarantees:
 ## Summary
 
 A **Distributed File System** enables efficient, scalable, and fault-tolerant storage by distributing data across multiple machines while offering a simple interface for users and applications. Systems like Amazon S3 have become foundational for modern cloud computing, big data, and web-scale applications.
+
+![hdfs-architecture](../../images/hdfs-architecture.gif)
