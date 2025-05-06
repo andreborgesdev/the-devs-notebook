@@ -1,155 +1,161 @@
 # Databases
 
-## System design
+## Importance in System Design
 
-This is one of the most important topics with System Design because for any large scale application, the database is usually gonna be where our performance bottleneck is and that's because all our application server's are essentially stateless so that we can scale them horizontally as much as we need, all those servers are going to be hitting the database.
+Databases are a critical component of system design. In large-scale applications, they are often the primary performance bottleneck because application servers are stateless and horizontally scalable, while all stateful data resides in the database. Most applications are read-heavy (95%+ reads), emphasizing the importance of optimizing read performance.
 
-Most apps are majority reads, around 95%+.
+**Key Challenge**: Distributed databases introduce complexities like **eventual consistency** and **data integrity maintenance across nodes**.
 
-Eventual consistency is a problem of distributed databases in general
+## Basic Scaling Techniques
 
-## Basic scaling techniques:
+- **Indexes**
 
-- Indexes
-    - Index based on column
-    - Speeds up read performance
-    - Writes and updates become slightly slower
-    - More storage required for index because we have to store it
-- Denormalization
-    - Add redundant data to tables to reduce joins
-    - Boost read performance
-    - Slows down writes
-    - Risk inconsistent data across tables
-    - Code is harder to write
-- Connection pooling
-    - Allows multiple application threads to use same DB connection
-    - Saves on overhead of independent DB connections
-- Caching
-    - Not directly related to DB
-    - Cache sits in front of DB to handle serving content
-    - Can’t cache everything (like dynamic data that is frequently update is not going to work very well)
-    - This is one of the most important pieces. If applicable, we should let the cache handle most of the requests
-- Virtual scaling
-    - Get a bigger server
-    - Easiest solution when starting out
+  - Improve read performance by indexing specific columns.
+  - Increase storage requirements and slightly slow down writes and updates.
+
+- **Denormalization**
+
+  - Introduces redundant data to minimize joins.
+  - Speeds up reads but slows writes and increases risk of data inconsistency.
+
+- **Connection Pooling**
+
+  - Reuses database connections across multiple application threads, reducing overhead.
+
+- **Caching**
+
+  - Offloads frequent read operations from the database.
+  - Less effective for dynamic or frequently updated data.
+
+- **Vertical Scaling**
+
+  - Involves upgrading hardware resources (CPU, RAM, storage).
+
+- **Materialized Views**
+
+  - Precomputed query results stored for fast read access, at the expense of additional storage and update complexity.
 
 ## Replication and Partitioning
 
-## Read replicas
+### Read Replicas
 
-- Create replica servers to handle reads
-- Master server dedicated only to writes
-- Have to handle making sure new data reaches replicas
+- **Master** handles writes.
+- **Replicas** handle reads.
+- Must ensure data propagation from master to replicas (eventual consistency or synchronous replication).
 
-![master-slave](./images/master-slave.png)
+### Sharding (Horizontal Partitioning)
 
-# Sharding
+- Splits data across multiple databases.
+- Queries target specific shards, improving read/write performance.
+- Challenges:
 
-Sharding is basically a hiearchical way to index databases.
+  - **Hot keys** can cause load imbalance.
+  - Joins across shards are expensive.
+  - Fixed number of shards can limit scalability unless resharding is implemented.
 
-Our read and write performance goes up because all our queries fall into one particular point
+### Vertical Partitioning
 
-One problem is that you have to split the database somehow. What do you split on?
+- Splits tables by functionality.
+- Reduces the amount of unnecessary data retrieved in common queries.
+- Often used in combination with horizontal partitioning.
 
-You only shard shards when the shard grow too big.
+## Advanced Partitioning Concepts
 
-When shard fails you use the master/slave architecture. Writes always go to master, reads are distributed across the slaves. When the master fails one of the slaves become master.
+- **Consistent Hashing**
 
-## Horizontal partitioning
+  - Minimizes data movement when adding or removing nodes/shards.
+  - Common in NoSQL databases like Cassandra and DynamoDB.
 
-- Schema of tables stay the same, but split across multiple DBs
-- Downsides:
-    - Hot keys (x,y,z are not going to have as much traffic as other letters),
-    - No joins across shards (it is possible but really expensive)
-    - No dynamic number of shards (Fixed number of shards)
-- Best practices:
-    - Create index on the shards
+- **Geo-Partitioning**
 
-![horizontal-partitioning](./images/horizontal-partitioning.png)
-
-## Vertical partition
-
-- Divide schema of databases into separate tables
-- Generally divide by functionality
-- Best when most data in row isn't needed for most requests
-- After analysing the most access data we can split the table to separate data that is accessed the most to data that is rarely accessed
-
-![vertical-partitioning](./images/vertical-partitioning.png)
+  - Distributes data based on geographic location to minimize latency.
 
 ## SQL vs NoSQL
 
-- SQL
-    - + Relationships
-    - + Structured Data
-    - + ACID
-    - - Structured Data
-    - - Difficult to scale
-- NoSQL
-    - + Unstructured Data
-    - + Horizontal scaling
-    - - Eventual consistency
+| Feature         | SQL                                | NoSQL                                 |
+| --------------- | ---------------------------------- | ------------------------------------- |
+| Data structure  | Structured (tables, columns, rows) | Flexible (documents, key-value, etc.) |
+| Relationships   | Strong support                     | Limited or none                       |
+| ACID compliance | Full                               | Often traded for scalability          |
+| Scalability     | Harder to scale horizontally       | Easy horizontal scaling               |
+| Consistency     | Strong consistency                 | Eventual consistency                  |
 
-After scaling a SQL DB a lot we tend to make a lot of sacrifices and cut on good practices.
-
-We chose it because we know exactly what we are going to sacrifice with SQL.
-
-[https://blog.tryexponent.com/sql-vs-nosql](https://blog.tryexponent.com/sql-vs-nosql/#:~:text=Since%20columns%20and%20tables%20have,where%20the%20format%20is%20unknown)
-
-[https://blog.tryexponent.com/cap-theorem/](https://blog.tryexponent.com/cap-theorem/)
+**Trade-off**: SQL sacrifices scalability for strong consistency and relational capabilities.
 
 ## CAP Theorem
 
-CAP stands for “Consistency”, “Availability”, and “Partition tolerance”. A **network partition**
- is a (temporary) network failure between nodes. Partition tolerance means being able to keep the nodes in a distributed database running even when there are network partitions. The theorem states that, in a distributed database, you can only ensure consistency or availability in the case of a network partition.
+In distributed databases, only two of the following three can be fully achieved:
 
-**Consistency**
+- **Consistency (C)**: All nodes see the same data at the same time.
+- **Availability (A)**: Every request receives a (non-error) response.
+- **Partition Tolerance (P)**: System continues functioning despite network partitions.
 
-Consistency is the property that after a write is sent to a database, all read requests sent to any node should return that updated data. In the example scenario where there is a network partition, both Node A and Node B would reject any write requests sent to them. This would ensure that the state of the data on the two nodes are the same. Or else, only Node A would have the updated data, and Node B would have stale data.
+**Note**: Most modern distributed databases prioritize **partition tolerance** and trade-off between consistency and availability based on application needs.
 
-**Availability**
+## ACID vs BASE
 
-In a database that prioritizes availability, it’s OK to have inconsistent data across the nodes, where one node may contain stale data and another has the most updated data. Availability means that we prioritize nodes to successfully complete requests sent to them. Available databases also tend to have **eventual consistency,** which means that after some undetermined amount of time when the network partition is resolved, *eventually* , all nodes will sync with each other to have the same, updated data.In this case, Node A will receive the update first, and after some time, Node B will be updated as well.
+- **ACID (Atomicity, Consistency, Isolation, Durability)**
 
-**When should Consistency or Availability be prioritized?**
+  - Guarantees reliable transactions.
+  - Used by traditional relational databases.
 
-If you’re working with data that you know needs to be up-to-date, then it may be better to store it in a database that prioritizes consistency over availability. On the other hand, if it’s fine that the queried data can be slightly out-of-date, then storing it in an available database may be the better choice.
+- **BASE (Basically Available, Soft state, Eventual consistency)**
 
-**Read Requests**
+  - Focuses on availability and scalability.
+  - Used by many NoSQL systems.
 
-Notice that only write requests were discussed above. This is because read requests don’t affect the state of the data, and don’t require re-syncing between nodes. Read requests are typically fine during network partitions for both consistent and available databases.
+## Best Practices for Database Indexing
 
-**SQL Databases**
+1. Design indexes based on workload, not just table structure.
+2. Build indexes for query predicates.
+3. Focus on the most heavily used queries.
+4. Support sorting operations (`GROUP BY`, `ORDER BY`) with indexes.
+5. Create unique indexes for primary and foreign keys.
+6. Consider covering indexes for index-only access.
+7. Balance the number of indexes with write performance.
+8. Monitor the impact of data modifications on index performance.
 
-SQL databases like MySQL, PostgreSQL, Microsoft SQL Server, Oracle, etc, usually prioritize consistency. [Master-slave replication](https://en.wikipedia.org/wiki/Replication_(computing)#DATABASE) is a common distributed architecture in SQL databases, and in the event of a master becoming unavailable, the role of master would failover to one of the replica nodes. During this failover process and electing a new master node, the database cannot be written to, so that consistency is preserved.
+## Query Optimization
 
-![https://blog.tryexponent.com/content/images/pmlesson/2021/04/image.png](https://blog.tryexponent.com/content/images/pmlesson/2021/04/image.png)
+- Use **EXPLAIN** or **EXPLAIN ANALYZE** to understand query execution plans.
+- Optimize joins and avoid **N+1 query problems**.
+- Minimize use of \*\*SELECT \*\*\* in queries.
+- Avoid unnecessary subqueries when possible.
 
-**Does Consistency in CAP mean Strong Consistency?**
+## Caching Strategies
 
-In a strongly consistent database, if data is written and then immediately read after, it should always return the updated data. The problem is that in a distributed system, network communication doesn’t happen instantly, since nodes/servers are physically separated from each other and transferring data takes >0 time. This is why it’s not possible to have a perfectly, strongly consistent distributed database. In the real world, when we talk about databases that prioritize consistency, we usually refer to databases that are eventually consistent, with a very short, unnoticeable lag time between nodes.
+- **Write-Through Cache**: Writes go to cache and database simultaneously.
+- **Write-Around Cache**: Writes go directly to the database, bypassing the cache.
+- **Write-Back Cache**: Writes go to cache first and later to the database (higher risk of data loss).
 
-[https://blog.tryexponent.com/cap-theorem/](https://blog.tryexponent.com/cap-theorem/)
+**Cache Invalidation** is one of the hardest problems in distributed system design — requires careful strategy.
 
-## Create a good database index
+## Transaction Isolation Levels
 
-[https://www.dbta.com/Columns/DBA-Corner/Top-10-Steps-to-Building-Useful-Database-Indexes-100498.aspx](https://www.dbta.com/Columns/DBA-Corner/Top-10-Steps-to-Building-Useful-Database-Indexes-100498.aspx)
+| Level            | Dirty Read   | Non-repeatable Read | Phantom Read |
+| ---------------- | ------------ | ------------------- | ------------ |
+| Read Uncommitted | Possible     | Possible            | Possible     |
+| Read Committed   | Not Possible | Possible            | Possible     |
+| Repeatable Read  | Not Possible | Not Possible        | Possible     |
+| Serializable     | Not Possible | Not Possible        | Not Possible |
 
-**1. Index by workload, not by table**
+## NoSQL Categories
 
-**2. Build indexes based on predicates**
+- **Key-Value Stores** (Redis, DynamoDB)
+- **Document Stores** (MongoDB, CouchDB)
+- **Column-Family Stores** (Cassandra, HBase)
+- **Graph Databases** (Neo4j, Amazon Neptune)
 
-****3. Index most-heavily used queries****
+## Additional Considerations
 
-**4. Index important queries**
+- **Eventual Consistency**: Acceptable for data that can tolerate slight delays in consistency.
+- **Hot Keys**: Avoid concentration of read/write operations on a small set of keys.
+- **Materialized Views**: Precomputed query results that improve read performance.
+- **Data Modeling**: Align schema design with the most common access patterns.
+- **Latency**: Critical for user-facing applications — optimize data locality and indexing.
 
-**5. Index to avoid sorting (GROUP BY, ORDER BY)**
+## Recommended Reading
 
-**6. Create indexes for uniqueness (PK, U)**
-
-**7. Create indexes for foreign keys**
-
-**8. Consider adding columns for index only access**
-
-**9. Don’t arbitrarily limit number of indexes**
-
-**10. Be aware of data modification implications**
+- [SQL vs NoSQL](https://blog.tryexponent.com/sql-vs-nosql)
+- [CAP Theorem](https://blog.tryexponent.com/cap-theorem)
+- [Top 10 Steps to Building Useful Database Indexes](https://www.dbta.com/Columns/DBA-Corner/Top-10-Steps-to-Building-Useful-Database-Indexes-100498.aspx)

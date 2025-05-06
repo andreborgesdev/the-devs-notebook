@@ -1,124 +1,153 @@
 # Caching
 
-Caching is **a technique that stores a copy of a given resource and serves it back when requested**. When a web cache has a requested resource in its store, it intercepts the request and returns a copy of the stored resource instead of re-downloading the resource from the originating server.
+## Overview
 
-- Saves network calls
+Caching is a technique that stores a copy of a given resource and serves it back when requested. If a web cache has the requested resource, it intercepts the request and returns the cached copy instead of re-fetching or recomputing the resource.
+
+**Application Caching**
+
+```plaintext
+Client ---> App Server ---> Cache ---> Database
+                 |             ^
+                 |             |
+                 |<------------|
+```
+
+**Web Caching**
+
+```plaintext
+             +-----------+
+             | DNS Server|
+             +-----------+
+                   ^
+                   |
+Client <---------->|
+   |
+   |
+   v
++---------+
+|   CDN   |
++---------+
+   |
+   v
++------------+             +-------+            +-----------+
+| App Layer  | <---------> | Cache | ---------> | Database  |
++------------+             +-------+            +-----------+
+```
+
+**Key Benefits:**
+
+- Reduces network calls
 - Avoids repeated recomputation
-- Reduce db load
-- It improves performance of the app and saves money.
+- Decreases database load
+- Improves application performance and reduces operational costs
 
-We can place cache closer to the service or to the server. An example of closer to the service is in-memory in the service.
+**Cache placement:** Cache can be placed close to the service (e.g., in-memory) or closer to the server.
 
-![how-does-caching-work](./images/how-does-caching-work.png)
+## Speed and Performance
 
-## Speed and performance
+- Memory access is typically 50–200x faster than disk.
+- Enables serving high traffic with fewer resources.
+- Supports pre-calculated data caching.
+- Most applications have more reads than writes, making them ideal candidates for caching.
 
-- Reading from memory is much faster than disk, 50-200x faster
-- Can serve the same amount of traffic with fewer resources
-- Pre-calculate and cache data
-- Most apps have far more reads than writes, perfect for caching
+## Caching Layers
 
-## Caching layers
+- DNS cache
+- CDN (Content Delivery Network)
+- Application-level cache
+- Database cache
 
-- DNS
-- CDN
-- Application
-- Database
+## Common Problems
 
-## Problems with cache
+- **Additional latency**: Cache lookups introduce extra calls.
+- **Thrashing**: Frequent insertions/removals without effective cache hits.
+- **Data inconsistency**: Changes in data may not reflect across all caches.
 
-- Extra call that we have to make
-- Trashing - When we are constantly inserting and removing into the cache without ever using the results.
-- Data consistency can be a problem. F.e. if we have 2 servers and server 2 updates a resource we have to make sure it was also updated on server's 1 cache, otherwise we'll be serving inconsistent data to the user.
+## Distributed Cache
 
-![caching-layers](./images/caching-layers.png)
+- Functions similarly to traditional cache.
+- Supports replication, sharding, and efficient key lookup across servers.
+- Examples: Redis, Memcached.
 
-![caching-pseudocode-retrieval](./images/caching-pseudocode-retrieval.png)
+## Cache Policies
 
-![caching-pseudocode-writing](./images/caching-pseudocode-writing.png)
+Policies govern how data is loaded into or evicted from the cache. Cache performance is highly dependent on the chosen policy.
 
-## Distributed cache
+## Cache Eviction
 
-- Works same as traditional cache
-- Has built-in functionality to replicate data, shard data across servers, and locate proper server for each key
+Goals:
 
-![distributed-cache](./images/distributed-cache.png)
+- Prevent stale data.
+- Retain only the most valuable data.
 
-## Cache policy
+**Time to Live (TTL):** Specifies the time duration before a cache entry expires.
 
-The way in which we decide for loading or evicting data.
+## Eviction Strategies
 
-A cache performance almost entirely depends on our cache policy.
+- **Least Recently Used (LRU)**: Removes the least recently accessed item when the cache is full.
+- **Least Frequently Used (LFU)**: Tracks access frequency and evicts the least frequently used item. Common in real-world applications.
 
-## Cache eviction
+## Caching Strategies
 
-- We want to prevent stale data
-- Caching only most valuable data to save resources
+| Strategy      | Description                                                                                      |
+| ------------- | ------------------------------------------------------------------------------------------------ |
+| Cache Aside   | Application reads/writes to cache as needed. Most common strategy.                               |
+| Read Through  | Application reads through the cache; if a miss occurs, data is fetched and stored in the cache.  |
+| Write Through | Writes data to cache first, then persists it to the database. Caution with sensitive data.       |
+| Write Back    | Writes data directly to the database and updates the cache afterward. Generally less performant. |
 
-## Time to live
+Hybrid approaches are also possible depending on the use case.
 
-- Set a time period before a cache entry is deleted
-- Used to prevent stale data
+## Cache Consistency
 
-## Least Recently and Frequently Used
+Maintaining synchronization between the database and the cache is critical, especially for:
 
-These are cache eviction strategies. These strategies have less to do with preventing stale data and more to do with trying to keep our most requested data in our cache. 
+- Real-time applications
+- Scenarios where stale data must be minimized
 
-- LRU
-    - Once cache is full, remove last accessed key and add new key
-- LFU
-    - Track number of time key is accessed
-    - Drop least when cache is full
-    - This is least frequently used on the real world applications
+## In-Memory Cache vs Global Cache
 
-## Caching strategies
+| Type            | Benefits                                   | Drawbacks                                             |
+| --------------- | ------------------------------------------ | ----------------------------------------------------- |
+| In-Memory Cache | Fast, simple to implement                  | Hard to maintain consistency across servers; volatile |
+| Global Cache    | Resilient, accurate, shared across servers | Slightly slower due to network latency                |
 
-- Cache aside - most common
-- Read through
-- Write through
-    - Writing first to the cache before going through it and writing into the db
-    - If we have more more than one server with cache in-memory it doesn't work well
-    - If we have financial data, passwords, or other critical or sensitive data we shouldn't use this one.
-    - To save network calls with this we can persist plenty of new entries into the cache and then in bulk with 1 communication we can persist it on the db as well.
-- Write back
-    - Hit db directly and then be sure to make an entry on the cache
-    - It is less performant
+**Example Technologies:**
 
-We can have an hybrid approach. 
+- In-Memory: Application-native memory stores
+- Distributed/Global: Redis, Memcached
 
-## Cache consistency
+## Examples
 
-- How to maintain consistency between database and cache efficiently
-- Importance depends on use case
-- It is important because we don't want an old piece of data showing to other users for a long time
+# Caching Pseudocode - Retrieval
 
-## In-memory cache
+```python
+def app_request(tweet_id):
+    cache = {}
 
-Benefits:
+    data = cache.get(tweet_id)
 
-- Faster
-- Simpler to implement
+    if data:
+        return data
+    else:
+        data = db_query(tweet_id)
+        # set data in cache
+        cache[tweet_id] = data
+        return data
+```
 
-Drawbacks:
+# Caching Pseudocode - Writing
 
-- Harder to make data consistent across servers
-- How to deal with a server crashing?
+```python
+def app_update(tweet_id, data):
+    cache = {}
 
-## Global cache
+    db_update(data)
 
-Like Redis.
+    cache.pop(tweet_id)
+```
 
-It is a distributed cache.
+## Summary
 
-Benefits:
-
-- Servers will all point to it so one server crashing is not a problem anymore. More resilient that way
-- More accurate
-
-Drawbacks:
-
-- Slower
-
-## Examples:
-
-Memcache
+Caching improves performance, scalability, and cost efficiency by reducing expensive operations such as disk reads, network calls, and database queries. Proper cache design considers eviction strategies, consistency models, and appropriate caching layers to maximize effectiveness.

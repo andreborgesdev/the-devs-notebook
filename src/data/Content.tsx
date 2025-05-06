@@ -16,6 +16,12 @@ export const Content: ContentItem[] = [
     icon: "💾",
   },
   {
+    title: "Computer Science",
+    url: "/computer-science",
+    icon: "💻",
+    items: [],
+  },
+  {
     title: "Data Structures",
     url: "/data-structures",
     icon: "💾",
@@ -34,6 +40,11 @@ export const Content: ContentItem[] = [
             title: "Introduction",
             url: "/data-structures/array/introduction",
             icon: "💡",
+          },
+          {
+            title: "Vector",
+            url: "/data-structures/array/vector",
+            icon: "💾",
           },
           {
             title: "Suffix Arrays",
@@ -267,6 +278,11 @@ export const Content: ContentItem[] = [
       {
         title: "Bit manipulation",
         url: "/algorithms/bit-manipulation",
+        icon: "📝",
+      },
+      {
+        title: "Recursion",
+        url: "/algorithms/recursion",
         icon: "📝",
       },
       {
@@ -655,7 +671,7 @@ export const Content: ContentItem[] = [
     items: [
       {
         title: "Introduction",
-        url: "/system-design/system-design",
+        url: "/system-design/introduction",
         icon: "💡",
       },
       {
@@ -726,8 +742,13 @@ export const Content: ContentItem[] = [
         ],
       },
       {
+        title: "Interview Tips",
+        url: "/system-design/interview-tips",
+        icon: "💡",
+      },
+      {
         title: "Interview Questions",
-        url: "/system-design/system-design-interview-questions",
+        url: "/system-design/interview-questions",
         icon: "❓",
       },
     ],
@@ -749,13 +770,50 @@ export const Content: ContentItem[] = [
         items: [
           {
             title: "Introduction",
-            url: "/databases/sql/sql",
+            url: "/databases/sql/introduction",
             icon: "💡",
           },
           {
-            title: "Oracle",
+            title: "MySQL",
+            url: "/databases/sql/mysql",
+            icon: "💾",
+          },
+          {
+            title: "PostgreSQL",
+            url: "/databases/sql/postgresql",
+            icon: "💾",
+          },
+          {
+            title: "Oracle/PLSQL",
             url: "/databases/sql/oracle",
             icon: "⭕",
+          },
+          {
+            title: "Interview Questions",
+            url: "/databases/sql/interview-questions",
+            icon: "❓",
+          },
+        ],
+      },
+      {
+        title: "NoSQL",
+        url: "/databases/no-sql",
+        icon: "💾",
+        items: [
+          {
+            title: "Introduction",
+            url: "/databases/sql/introduction",
+            icon: "💡",
+          },
+          {
+            title: "MongoDB",
+            url: "/databases/no-sql/mongodb",
+            icon: "🍃",
+          },
+          {
+            title: "Interview Questions",
+            url: "/databases/no-sql/interview-questions",
+            icon: "❓",
           },
         ],
       },
@@ -778,32 +836,17 @@ export const Content: ContentItem[] = [
       },
     ],
   },
-  // {
-  //   title: "Blockchain",
-  //   url: "blockchain",
-  //   icon: "🔗",
-  //   items: [
-  //     {
-  //       title: "Introduction",
-  //       url: "blockchain",
-  //       icon: "💡",
-  //     },
-  //     {
-  //       title: "Bitcoin",
-  //       url: "bitcoin",
-  //       icon: "🪙",
-  //     },
-  //     {
-  //       title: "Ethereum",
-  //       url: "ethereum",
-  //       icon: "🪙",
-  //     },
-  //   ],
-  // },
   {
     title: "Cryptography",
     url: "/cryptography/cryptography",
     icon: "🔐",
+    items: [
+      {
+        title: "Introduction",
+        url: "/cryptography/introduction",
+        icon: "💡",
+      },
+    ],
   },
   {
     title: "IT Books Summarized",
@@ -859,16 +902,6 @@ export const Content: ContentItem[] = [
     url: "/interviews",
     icon: "💼",
     items: [
-      // {
-      //   title: "Introduction",
-      //   url: "/interviews/interviews",
-      //   icon: "💡",
-      // },
-      // {
-      //   title: "Interview Questions",
-      //   url: "/interviews/interview-questions",
-      //   icon: "❓",
-      // },
       {
         title: "Technical questions tips",
         url: "/interviews/solving-algorithms-tips",

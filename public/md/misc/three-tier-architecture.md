@@ -1,19 +1,85 @@
-# Three tier architecture
+# Three-Tier Architecture
 
-A 3-tier application architecture is a modular [client-server](https://www.techtarget.com/searchnetworking/definition/client-server) architecture that consists of a presentation tier, an application tier and a data tier. The data tier stores information, the application tier handles logic and the presentation tier is a graphical user interface ([GUI](https://www.techtarget.com/whatis/definition/GUI)) that communicates with the other two tiers. The three tiers are logical, not physical, and may or may not run on the same physical server.
+## Overview
 
-### **The logical tiers of a 3-tier application architecture**
+**Three-tier architecture** is a modular **client-server architectural pattern** that organizes applications into three logical layers:
 
-![https://cdn.ttgtmedia.com/rms/onlineImages/three_tier_arch_half_column_mobile.jpg](https://cdn.ttgtmedia.com/rms/onlineImages/three_tier_arch_half_column_mobile.jpg)
+1. **Presentation Tier**
+2. **Application (Logic) Tier**
+3. **Data Tier**
 
-**Presentation tier**: This tier, which is built with [HTML5](https://www.techtarget.com/whatis/definition/HTML5), cascading style sheets ([CSS](https://www.theserverside.com/definition/cascading-style-sheet-CSS)) and [JavaScript](https://www.theserverside.com/definition/JavaScript), is deployed to a computing device through a web browser or a web-based application. The presentation tier communicates with the other tiers through application program interface ([API](https://www.techtarget.com/searchapparchitecture/definition/application-program-interface-API)) calls.
+Each layer has a distinct responsibility and can be developed, deployed, and scaled independently. The tiers may reside on the same physical server or be distributed across multiple servers or cloud services.
 
-**Application tier**: The application tier, which may also be referred to as the logic tier, is written in a programming language such as [Java](https://www.theserverside.com/definition/JavaScript) and contains the [business logic](https://www.techtarget.com/whatis/definition/business-logic) that supports the application's core functions. The underlying application tier can either be hosted on distributed servers in the cloud or on a dedicated in-house server, depending on how much processing power the application requires.
+## Logical Tiers
 
-**Data tier**: The data tier consists of a database and a program for managing read and write access to a database. This tier may also be referred to as [the storage tier](https://www.techtarget.com/searchstorage/definition/tiered-storage) and can be hosted on-premises or in the cloud. Popular database systems for managing read/write access include [MySQL](https://www.techtarget.com/searchoracle/definition/MySQL), PostgreSQL, Microsoft SQL Server and [MongoDB](https://www.techtarget.com/searchdatamanagement/definition/MongoDB).
+### 1. Presentation Tier (UI Layer)
 
-### **Benefits of a 3-tier app architecture**
+- **Role**: User interface and user experience.
+- **Technologies**: HTML5, CSS, JavaScript frameworks (React, Angular, Vue.js).
+- **Responsibility**:
 
-The benefits of using a 3-tier architecture include improved horizontal scalability, performance and availability. With three tiers, each part can be developed concurrently by a different team of programmers coding in different languages from the other tier developers. Because the programming for a tier can be changed or relocated without affecting the other tiers, the 3-tier model makes it easier for an enterprise or software packager to continually evolve an application as new needs and opportunities arise. Existing applications or critical parts can be permanently or temporarily retained and encapsulated within the new tier of which it becomes a component.
+  - Displays information to the user.
+  - Sends user commands to the application tier via **APIs**.
+  - Receives and renders data from the application tier.
 
-3-tier application programs may also be referred to as n-tier programs. In this context, the letter *n* stands for "a number of tiers."
+- **Note**: Never directly interacts with the database.
+
+### 2. Application Tier (Business Logic Layer)
+
+- **Role**: Core business logic and application functionality.
+- **Technologies**: Java, C#, Python, Node.js, .NET, Spring, etc.
+- **Responsibility**:
+
+  - Processes client requests.
+  - Enforces business rules.
+  - Coordinates communication between the presentation and data tiers.
+
+- **Deployment**: On-premises servers, cloud infrastructure, or serverless platforms.
+
+### 3. Data Tier (Persistence Layer)
+
+- **Role**: Data storage and management.
+- **Technologies**: SQL databases (MySQL, PostgreSQL, Microsoft SQL Server), NoSQL databases (MongoDB, Cassandra).
+- **Responsibility**:
+
+  - Stores, retrieves, and updates data.
+  - Manages data integrity and security.
+  - Provides data to the application tier through queries.
+
+## Architecture Diagram
+
+![Three-Tier Architecture](https://cdn.ttgtmedia.com/rms/onlineImages/three_tier_arch_half_column_mobile.jpg)
+
+## Key Benefits
+
+| Benefit                    | Description                                                                                    |
+| -------------------------- | ---------------------------------------------------------------------------------------------- |
+| **Separation of Concerns** | Each tier has a clear, independent responsibility.                                             |
+| **Scalability**            | Tiers can be scaled independently, improving horizontal scalability.                           |
+| **Maintainability**        | Easier to update or modify one tier without affecting others.                                  |
+| **Flexibility**            | Different technologies can be used for each tier, allowing language and framework flexibility. |
+| **Parallel Development**   | Separate teams can work on different tiers simultaneously.                                     |
+| **Resilience**             | Failure in one tier does not necessarily cause total application failure.                      |
+
+## Comparison to n-Tier Architecture
+
+- **Three-tier**: Exactly three layers — Presentation, Application, and Data.
+- **n-Tier**: An extension of three-tier where additional layers (e.g., Service Layer, API Gateway, Caching Layer) can be added as needed.
+
+## Use Cases
+
+- Web applications
+- Enterprise software
+- E-commerce platforms
+- Mobile backend services
+- SaaS (Software as a Service) solutions
+
+## Three-Tier Architecture in Modern Development
+
+- **Microservices**: Often use a similar separation of concerns with additional distributed system considerations.
+- **Cloud-native applications**: Frequently deploy the three tiers across cloud services (e.g., AWS Lambda for logic, S3 for storage, CloudFront for UI).
+- **API-first development**: Leverages the clear boundaries between tiers to design robust APIs.
+
+## Conclusion
+
+**Three-tier architecture** promotes organized, scalable, and maintainable application development. Its separation of concerns and flexibility make it a foundational pattern for both traditional and modern software systems, including web, mobile, and cloud-native applications.

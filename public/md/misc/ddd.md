@@ -1,28 +1,123 @@
-# DDD
+# Domain-Driven Design (DDD)
 
-# **What is Domain Driven Design (DDD)?**
+**Domain-Driven Design (DDD)** is an approach to software development that emphasizes modeling software to match a complex domain's business concepts and logic. It promotes a deep collaboration between technical experts and domain experts to create models that reflect real-world processes.
 
-DDD is kind of a set of guidelines of how to use existing techniques and design patterns and to design and organize models to solve real world problems in different domains.
+## Key Characteristics
 
-It is a design pattern where the main focus is on the core domain logic. Complex designs are detected based on the domain’s model. The characteristics of DDD include:
+- **Focus on Domain Logic**: Core business logic is the primary concern.
+- **Iterative Refinement**: The model evolves through continuous collaboration with domain experts.
+- **Ubiquitous Language**: A common, precise language used by developers and domain experts.
+- **Bounded Contexts**: Large models are divided into smaller, manageable pieces with clear boundaries.
 
-- DDD focuses mostly on domain logic and the domain itself.
-- Complex designs are completely based on the domain’s model.
-- To improve the design of the model and fix any emerging issues, DDD constantly works in collaboration with domain experts.
-- You will have to write more code, but it will be less error prone, and well designed
+## Core Concepts
 
-## How can I use Domain Driven Design with Test Driven Development?
+### Domain Model
 
-DDD is a way of how you design a system (models), TDD is a way of how you develop a system. In the other word, after you apply DDD design a system, when you implement the system, you can practice TDD to make you code testable and solid. Personally, I never think TDD can help you design a system in an abstract level over a real world problem.
+A **domain model** is an abstract representation of the domain's entities, their behaviors, and relationships. It provides a blueprint for solving domain-specific problems in software.
 
-## How can I plug in Domain Driven Design into our agile development process?
+### Building Blocks
 
-There are three major parts introduced by DDD, ubiquities language, domain modelling and bounded context. Ubiquities language helps developers, domain expert and users to build up a common and comprehensible model based language. Domain modelling provides developers the ability to analyze a domain problem, and design a system for that problem at an abstract level — developers can have a deeper understanding to that problem, and quickly getting started to have further discussions with domain expert or users. Sometimes, to solve a domain problem, we need to deal with large models (multiple core models) and teams. Bounded context helps us to draw a map to have an explicit picture of how the large models will be divided and their interrelationships.
+1. **Entity**
 
-## What is domain model?
+   - Object defined by its identity rather than attributes.
+   - Example: `Customer`, `Order`.
 
-Short answer, domain model shows you how a domain problem should be solved. Longer answer, domain model depicts the relationships and interactions between domain entities and value objects based on domain knowledges described by domain expert or users.
+2. **Value Object**
 
-## How do I design domain model?
+   - Immutable object identified only by its attributes.
+   - Example: `Address`, `Money`.
 
-There are basically six building blocks available for you to design a domain model: Entity, Value Object, Aggregate, Repository, Factory and Service. The basic steps of getting started are: 1) Figuring out what entities and value objects are; 2) Defining an aggregate to represent a group of related entities and value objects; 3) Choosing an entity to be the root entity of the aggregate; 4) Defining behaviours of these entities based on domain knowledge (ubiquities language); 5) Adding APIs in the root entity to ensure all child entities life cycle are managed via root entity. 6) Designing factory and repository for the root entity to manage the life cycle of the aggregate. 7) You will find that some business behaviours are belong to more than one entity, then, this is a time you need to create a service to coordinate these entities to fulfill the business behaviour.
+3. **Aggregate**
+
+   - A cluster of related entities and value objects treated as a single unit.
+   - Example: `Order` (root) with `OrderItems` as children.
+
+4. **Aggregate Root**
+
+   - The main entity through which the aggregate is accessed and modified.
+
+5. **Repository**
+
+   - Provides methods to access and persist aggregates.
+   - Example: `OrderRepository`.
+
+6. **Factory**
+
+   - Handles complex creation logic for aggregates.
+
+7. **Service**
+
+   - Encapsulates domain logic that doesn’t naturally fit into an entity or value object.
+
+## Ubiquitous Language
+
+A **ubiquitous language** is developed collaboratively by the development team and domain experts. It ensures all team members use the same terms consistently in code, documentation, and discussions.
+
+## Bounded Context
+
+A **bounded context** defines a boundary within which a particular domain model applies. Different contexts may use different models and need clear integration strategies (e.g., REST APIs, messaging).
+
+## Strategic Design Patterns
+
+- **Context Mapping**: Visualizing and documenting how bounded contexts relate to each other.
+- **Anti-Corruption Layer (ACL)**: Prevents one context from being polluted by another’s model.
+- **Shared Kernel**: Shared subset of the domain model between contexts.
+- **Customer/Supplier**: Defines how contexts interact when one depends on another.
+
+## Applying DDD with Test-Driven Development (TDD)
+
+- **DDD** defines _what to build_: clear models and business rules.
+- **TDD** defines _how to build_: tests guide implementation, ensuring the design is testable and robust.
+- DDD provides the structure; TDD ensures correctness and drives out design details.
+
+## DDD in Agile Development
+
+- **Ubiquitous Language** ensures smooth communication.
+- **Domain Modeling** aids in understanding and refining requirements.
+- **Bounded Contexts** align with Agile team boundaries and allow parallel development.
+
+## Example (Simplified)
+
+```java
+public class Order {
+    private final OrderId id;
+    private final List<OrderItem> items;
+
+    public Order(OrderId id) {
+        this.id = id;
+        this.items = new ArrayList<>();
+    }
+
+    public void addItem(Product product, int quantity) {
+        this.items.add(new OrderItem(product, quantity));
+    }
+
+    // Business rules and behaviors
+}
+```
+
+Here, `Order` is an **Entity** and **Aggregate Root**, `OrderItem` could be a **Value Object**, and persistence would be handled by a **Repository**.
+
+## Advantages
+
+- Aligns software design closely with business goals.
+- Encourages rich models and reduces accidental complexity.
+- Promotes maintainability, testability, and scalability.
+
+## Challenges
+
+- Steep learning curve.
+- Requires strong collaboration with domain experts.
+- Potential over-engineering for simple domains.
+
+## When to Use DDD
+
+✅ Complex business domains
+✅ Long-term projects with evolving requirements
+✅ Teams with close collaboration between developers and domain experts
+
+## When Not to Use
+
+❌ Simple CRUD applications
+❌ Projects with minimal domain logic
+❌ Very short-term projects

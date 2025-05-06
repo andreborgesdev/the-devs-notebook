@@ -1,4 +1,4 @@
-# Kafka Streams Deep Dive
+# Kafka Streams
 
 **Kafka Streams** is a Java library for building distributed, scalable, and fault-tolerant stream processing applications natively integrated with Apache Kafka.
 
@@ -118,12 +118,12 @@ Long count = store.get("key");
 
 ## Benefits of Kafka Streams
 
-✅ No external cluster or separate processing framework required
-✅ Elastic scalability
-✅ Strong delivery guarantees: **at-least-once** and **exactly-once**
-✅ Supports both **stateless** and **stateful** processing
-✅ Native Kafka integration
-✅ Lightweight library (no need for separate services like Flink or Spark)
+- No external cluster or separate processing framework required
+- Elastic scalability
+- Strong delivery guarantees: **at-least-once** and **exactly-once**
+- Supports both **stateless** and **stateful** processing
+- Native Kafka integration
+- Lightweight library (no need for separate services like Flink or Spark)
 
 ## When to Use Kafka Streams
 

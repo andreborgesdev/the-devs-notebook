@@ -1,7 +1,4 @@
-[] Add BST
-[] Add vector
 [] Add memory stack vs heap
-[] Add recursion
 [] Add power of 2 table
 [] Add scala
 [] Add kotlin

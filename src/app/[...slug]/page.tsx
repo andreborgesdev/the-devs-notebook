@@ -138,6 +138,9 @@ export default async function ContentPage({
                 </h6>
               );
             },
+            a: ({ node, ...props }) => {
+              return <a {...props} target="_blank" rel="noopener noreferrer" />;
+            },
           }}
         >
           {fileContents}
