@@ -414,7 +414,7 @@ export const Content: ContentItem[] = [
     items: [
       {
         title: "Introduction",
-        url: "/java/java",
+        url: "/java/introduction",
         icon: "💡",
       },
       {
