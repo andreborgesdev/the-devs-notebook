@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Crimson_Text } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { Separator } from "@radix-ui/react-separator";
@@ -12,16 +12,28 @@ import {
 import { Breadcrumbs } from "@/src/components/breadcrumbs";
 import { SearchBar } from "@/src/components/search-bar"; // Import the SearchBar
 import { NavigationProvider } from "@/src/contexts/NavigationContext";
+import { ImageOptimizationProvider } from "@/src/components/image-optimization-provider";
 import "katex/dist/katex.min.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600"],
+});
+
+const crimsonText = Crimson_Text({
+  variable: "--font-crimson",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "600"],
 });
 
 export const metadata: Metadata = {
@@ -38,7 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${crimsonText.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -47,6 +59,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NavigationProvider>
+            <ImageOptimizationProvider />
             <SidebarProvider>
               <AppSidebar />
               <SidebarInset>

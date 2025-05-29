@@ -2,25 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(
-    135deg,
-    rgb(248, 250, 252) 0%,
-    rgb(241, 245, 249) 100%
-  );
+@layer base {
+  html {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-variant-ligatures: contextual;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "pnum" 1, "tnum" 0,
+      "onum" 1, "lnum" 0, "dlig" 0;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.7;
+    letter-spacing: 0.015em;
+    background: linear-gradient(
+      135deg,
+      rgb(248, 250, 252) 0%,
+      rgb(241, 245, 249) 100%
+    );
+  }
+
+  .dark body {
+    background: linear-gradient(
+      135deg,
+      rgb(15, 23, 42) 0%,
+      rgb(30, 41, 59) 100%
+    );
+  }
 }
 
-.dark body {
-  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%);
+/* Enhanced Markdown Content Typography */
+.markdown-content {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "pnum" 1, "tnum" 0,
+    "onum" 1, "lnum" 0, "dlig" 0;
+}
+
+.markdown-content > * + * {
+  @apply mt-6;
 }
 
 .markdown-content h1 {
-  @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl my-4;
+  @apply scroll-m-20 font-extrabold tracking-tight first:mt-0;
+  font-family: var(--font-crimson), Georgia, serif;
+  font-size: 2.25rem;
+  line-height: 1.1;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  font-feature-settings: "kern" 1, "liga" 1, "dlig" 1;
+  letter-spacing: -0.025em;
+}
+
+@media (min-width: 1024px) {
+  .markdown-content h1 {
+    font-size: 3rem;
+  }
 }
 
 .markdown-content h2 {
-  @apply scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0 my-3 relative;
+  @apply scroll-m-20 font-semibold tracking-tight first:mt-0 relative;
+  font-family: var(--font-crimson), Georgia, serif;
+  font-size: 1.875rem;
+  line-height: 1.2;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  font-feature-settings: "kern" 1, "liga" 1, "dlig" 1;
+  letter-spacing: -0.025em;
 }
 
 .markdown-content h2::after {
@@ -35,19 +84,72 @@ body {
 }
 
 .markdown-content h3 {
-  @apply scroll-m-20 text-2xl font-semibold tracking-tight my-2;
+  @apply scroll-m-20 font-semibold tracking-tight;
+  font-family: var(--font-crimson), Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-feature-settings: "kern" 1, "liga" 1, "dlig" 1;
+  letter-spacing: -0.025em;
 }
 
 .markdown-content h4 {
-  @apply scroll-m-20 text-xl font-semibold tracking-tight my-1;
+  @apply scroll-m-20 font-medium tracking-tight;
+  font-family: var(--font-crimson), Georgia, serif;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-feature-settings: "kern" 1, "liga" 1;
+  letter-spacing: -0.025em;
+}
+
+.markdown-content h5 {
+  @apply scroll-m-20 font-medium tracking-tight;
+  font-family: var(--font-crimson), Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.markdown-content h6 {
+  @apply scroll-m-20 font-medium tracking-tight;
+  font-family: var(--font-crimson), Georgia, serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .markdown-content p {
-  @apply leading-7 text-slate-700 dark:text-slate-300;
+  @apply text-slate-700 dark:text-slate-300;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  hyphens: auto;
+  hanging-punctuation: first;
+}
+
+.markdown-content p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-content strong {
+  @apply font-semibold text-slate-900 dark:text-slate-100;
+}
+
+.markdown-content em {
+  font-style: italic;
 }
 
 .markdown-content blockquote {
-  @apply my-3 border-l-2 pl-6 italic relative;
+  @apply border-l-4 border-blue-500 italic relative;
+  font-family: var(--font-crimson), Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin: 1.5rem 0;
+  padding: 1rem 0 1rem 1.5rem;
   background: linear-gradient(
     135deg,
     rgb(239, 246, 255) 0%,
@@ -63,12 +165,101 @@ body {
   );
 }
 
+.markdown-content blockquote p {
+  @apply text-slate-600 dark:text-slate-400;
+  margin-bottom: 0;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin: 1.25rem 0;
+  margin-left: 1.5rem;
+}
+
 .markdown-content ul {
-  @apply ml-6 list-disc [&>li]:mt-2;
+  list-style-type: disc;
+}
+
+.markdown-content ol {
+  list-style-type: decimal;
+}
+
+.markdown-content li {
+  @apply text-slate-700 dark:text-slate-300;
+  line-height: 1.8;
+  margin: 0.5rem 0;
+  padding-left: 0.5rem;
+}
+
+.markdown-content li > p {
+  margin-bottom: 0.5rem;
+}
+
+.markdown-content li:last-child > p {
+  margin-bottom: 0;
+}
+
+.markdown-content pre {
+  @apply bg-slate-50 dark:bg-slate-900 border rounded-lg;
+  font-family: var(--font-jetbrains-mono), Monaco, Consolas, monospace;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  overflow-x: auto;
 }
 
 .markdown-content code {
-  @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
+  @apply relative rounded bg-slate-100 dark:bg-slate-800 font-medium;
+  font-family: var(--font-jetbrains-mono), Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  padding: 0.125rem 0.5rem;
+  font-feature-settings: "liga" 0;
+}
+
+.markdown-content pre code {
+  background: transparent;
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+.markdown-content a {
+  @apply text-blue-600 dark:text-blue-400 transition-colors;
+  text-decoration: underline;
+  text-decoration-color: rgba(59, 130, 246, 0.3);
+  text-underline-offset: 2px;
+}
+
+.markdown-content a:hover {
+  @apply text-blue-700 dark:text-blue-300;
+  text-decoration-color: rgba(59, 130, 246, 0.5);
+}
+
+.dark .markdown-content a {
+  text-decoration-color: rgba(96, 165, 250, 0.3);
+}
+
+.dark .markdown-content a:hover {
+  text-decoration-color: rgba(96, 165, 250, 0.5);
+}
+
+.markdown-content hr {
+  margin: 2rem 0;
+  border: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgb(203, 213, 225),
+    transparent
+  );
+}
+
+.dark .markdown-content hr {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgb(71, 85, 105),
+    transparent
+  );
 }
 
 @layer base {

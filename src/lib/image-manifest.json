@@ -1,0 +1,893 @@
+{
+  "images": {
+    "/images/abstract-classes-vs-interfaces.png": {
+      "original": "/images/abstract-classes-vs-interfaces.png",
+      "webp": "/images/optimized/abstract-classes-vs-interfaces.webp",
+      "avif": "/images/optimized/abstract-classes-vs-interfaces.avif",
+      "sizes": []
+    },
+    "/images/abstraction-vs-encapsulation.png": {
+      "original": "/images/abstraction-vs-encapsulation.png",
+      "webp": "/images/optimized/abstraction-vs-encapsulation.webp",
+      "avif": "/images/optimized/abstraction-vs-encapsulation.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/abstraction-vs-encapsulation-400w.webp",
+          "avif": "/images/optimized/abstraction-vs-encapsulation-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/abstraction-vs-encapsulation-800w.webp",
+          "avif": "/images/optimized/abstraction-vs-encapsulation-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/abstraction-vs-encapsulation-1200w.webp",
+          "avif": "/images/optimized/abstraction-vs-encapsulation-1200w.avif"
+        }
+      ]
+    },
+    "/images/abstraction.jpg": {
+      "original": "/images/abstraction.jpg",
+      "webp": "/images/optimized/abstraction.webp",
+      "avif": "/images/optimized/abstraction.avif",
+      "sizes": []
+    },
+    "/images/access-modifiers.png": {
+      "original": "/images/access-modifiers.png",
+      "webp": "/images/optimized/access-modifiers.webp",
+      "avif": "/images/optimized/access-modifiers.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/access-modifiers-400w.webp",
+          "avif": "/images/optimized/access-modifiers-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/access-modifiers-800w.webp",
+          "avif": "/images/optimized/access-modifiers-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/access-modifiers-1200w.webp",
+          "avif": "/images/optimized/access-modifiers-1200w.avif"
+        }
+      ]
+    },
+    "/images/algos-cheatsheet.png": {
+      "original": "/images/algos-cheatsheet.png",
+      "webp": "/images/optimized/algos-cheatsheet.webp",
+      "avif": "/images/optimized/algos-cheatsheet.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/algos-cheatsheet-400w.webp",
+          "avif": "/images/optimized/algos-cheatsheet-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/algos-cheatsheet-800w.webp",
+          "avif": "/images/optimized/algos-cheatsheet-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/algos-cheatsheet-1200w.webp",
+          "avif": "/images/optimized/algos-cheatsheet-1200w.avif"
+        }
+      ]
+    },
+    "/images/arraylist.png": {
+      "original": "/images/arraylist.png",
+      "webp": "/images/optimized/arraylist.webp",
+      "avif": "/images/optimized/arraylist.avif",
+      "sizes": []
+    },
+    "/images/authentication-and-authorization.png": {
+      "original": "/images/authentication-and-authorization.png",
+      "webp": "/images/optimized/authentication-and-authorization.webp",
+      "avif": "/images/optimized/authentication-and-authorization.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/authentication-and-authorization-400w.webp",
+          "avif": "/images/optimized/authentication-and-authorization-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/authentication-and-authorization-800w.webp",
+          "avif": "/images/optimized/authentication-and-authorization-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/authentication-and-authorization-1200w.webp",
+          "avif": "/images/optimized/authentication-and-authorization-1200w.avif"
+        }
+      ]
+    },
+    "/images/basic-auth.png": {
+      "original": "/images/basic-auth.png",
+      "webp": "/images/optimized/basic-auth.webp",
+      "avif": "/images/optimized/basic-auth.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/basic-auth-400w.webp",
+          "avif": "/images/optimized/basic-auth-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/basic-auth-800w.webp",
+          "avif": "/images/optimized/basic-auth-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/basic-auth-1200w.webp",
+          "avif": "/images/optimized/basic-auth-1200w.avif"
+        }
+      ]
+    },
+    "/images/big-o-3.png": {
+      "original": "/images/big-o-3.png",
+      "webp": "/images/optimized/big-o-3.webp",
+      "avif": "/images/optimized/big-o-3.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/big-o-3-400w.webp",
+          "avif": "/images/optimized/big-o-3-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/big-o-3-800w.webp",
+          "avif": "/images/optimized/big-o-3-800w.avif"
+        }
+      ]
+    },
+    "/images/binary-search.gif": {
+      "original": "/images/binary-search.gif",
+      "webp": "/images/optimized/binary-search.webp",
+      "avif": "/images/optimized/binary-search.avif",
+      "sizes": []
+    },
+    "/images/bubble-sort-example.png": {
+      "original": "/images/bubble-sort-example.png",
+      "webp": "/images/optimized/bubble-sort-example.webp",
+      "avif": "/images/optimized/bubble-sort-example.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/bubble-sort-example-400w.webp",
+          "avif": "/images/optimized/bubble-sort-example-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/bubble-sort-example-800w.webp",
+          "avif": "/images/optimized/bubble-sort-example-800w.avif"
+        }
+      ]
+    },
+    "/images/clean-code-cheat-sheet.png": {
+      "original": "/images/clean-code-cheat-sheet.png",
+      "webp": "/images/optimized/clean-code-cheat-sheet.webp",
+      "avif": "/images/optimized/clean-code-cheat-sheet.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/clean-code-cheat-sheet-400w.webp",
+          "avif": "/images/optimized/clean-code-cheat-sheet-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/clean-code-cheat-sheet-800w.webp",
+          "avif": "/images/optimized/clean-code-cheat-sheet-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/clean-code-cheat-sheet-1200w.webp",
+          "avif": "/images/optimized/clean-code-cheat-sheet-1200w.avif"
+        }
+      ]
+    },
+    "/images/controller-vs-rest-controller.png": {
+      "original": "/images/controller-vs-rest-controller.png",
+      "webp": "/images/optimized/controller-vs-rest-controller.webp",
+      "avif": "/images/optimized/controller-vs-rest-controller.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/controller-vs-rest-controller-400w.webp",
+          "avif": "/images/optimized/controller-vs-rest-controller-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/controller-vs-rest-controller-800w.webp",
+          "avif": "/images/optimized/controller-vs-rest-controller-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/controller-vs-rest-controller-1200w.webp",
+          "avif": "/images/optimized/controller-vs-rest-controller-1200w.avif"
+        }
+      ]
+    },
+    "/images/csrf-token-flow.png": {
+      "original": "/images/csrf-token-flow.png",
+      "webp": "/images/optimized/csrf-token-flow.webp",
+      "avif": "/images/optimized/csrf-token-flow.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/csrf-token-flow-400w.webp",
+          "avif": "/images/optimized/csrf-token-flow-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/csrf-token-flow-800w.webp",
+          "avif": "/images/optimized/csrf-token-flow-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/csrf-token-flow-1200w.webp",
+          "avif": "/images/optimized/csrf-token-flow-1200w.avif"
+        }
+      ]
+    },
+    "/images/encapsulation.png": {
+      "original": "/images/encapsulation.png",
+      "webp": "/images/optimized/encapsulation.webp",
+      "avif": "/images/optimized/encapsulation.avif",
+      "sizes": []
+    },
+    "/images/file-storage-types.png": {
+      "original": "/images/file-storage-types.png",
+      "webp": "/images/optimized/file-storage-types.webp",
+      "avif": "/images/optimized/file-storage-types.avif",
+      "sizes": []
+    },
+    "/images/form-based-auth.png": {
+      "original": "/images/form-based-auth.png",
+      "webp": "/images/optimized/form-based-auth.webp",
+      "avif": "/images/optimized/form-based-auth.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/form-based-auth-400w.webp",
+          "avif": "/images/optimized/form-based-auth-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/form-based-auth-800w.webp",
+          "avif": "/images/optimized/form-based-auth-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/form-based-auth-1200w.webp",
+          "avif": "/images/optimized/form-based-auth-1200w.avif"
+        }
+      ]
+    },
+    "/images/hdfs-architecture.gif": {
+      "original": "/images/hdfs-architecture.gif",
+      "webp": "/images/optimized/hdfs-architecture.webp",
+      "avif": "/images/optimized/hdfs-architecture.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/hdfs-architecture-400w.webp",
+          "avif": "/images/optimized/hdfs-architecture-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/hdfs-architecture-800w.webp",
+          "avif": "/images/optimized/hdfs-architecture-800w.avif"
+        }
+      ]
+    },
+    "/images/horizontal-partitioning.png": {
+      "original": "/images/horizontal-partitioning.png",
+      "webp": "/images/optimized/horizontal-partitioning.webp",
+      "avif": "/images/optimized/horizontal-partitioning.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/horizontal-partitioning-400w.webp",
+          "avif": "/images/optimized/horizontal-partitioning-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/horizontal-partitioning-800w.webp",
+          "avif": "/images/optimized/horizontal-partitioning-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/horizontal-partitioning-1200w.webp",
+          "avif": "/images/optimized/horizontal-partitioning-1200w.avif"
+        }
+      ]
+    },
+    "/images/http-idempotent-vs-safe-methods.png": {
+      "original": "/images/http-idempotent-vs-safe-methods.png",
+      "webp": "/images/optimized/http-idempotent-vs-safe-methods.webp",
+      "avif": "/images/optimized/http-idempotent-vs-safe-methods.avif",
+      "sizes": []
+    },
+    "/images/java-access-modifiers.png": {
+      "original": "/images/java-access-modifiers.png",
+      "webp": "/images/optimized/java-access-modifiers.webp",
+      "avif": "/images/optimized/java-access-modifiers.avif",
+      "sizes": []
+    },
+    "/images/java-cheatsheet-1.jpg": {
+      "original": "/images/java-cheatsheet-1.jpg",
+      "webp": "/images/optimized/java-cheatsheet-1.webp",
+      "avif": "/images/optimized/java-cheatsheet-1.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/java-cheatsheet-1-400w.webp",
+          "avif": "/images/optimized/java-cheatsheet-1-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/java-cheatsheet-1-800w.webp",
+          "avif": "/images/optimized/java-cheatsheet-1-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/java-cheatsheet-1-1200w.webp",
+          "avif": "/images/optimized/java-cheatsheet-1-1200w.avif"
+        }
+      ]
+    },
+    "/images/java-cheatsheet-2.jpg": {
+      "original": "/images/java-cheatsheet-2.jpg",
+      "webp": "/images/optimized/java-cheatsheet-2.webp",
+      "avif": "/images/optimized/java-cheatsheet-2.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/java-cheatsheet-2-400w.webp",
+          "avif": "/images/optimized/java-cheatsheet-2-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/java-cheatsheet-2-800w.webp",
+          "avif": "/images/optimized/java-cheatsheet-2-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/java-cheatsheet-2-1200w.webp",
+          "avif": "/images/optimized/java-cheatsheet-2-1200w.avif"
+        }
+      ]
+    },
+    "/images/java-cheatsheet-3.png": {
+      "original": "/images/java-cheatsheet-3.png",
+      "webp": "/images/optimized/java-cheatsheet-3.webp",
+      "avif": "/images/optimized/java-cheatsheet-3.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/java-cheatsheet-3-400w.webp",
+          "avif": "/images/optimized/java-cheatsheet-3-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/java-cheatsheet-3-800w.webp",
+          "avif": "/images/optimized/java-cheatsheet-3-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/java-cheatsheet-3-1200w.webp",
+          "avif": "/images/optimized/java-cheatsheet-3-1200w.avif"
+        }
+      ]
+    },
+    "/images/java-collections-api.png": {
+      "original": "/images/java-collections-api.png",
+      "webp": "/images/optimized/java-collections-api.webp",
+      "avif": "/images/optimized/java-collections-api.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/java-collections-api-400w.webp",
+          "avif": "/images/optimized/java-collections-api-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/java-collections-api-800w.webp",
+          "avif": "/images/optimized/java-collections-api-800w.avif"
+        }
+      ]
+    },
+    "/images/java-collections-cheat-sheet.png": {
+      "original": "/images/java-collections-cheat-sheet.png",
+      "webp": "/images/optimized/java-collections-cheat-sheet.webp",
+      "avif": "/images/optimized/java-collections-cheat-sheet.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/java-collections-cheat-sheet-400w.webp",
+          "avif": "/images/optimized/java-collections-cheat-sheet-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/java-collections-cheat-sheet-800w.webp",
+          "avif": "/images/optimized/java-collections-cheat-sheet-800w.avif"
+        }
+      ]
+    },
+    "/images/java-collections-interfaces-vs-implementation.png": {
+      "original": "/images/java-collections-interfaces-vs-implementation.png",
+      "webp": "/images/optimized/java-collections-interfaces-vs-implementation.webp",
+      "avif": "/images/optimized/java-collections-interfaces-vs-implementation.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/java-collections-interfaces-vs-implementation-400w.webp",
+          "avif": "/images/optimized/java-collections-interfaces-vs-implementation-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/java-collections-interfaces-vs-implementation-800w.webp",
+          "avif": "/images/optimized/java-collections-interfaces-vs-implementation-800w.avif"
+        }
+      ]
+    },
+    "/images/java-date.png": {
+      "original": "/images/java-date.png",
+      "webp": "/images/optimized/java-date.webp",
+      "avif": "/images/optimized/java-date.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/java-date-400w.webp",
+          "avif": "/images/optimized/java-date-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/java-date-800w.webp",
+          "avif": "/images/optimized/java-date-800w.avif"
+        }
+      ]
+    },
+    "/images/java-iterable.png": {
+      "original": "/images/java-iterable.png",
+      "webp": "/images/optimized/java-iterable.webp",
+      "avif": "/images/optimized/java-iterable.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/java-iterable-400w.webp",
+          "avif": "/images/optimized/java-iterable-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/java-iterable-800w.webp",
+          "avif": "/images/optimized/java-iterable-800w.avif"
+        }
+      ]
+    },
+    "/images/java-map-api.png": {
+      "original": "/images/java-map-api.png",
+      "webp": "/images/optimized/java-map-api.webp",
+      "avif": "/images/optimized/java-map-api.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/java-map-api-400w.webp",
+          "avif": "/images/optimized/java-map-api-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/java-map-api-800w.webp",
+          "avif": "/images/optimized/java-map-api-800w.avif"
+        }
+      ]
+    },
+    "/images/java-primitive-types.png": {
+      "original": "/images/java-primitive-types.png",
+      "webp": "/images/optimized/java-primitive-types.webp",
+      "avif": "/images/optimized/java-primitive-types.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/java-primitive-types-400w.webp",
+          "avif": "/images/optimized/java-primitive-types-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/java-primitive-types-800w.webp",
+          "avif": "/images/optimized/java-primitive-types-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/java-primitive-types-1200w.webp",
+          "avif": "/images/optimized/java-primitive-types-1200w.avif"
+        }
+      ]
+    },
+    "/images/java-stack-vs-heap.png": {
+      "original": "/images/java-stack-vs-heap.png",
+      "webp": "/images/optimized/java-stack-vs-heap.webp",
+      "avif": "/images/optimized/java-stack-vs-heap.avif",
+      "sizes": []
+    },
+    "/images/java-strings-differences.png": {
+      "original": "/images/java-strings-differences.png",
+      "webp": "/images/optimized/java-strings-differences.webp",
+      "avif": "/images/optimized/java-strings-differences.avif",
+      "sizes": []
+    },
+    "/images/jwt.png": {
+      "original": "/images/jwt.png",
+      "webp": "/images/optimized/jwt.webp",
+      "avif": "/images/optimized/jwt.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/jwt-400w.webp",
+          "avif": "/images/optimized/jwt-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/jwt-800w.webp",
+          "avif": "/images/optimized/jwt-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/jwt-1200w.webp",
+          "avif": "/images/optimized/jwt-1200w.avif"
+        }
+      ]
+    },
+    "/images/logo.png": {
+      "original": "/images/logo.png",
+      "webp": "/images/optimized/logo.webp",
+      "avif": "/images/optimized/logo.avif",
+      "sizes": []
+    },
+    "/images/logout-url.png": {
+      "original": "/images/logout-url.png",
+      "webp": "/images/optimized/logout-url.webp",
+      "avif": "/images/optimized/logout-url.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/logout-url-400w.webp",
+          "avif": "/images/optimized/logout-url-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/logout-url-800w.webp",
+          "avif": "/images/optimized/logout-url-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/logout-url-1200w.webp",
+          "avif": "/images/optimized/logout-url-1200w.avif"
+        }
+      ]
+    },
+    "/images/master-slave.png": {
+      "original": "/images/master-slave.png",
+      "webp": "/images/optimized/master-slave.webp",
+      "avif": "/images/optimized/master-slave.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/master-slave-400w.webp",
+          "avif": "/images/optimized/master-slave-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/master-slave-800w.webp",
+          "avif": "/images/optimized/master-slave-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/master-slave-1200w.webp",
+          "avif": "/images/optimized/master-slave-1200w.avif"
+        }
+      ]
+    },
+    "/images/mnemonic-vs-private-public-key.png": {
+      "original": "/images/mnemonic-vs-private-public-key.png",
+      "webp": "/images/optimized/mnemonic-vs-private-public-key.webp",
+      "avif": "/images/optimized/mnemonic-vs-private-public-key.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/mnemonic-vs-private-public-key-400w.webp",
+          "avif": "/images/optimized/mnemonic-vs-private-public-key-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/mnemonic-vs-private-public-key-800w.webp",
+          "avif": "/images/optimized/mnemonic-vs-private-public-key-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/mnemonic-vs-private-public-key-1200w.webp",
+          "avif": "/images/optimized/mnemonic-vs-private-public-key-1200w.avif"
+        }
+      ]
+    },
+    "/images/permissions-and-roles.png": {
+      "original": "/images/permissions-and-roles.png",
+      "webp": "/images/optimized/permissions-and-roles.webp",
+      "avif": "/images/optimized/permissions-and-roles.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/permissions-and-roles-400w.webp",
+          "avif": "/images/optimized/permissions-and-roles-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/permissions-and-roles-800w.webp",
+          "avif": "/images/optimized/permissions-and-roles-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/permissions-and-roles-1200w.webp",
+          "avif": "/images/optimized/permissions-and-roles-1200w.avif"
+        }
+      ]
+    },
+    "/images/put-vs-post.png": {
+      "original": "/images/put-vs-post.png",
+      "webp": "/images/optimized/put-vs-post.webp",
+      "avif": "/images/optimized/put-vs-post.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/put-vs-post-400w.webp",
+          "avif": "/images/optimized/put-vs-post-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/put-vs-post-800w.webp",
+          "avif": "/images/optimized/put-vs-post-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/put-vs-post-1200w.webp",
+          "avif": "/images/optimized/put-vs-post-1200w.avif"
+        }
+      ]
+    },
+    "/images/request-controller-flow.png": {
+      "original": "/images/request-controller-flow.png",
+      "webp": "/images/optimized/request-controller-flow.webp",
+      "avif": "/images/optimized/request-controller-flow.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/request-controller-flow-400w.webp",
+          "avif": "/images/optimized/request-controller-flow-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/request-controller-flow-800w.webp",
+          "avif": "/images/optimized/request-controller-flow-800w.avif"
+        }
+      ]
+    },
+    "/images/request-diff-between-rest-and-web-sockets.png": {
+      "original": "/images/request-diff-between-rest-and-web-sockets.png",
+      "webp": "/images/optimized/request-diff-between-rest-and-web-sockets.webp",
+      "avif": "/images/optimized/request-diff-between-rest-and-web-sockets.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/request-diff-between-rest-and-web-sockets-400w.webp",
+          "avif": "/images/optimized/request-diff-between-rest-and-web-sockets-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/request-diff-between-rest-and-web-sockets-800w.webp",
+          "avif": "/images/optimized/request-diff-between-rest-and-web-sockets-800w.avif"
+        }
+      ]
+    },
+    "/images/rest-vs-ajax.png": {
+      "original": "/images/rest-vs-ajax.png",
+      "webp": "/images/optimized/rest-vs-ajax.webp",
+      "avif": "/images/optimized/rest-vs-ajax.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/rest-vs-ajax-400w.webp",
+          "avif": "/images/optimized/rest-vs-ajax-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/rest-vs-ajax-800w.webp",
+          "avif": "/images/optimized/rest-vs-ajax-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/rest-vs-ajax-1200w.webp",
+          "avif": "/images/optimized/rest-vs-ajax-1200w.avif"
+        }
+      ]
+    },
+    "/images/rest-vs-soap.png": {
+      "original": "/images/rest-vs-soap.png",
+      "webp": "/images/optimized/rest-vs-soap.webp",
+      "avif": "/images/optimized/rest-vs-soap.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/rest-vs-soap-400w.webp",
+          "avif": "/images/optimized/rest-vs-soap-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/rest-vs-soap-800w.webp",
+          "avif": "/images/optimized/rest-vs-soap-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/rest-vs-soap-1200w.webp",
+          "avif": "/images/optimized/rest-vs-soap-1200w.avif"
+        }
+      ]
+    },
+    "/images/rest-vs-web-sockets.png": {
+      "original": "/images/rest-vs-web-sockets.png",
+      "webp": "/images/optimized/rest-vs-web-sockets.webp",
+      "avif": "/images/optimized/rest-vs-web-sockets.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/rest-vs-web-sockets-400w.webp",
+          "avif": "/images/optimized/rest-vs-web-sockets-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/rest-vs-web-sockets-800w.webp",
+          "avif": "/images/optimized/rest-vs-web-sockets-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/rest-vs-web-sockets-1200w.webp",
+          "avif": "/images/optimized/rest-vs-web-sockets-1200w.avif"
+        }
+      ]
+    },
+    "/images/scaling-trade-offs.png": {
+      "original": "/images/scaling-trade-offs.png",
+      "webp": "/images/optimized/scaling-trade-offs.webp",
+      "avif": "/images/optimized/scaling-trade-offs.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/scaling-trade-offs-400w.webp",
+          "avif": "/images/optimized/scaling-trade-offs-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/scaling-trade-offs-800w.webp",
+          "avif": "/images/optimized/scaling-trade-offs-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/scaling-trade-offs-1200w.webp",
+          "avif": "/images/optimized/scaling-trade-offs-1200w.avif"
+        }
+      ]
+    },
+    "/images/security-with-jwt.png": {
+      "original": "/images/security-with-jwt.png",
+      "webp": "/images/optimized/security-with-jwt.webp",
+      "avif": "/images/optimized/security-with-jwt.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/security-with-jwt-400w.webp",
+          "avif": "/images/optimized/security-with-jwt-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/security-with-jwt-800w.webp",
+          "avif": "/images/optimized/security-with-jwt-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/security-with-jwt-1200w.webp",
+          "avif": "/images/optimized/security-with-jwt-1200w.avif"
+        }
+      ]
+    },
+    "/images/storage-volumes.png": {
+      "original": "/images/storage-volumes.png",
+      "webp": "/images/optimized/storage-volumes.webp",
+      "avif": "/images/optimized/storage-volumes.avif",
+      "sizes": []
+    },
+    "/images/students-table-1st-normal-form.png": {
+      "original": "/images/students-table-1st-normal-form.png",
+      "webp": "/images/optimized/students-table-1st-normal-form.webp",
+      "avif": "/images/optimized/students-table-1st-normal-form.avif",
+      "sizes": []
+    },
+    "/images/students-table-2nd-normal-form.png": {
+      "original": "/images/students-table-2nd-normal-form.png",
+      "webp": "/images/optimized/students-table-2nd-normal-form.webp",
+      "avif": "/images/optimized/students-table-2nd-normal-form.avif",
+      "sizes": []
+    },
+    "/images/students-table-3rd-normal-form.png": {
+      "original": "/images/students-table-3rd-normal-form.png",
+      "webp": "/images/optimized/students-table-3rd-normal-form.webp",
+      "avif": "/images/optimized/students-table-3rd-normal-form.avif",
+      "sizes": []
+    },
+    "/images/students-table.png": {
+      "original": "/images/students-table.png",
+      "webp": "/images/optimized/students-table.webp",
+      "avif": "/images/optimized/students-table.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/students-table-400w.webp",
+          "avif": "/images/optimized/students-table-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/students-table-800w.webp",
+          "avif": "/images/optimized/students-table-800w.avif"
+        }
+      ]
+    },
+    "/images/vertical-partitioning.png": {
+      "original": "/images/vertical-partitioning.png",
+      "webp": "/images/optimized/vertical-partitioning.webp",
+      "avif": "/images/optimized/vertical-partitioning.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/vertical-partitioning-400w.webp",
+          "avif": "/images/optimized/vertical-partitioning-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/vertical-partitioning-800w.webp",
+          "avif": "/images/optimized/vertical-partitioning-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/vertical-partitioning-1200w.webp",
+          "avif": "/images/optimized/vertical-partitioning-1200w.avif"
+        }
+      ]
+    },
+    "/images/when-to-use-csrf.png": {
+      "original": "/images/when-to-use-csrf.png",
+      "webp": "/images/optimized/when-to-use-csrf.webp",
+      "avif": "/images/optimized/when-to-use-csrf.avif",
+      "sizes": [
+        {
+          "width": 400,
+          "webp": "/images/optimized/when-to-use-csrf-400w.webp",
+          "avif": "/images/optimized/when-to-use-csrf-400w.avif"
+        },
+        {
+          "width": 800,
+          "webp": "/images/optimized/when-to-use-csrf-800w.webp",
+          "avif": "/images/optimized/when-to-use-csrf-800w.avif"
+        },
+        {
+          "width": 1200,
+          "webp": "/images/optimized/when-to-use-csrf-1200w.webp",
+          "avif": "/images/optimized/when-to-use-csrf-1200w.avif"
+        }
+      ]
+    }
+  },
+  "generated": "2025-05-29T17:33:47.659Z"
+}

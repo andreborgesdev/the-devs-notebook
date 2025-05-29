@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "optimize-images": "node scripts/optimize-images.js",
+    "build:optimized": "npm run optimize-images && npm run build"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.2",
@@ -44,6 +46,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.1.0",
     "postcss": "^8",
+    "sharp": "^0.33.5",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }

@@ -4,6 +4,7 @@ import { MarkdownAsync } from "react-markdown";
 import fs from "fs";
 import { TableOfContents } from "@/src/components/table-of-contents";
 import { ScrollToTop } from "@/src/components/scroll-to-top";
+import { SmartImage } from "@/src/components/smart-image";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -11,6 +12,7 @@ import { transformerCopyButton } from "@rehype-pretty/transformers";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { generateUniqueHeadingIds } from "@/src/lib/heading-utils";
+import { optimizeImagePath, shouldPreloadImage, getImageDimensions } from "@/src/lib/image-utils";
 
 export default async function ContentPage({
   params,
@@ -177,6 +179,24 @@ export default async function ContentPage({
                   >
                     {children}
                   </blockquote>
+                );
+              },
+              img: ({ src, alt, ...props }: any) => {
+                if (!src || typeof src !== 'string') return null;
+                
+                const optimizedSrc = optimizeImagePath(src);
+                const { width, height } = getImageDimensions(src);
+                const priority = shouldPreloadImage(src, 0);
+                
+                return (
+                  <SmartImage
+                    src={optimizedSrc}
+                    alt={alt || ""}
+                    width={width}
+                    height={height}
+                    priority={priority}
+                    className="my-6 rounded-lg shadow-sm"
+                  />
                 );
               },
               pre: ({ children, ...props }) => {
