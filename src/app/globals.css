@@ -4,6 +4,15 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(
+    135deg,
+    rgb(248, 250, 252) 0%,
+    rgb(241, 245, 249) 100%
+  );
+}
+
+.dark body {
+  background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 100%);
 }
 
 .markdown-content h1 {
@@ -11,7 +20,18 @@ body {
 }
 
 .markdown-content h2 {
-  @apply scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0 my-3;
+  @apply scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0 my-3 relative;
+}
+
+.markdown-content h2::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, rgb(59, 130, 246), rgb(147, 51, 234));
+  border-radius: 2px;
 }
 
 .markdown-content h3 {
@@ -23,11 +43,24 @@ body {
 }
 
 .markdown-content p {
-  @apply leading-7;
+  @apply leading-7 text-slate-700 dark:text-slate-300;
 }
 
 .markdown-content blockquote {
-  @apply my-3 border-l-2 pl-6 italic;
+  @apply my-3 border-l-2 pl-6 italic relative;
+  background: linear-gradient(
+    135deg,
+    rgb(239, 246, 255) 0%,
+    rgb(224, 242, 254) 100%
+  );
+}
+
+.dark .markdown-content blockquote {
+  background: linear-gradient(
+    135deg,
+    rgb(30, 58, 138, 0.1) 0%,
+    rgb(29, 78, 216, 0.1) 100%
+  );
 }
 
 .markdown-content ul {
@@ -224,4 +257,46 @@ input[type="search"]::-ms-reveal {
   display: none;
   width: 0;
   height: 0;
+}
+
+/* Custom scrollbar styles for table of contents */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.8);
+}
+
+.dark .scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(75, 85, 99, 0.5);
+}
+
+.dark .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(75, 85, 99, 0.8);
+}
+
+.scrollbar-track-transparent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thumb-gray-300::-webkit-scrollbar-thumb {
+  background-color: rgb(209, 213, 219);
+}
+
+.scrollbar-thumb-gray-600::-webkit-scrollbar-thumb {
+  background-color: rgb(75, 85, 99);
 }

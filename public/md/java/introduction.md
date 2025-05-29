@@ -15,7 +15,7 @@
 
 ## Basic Syntax
 
-```java
+```java showLineNumbers
 public class HelloWorld {
     public static void main(String[] args) {
         System.out.println("Hello, World!");
@@ -34,7 +34,7 @@ public class HelloWorld {
 
 ### Control Flow
 
-```java
+```java showLineNumbers
 if (condition) { ... } else { ... }
 
 for (int i = 0; i < 10; i++) { ... }
@@ -44,7 +44,7 @@ while (condition) { ... }
 
 ### Methods
 
-```java
+```java showLineNumbers
 public int add(int a, int b) {
     return a + b;
 }
@@ -59,7 +59,7 @@ public int add(int a, int b) {
 | Polymorphism  | Ability to present the same interface for different data types |
 | Abstraction   | Hiding complex implementation details                          |
 
-```java
+```java showLineNumbers
 class Animal {
     void sound() {
         System.out.println("Animal makes a sound");
@@ -81,7 +81,7 @@ class Dog extends Animal {
 
 ## Exception Handling
 
-```java
+```java showLineNumbers
 try {
     int result = 10 / 0;
 } catch (ArithmeticException e) {
@@ -93,7 +93,7 @@ try {
 
 ## Generics
 
-```java
+```java showLineNumbers
 List<String> list = new ArrayList<>();
 list.add("Java");
 ```
@@ -132,7 +132,7 @@ t.start();
 
 ## Input/Output (I/O)
 
-```java
+```java showLineNumbers
 import java.io.*;
 
 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -141,7 +141,7 @@ String input = reader.readLine();
 
 ## File Handling
 
-```java
+```java showLineNumbers
 File file = new File("example.txt");
 if (file.exists()) {
     System.out.println("File exists.");
@@ -150,7 +150,7 @@ if (file.exists()) {
 
 ## Networking
 
-```java
+```java showLineNumbers
 import java.net.*;
 
 URL url = new URL("https://example.com");
@@ -190,14 +190,14 @@ ResultSet rs = stmt.executeQuery("SELECT * FROM users");
 
 ### Thread Creation
 
-```java
+```java showLineNumbers
 Thread t = new Thread(() -> System.out.println("Thread running"));
 t.start();
 ```
 
 ### Executor Service
 
-```java
+```java showLineNumbers
 ExecutorService executor = Executors.newFixedThreadPool(10);
 executor.submit(() -> System.out.println("Task executed"));
 executor.shutdown();
@@ -205,7 +205,7 @@ executor.shutdown();
 
 ### Synchronization
 
-```java
+```java showLineNumbers
 synchronized void increment() {
     count++;
 }
@@ -213,7 +213,7 @@ synchronized void increment() {
 
 ### Locks
 
-```java
+```java showLineNumbers
 Lock lock = new ReentrantLock();
 lock.lock();
 try {
@@ -238,7 +238,7 @@ try {
 
 ## Generics & Type Erasure
 
-```java
+```java showLineNumbers
 List<String> list = new ArrayList<>();
 ```
 
@@ -246,7 +246,7 @@ List<String> list = new ArrayList<>();
 
 ## Reflection
 
-```java
+```java showLineNumbers
 Class<?> clazz = Class.forName("com.example.MyClass");
 Method method = clazz.getMethod("myMethod");
 method.invoke(clazz.getDeclaredConstructor().newInstance());
@@ -254,7 +254,7 @@ method.invoke(clazz.getDeclaredConstructor().newInstance());
 
 ## Annotations
 
-```java
+```java showLineNumbers
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface MyAnnotation {
@@ -266,13 +266,13 @@ public @interface MyAnnotation {
 
 ### Lambdas
 
-```java
+```java showLineNumbers
 (List<Integer> list) -> list.forEach(System.out::println);
 ```
 
 ### Streams
 
-```java
+```java showLineNumbers
 List<String> filtered = names.stream()
                              .filter(name -> name.startsWith("A"))
                              .collect(Collectors.toList());
@@ -280,14 +280,14 @@ List<String> filtered = names.stream()
 
 ### Optional
 
-```java
+```java showLineNumbers
 Optional<String> name = Optional.ofNullable(getName());
 name.ifPresent(System.out::println);
 ```
 
 ## Java Modules (Java 9+)
 
-```java
+```java showLineNumbers
 module my.module {
     requires java.sql;
     exports com.example.mypackage;

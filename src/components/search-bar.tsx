@@ -96,67 +96,75 @@ export function SearchBar() {
 
   return (
     <div ref={searchContainerRef} className="relative w-full max-w-md">
-      <div className="relative">
-        <SearchIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-        <Input
-          ref={inputRef} // Assign the ref to the input
-          type="search"
-          placeholder="Search (⌘K / Ctrl+K)" // Update placeholder
-          className="w-full pl-9 pr-9" // Padding for icons
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onFocus={() => setIsFocused(true)}
-          aria-label="Search documentation"
-        />
-        {query && !isLoading && (
-          <button
-            onClick={handleClear}
-            className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-            aria-label="Clear search"
-          >
-            <XIcon className="h-4 w-4" />
-          </button>
-        )}
-        {isLoading && (
-          <Loader2 className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 animate-spin text-muted-foreground" />
-        )}
+      <div className="relative group">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+        <div className="relative bg-background/80 backdrop-blur-sm border border-border/50 rounded-lg shadow-sm group-hover:shadow-md transition-all duration-200">
+          <SearchIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground group-hover:text-blue-500 transition-colors" />
+          <Input
+            ref={inputRef}
+            type="search"
+            placeholder="Search (⌘K / Ctrl+K)"
+            className="w-full pl-9 pr-9 border-0 bg-transparent focus:ring-2 focus:ring-blue-500/20 focus:ring-offset-0"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onFocus={() => setIsFocused(true)}
+            aria-label="Search documentation"
+          />
+          {query && !isLoading && (
+            <button
+              onClick={handleClear}
+              className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Clear search"
+            >
+              <XIcon className="h-4 w-4" />
+            </button>
+          )}
+          {isLoading && (
+            <Loader2 className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 animate-spin text-blue-500" />
+          )}
+        </div>
       </div>
 
       {showResults && (
-        <div className="absolute z-50 mt-1 w-full rounded-md border bg-popover p-2 text-popover-foreground shadow-md max-h-96 overflow-y-auto">
-          {isLoading && results.length === 0 && (
-            <div className="p-4 text-center text-sm text-muted-foreground">
-              Loading...
-            </div>
-          )}
-          {!isLoading && debouncedQuery && results.length === 0 && (
-            <div className="p-4 text-center text-sm text-muted-foreground">
-              No results found for "{debouncedQuery}".
-            </div>
-          )}
-          {results.length > 0 && (
-            <ul>
-              {results.map((result) => (
-                <li key={result.url}>
-                  <Link
-                    href={result.url}
-                    className="block rounded-sm p-2 hover:bg-accent hover:text-accent-foreground"
-                    onClick={() => setIsFocused(false)} // Close on selection
-                  >
-                    <div className="font-medium">{result.title}</div>
-                    {result.snippet && (
-                      <p
-                        className="text-xs text-muted-foreground mt-1 line-clamp-2"
-                        title={result.snippet}
-                      >
-                        {result.snippet}
-                      </p>
-                    )}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
+        <div className="absolute z-50 mt-2 w-full rounded-lg border border-border/50 bg-background/95 backdrop-blur-md shadow-xl max-h-96 overflow-y-auto">
+          <div className="p-2">
+            {isLoading && results.length === 0 && (
+              <div className="p-4 text-center text-sm text-muted-foreground">
+                <Loader2 className="w-4 h-4 animate-spin mx-auto mb-2" />
+                Searching...
+              </div>
+            )}
+            {!isLoading && debouncedQuery && results.length === 0 && (
+              <div className="p-4 text-center text-sm text-muted-foreground">
+                No results found for "{debouncedQuery}".
+              </div>
+            )}
+            {results.length > 0 && (
+              <ul className="space-y-1">
+                {results.map((result) => (
+                  <li key={result.url}>
+                    <Link
+                      href={result.url}
+                      className="block rounded-md p-3 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/20 dark:hover:to-purple-900/20 transition-all duration-200 group"
+                      onClick={() => setIsFocused(false)}
+                    >
+                      <div className="font-medium text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        {result.title}
+                      </div>
+                      {result.snippet && (
+                        <p
+                          className="text-xs text-muted-foreground mt-1 line-clamp-2"
+                          title={result.snippet}
+                        >
+                          {result.snippet}
+                        </p>
+                      )}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
       )}
     </div>
