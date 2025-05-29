@@ -55,9 +55,10 @@ export function OptimizedImage({
   }, [priority]);
 
   // Handle relative paths for local images
-  const optimizedSrc = src.startsWith("../") || src.startsWith("./") 
-    ? src.replace(/^\.\.\//, "/").replace(/^\.\//, "/")
-    : src;
+  const optimizedSrc =
+    src.startsWith("../") || src.startsWith("./")
+      ? src.replace(/^\.\.\//, "/").replace(/^\.\//, "/")
+      : src;
 
   // Generate blur placeholder for better UX
   const generateBlurDataURL = (w: number, h: number) => {
@@ -72,7 +73,9 @@ export function OptimizedImage({
     return canvas.toDataURL();
   };
 
-  const defaultBlurDataURL = blurDataURL || (width && height ? generateBlurDataURL(width, height) : undefined);
+  const defaultBlurDataURL =
+    blurDataURL ||
+    (width && height ? generateBlurDataURL(width, height) : undefined);
 
   if (hasError) {
     return (
@@ -126,7 +129,7 @@ export function OptimizedImage({
           }}
         />
       )}
-      
+
       {/* Loading placeholder */}
       {(!isInView || isLoading) && (
         <div className="absolute inset-0 flex items-center justify-center">

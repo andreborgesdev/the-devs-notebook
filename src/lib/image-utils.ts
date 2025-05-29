@@ -8,9 +8,10 @@ export interface ImageInfo {
 }
 
 export function parseImageSrc(src: string): ImageInfo {
-  const isLocal = src.startsWith('./') || src.startsWith('../') || src.startsWith('/images/');
-  const isHttps = src.startsWith('https://') || src.startsWith('http://');
-  
+  const isLocal =
+    src.startsWith("./") || src.startsWith("../") || src.startsWith("/images/");
+  const isHttps = src.startsWith("https://") || src.startsWith("http://");
+
   return {
     src,
     alt: "",
@@ -21,32 +22,35 @@ export function parseImageSrc(src: string): ImageInfo {
 
 export function optimizeImagePath(src: string): string {
   // Convert relative paths to absolute paths
-  if (src.startsWith('./images/')) {
-    return src.replace('./images/', '/images/');
+  if (src.startsWith("./images/")) {
+    return src.replace("./images/", "/images/");
   }
-  
-  if (src.startsWith('../images/')) {
-    return src.replace('../images/', '/images/');
+
+  if (src.startsWith("../images/")) {
+    return src.replace("../images/", "/images/");
   }
-  
+
   // For paths that start with ../../images/, resolve them
-  if (src.startsWith('../../images/')) {
-    return src.replace('../../images/', '/images/');
+  if (src.startsWith("../../images/")) {
+    return src.replace("../../images/", "/images/");
   }
-  
+
   return src;
 }
 
 export function shouldPreloadImage(src: string, index: number): boolean {
   // Preload the first few images on the page
-  const isLocal = src.startsWith('/images/');
+  const isLocal = src.startsWith("/images/");
   return isLocal && index < 2; // Preload first 2 local images
 }
 
-export function getImageDimensions(src: string): { width?: number; height?: number } {
+export function getImageDimensions(src: string): {
+  width?: number;
+  height?: number;
+} {
   // You could implement logic to extract dimensions from filename patterns
   // or maintain a mapping of known image dimensions
-  
+
   // Default responsive dimensions
   return {
     width: 800,
@@ -57,12 +61,12 @@ export function getImageDimensions(src: string): { width?: number; height?: numb
 export async function preloadCriticalImages(): Promise<void> {
   // Preload hero images or critical above-the-fold images
   const criticalImages = [
-    '/images/logo.png',
-    '/images/hero-bg.jpg',
+    "/images/logo.png",
+    "/images/hero-bg.jpg",
     // Add other critical images here
   ];
-  
-  const preloadPromises = criticalImages.map(src => {
+
+  const preloadPromises = criticalImages.map((src) => {
     return new Promise<void>((resolve, reject) => {
       const img = new Image();
       img.onload = () => resolve();
@@ -70,10 +74,10 @@ export async function preloadCriticalImages(): Promise<void> {
       img.src = src;
     });
   });
-  
+
   try {
     await Promise.allSettled(preloadPromises);
   } catch (error) {
-    console.warn('Some critical images failed to preload:', error);
+    console.warn("Some critical images failed to preload:", error);
   }
 }

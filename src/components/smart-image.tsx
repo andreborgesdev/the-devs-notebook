@@ -1,4 +1,4 @@
-import { OptimizedImage } from './optimized-image';
+import { OptimizedImage } from "./optimized-image";
 
 interface SmartImageProps {
   src: string;
@@ -17,21 +17,21 @@ export function SmartImage({
   width,
   height,
   priority = false,
-  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw",
 }: SmartImageProps) {
   // Function to get optimized image paths
   const getOptimizedSources = (originalSrc: string) => {
-    const isLocal = originalSrc.startsWith('/images/');
+    const isLocal = originalSrc.startsWith("/images/");
     if (!isLocal) return null;
 
-    const pathParts = originalSrc.split('/');
+    const pathParts = originalSrc.split("/");
     const filename = pathParts[pathParts.length - 1];
-    const baseName = filename.split('.')[0];
-    
+    const baseName = filename.split(".")[0];
+
     return {
       avif: `/images/optimized/${baseName}.avif`,
       webp: `/images/optimized/${baseName}.webp`,
-      original: originalSrc
+      original: originalSrc,
     };
   };
 
@@ -54,19 +54,11 @@ export function SmartImage({
   return (
     <picture className={className}>
       {/* AVIF - Best compression */}
-      <source
-        srcSet={optimizedSources.avif}
-        type="image/avif"
-        sizes={sizes}
-      />
-      
+      <source srcSet={optimizedSources.avif} type="image/avif" sizes={sizes} />
+
       {/* WebP - Good compression with wide support */}
-      <source
-        srcSet={optimizedSources.webp}
-        type="image/webp"
-        sizes={sizes}
-      />
-      
+      <source srcSet={optimizedSources.webp} type="image/webp" sizes={sizes} />
+
       {/* Fallback to optimized image component */}
       <OptimizedImage
         src={optimizedSources.original}

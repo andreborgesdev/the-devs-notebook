@@ -12,7 +12,11 @@ import { transformerCopyButton } from "@rehype-pretty/transformers";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { generateUniqueHeadingIds } from "@/src/lib/heading-utils";
-import { optimizeImagePath, shouldPreloadImage, getImageDimensions } from "@/src/lib/image-utils";
+import {
+  optimizeImagePath,
+  shouldPreloadImage,
+  getImageDimensions,
+} from "@/src/lib/image-utils";
 
 export default async function ContentPage({
   params,
@@ -182,12 +186,12 @@ export default async function ContentPage({
                 );
               },
               img: ({ src, alt, ...props }: any) => {
-                if (!src || typeof src !== 'string') return null;
-                
+                if (!src || typeof src !== "string") return null;
+
                 const optimizedSrc = optimizeImagePath(src);
                 const { width, height } = getImageDimensions(src);
                 const priority = shouldPreloadImage(src, 0);
-                
+
                 return (
                   <SmartImage
                     src={optimizedSrc}
