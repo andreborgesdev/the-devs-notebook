@@ -85,5 +85,35 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function ({ addUtilities }: any) {
+      const newUtilities = {
+        ".scrollbar-hide": {
+          "-ms-overflow-style": "none",
+          "scrollbar-width": "none",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+        },
+        ".scrollbar-thin": {
+          "scrollbar-width": "thin",
+          "&::-webkit-scrollbar": {
+            width: "6px",
+          },
+          "&::-webkit-scrollbar-track": {
+            background: "transparent",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            background: "hsl(var(--border))",
+            borderRadius: "3px",
+            "&:hover": {
+              background: "hsl(var(--muted-foreground))",
+            },
+          },
+        },
+      };
+      addUtilities(newUtilities);
+    },
+  ],
 } satisfies Config;

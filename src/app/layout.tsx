@@ -10,12 +10,14 @@ import {
   SidebarTrigger,
 } from "../components/ui/sidebar";
 import { Breadcrumbs } from "@/src/components/breadcrumbs";
-import { SearchBar } from "@/src/components/search-bar";
+import { CompactSearchBar } from "@/src/components/compact-search-bar";
 import { NavigationProvider } from "@/src/contexts/NavigationContext";
 import { AccessibilityProvider } from "@/src/contexts/AccessibilityContext";
 import { AccessibilityWrapper } from "@/src/components/accessibility-wrapper";
 import { ImageOptimizationProvider } from "@/src/components/image-optimization-provider";
 import { SkipNavigation } from "@/src/components/skip-navigation";
+import { SearchScroller } from "@/src/components/search-scroller";
+
 import "katex/dist/katex.min.css";
 
 const inter = Inter({
@@ -83,7 +85,7 @@ export default function RootLayout({
                         <Breadcrumbs />
                       </div>
                       <div className="flex items-center">
-                        <SearchBar />
+                        <CompactSearchBar />
                       </div>
                     </header>
                     <main
@@ -92,6 +94,7 @@ export default function RootLayout({
                       role="main"
                       tabIndex={-1}
                     >
+                      <SearchScroller contentSelector="#main-content" />
                       <div className="min-h-[100vh] flex-1 rounded-xl bg-gradient-to-br from-background to-muted/30 border shadow-sm md:min-h-min">
                         {children}
                       </div>
