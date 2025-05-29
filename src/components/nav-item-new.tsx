@@ -17,11 +17,12 @@ import {
 } from "./ui/sidebar";
 import { useNavigation } from "@/src/contexts/NavigationContext";
 import { cn } from "@/src/lib/utils";
+import { ReactNode } from "react";
 
 export type ContentItem = {
   title: string;
   url: string;
-  icon?: string;
+  icon?: ReactNode | string;
   isActive?: boolean;
   items?: ContentItem[];
 };

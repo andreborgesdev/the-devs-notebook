@@ -17,28 +17,30 @@ import {
 } from "./ui/sidebar";
 import { useNavigation } from "@/src/contexts/NavigationContext";
 import { cn } from "@/src/lib/utils";
+import { ReactNode } from "react";
 
 export type ContentItem = {
   title: string;
   url: string;
-  icon?: string;
+  icon?: ReactNode | string;
   isActive?: boolean;
   items?: ContentItem[];
 };
 
 export function NavItem({ item, depth }: { item: ContentItem; depth: number }) {
   const { open: sidebarOpen, isMobile } = useSidebar();
-  const { isMenuOpen, toggleSection, isActiveOrParent, activePath } = useNavigation();
-  
+  const { isMenuOpen, toggleSection, isActiveOrParent, activePath } =
+    useNavigation();
+
   const hasChildren = item.items && item.items.length > 0;
   const isTopLevel = depth === 0;
   const Wrapper = isTopLevel ? SidebarMenuItem : SidebarMenuSubItem;
   const Button = isTopLevel ? SidebarMenuButton : SidebarMenuSubButton;
-  
+
   // Check if this item or any of its children are active
   const isActive = isActiveOrParent(item.url);
   const isCurrentPage = activePath === item.url;
-  
+
   // For parent items, determine if they should be open
   const shouldBeOpen = hasChildren && (isMenuOpen(item.url) || isActive);
 
@@ -71,11 +73,7 @@ export function NavItem({ item, depth }: { item: ContentItem; depth: number }) {
     );
 
     return (
-      <Collapsible
-        asChild
-        open={shouldBeOpen}
-        onOpenChange={handleToggle}
-      >
+      <Collapsible asChild open={shouldBeOpen} onOpenChange={handleToggle}>
         <Wrapper>
           <CollapsibleTrigger asChild>
             {!sidebarOpen && hasChildren && !isMobile ? (
@@ -105,11 +103,12 @@ export function NavItem({ item, depth }: { item: ContentItem; depth: number }) {
 
   return (
     <Wrapper>
-      <Button 
-        asChild 
+      <Button
+        asChild
         tooltip={item.title}
         className={cn(
-          isCurrentPage && "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
+          isCurrentPage &&
+            "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
         )}
       >
         {linkContent}

@@ -141,7 +141,11 @@ export function TableOfContents({ content }: TableOfContentsProps) {
   if (items.length === 0) return null;
 
   return (
-    <nav className="fixed right-8 top-20 hidden w-64 xl:block z-10">
+    <nav
+      className="fixed right-8 top-20 hidden w-64 xl:block z-10"
+      aria-label="Table of contents"
+      role="navigation"
+    >
       <div className="sticky top-20">
         <div
           className="relative group"
@@ -160,12 +164,14 @@ export function TableOfContents({ content }: TableOfContentsProps) {
               </div>
               <button
                 onClick={toggleExpanded}
-                className="p-1 rounded-md hover:bg-accent/50 transition-colors duration-200"
+                className="p-1 rounded-md hover:bg-accent/50 transition-colors duration-200 focus-visible-enhanced"
                 aria-label={
                   isExpanded
                     ? "Collapse table of contents"
                     : "Expand table of contents"
                 }
+                aria-expanded={isExpanded}
+                aria-controls="toc-content"
               >
                 <ChevronDown
                   className={cn(
@@ -178,29 +184,36 @@ export function TableOfContents({ content }: TableOfContentsProps) {
 
             {/* Collapsible content */}
             <div
+              id="toc-content"
               className={cn(
                 "overflow-hidden transition-all duration-300 ease-in-out",
                 isExpanded || isHovered
                   ? "max-h-[70vh] opacity-100"
                   : "max-h-0 opacity-0"
               )}
+              aria-hidden={!isExpanded && !isHovered}
             >
               <div className="overflow-y-auto max-h-[60vh] p-4 pt-3 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent">
-                <ul className="space-y-1 text-sm pr-2">
-                  {items.map((item) => (
+                <ul className="space-y-1 text-sm pr-2" role="list">
+                  {items.map((item, index) => (
                     <li
                       key={item.id}
                       style={{ paddingLeft: `${(item.level - 1) * 12}px` }}
+                      role="listitem"
                     >
                       <button
                         onClick={() => handleClick(item.id)}
                         className={cn(
                           "w-full text-left hover:text-blue-600 dark:hover:text-blue-400 text-muted-foreground",
-                          "transition-all duration-200 hover:translate-x-1 relative group/item py-1 px-2 rounded-md hover:bg-accent/30",
+                          "transition-all duration-200 hover:translate-x-1 relative group/item py-1 px-2 rounded-md hover:bg-accent/30 focus-visible-enhanced",
                           "before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-0 before:h-0.5 before:bg-gradient-to-r before:from-blue-500 before:to-purple-500 before:transition-all before:duration-200",
                           activeId === item.id &&
                             "font-medium text-blue-600 dark:text-blue-400 before:w-3 bg-blue-50/50 dark:bg-blue-900/20"
                         )}
+                        aria-label={`Go to section: ${item.text}`}
+                        aria-current={
+                          activeId === item.id ? "location" : undefined
+                        }
                       >
                         <span className="block pl-4 truncate">{item.text}</span>
                       </button>

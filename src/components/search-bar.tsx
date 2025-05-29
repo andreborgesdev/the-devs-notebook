@@ -104,55 +104,82 @@ export function SearchBar() {
             ref={inputRef}
             type="search"
             placeholder="Search (⌘K / Ctrl+K)"
-            className="w-full pl-9 pr-9 border-0 bg-transparent focus:ring-2 focus:ring-blue-500/20 focus:ring-offset-0"
+            className="w-full pl-9 pr-9 border-0 bg-transparent focus:ring-2 focus:ring-blue-500/20 focus:ring-offset-0 focus-visible-enhanced"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => setIsFocused(true)}
             aria-label="Search documentation"
+            aria-expanded={showResults}
+            aria-haspopup="listbox"
+            role="combobox"
+            aria-autocomplete="list"
+            aria-describedby={showResults ? "search-results" : undefined}
           />
           {query && !isLoading && (
             <button
               onClick={handleClear}
-              className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+              className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors focus-visible-enhanced"
               aria-label="Clear search"
+              tabIndex={0}
             >
               <XIcon className="h-4 w-4" />
             </button>
           )}
           {isLoading && (
-            <Loader2 className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 animate-spin text-blue-500" />
+            <Loader2
+              className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 animate-spin text-blue-500"
+              aria-hidden="true"
+            />
           )}
         </div>
       </div>
 
       {showResults && (
-        <div className="absolute z-50 mt-2 w-full rounded-lg border border-border/50 bg-background/95 backdrop-blur-md shadow-xl max-h-96 overflow-y-auto">
+        <div
+          id="search-results"
+          className="absolute z-50 mt-2 w-full rounded-lg border border-border/50 bg-background/95 backdrop-blur-md shadow-xl max-h-96 overflow-y-auto"
+          role="listbox"
+          aria-label="Search results"
+        >
           <div className="p-2">
             {isLoading && results.length === 0 && (
-              <div className="p-4 text-center text-sm text-muted-foreground">
-                <Loader2 className="w-4 h-4 animate-spin mx-auto mb-2" />
+              <div
+                className="p-4 text-center text-sm text-muted-foreground"
+                aria-live="polite"
+              >
+                <Loader2
+                  className="w-4 h-4 animate-spin mx-auto mb-2"
+                  aria-hidden="true"
+                />
                 Searching...
               </div>
             )}
             {!isLoading && debouncedQuery && results.length === 0 && (
-              <div className="p-4 text-center text-sm text-muted-foreground">
+              <div
+                className="p-4 text-center text-sm text-muted-foreground"
+                aria-live="polite"
+              >
                 No results found for "{debouncedQuery}".
               </div>
             )}
             {results.length > 0 && (
-              <ul className="space-y-1">
-                {results.map((result) => (
-                  <li key={result.url}>
+              <ul className="space-y-1" role="listbox">
+                {results.map((result, index) => (
+                  <li key={result.url} role="option" aria-selected="false">
                     <Link
                       href={result.url}
-                      className="block rounded-md p-3 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/20 dark:hover:to-purple-900/20 transition-all duration-200 group"
+                      className="block rounded-md p-3 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/20 dark:hover:to-purple-900/20 transition-all duration-200 group focus-visible-enhanced"
                       onClick={() => setIsFocused(false)}
+                      aria-describedby={
+                        result.snippet ? `snippet-${index}` : undefined
+                      }
                     >
                       <div className="font-medium text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                         {result.title}
                       </div>
                       {result.snippet && (
                         <p
+                          id={`snippet-${index}`}
                           className="text-xs text-muted-foreground mt-1 line-clamp-2"
                           title={result.snippet}
                         >

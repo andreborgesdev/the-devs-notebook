@@ -11,7 +11,7 @@ import {
   SidebarRail,
   useSidebar,
 } from "@/src/components/ui/sidebar";
-import { ThemeToggle } from "./theme-toggle";
+import { SettingsPanel } from "./settings-panel";
 import { cn } from "../lib/utils";
 import { Content } from "../data/Content";
 
@@ -23,19 +23,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       collapsible="icon"
       {...props}
       className="border-r-0 bg-gradient-to-b from-sidebar-background to-sidebar-background/95"
+      role="navigation"
+      aria-label="Main navigation"
     >
       <SidebarHeader className="border-b border-sidebar-border/50">
         <a
           href="/"
           className={cn(
-            "flex flex-row items-center gap-4 transition-all duration-200 hover:bg-sidebar-accent/50 rounded-lg",
+            "flex flex-row items-center gap-4 transition-all duration-200 hover:bg-sidebar-accent/50 rounded-lg focus-visible-enhanced",
             open ? "p-4" : "p-1"
           )}
+          aria-label="Go to homepage - The dev's notebook"
         >
           <div className="relative">
             <Image
               src="/images/logo.png"
-              alt="Logo"
+              alt="The dev's notebook logo"
               width={30}
               height={30}
               className="rounded-md shadow-sm"
@@ -54,14 +57,20 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           )}
         </a>
       </SidebarHeader>
-      <SidebarContent className="px-2 py-4">
+      <SidebarContent
+        className="px-2 py-4"
+        role="main"
+        aria-label="Navigation topics"
+      >
         <div className="relative">
           <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-purple-500/5 rounded-lg" />
           <NavMain items={Content} />
         </div>
       </SidebarContent>
       <SidebarFooter className="border-t border-sidebar-border/50 p-4">
-        <ThemeToggle className="flex justify-center" />
+        <div className="flex items-center justify-center">
+          <SettingsPanel embedded />
+        </div>
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

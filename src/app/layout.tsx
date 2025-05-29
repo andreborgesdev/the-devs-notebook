@@ -10,9 +10,12 @@ import {
   SidebarTrigger,
 } from "../components/ui/sidebar";
 import { Breadcrumbs } from "@/src/components/breadcrumbs";
-import { SearchBar } from "@/src/components/search-bar"; // Import the SearchBar
+import { SearchBar } from "@/src/components/search-bar";
 import { NavigationProvider } from "@/src/contexts/NavigationContext";
+import { AccessibilityProvider } from "@/src/contexts/AccessibilityContext";
+import { AccessibilityWrapper } from "@/src/components/accessibility-wrapper";
 import { ImageOptimizationProvider } from "@/src/components/image-optimization-provider";
+import { SkipNavigation } from "@/src/components/skip-navigation";
 import "katex/dist/katex.min.css";
 
 const inter = Inter({
@@ -52,36 +55,53 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${crimsonText.variable} font-sans antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <NavigationProvider>
-            <ImageOptimizationProvider />
-            <SidebarProvider>
-              <AppSidebar />
-              <SidebarInset>
-                <header className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between gap-2 border-b bg-background/80 backdrop-blur-md px-4 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-                  <div className="flex items-center gap-2">
-                    <SidebarTrigger className="-ml-1 hover:bg-accent/50" />
-                    <Separator orientation="vertical" className="mr-2 h-4" />
-                    <Breadcrumbs />
-                  </div>
-                  <div className="flex items-center">
-                    <SearchBar />
-                  </div>
-                </header>
-                <div className="flex flex-1 flex-col gap-4 p-4">
-                  <div className="min-h-[100vh] flex-1 rounded-xl bg-gradient-to-br from-background to-muted/30 border shadow-sm md:min-h-min">
-                    {children}
-                  </div>
-                </div>
-              </SidebarInset>
-            </SidebarProvider>
-          </NavigationProvider>
-        </ThemeProvider>
+        <AccessibilityProvider>
+          <AccessibilityWrapper>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <SkipNavigation />
+              <NavigationProvider>
+                <ImageOptimizationProvider />
+                <SidebarProvider>
+                  <AppSidebar />
+                  <SidebarInset>
+                    <header
+                      id="main-header"
+                      className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between gap-2 border-b bg-background/80 backdrop-blur-md px-4 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12"
+                      role="banner"
+                    >
+                      <div className="flex items-center gap-2">
+                        <SidebarTrigger className="-ml-1 hover:bg-accent/50" />
+                        <Separator
+                          orientation="vertical"
+                          className="mr-2 h-4"
+                        />
+                        <Breadcrumbs />
+                      </div>
+                      <div className="flex items-center">
+                        <SearchBar />
+                      </div>
+                    </header>
+                    <main
+                      id="main-content"
+                      className="flex flex-1 flex-col gap-4 p-4"
+                      role="main"
+                      tabIndex={-1}
+                    >
+                      <div className="min-h-[100vh] flex-1 rounded-xl bg-gradient-to-br from-background to-muted/30 border shadow-sm md:min-h-min">
+                        {children}
+                      </div>
+                    </main>
+                  </SidebarInset>
+                </SidebarProvider>
+              </NavigationProvider>
+            </ThemeProvider>
+          </AccessibilityWrapper>
+        </AccessibilityProvider>
       </body>
     </html>
   );
