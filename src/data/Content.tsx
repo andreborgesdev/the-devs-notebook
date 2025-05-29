@@ -12,6 +12,11 @@ export interface ContentItem {
 // Declare all content here to be able to see it on the UI
 export const Content: ContentItem[] = [
   {
+    title: "Quick Reference Cards",
+    url: "/quick-reference",
+    icon: "📚",
+  },
+  {
     title: "Cheat Sheet",
     url: "/cheat-sheet",
     icon: "💾",
