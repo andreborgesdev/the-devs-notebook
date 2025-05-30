@@ -5,6 +5,7 @@ import fs from "fs";
 import { TableOfContents } from "@/src/components/table-of-contents";
 import { ScrollToTop } from "@/src/components/scroll-to-top";
 import { SmartImage } from "@/src/components/smart-image";
+import { ClientBookmarkButton } from "@/src/components/client-bookmark-button";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -21,14 +22,16 @@ import {
 export default async function ContentPage({
   params,
 }: {
-  params: { slug?: string[] };
+  params: Promise<{ slug?: string[] }>;
 }) {
+  const resolvedParams = await params;
+
   // Check if slug exists and has at least one element.
-  if (!params.slug || params.slug.length === 0) {
+  if (!resolvedParams.slug || resolvedParams.slug.length === 0) {
     return notFound();
   }
 
-  const filePath = `${params.slug.join("/")}.md`;
+  const filePath = `${resolvedParams.slug.join("/")}.md`;
   const absoluteFilePath = path.join(process.cwd(), "public", "md", filePath);
 
   if (!fs.existsSync(absoluteFilePath)) {
@@ -36,6 +39,13 @@ export default async function ContentPage({
   }
 
   const fileContents = fs.readFileSync(absoluteFilePath, "utf8");
+
+  // Extract title from the first H1 heading in the markdown
+  const titleMatch = fileContents.match(/^#\s+(.+)$/m);
+  const pageTitle = titleMatch
+    ? titleMatch[1]
+    : resolvedParams.slug.join(" / ");
+  const pageUrl = `/${resolvedParams.slug.join("/")}`;
 
   // Generate unique IDs for all headings to ensure consistency with ToC
   const { getHeadingIdByIndex } = generateUniqueHeadingIds(fileContents);
@@ -96,13 +106,18 @@ export default async function ContentPage({
               h1: ({ children, ...props }) => {
                 const id = getNextHeadingId();
                 return (
-                  <h1
-                    id={id}
-                    className="scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl my-8 bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 dark:from-white dark:via-blue-200 dark:to-white bg-clip-text text-transparent"
-                    {...props}
-                  >
-                    {children}
-                  </h1>
+                  <div className="space-y-4">
+                    <h1
+                      id={id}
+                      className="scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl my-8 bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 dark:from-white dark:via-blue-200 dark:to-white bg-clip-text text-transparent"
+                      {...props}
+                    >
+                      {children}
+                    </h1>
+                    <div className="flex justify-end">
+                      <ClientBookmarkButton title={pageTitle} url={pageUrl} />
+                    </div>
+                  </div>
                 );
               },
               h2: ({ children, ...props }) => {

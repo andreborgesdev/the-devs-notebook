@@ -25,15 +25,26 @@ import { cn } from "@/src/lib/utils";
 interface SettingsPanelProps {
   className?: string;
   embedded?: boolean;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
 export function SettingsPanel({
   className,
   embedded = false,
+  isOpen: externalIsOpen,
+  onClose,
 }: SettingsPanelProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const { theme, setTheme } = useTheme();
+
+  const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
+  const setIsOpen = onClose
+    ? (open: boolean) => {
+        if (!open) onClose();
+      }
+    : setInternalIsOpen;
   const {
     highContrastMode,
     screenReaderMode,
@@ -160,30 +171,36 @@ export function SettingsPanel({
 
   return (
     <div className={cn(embedded ? "" : "fixed top-4 right-4 z-50", className)}>
-      <Button
-        onClick={handleTogglePanel}
-        variant="outline"
-        size="icon"
-        className={cn(
-          embedded ? "" : "shadow-lg border-2",
-          "transition-all duration-200",
-          embedded ? "" : "hover:scale-105 focus:scale-105",
-          embedded
-            ? "bg-transparent border-sidebar-border hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-            : "bg-background/90 backdrop-blur-sm",
-          isOpen &&
-            (embedded
-              ? "bg-sidebar-accent text-sidebar-accent-foreground"
-              : "bg-blue-50 dark:bg-blue-900/20 border-blue-300 dark:border-blue-700")
-        )}
-        aria-label={`${
-          isOpen ? "Close" : "Open"
-        } settings panel. Keyboard shortcut: Alt + S`}
-        aria-expanded={isOpen}
-        aria-controls="settings-panel"
-      >
-        {isOpen ? <X className="h-4 w-4" /> : <Settings className="h-4 w-4" />}
-      </Button>
+      {externalIsOpen === undefined && (
+        <Button
+          onClick={handleTogglePanel}
+          variant="outline"
+          size="icon"
+          className={cn(
+            embedded ? "" : "shadow-lg border-2",
+            "transition-all duration-200",
+            embedded ? "" : "hover:scale-105 focus:scale-105",
+            embedded
+              ? "bg-transparent border-sidebar-border hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+              : "bg-background/90 backdrop-blur-sm",
+            isOpen &&
+              (embedded
+                ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                : "bg-blue-50 dark:bg-blue-900/20 border-blue-300 dark:border-blue-700")
+          )}
+          aria-label={`${
+            isOpen ? "Close" : "Open"
+          } settings panel. Keyboard shortcut: Alt + S`}
+          aria-expanded={isOpen}
+          aria-controls="settings-panel"
+        >
+          {isOpen ? (
+            <X className="h-4 w-4" />
+          ) : (
+            <Settings className="h-4 w-4" />
+          )}
+        </Button>
+      )}
 
       {isOpen && (
         <div
@@ -193,7 +210,7 @@ export function SettingsPanel({
           aria-label="Settings and accessibility options"
           className={cn(
             embedded
-              ? "absolute bottom-12 left-0 w-80 z-[100]"
+              ? "absolute bottom-2 left-0 w-80 z-[100]"
               : "absolute top-12 right-0 w-80",
             "rounded-lg border shadow-xl",
             "bg-background/95 backdrop-blur-md",
@@ -205,7 +222,20 @@ export function SettingsPanel({
             {/* Header */}
             <div className="flex items-center justify-between">
               <h3 className="font-semibold text-lg">Settings</h3>
-              <Settings className="h-5 w-5 text-muted-foreground" />
+              <div className="flex items-center gap-2">
+                <Settings className="h-5 w-5 text-muted-foreground" />
+                {externalIsOpen !== undefined && onClose && (
+                  <Button
+                    onClick={() => setIsOpen(false)}
+                    variant="ghost"
+                    size="icon"
+                    className="h-6 w-6"
+                    aria-label="Close settings panel"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                )}
+              </div>
             </div>
 
             {/* Appearance Section */}

@@ -1,7 +1,9 @@
 "use client";
 
 import * as React from "react";
+import { useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { NavMain } from "@/src/components/nav-main";
 import {
   Sidebar,
@@ -11,14 +13,49 @@ import {
   SidebarRail,
   useSidebar,
 } from "@/src/components/ui/sidebar";
+import { SidebarActions } from "./sidebar-actions";
 import { SettingsPanel } from "./settings-panel";
 import { ContributionButton } from "./contribution-button";
-import { OfflineContentManager } from "./offline-content-manager";
+import { ContributionModal } from "./contribution-modal";
 import { cn } from "../lib/utils";
 import { Content } from "../data/Content";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { open } = useSidebar();
+  const pathname = usePathname();
+
+  const [isSettingsPanelOpen, setIsSettingsPanelOpen] = useState(false);
+  const [isContributionModalOpen, setIsContributionModalOpen] = useState(false);
+  const [isOfflineManagerOpen, setIsOfflineManagerOpen] = useState(false);
+
+  const getPageTitle = () => {
+    if (pathname === "/") return "Homepage";
+    const parts = pathname.split("/").filter(Boolean);
+    return parts
+      .map((part) =>
+        part
+          .split("-")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ")
+      )
+      .join(" - ");
+  };
+
+  const getPageUrl = () => {
+    return typeof window !== "undefined" ? window.location.href : pathname;
+  };
+
+  const handleSettingsClick = () => {
+    setIsSettingsPanelOpen(true);
+  };
+
+  const handleContributionClick = () => {
+    setIsContributionModalOpen(true);
+  };
+
+  const handleOfflineClick = () => {
+    setIsOfflineManagerOpen(!isOfflineManagerOpen);
+  };
 
   return (
     <Sidebar
@@ -69,14 +106,30 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <NavMain items={Content} />
         </div>
       </SidebarContent>
-      <SidebarFooter className="border-t border-sidebar-border/50 p-4 space-y-2">
-        <OfflineContentManager isOpen={open} />
-        <div className="flex items-center justify-center gap-3">
-          {open && <ContributionButton embedded />}
-          <SettingsPanel embedded />
-        </div>
+      <SidebarFooter className="border-t border-sidebar-border/50 p-4">
+        <SidebarActions
+          isOpen={open}
+          onSettingsClick={handleSettingsClick}
+          onContributionClick={handleContributionClick}
+          onOfflineClick={handleOfflineClick}
+        />
       </SidebarFooter>
       <SidebarRail />
+
+      {/* Modals and Panels */}
+      <SettingsPanel
+        embedded={true}
+        className="absolute bottom-16 left-2 z-[100]"
+        isOpen={isSettingsPanelOpen}
+        onClose={() => setIsSettingsPanelOpen(false)}
+      />
+
+      <ContributionModal
+        isOpen={isContributionModalOpen}
+        onClose={() => setIsContributionModalOpen(false)}
+        pageUrl={getPageUrl()}
+        pageTitle={getPageTitle()}
+      />
     </Sidebar>
   );
 }
