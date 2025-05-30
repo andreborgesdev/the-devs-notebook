@@ -12,6 +12,7 @@ import {
   useSidebar,
 } from "@/src/components/ui/sidebar";
 import { SettingsPanel } from "./settings-panel";
+import { ContributionButton } from "./contribution-button";
 import { cn } from "../lib/utils";
 import { Content } from "../data/Content";
 
@@ -68,7 +69,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </div>
       </SidebarContent>
       <SidebarFooter className="border-t border-sidebar-border/50 p-4">
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center gap-3">
+          {open && <ContributionButton embedded />}
           <SettingsPanel embedded />
         </div>
       </SidebarFooter>
