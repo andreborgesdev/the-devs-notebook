@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Crimson_Text } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { Separator } from "@radix-ui/react-separator";
@@ -154,7 +155,9 @@ export default function RootLayout({
                       role="main"
                       tabIndex={-1}
                     >
-                      <SearchScroller contentSelector="#main-content" />
+                      <Suspense fallback={null}>
+                        <SearchScroller contentSelector="#main-content" />
+                      </Suspense>
                       <div className="min-h-[100vh] flex-1 rounded-xl bg-gradient-to-br from-background to-muted/30 border shadow-sm md:min-h-min">
                         {children}
                       </div>
