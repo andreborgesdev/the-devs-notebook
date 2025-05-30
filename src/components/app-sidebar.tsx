@@ -70,7 +70,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </div>
       </SidebarContent>
       <SidebarFooter className="border-t border-sidebar-border/50 p-4 space-y-2">
-        <OfflineContentManager />
+        <OfflineContentManager isOpen={open} />
         <div className="flex items-center justify-center gap-3">
           {open && <ContributionButton embedded />}
           <SettingsPanel embedded />

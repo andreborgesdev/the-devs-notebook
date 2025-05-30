@@ -21,7 +21,11 @@ const POPULAR_PAGES = [
   { title: "Quick Reference", url: "/quick-reference" },
 ];
 
-export function OfflineContentManager() {
+export function OfflineContentManager({
+  isOpen: sidebarOpen = true,
+}: {
+  isOpen?: boolean;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const {
     cacheStatus,
@@ -35,6 +39,22 @@ export function OfflineContentManager() {
     const urls = POPULAR_PAGES.map((page) => page.url);
     cacheMultiplePages(urls);
   };
+
+  if (!sidebarOpen) {
+    return (
+      <Button
+        variant="ghost"
+        className="w-full justify-center p-2"
+        title="Offline Reading"
+      >
+        {cacheStatus.isOnline ? (
+          <Wifi className="h-4 w-4" />
+        ) : (
+          <WifiOff className="h-4 w-4" />
+        )}
+      </Button>
+    );
+  }
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>

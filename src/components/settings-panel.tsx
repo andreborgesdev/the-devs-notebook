@@ -195,12 +195,13 @@ export function SettingsPanel({
             embedded
               ? "absolute bottom-12 left-0 w-80 z-[100]"
               : "absolute top-12 right-0 w-80",
-            "p-6 rounded-lg border shadow-xl",
+            "rounded-lg border shadow-xl",
             "bg-background/95 backdrop-blur-md",
-            "animate-in slide-in-from-top-2 fade-in-0 duration-200"
+            "animate-in slide-in-from-top-2 fade-in-0 duration-200",
+            "max-h-[80vh] md:max-h-[70vh] flex flex-col"
           )}
         >
-          <div className="space-y-6">
+          <div className="p-6 flex-1 overflow-y-auto scrollbar-thin space-y-6">
             {/* Header */}
             <div className="flex items-center justify-between">
               <h3 className="font-semibold text-lg">Settings</h3>
