@@ -2,6 +2,7 @@
 
 ## PRIME DIRECTIVE
 
+    I am using pnpm as the package manager.
     Always implement the latest best practices and industry standards.
     Try to refactor the code to be more readable and maintainable.
     Do not add comments at all!
