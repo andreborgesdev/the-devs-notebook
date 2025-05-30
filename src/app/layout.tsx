@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Crimson_Text } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
@@ -18,6 +18,8 @@ import { ImageOptimizationProvider } from "@/src/components/image-optimization-p
 import { SkipNavigation } from "@/src/components/skip-navigation";
 import { SearchScroller } from "@/src/components/search-scroller";
 import { Toaster } from "@/src/components/ui/toaster";
+import { ServiceWorkerRegistration } from "@/src/components/service-worker-registration";
+import { PWAInstallPrompt } from "@/src/components/pwa-install-prompt";
 
 import "katex/dist/katex.min.css";
 
@@ -46,6 +48,37 @@ export const metadata: Metadata = {
   title: "The dev's notebook",
   description:
     "The dev's notebook. Notes to study development. Java Kotlin Scala JavaScript TypeScript React Next.js",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Dev's Notebook",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "The Dev's Notebook",
+    title: "The dev's notebook",
+    description: "Comprehensive development notes and cheat sheets",
+  },
+  keywords: [
+    "development",
+    "programming",
+    "java",
+    "javascript",
+    "react",
+    "kotlin",
+    "scala",
+    "cheat sheets",
+    "notes",
+    "offline reading",
+  ],
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
 };
 
 export default function RootLayout({
@@ -55,6 +88,32 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="application-name" content="Dev's Notebook" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Dev's Notebook" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-config" content="/icons/browserconfig.xml" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <link rel="apple-touch-icon" href="/images/logo.png" />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/images/logo.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/images/logo.png"
+        />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${crimsonText.variable} font-sans antialiased`}
       >
@@ -106,6 +165,8 @@ export default function RootLayout({
             </ThemeProvider>
           </AccessibilityWrapper>
         </AccessibilityProvider>
+        <ServiceWorkerRegistration />
+        <PWAInstallPrompt />
         <Toaster />
       </body>
     </html>

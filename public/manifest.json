@@ -1,0 +1,105 @@
+{
+  "name": "The Dev's Notebook",
+  "short_name": "DevNotebook",
+  "description": "Comprehensive development notes and cheat sheets for Java, Kotlin, Scala, JavaScript, TypeScript, React, Next.js and more",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/images/logo.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/logo.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/logo.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/logo.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/logo.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/logo.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "productivity", "developer", "reference"],
+  "lang": "en",
+  "dir": "ltr",
+  "screenshots": [
+    {
+      "src": "/images/logo.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "The Dev's Notebook homepage"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Java Notes",
+      "short_name": "Java",
+      "description": "Quick access to Java development notes",
+      "url": "/java",
+      "icons": [{ "src": "/images/logo.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "JavaScript Notes",
+      "short_name": "JS",
+      "description": "Quick access to JavaScript development notes",
+      "url": "/javascript",
+      "icons": [{ "src": "/images/logo.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "React Notes",
+      "short_name": "React",
+      "description": "Quick access to React development notes",
+      "url": "/react",
+      "icons": [{ "src": "/images/logo.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Quick Reference",
+      "short_name": "Quick Ref",
+      "description": "Quick reference cheat sheets",
+      "url": "/quick-reference",
+      "icons": [{ "src": "/images/logo.png", "sizes": "96x96" }]
+    }
+  ],
+  "offline_enabled": true,
+  "prefer_related_applications": false
+}

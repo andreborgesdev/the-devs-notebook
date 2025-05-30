@@ -13,6 +13,7 @@ import {
 } from "@/src/components/ui/sidebar";
 import { SettingsPanel } from "./settings-panel";
 import { ContributionButton } from "./contribution-button";
+import { OfflineContentManager } from "./offline-content-manager";
 import { cn } from "../lib/utils";
 import { Content } from "../data/Content";
 
@@ -68,7 +69,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <NavMain items={Content} />
         </div>
       </SidebarContent>
-      <SidebarFooter className="border-t border-sidebar-border/50 p-4">
+      <SidebarFooter className="border-t border-sidebar-border/50 p-4 space-y-2">
+        <OfflineContentManager />
         <div className="flex items-center justify-center gap-3">
           {open && <ContributionButton embedded />}
           <SettingsPanel embedded />
