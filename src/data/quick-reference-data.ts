@@ -444,9 +444,9 @@ export const sampleQuickReferenceData = [
   },
   {
     id: "react-hooks-essentials",
-    title: "React Hooks",
+    title: "React Hooks Complete Guide",
     category: "React",
-    description: "Essential React hooks for functional components",
+    description: "Comprehensive guide to React hooks including custom hooks",
     content: {
       syntax:
         "import React, { useState, useEffect, useContext, useCallback, useMemo } from 'react';\n\n// useState - State management\nconst [count, setCount] = useState(0);\nconst [user, setUser] = useState(null);\n\n// useEffect - Side effects\nuseEffect(() => {\n  // Effect logic\n  return () => {\n    // Cleanup logic\n  };\n}, [dependencies]);\n\n// useCallback - Memoized function\nconst memoizedCallback = useCallback(() => {\n  doSomething(a, b);\n}, [a, b]);\n\n// useMemo - Memoized value\nconst memoizedValue = useMemo(() => {\n  return computeExpensiveValue(a, b);\n}, [a, b]);\n\n// useContext - Context consumption\nconst value = useContext(MyContext);\n\n// Custom hook\nfunction useCounter(initialValue = 0) {\n  const [count, setCount] = useState(initialValue);\n  const increment = () => setCount(c => c + 1);\n  const decrement = () => setCount(c => c - 1);\n  return { count, increment, decrement };\n}",
@@ -497,9 +497,9 @@ export const sampleQuickReferenceData = [
   },
   {
     id: "react-hooks",
-    title: "React Hooks Essentials",
+    title: "React Hooks Basics",
     category: "React",
-    description: "Core React hooks for state and lifecycle",
+    description: "Basic React hooks for state and lifecycle management",
     content: {
       syntax:
         "// State hook\nconst [state, setState] = useState(initial);\n\n// Effect hook\nuseEffect(() => {\n  // side effect\n  return () => cleanup();\n}, [dependencies]);",
@@ -521,7 +521,7 @@ export const sampleQuickReferenceData = [
     language: "JavaScript",
   },
   {
-    id: "rest-api-design",
+    id: "rest-api-system-design",
     title: "REST API Design",
     category: "System Design",
     description: "RESTful API design principles and patterns",

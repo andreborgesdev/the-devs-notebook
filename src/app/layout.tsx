@@ -17,6 +17,7 @@ import { AccessibilityWrapper } from "@/src/components/accessibility-wrapper";
 import { ImageOptimizationProvider } from "@/src/components/image-optimization-provider";
 import { SkipNavigation } from "@/src/components/skip-navigation";
 import { SearchScroller } from "@/src/components/search-scroller";
+import { Toaster } from "@/src/components/ui/toaster";
 
 import "katex/dist/katex.min.css";
 
@@ -105,6 +106,7 @@ export default function RootLayout({
             </ThemeProvider>
           </AccessibilityWrapper>
         </AccessibilityProvider>
+        <Toaster />
       </body>
     </html>
   );

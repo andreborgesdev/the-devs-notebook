@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import { cn } from "@/src/lib/utils";
+import { useToast } from "@/src/hooks/use-toast";
 import {
   Card,
   CardContent,
@@ -79,6 +80,7 @@ export function QuickReferenceCards({
   description = "Essential cheat sheets and quick references for developers",
   className,
 }: QuickReferenceCardsProps) {
+  const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>("all");
@@ -111,8 +113,18 @@ export function QuickReferenceCards({
   const copyToClipboard = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
+      toast({
+        title: "Copied to clipboard",
+        description: "The code has been copied to your clipboard.",
+        variant: "success",
+      });
     } catch (err) {
       console.error("Failed to copy text: ", err);
+      toast({
+        title: "Copy failed",
+        description: "Failed to copy the code to clipboard.",
+        variant: "destructive",
+      });
     }
   };
 
