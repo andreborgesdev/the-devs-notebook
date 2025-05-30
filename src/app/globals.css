@@ -924,10 +924,21 @@ input[type="search"]::-ms-reveal {
   }
 }
 
-/* Print styles for accessibility */
+/* Print styles for accessibility and better formatting */
 @media print {
   .no-print,
-  [aria-hidden="true"] {
+  [aria-hidden="true"],
+  nav,
+  .sidebar,
+  .table-of-contents,
+  .scroll-to-top,
+  button:not(.print-visible),
+  .bookmark-button,
+  .contribution-button,
+  .settings-panel,
+  .search-bar,
+  .breadcrumbs,
+  .navigation-menu {
     display: none !important;
   }
 
@@ -941,6 +952,258 @@ input[type="search"]::-ms-reveal {
     clip: auto !important;
     white-space: normal !important;
   }
+
+  /* Print layout optimizations */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
+    color: #000000 !important;
+    background: #ffffff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .print-container {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 1in !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Content area styling */
+  main,
+  article,
+  .prose,
+  .markdown-content {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Typography for print */
+  h1 {
+    font-size: 24pt !important;
+    margin-top: 0 !important;
+    margin-bottom: 12pt !important;
+    page-break-after: avoid !important;
+    color: #000000 !important;
+  }
+
+  h2 {
+    font-size: 18pt !important;
+    margin-top: 18pt !important;
+    margin-bottom: 10pt !important;
+    page-break-after: avoid !important;
+    color: #000000 !important;
+  }
+
+  h3 {
+    font-size: 14pt !important;
+    margin-top: 14pt !important;
+    margin-bottom: 8pt !important;
+    page-break-after: avoid !important;
+    color: #000000 !important;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-size: 12pt !important;
+    margin-top: 12pt !important;
+    margin-bottom: 6pt !important;
+    page-break-after: avoid !important;
+    color: #000000 !important;
+    font-weight: bold !important;
+  }
+
+  p {
+    margin-bottom: 8pt !important;
+    orphans: 2 !important;
+    widows: 2 !important;
+    color: #000000 !important;
+  }
+
+  /* Code styling for print */
+  pre,
+  code {
+    font-family: "Courier New", monospace !important;
+    font-size: 10pt !important;
+    background: #f5f5f5 !important;
+    border: 1px solid #cccccc !important;
+    color: #000000 !important;
+  }
+
+  pre {
+    padding: 8pt !important;
+    margin: 8pt 0 !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    page-break-inside: avoid !important;
+  }
+
+  code {
+    padding: 2pt 4pt !important;
+    border-radius: 2pt !important;
+  }
+
+  /* Table styling for print */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 8pt 0 !important;
+    page-break-inside: auto !important;
+    border: 1px solid #000000 !important;
+  }
+
+  th,
+  td {
+    border: 1px solid #000000 !important;
+    padding: 4pt 6pt !important;
+    text-align: left !important;
+    color: #000000 !important;
+    background: transparent !important;
+  }
+
+  th {
+    font-weight: bold !important;
+    background: #f0f0f0 !important;
+  }
+
+  tr {
+    page-break-inside: avoid !important;
+  }
+
+  /* List styling */
+  ul,
+  ol {
+    margin: 8pt 0 !important;
+    padding-left: 24pt !important;
+  }
+
+  li {
+    margin-bottom: 4pt !important;
+    color: #000000 !important;
+  }
+
+  /* Links */
+  a {
+    color: #000000 !important;
+    text-decoration: underline !important;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")" !important;
+    font-size: 9pt !important;
+    color: #666666 !important;
+  }
+
+  /* Blockquotes */
+  blockquote {
+    margin: 8pt 0 8pt 16pt !important;
+    padding-left: 8pt !important;
+    border-left: 2pt solid #cccccc !important;
+    font-style: italic !important;
+    color: #333333 !important;
+  }
+
+  /* Images */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    page-break-inside: avoid !important;
+    border: 1px solid #cccccc !important;
+  }
+
+  /* Page breaks */
+  .page-break-before {
+    page-break-before: always !important;
+  }
+
+  .page-break-after {
+    page-break-after: always !important;
+  }
+
+  .page-break-inside-avoid {
+    page-break-inside: avoid !important;
+  }
+
+  /* Print header/footer */
+  .print-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 0.5in !important;
+    padding: 0.25in !important;
+    border-bottom: 1px solid #cccccc !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 10pt !important;
+  }
+
+  .print-footer {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 0.5in !important;
+    padding: 0.25in !important;
+    border-top: 1px solid #cccccc !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 10pt !important;
+    text-align: center !important;
+  }
+
+  /* Remove gradients and effects */
+  *,
+  *::before,
+  *::after {
+    background-image: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    transform: none !important;
+  }
+}
+
+/* Clean print mode - even cleaner layout */
+[data-print-mode="clean"] .no-print,
+[data-print-mode="clean"] nav,
+[data-print-mode="clean"] .sidebar,
+[data-print-mode="clean"] header,
+[data-print-mode="clean"] footer,
+[data-print-mode="clean"] .table-of-contents,
+[data-print-mode="clean"] .scroll-to-top,
+[data-print-mode="clean"] button:not(.print-visible),
+[data-print-mode="clean"] .bookmark-button,
+[data-print-mode="clean"] .contribution-button,
+[data-print-mode="clean"] .settings-panel,
+[data-print-mode="clean"] .search-bar,
+[data-print-mode="clean"] .breadcrumbs,
+[data-print-mode="clean"] .navigation-menu,
+[data-print-mode="clean"] .print-button {
+  display: none !important;
+}
+
+/* PDF mode optimizations */
+[data-print-mode="pdf"] {
+  background: #ffffff !important;
+}
+
+[data-print-mode="pdf"] * {
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
 }
 
 /* Motion preferences */

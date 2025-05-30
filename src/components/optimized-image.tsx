@@ -62,6 +62,8 @@ export function OptimizedImage({
 
   // Generate blur placeholder for better UX
   const generateBlurDataURL = (w: number, h: number) => {
+    if (typeof window === "undefined") return undefined;
+
     const canvas = document.createElement("canvas");
     canvas.width = w;
     canvas.height = h;
@@ -75,7 +77,9 @@ export function OptimizedImage({
 
   const defaultBlurDataURL =
     blurDataURL ||
-    (width && height ? generateBlurDataURL(width, height) : undefined);
+    (width && height && typeof window !== "undefined"
+      ? generateBlurDataURL(width, height)
+      : undefined);
 
   if (hasError) {
     return (

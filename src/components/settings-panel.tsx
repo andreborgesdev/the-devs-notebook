@@ -17,6 +17,7 @@ import {
   Monitor,
   Maximize,
   AlignLeft,
+  Printer,
 } from "lucide-react";
 import { useAccessibility } from "@/src/contexts/AccessibilityContext";
 import { useTheme } from "next-themes";
@@ -402,6 +403,50 @@ export function SettingsPanel({
                 >
                   {fullWidth ? "On" : "Off"}
                 </Button>
+              </div>
+            </div>
+
+            <Separator />
+
+            {/* Print Section */}
+            <div className="space-y-4">
+              <h4 className="font-medium text-sm text-muted-foreground uppercase tracking-wide">
+                Print & Export
+              </h4>
+
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Printer className="h-4 w-4" />
+                    <span className="text-sm font-medium">
+                      Print Current Page
+                    </span>
+                  </div>
+                  <Button
+                    onClick={() => {
+                      const contentElement =
+                        document.querySelector('[data-content="markdown"]') ||
+                        document.querySelector(".markdown-content") ||
+                        document.querySelector("article");
+                      if (contentElement) {
+                        window.print();
+                      } else {
+                        alert("No content found to print");
+                      }
+                    }}
+                    variant="outline"
+                    size="sm"
+                    className="text-xs"
+                  >
+                    Print
+                  </Button>
+                </div>
+
+                <div className="text-xs text-muted-foreground space-y-1">
+                  <p>• Use the print button on any page for advanced options</p>
+                  <p>• Print styles automatically hide navigation elements</p>
+                  <p>• Clean mode removes all UI elements for pure content</p>
+                </div>
               </div>
             </div>
 

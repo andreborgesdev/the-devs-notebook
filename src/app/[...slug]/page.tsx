@@ -6,6 +6,7 @@ import { TableOfContents } from "@/src/components/table-of-contents";
 import { ScrollToTop } from "@/src/components/scroll-to-top";
 import { SmartImage } from "@/src/components/smart-image";
 import { ClientBookmarkButton } from "@/src/components/client-bookmark-button";
+import { ClientMarkdownPrintButton } from "@/src/components/client-markdown-print-button";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -94,7 +95,18 @@ export default async function ContentPage({
 
       <div className="relative flex gap-8">
         <article className="flex-1 prose prose-slate dark:prose-invert mx-auto max-w-4xl p-6 lg:p-8">
+          {/* Page Actions */}
+          <div className="flex justify-end gap-2 mb-6 no-print">
+            <ClientMarkdownPrintButton
+              title={pageTitle}
+              variant="outline"
+              size="sm"
+            />
+            <ClientBookmarkButton title={pageTitle} url={pageUrl} />
+          </div>
+
           <MarkdownAsync
+            data-content="markdown"
             className="markdown-content"
             remarkPlugins={[remarkMath, remarkGfm]}
             rehypePlugins={[
@@ -106,18 +118,13 @@ export default async function ContentPage({
               h1: ({ children, ...props }) => {
                 const id = getNextHeadingId();
                 return (
-                  <div className="space-y-4">
-                    <h1
-                      id={id}
-                      className="scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl my-8 bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 dark:from-white dark:via-blue-200 dark:to-white bg-clip-text text-transparent"
-                      {...props}
-                    >
-                      {children}
-                    </h1>
-                    <div className="flex justify-end">
-                      <ClientBookmarkButton title={pageTitle} url={pageUrl} />
-                    </div>
-                  </div>
+                  <h1
+                    id={id}
+                    className="scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl my-8 bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 dark:from-white dark:via-blue-200 dark:to-white bg-clip-text text-transparent"
+                    {...props}
+                  >
+                    {children}
+                  </h1>
                 );
               },
               h2: ({ children, ...props }) => {
