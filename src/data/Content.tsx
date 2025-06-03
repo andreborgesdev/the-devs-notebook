@@ -670,9 +670,44 @@ export const Content: ContentItem[] = [
         icon: "💡",
       },
       {
+        title: "Syntax Basics",
+        url: "/kotlin/syntax-basics",
+        icon: "📝",
+      },
+      {
+        title: "Object-Oriented Programming",
+        url: "/kotlin/oop",
+        icon: "🏗️",
+      },
+      {
+        title: "Functional Programming",
+        url: "/kotlin/functional-programming",
+        icon: "🔄",
+      },
+      {
+        title: "Collections & Data Structures",
+        url: "/kotlin/collections",
+        icon: "💾",
+      },
+      {
+        title: "Null Safety & Error Handling",
+        url: "/kotlin/null-safety",
+        icon: "🛡️",
+      },
+      {
+        title: "Concurrency & Multithreading",
+        url: "/kotlin/concurrency",
+        icon: "⚡",
+      },
+      {
         title: "Coroutines",
         url: "/kotlin/coroutines",
         icon: "🔄",
+      },
+      {
+        title: "Advanced Features",
+        url: "/kotlin/advanced-features",
+        icon: "🚀",
       },
       {
         title: "Interview Questions",
