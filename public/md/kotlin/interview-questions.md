@@ -866,8 +866,6 @@ val expensiveResource by lazy {
 }
 ```
 
-## **Final Review Checklist for Interview Tomorrow**
-
 ### **Must-Know Concepts**
 
 - [ ] Null safety (nullable types, safe calls, Elvis operator)
