@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import path from "path";
+import React from "react";
 import { MarkdownAsync } from "react-markdown";
 import fs from "fs";
 import { TableOfContents } from "@/src/components/table-of-contents";
@@ -110,9 +111,9 @@ export default async function ContentPage({
             className="markdown-content"
             remarkPlugins={[remarkMath, remarkGfm]}
             rehypePlugins={[
+              rehypeRaw,
               [rehypePrettyCode, prettyCodeOptions],
               rehypeKatex,
-              rehypeRaw,
             ]}
             components={{
               h1: ({ children, ...props }) => {

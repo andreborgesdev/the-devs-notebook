@@ -27,6 +27,11 @@ export const Content: ContentItem[] = [
     icon: "💻",
     items: [
       {
+        title: "Interactive Visualizers",
+        url: "/computer-science/visualizers",
+        icon: "🎮",
+      },
+      {
         title: "Memory",
         url: "/computer-science/memory",
         icon: "💾",
@@ -53,6 +58,11 @@ export const Content: ContentItem[] = [
     url: "/data-structures",
     icon: "💾",
     items: [
+      {
+        title: "Interactive Visualizers",
+        url: "/data-structures/visualizers",
+        icon: "🎮",
+      },
       {
         title: "Introduction",
         url: "/data-structures/introduction",
@@ -197,6 +207,11 @@ export const Content: ContentItem[] = [
     url: "/algorithms",
     icon: "🧠",
     items: [
+      {
+        title: "Interactive Visualizers",
+        url: "/algorithms/visualizers",
+        icon: "🎮",
+      },
       {
         title: "Introduction",
         url: "/algorithms/introduction",
@@ -417,6 +432,11 @@ export const Content: ContentItem[] = [
     url: "/java",
     icon: "☕",
     items: [
+      {
+        title: "Interactive Visualizers",
+        url: "/java/visualizers",
+        icon: "🎮",
+      },
       {
         title: "Introduction",
         url: "/java/introduction",
@@ -735,6 +755,11 @@ export const Content: ContentItem[] = [
     icon: "🗺️",
     items: [
       {
+        title: "Interactive Visualizers",
+        url: "/system-design/visualizers",
+        icon: "🎮",
+      },
+      {
         title: "Introduction",
         url: "/system-design/introduction",
         icon: "💡",
@@ -823,6 +848,11 @@ export const Content: ContentItem[] = [
     url: "/databases",
     icon: "💾",
     items: [
+      {
+        title: "Interactive Visualizers",
+        url: "/databases/visualizers",
+        icon: "🎮",
+      },
       {
         title: "Introduction",
         url: "/databases/databases",
@@ -984,6 +1014,11 @@ export const Content: ContentItem[] = [
     url: "/javascript",
     icon: "🧩",
     items: [
+      {
+        title: "Interactive Visualizers",
+        url: "/javascript/visualizers",
+        icon: "🎮",
+      },
       {
         title: "Introduction",
         url: "/javascript/introduction",

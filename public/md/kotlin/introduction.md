@@ -124,7 +124,7 @@ fun main() = runBlocking {
 ```kotlin
 fun String.reverse(): String = this.reversed()
 
-println("Kotlin".reverse())  // Output: ntiloK
+println("Kotlin".reverse())  // Output: niltoK
 ```
 
 ## Data Classes

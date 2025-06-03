@@ -1,9 +1,5 @@
 # Tech Interview Cheat Sheet
 
-## Challenges
-
-This project now has actual code challenges! This challenges are meant to cover the topics you'll read below. Maybe you'll see them in an interview and maybe you won't. Either way you'll probably learn something new. [Click here for more](./challenges/README.md)
-
 # Asymptotic Notation
 
 ### Definition:
