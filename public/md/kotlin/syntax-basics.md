@@ -1,6 +1,25 @@
 # Kotlin Syntax Basics
 
+## Core Language Philosophy
+
+**Kotlin prioritizes safety, conciseness, and interoperability.** The language design makes common programming errors difficult to write while reducing boilerplate code. Key principles include:
+
+- **Null Safety by Design**: Distinguishes nullable from non-nullable types at compile time
+- **Type Inference**: Reduces verbose type declarations while maintaining type safety
+- **Expression-Oriented**: Most constructs are expressions that return values
+- **Immutability Preference**: Encourages `val` over `var` for safer code
+- **Java Interoperability**: 100% compatible with existing Java libraries
+
 ## Variables and Data Types
+
+**Variables in Kotlin are either immutable (`val`) or mutable (`var`).** This distinction is fundamental to Kotlin's approach to safer programming. The compiler helps prevent accidental reassignment and encourages functional programming patterns.
+
+**Key Concepts:**
+
+- **Type Inference**: Kotlin can often determine types automatically
+- **Null Safety**: Types are non-nullable by default; nullability must be explicit
+- **Late Initialization**: Use `lateinit` for properties that cannot be initialized immediately
+- **Const vs Val**: `const` for compile-time constants, `val` for runtime immutable values
 
 ### Variable Declarations
 
@@ -34,6 +53,20 @@ val forceLength = nullable!!.length
 ```
 
 ## Control Flow
+
+**Kotlin's control flow constructs are expressions, not statements.** This means they return values and can be used in assignments, making code more concise and functional. The `when` expression is particularly powerful, replacing Java's limited switch statement.
+
+**Expression vs Statement:**
+
+- **Expressions**: Return values (`if`, `when`, `try`)
+- **Statements**: Perform actions (`for`, `while`)
+- **Benefits**: More concise code, fewer temporary variables, better readability
+
+**Smart Casting:**
+Kotlin automatically casts types when the compiler can prove safety. For example, after an `is` check in a `when` expression, the variable is automatically cast to that type.
+
+**Exhaustive When:**
+When used as an expression, `when` must be exhaustive (cover all possible cases) or have an `else` branch. This prevents runtime errors from unhandled cases.
 
 ### Conditional Expressions
 
@@ -73,6 +106,24 @@ val stepRange = 1..10 step 2
 ```
 
 ## Functions
+
+**Functions in Kotlin are first-class citizens.** They can be stored in variables, passed as arguments, and returned from other functions. Kotlin supports both traditional imperative and modern functional programming styles.
+
+**Key Function Features:**
+
+- **Single Expression Functions**: Use `=` syntax for concise one-liner functions
+- **Default Parameters**: Reduce function overloading needs
+- **Named Arguments**: Improve readability when calling functions with many parameters
+- **Variable Arguments**: `vararg` keyword allows flexible parameter counts
+- **Extension Functions**: Add functionality to existing classes without inheritance
+- **Higher-Order Functions**: Functions that take or return other functions
+- **Inline Functions**: Performance optimization for lambda-heavy code
+
+**Function Types:**
+
+- `(Int, String) -> Boolean`: Function taking Int and String, returning Boolean
+- `() -> Unit`: Function taking no parameters, returning nothing (Unit)
+- `suspend () -> T`: Suspending function for coroutines
 
 ### Function Declaration
 

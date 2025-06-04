@@ -1,6 +1,54 @@
 # Kotlin Advanced Features
 
+## Advanced Features Overview
+
+**Kotlin's advanced features unlock powerful programming patterns** that go beyond basic object-oriented and functional programming. These features enable library authors and application developers to write more expressive, performant, and type-safe code.
+
+**Key Advanced Concepts:**
+
+- **Inline Functions**: Eliminate function call overhead for higher-order functions
+- **Reified Generics**: Access generic type information at runtime
+- **Delegation**: Implement interfaces or properties through delegation patterns
+- **Sealed Classes**: Create closed type hierarchies for exhaustive when expressions
+- **Value Classes**: Zero-cost abstractions for type safety
+- **Contracts**: Help the compiler understand function behavior for better analysis
+- **DSLs**: Create domain-specific languages using Kotlin's syntax features
+
+**When to Use Advanced Features:**
+
+- **Performance-critical code**: Inline functions, value classes
+- **Library development**: Contracts, reified generics, advanced delegation
+- **Type safety**: Sealed classes, value classes for domain modeling
+- **API design**: DSLs for configuration, builders, and fluent interfaces
+- **Framework development**: Reflection, annotations, and meta-programming
+
+**Learning Path:**
+Start with delegation and sealed classes (most commonly useful), then progress to inline functions and value classes. Advanced features like contracts and reflection are typically needed for library development.
+
 ## Inline Functions
+
+**Inline functions eliminate the overhead of higher-order functions** by copying the function body directly to the call site during compilation. This is crucial for performance when using lambdas extensively, especially in collection operations.
+
+**Key Benefits:**
+
+- **Zero Function Call Overhead**: No performance penalty for abstraction
+- **Non-local Returns**: Lambdas can return from the enclosing function
+- **Reified Type Parameters**: Access to generic type information at runtime
+- **Better Optimization**: Compiler can optimize the inlined code more effectively
+
+**When to Use Inline:**
+
+- Functions that take lambda parameters (especially if called frequently)
+- Small utility functions with minimal code
+- Performance-critical paths where function call overhead matters
+- When you need reified type parameters
+
+**Limitations:**
+
+- Increases compiled code size
+- Not suitable for large functions
+- Cannot be used with recursive functions
+- Some restrictions on parameter usage
 
 ### Basic Inline Functions
 

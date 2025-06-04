@@ -1,6 +1,43 @@
 # Kotlin Best Practices & Interview Tips
 
+## Kotlin Development Philosophy
+
+**Writing Kotlin is about embracing modern programming principles** while leveraging the language's safety features. Good Kotlin code is not just correct—it's idiomatic, safe, and maintainable.
+
+**Core Principles:**
+
+- **Safety First**: Use the type system to prevent errors at compile time
+- **Immutability by Default**: Prefer `val`, immutable collections, and pure functions
+- **Expressive Code**: Write code that clearly communicates intent
+- **Leverage Language Features**: Use Kotlin-specific features rather than Java patterns
+- **Performance Awareness**: Understand when language features have performance implications
+
+**Code Quality Mindset:**
+
+- **Null Safety**: Let the compiler help you avoid null pointer exceptions
+- **Functional Approaches**: Use collection operations, higher-order functions appropriately
+- **Extension Functions**: Enhance APIs without modification, but don't overuse
+- **Coroutines**: Embrace structured concurrency for asynchronous programming
+- **Type Safety**: Use sealed classes, enums, and value classes for domain modeling
+
+**Common Anti-Patterns to Avoid:**
+
+- Using `!!` (not-null assertion) without proper justification
+- Ignoring compiler warnings about unused variables or deprecated APIs
+- Writing Java-style code in Kotlin (unnecessary getters/setters, verbose null checks)
+- Overusing mutable collections when immutable ones suffice
+- Using `GlobalScope` instead of structured concurrency
+
 ## Code Style & Conventions
+
+**Consistent style improves code readability and team collaboration.** Kotlin has established conventions that make code more predictable and easier to understand across different projects and teams.
+
+**Style Philosophy:**
+
+- **Consistency Over Personal Preference**: Follow established conventions
+- **Readability Over Cleverness**: Clear code is better than clever code
+- **Team Standards**: Establish and document team-specific conventions
+- **Tool Support**: Use IDE formatting and linting tools consistently
 
 ### Naming Conventions
 

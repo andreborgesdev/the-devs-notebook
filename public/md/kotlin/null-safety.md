@@ -1,6 +1,42 @@
 # Kotlin Null Safety and Error Handling
 
+## Understanding Null Safety
+
+**Null safety is one of Kotlin's most important features.** The billion-dollar mistake of null references has been eliminated through Kotlin's type system, which distinguishes between nullable and non-nullable types at compile time. This prevents the vast majority of NullPointerExceptions before your code even runs.
+
+**Why Null Safety Matters:**
+
+- **Eliminates NullPointerExceptions**: Most common source of runtime crashes
+- **Makes code more predictable**: Explicit handling of potential null values
+- **Improves code quality**: Forces developers to think about edge cases
+- **Better API design**: Clear contracts about what can and cannot be null
+- **Reduces debugging time**: Null-related bugs are caught at compile time
+
+**Core Concepts:**
+
+- **Non-nullable by default**: Types like `String` cannot hold null values
+- **Explicit nullability**: Use `String?` when null values are possible
+- **Compiler enforcement**: Null checks are required before accessing nullable values
+- **Smart casting**: Compiler automatically casts after null checks
+- **Safe operations**: Operators that handle null gracefully
+
+**Common Null Safety Patterns:**
+
+- **Safe calls (`?.`)**: Call methods safely on nullable objects
+- **Elvis operator (`?:`)**: Provide default values for null cases
+- **Let scope function**: Execute code only when value is not null
+- **Early returns**: Exit functions early when encountering null values
+
 ## Null Safety System
+
+**Kotlin's type system differentiates between references that can hold null and those that cannot.** This distinction is enforced at compile time, making null pointer exceptions virtually impossible in well-written Kotlin code.
+
+**Type System Rules:**
+
+- **Non-nullable types** (`String`, `Int`, `User`): Cannot be assigned null
+- **Nullable types** (`String?`, `Int?`, `User?`): Can hold null or actual values
+- **Automatic inference**: Compiler infers nullability based on assignments
+- **Platform types**: Java interop types that may or may not be null
 
 ### Nullable vs Non-Nullable Types
 

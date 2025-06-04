@@ -87,6 +87,33 @@ export default async function ContentPage({
         visibility: "always",
         feedbackDuration: 3_000,
       }),
+      {
+        name: "add-line-numbers",
+        pre(node: any) {
+          const code = node.children?.[0];
+          if (code && code.tagName === "code") {
+            code.properties = code.properties || {};
+            code.properties["data-line-numbers"] = "";
+
+            const lines =
+              code.children?.filter(
+                (child: any) =>
+                  child.type === "element" && child.tagName === "span"
+              ) || [];
+
+            if (lines.length > 0) {
+              const digits = lines.length.toString().length;
+              code.properties["data-line-numbers-max-digits"] =
+                digits.toString();
+
+              lines.forEach((line: any) => {
+                line.properties = line.properties || {};
+                line.properties["data-line"] = "";
+              });
+            }
+          }
+        },
+      },
     ],
   };
 

@@ -1,6 +1,42 @@
 # Kotlin Object-Oriented Programming
 
+## Core OOP Principles in Kotlin
+
+**Kotlin embraces modern OOP while addressing common Java pain points.** The language provides powerful features like data classes, sealed classes, and delegation that reduce boilerplate while maintaining type safety and expressiveness.
+
+**Key OOP Concepts:**
+
+- **Classes are final by default**: Prevents accidental inheritance; use `open` to allow inheritance
+- **Properties over fields**: Automatic getter/setter generation with custom logic support
+- **Primary constructors**: Concise constructor syntax integrated with class declaration
+- **Data classes**: Automatic implementations of `equals()`, `hashCode()`, `toString()`, and `copy()`
+- **Sealed classes**: Restricted inheritance for representing finite type hierarchies
+- **Object declarations**: Built-in singleton pattern support
+
+**Kotlin vs Java OOP Differences:**
+
+- No need for explicit getters/setters (properties handle this)
+- Constructors are more concise and flexible
+- `object` keyword for singletons eliminates boilerplate
+- Extension functions provide safe "monkey patching"
+- Delegation is a first-class language feature
+
 ## Classes and Objects
+
+**Classes in Kotlin define both structure and behavior.** The primary constructor can declare and initialize properties directly, making class declarations much more concise than Java equivalents.
+
+**Constructor Types:**
+
+- **Primary Constructor**: Part of class header, cannot contain code
+- **Secondary Constructor**: Additional constructors that must delegate to primary
+- **Init Blocks**: Execute code during object initialization
+
+**Property Features:**
+
+- **Backing Fields**: Automatic `field` identifier for property storage
+- **Custom Accessors**: Override default getter/setter behavior
+- **Late Initialization**: `lateinit` for properties initialized after construction
+- **Delegated Properties**: Custom behavior through delegation (lazy, observable, etc.)
 
 ### Basic Class Definition
 
