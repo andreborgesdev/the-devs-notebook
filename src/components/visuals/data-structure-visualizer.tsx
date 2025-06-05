@@ -22,6 +22,12 @@ import {
   Search,
 } from "lucide-react";
 import { Input } from "@/src/components/ui/input";
+import {
+  StackComponent,
+  QueueComponent,
+  ArrayComponent,
+  LinkedListComponent,
+} from "@/src/components/visuals/linear-structures";
 
 interface DataStructureVisualizerProps {
   title?: string;
@@ -173,168 +179,18 @@ export function DataStructureVisualizer({
 
   const renderStack = () => {
     const stackItems = data as StackItem[];
+    const componentInitialData =
+      stackItems.length > 0 ? stackItems : (initialData as StackItem[]) || [];
 
-    const push = () => {
-      if (inputValue.trim()) {
-        const newItem: StackItem = {
-          value: inputValue,
-          id: Date.now().toString(),
-          highlight: true,
-        };
-        setData([...stackItems, newItem]);
-        setInputValue("");
-        setTimeout(() => {
-          setData((prev) =>
-            prev.map((item) => ({ ...item, highlight: false }))
-          );
-        }, 1000);
-      }
-    };
-
-    const pop = () => {
-      if (stackItems.length > 0) {
-        const newStack = [...stackItems];
-        newStack[newStack.length - 1].highlight = true;
-        setData(newStack);
-        setTimeout(() => {
-          setData((prev) => prev.slice(0, -1));
-        }, 500);
-      }
-    };
-
-    return (
-      <div className="flex flex-col items-center space-y-4">
-        <div className="flex gap-2 mb-4">
-          <Input
-            placeholder="Enter value"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            className="w-32"
-            onKeyPress={(e) => e.key === "Enter" && push()}
-          />
-          <Button onClick={push} size="sm">
-            <Plus className="h-3 w-3" />
-          </Button>
-          <Button onClick={pop} size="sm" variant="outline">
-            <Minus className="h-3 w-3" />
-          </Button>
-        </div>
-
-        <div className="flex flex-col-reverse items-center space-y-reverse space-y-1">
-          {stackItems.map((item, index) => (
-            <div
-              key={item.id}
-              className={cn(
-                "w-24 h-12 border-2 flex items-center justify-center rounded transition-all duration-300",
-                item.highlight
-                  ? "bg-blue-200 border-blue-500 scale-105"
-                  : "bg-gray-100 border-gray-300"
-              )}
-              style={{
-                transform: `translateY(${item.highlight ? "-5px" : "0"})`,
-                zIndex: stackItems.length - index,
-              }}
-            >
-              <span className="font-mono font-semibold">{item.value}</span>
-            </div>
-          ))}
-          <div className="w-24 h-4 bg-gray-800 rounded-b text-center text-white text-xs flex items-center justify-center">
-            Stack
-          </div>
-        </div>
-
-        <Badge variant="outline">
-          Top:{" "}
-          {stackItems.length > 0
-            ? stackItems[stackItems.length - 1].value
-            : "Empty"}
-        </Badge>
-      </div>
-    );
+    return <StackComponent initialData={componentInitialData} />;
   };
 
   const renderQueue = () => {
     const queueItems = data as QueueItem[];
+    const componentInitialData =
+      queueItems.length > 0 ? queueItems : (initialData as QueueItem[]) || [];
 
-    const enqueue = () => {
-      if (inputValue.trim()) {
-        const newItem: QueueItem = {
-          value: inputValue,
-          id: Date.now().toString(),
-          highlight: true,
-        };
-        setData([...queueItems, newItem]);
-        setInputValue("");
-        setTimeout(() => {
-          setData((prev) =>
-            prev.map((item) => ({ ...item, highlight: false }))
-          );
-        }, 1000);
-      }
-    };
-
-    const dequeue = () => {
-      if (queueItems.length > 0) {
-        const newQueue = [...queueItems];
-        newQueue[0].highlight = true;
-        setData(newQueue);
-        setTimeout(() => {
-          setData((prev) => prev.slice(1));
-        }, 500);
-      }
-    };
-
-    return (
-      <div className="flex flex-col items-center space-y-4">
-        <div className="flex gap-2 mb-4">
-          <Input
-            placeholder="Enter value"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            className="w-32"
-            onKeyPress={(e) => e.key === "Enter" && enqueue()}
-          />
-          <Button onClick={enqueue} size="sm">
-            Enqueue
-          </Button>
-          <Button onClick={dequeue} size="sm" variant="outline">
-            Dequeue
-          </Button>
-        </div>
-
-        <div className="flex items-center space-x-1">
-          <div className="text-sm font-semibold">Front →</div>
-          {queueItems.map((item, index) => (
-            <div
-              key={item.id}
-              className={cn(
-                "w-16 h-12 border-2 flex items-center justify-center rounded transition-all duration-300",
-                item.highlight
-                  ? "bg-green-200 border-green-500 scale-105"
-                  : "bg-gray-100 border-gray-300"
-              )}
-            >
-              <span className="font-mono font-semibold text-sm">
-                {item.value}
-              </span>
-            </div>
-          ))}
-          <div className="text-sm font-semibold">← Rear</div>
-        </div>
-
-        <div className="flex gap-4">
-          <Badge variant="outline">
-            Front: {queueItems.length > 0 ? queueItems[0].value : "Empty"}
-          </Badge>
-          <Badge variant="outline">
-            Rear:{" "}
-            {queueItems.length > 0
-              ? queueItems[queueItems.length - 1].value
-              : "Empty"}
-          </Badge>
-        </div>
-      </div>
-    );
+    return <QueueComponent initialData={componentInitialData} />;
   };
 
   const renderHashTable = () => {
@@ -672,71 +528,10 @@ export function DataStructureVisualizer({
 
   const renderArray = () => {
     const arrayItems = data as ArrayItem[];
+    const componentInitialData =
+      arrayItems.length > 0 ? arrayItems : (initialData as ArrayItem[]) || [];
 
-    const addElement = () => {
-      if (inputValue.trim()) {
-        const newItem: ArrayItem = {
-          value: inputValue,
-          id: Date.now().toString(),
-          index: arrayItems.length,
-          highlight: true,
-        };
-        setData([...arrayItems, newItem]);
-        setInputValue("");
-
-        setTimeout(() => {
-          setData((prev) =>
-            prev.map((item) => ({ ...item, highlight: false }))
-          );
-        }, 1000);
-      }
-    };
-
-    const removeElement = (index: number) => {
-      const newArray = arrayItems.filter((_, i) => i !== index);
-      const updatedArray = newArray.map((item, i) => ({ ...item, index: i }));
-      setData(updatedArray);
-    };
-
-    return (
-      <div className="flex flex-col items-center space-y-4">
-        <div className="flex gap-2 mb-4">
-          <Input
-            placeholder="Enter value"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            className="w-32"
-            onKeyPress={(e) => e.key === "Enter" && addElement()}
-          />
-          <Button onClick={addElement} size="sm">
-            <Plus className="h-3 w-3" />
-          </Button>
-        </div>
-
-        <div className="flex items-center gap-1">
-          {arrayItems.map((item, index) => (
-            <div key={item.id} className="flex flex-col items-center">
-              <div className="text-xs text-gray-500 mb-1">[{index}]</div>
-              <div
-                className={cn(
-                  "w-16 h-12 border-2 flex items-center justify-center rounded cursor-pointer transition-all duration-300",
-                  item.highlight
-                    ? "bg-yellow-200 border-yellow-500 scale-105"
-                    : "bg-gray-100 border-gray-300 hover:bg-gray-200"
-                )}
-                onClick={() => removeElement(index)}
-              >
-                <span className="font-mono font-semibold text-sm">
-                  {item.value}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <Badge variant="outline">Length: {arrayItems.length}</Badge>
-      </div>
-    );
+    return <ArrayComponent initialData={componentInitialData} />;
   };
 
   const renderDynamicArray = () => {
@@ -745,87 +540,10 @@ export function DataStructureVisualizer({
 
   const renderLinkedList = () => {
     const nodes = data as LinkedListNode[];
+    const componentInitialData =
+      nodes.length > 0 ? nodes : (initialData as LinkedListNode[]) || [];
 
-    const addNode = () => {
-      if (inputValue.trim()) {
-        const newNode: LinkedListNode = {
-          value: inputValue,
-          id: Date.now().toString(),
-          highlight: true,
-        };
-
-        if (nodes.length > 0) {
-          const lastNode = nodes[nodes.length - 1];
-          lastNode.next = newNode.id;
-        }
-
-        setData([...nodes, newNode]);
-        setInputValue("");
-
-        setTimeout(() => {
-          setData((prev) =>
-            prev.map((item) => ({ ...item, highlight: false }))
-          );
-        }, 1000);
-      }
-    };
-
-    const removeNode = (nodeId: string) => {
-      const nodeIndex = nodes.findIndex((n) => n.id === nodeId);
-      if (nodeIndex === -1) return;
-
-      const newNodes = [...nodes];
-
-      if (nodeIndex > 0) {
-        newNodes[nodeIndex - 1].next = newNodes[nodeIndex].next;
-      }
-
-      newNodes.splice(nodeIndex, 1);
-      setData(newNodes);
-    };
-
-    return (
-      <div className="flex flex-col items-center space-y-4">
-        <div className="flex gap-2 mb-4">
-          <Input
-            placeholder="Enter value"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            className="w-32"
-            onKeyPress={(e) => e.key === "Enter" && addNode()}
-          />
-          <Button onClick={addNode} size="sm">
-            Add Node
-          </Button>
-        </div>
-
-        <div className="flex items-center gap-2 overflow-x-auto p-4">
-          {nodes.map((node, index) => (
-            <div key={node.id} className="flex items-center gap-2">
-              <div
-                className={cn(
-                  "w-16 h-12 border-2 flex items-center justify-center rounded cursor-pointer transition-all duration-300",
-                  node.highlight
-                    ? "bg-blue-200 border-blue-500 scale-105"
-                    : "bg-gray-100 border-gray-300 hover:bg-gray-200"
-                )}
-                onClick={() => removeNode(node.id)}
-              >
-                <span className="font-mono font-semibold text-sm">
-                  {node.value}
-                </span>
-              </div>
-              {index < nodes.length - 1 && (
-                <div className="text-gray-400">→</div>
-              )}
-            </div>
-          ))}
-          {nodes.length > 0 && <div className="text-gray-400">→ null</div>}
-        </div>
-
-        <Badge variant="outline">Nodes: {nodes.length}</Badge>
-      </div>
-    );
+    return <LinkedListComponent initialData={componentInitialData} />;
   };
 
   const renderBinaryTree = () => {

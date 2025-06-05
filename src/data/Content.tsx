@@ -98,11 +98,11 @@ export const Content: ContentItem[] = [
     url: "/data-structures",
     icon: "💾",
     items: [
-      {
-        title: "Interactive Visualizers",
-        url: "/data-structures/visualizers",
-        icon: "🎮",
-      },
+      // {
+      //   title: "Interactive Visualizers",
+      //   url: "/data-structures/visualizers",
+      //   icon: "🎮",
+      // },
       {
         title: "Introduction",
         url: "/data-structures/introduction",
@@ -316,11 +316,11 @@ export const Content: ContentItem[] = [
     url: "/algorithms",
     icon: "🧠",
     items: [
-      {
-        title: "Interactive Visualizers",
-        url: "/algorithms/visualizers",
-        icon: "🎮",
-      },
+      // {
+      //   title: "Interactive Visualizers",
+      //   url: "/algorithms/visualizers",
+      //   icon: "🎮",
+      // },
       {
         title: "Introduction",
         url: "/algorithms/introduction",
@@ -541,11 +541,11 @@ export const Content: ContentItem[] = [
     url: "/java",
     icon: "☕",
     items: [
-      {
-        title: "Interactive Visualizers",
-        url: "/java/visualizers",
-        icon: "🎮",
-      },
+      // {
+      //   title: "Interactive Visualizers",
+      //   url: "/java/visualizers",
+      //   icon: "🎮",
+      // },
       {
         title: "Introduction",
         url: "/java/introduction",
@@ -898,11 +898,11 @@ export const Content: ContentItem[] = [
     url: "/system-design",
     icon: "🗺️",
     items: [
-      {
-        title: "Interactive Visualizers",
-        url: "/system-design/visualizers",
-        icon: "🎮",
-      },
+      // {
+      //   title: "Interactive Visualizers",
+      //   url: "/system-design/visualizers",
+      //   icon: "🎮",
+      // },
       {
         title: "Introduction",
         url: "/system-design/introduction",
@@ -992,11 +992,11 @@ export const Content: ContentItem[] = [
     url: "/databases",
     icon: "💾",
     items: [
-      {
-        title: "Interactive Visualizers",
-        url: "/databases/visualizers",
-        icon: "🎮",
-      },
+      // {
+      //   title: "Interactive Visualizers",
+      //   url: "/databases/visualizers",
+      //   icon: "🎮",
+      // },
       {
         title: "Introduction",
         url: "/databases/databases",
@@ -1158,11 +1158,11 @@ export const Content: ContentItem[] = [
     url: "/javascript",
     icon: "🧩",
     items: [
-      {
-        title: "Interactive Visualizers",
-        url: "/javascript/visualizers",
-        icon: "🎮",
-      },
+      // {
+      //   title: "Interactive Visualizers",
+      //   url: "/javascript/visualizers",
+      //   icon: "🎮",
+      // },
       {
         title: "Introduction",
         url: "/javascript/introduction",
@@ -1197,11 +1197,11 @@ export const Content: ContentItem[] = [
     url: "/react",
     icon: "⚛️",
     items: [
-      {
-        title: "Interactive Visualizers",
-        url: "/react/visualizers",
-        icon: "🎮",
-      },
+      // {
+      //   title: "Interactive Visualizers",
+      //   url: "/react/visualizers",
+      //   icon: "🎮",
+      // },
       {
         title: "Introduction",
         url: "/react/introduction",

@@ -782,6 +782,39 @@ export function CSInteractiveVisualizers() {
           Truly interactive educational tools to understand core CS concepts
           through hands-on exploration.
         </p>
+
+        <div className="flex flex-wrap gap-2 my-6">
+          <Badge
+            variant="secondary"
+            className="bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+          >
+            ⚡ Big O Complexity
+          </Badge>
+          <Badge
+            variant="secondary"
+            className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+          >
+            🧠 Memory Hierarchy
+          </Badge>
+          <Badge
+            variant="secondary"
+            className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+          >
+            ⚙️ Process Scheduling
+          </Badge>
+          <Badge
+            variant="secondary"
+            className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
+          >
+            🌐 Networking
+          </Badge>
+          <Badge
+            variant="secondary"
+            className="bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
+          >
+            🤖 Automata Theory
+          </Badge>
+        </div>
       </div>
 
       <Tabs defaultValue="complexity" className="w-full">
