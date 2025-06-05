@@ -11,7 +11,6 @@ import { ClientMarkdownPrintButton } from "@/src/components/client-markdown-prin
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypePrettyCode from "rehype-pretty-code";
-import { transformerCopyButton } from "@rehype-pretty/transformers";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { generateUniqueHeadingIds } from "@/src/lib/heading-utils";
@@ -20,6 +19,7 @@ import {
   shouldPreloadImage,
   getImageDimensions,
 } from "@/src/lib/image-utils";
+import { CopyButton } from "@/src/components/copy-button";
 
 export default async function ContentPage({
   params,
@@ -79,10 +79,6 @@ export default async function ContentPage({
       node.properties.className = ["word"];
     },
     transformers: [
-      transformerCopyButton({
-        visibility: "always",
-        feedbackDuration: 3_000,
-      }),
       {
         name: "add-line-numbers",
         pre(node: any) {
@@ -120,7 +116,7 @@ export default async function ContentPage({
       <div className="relative flex gap-8">
         <article className="flex-1 prose prose-slate dark:prose-invert mx-auto max-w-4xl p-6 lg:p-8">
           {/* Page Actions */}
-          <div className="flex justify-end gap-2 mb-6 no-print">
+          <div className="flex gap-2 mb-6 no-print">
             <ClientMarkdownPrintButton
               title={pageTitle}
               variant="outline"
@@ -251,12 +247,15 @@ export default async function ContentPage({
               },
               pre: ({ children, ...props }) => {
                 return (
-                  <pre
-                    className="relative rounded-lg border bg-muted overflow-x-auto shadow-sm"
-                    {...props}
-                  >
-                    {children}
-                  </pre>
+                  <div className="relative group">
+                    <pre
+                      className="relative rounded-lg border bg-muted overflow-x-auto shadow-sm"
+                      {...props}
+                    >
+                      {children}
+                    </pre>
+                    <CopyButton />
+                  </div>
                 );
               },
             }}
