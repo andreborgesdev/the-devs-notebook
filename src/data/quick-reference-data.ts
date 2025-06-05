@@ -784,4 +784,172 @@ export const sampleQuickReferenceData = [
     tags: ["microservices", "architecture", "distributed-systems", "patterns"],
     difficulty: "advanced" as const,
   },
+  {
+    id: "red-black-tree",
+    title: "Red-Black Tree",
+    category: "Data Structures",
+    description: "Self-balancing BST with color-coded nodes",
+    content: {
+      syntax:
+        "enum Color { RED, BLACK }\nclass RBNode {\n  constructor(data, color = Color.RED) {\n    this.data = data;\n    this.color = color;\n    this.left = this.right = this.parent = null;\n  }\n}",
+      example:
+        "// All operations guaranteed O(log n)\n// Used in: Java TreeMap, C++ std::map\n// Better insert/delete than AVL\n// Slightly slower search than AVL",
+      complexity: "O(log n) for all operations",
+      usage: [
+        "Language libraries (TreeMap)",
+        "Operating system schedulers",
+        "Database indexing",
+        "Memory management",
+      ],
+      notes: [
+        "Root is always black",
+        "Red nodes can't have red children",
+        "All paths have same black height",
+        "Self-balancing through rotations",
+      ],
+    },
+    tags: ["tree", "self-balancing", "guaranteed-performance"],
+    difficulty: "advanced" as const,
+    language: "TypeScript",
+  },
+  {
+    id: "skip-list",
+    title: "Skip List",
+    category: "Data Structures",
+    description: "Probabilistic data structure with multiple levels",
+    content: {
+      syntax:
+        "class SkipListNode {\n  constructor(data, level) {\n    this.data = data;\n    this.forward = new Array(level + 1).fill(null);\n  }\n}",
+      example:
+        "// Probabilistic O(log n) operations\n// Level 0: [1, 3, 6, 9, 12]\n// Level 1: [1, 6, 12]\n// Level 2: [6]\n// Express lanes for faster traversal",
+      complexity: "O(log n) expected, O(n) worst case",
+      usage: [
+        "Redis sorted sets",
+        "Concurrent data structures",
+        "Database systems (MemSQL)",
+        "P2P networks",
+      ],
+      notes: [
+        "Simpler than balanced trees",
+        "Good for concurrent access",
+        "Efficient range queries",
+        "Randomized performance",
+      ],
+    },
+    tags: ["probabilistic", "concurrent", "sorted"],
+    difficulty: "advanced" as const,
+    language: "TypeScript",
+  },
+  {
+    id: "splay-tree",
+    title: "Splay Tree",
+    category: "Data Structures",
+    description: "Self-adjusting BST with temporal locality",
+    content: {
+      syntax:
+        "class SplayTree {\n  search(data) {\n    const node = this.searchNode(data);\n    if (node) this.splay(node); // Move to root\n    return node;\n  }\n}",
+      example:
+        "// Recently accessed elements move to root\n// Excellent for temporal locality\n// Zig, Zig-Zig, Zig-Zag rotations\n// Adaptive to access patterns",
+      complexity: "O(log n) amortized, O(n) worst case",
+      usage: [
+        "Caches with locality",
+        "Compiler symbol tables",
+        "Text editors",
+        "Page replacement algorithms",
+      ],
+      notes: [
+        "Self-optimizing structure",
+        "No balance guarantees per operation",
+        "Excellent for non-uniform access",
+        "Simple implementation",
+      ],
+    },
+    tags: ["adaptive", "temporal-locality", "self-adjusting"],
+    difficulty: "advanced" as const,
+    language: "TypeScript",
+  },
+  {
+    id: "b-tree",
+    title: "B-Tree",
+    category: "Data Structures",
+    description: "Multi-way tree optimized for disk storage",
+    content: {
+      syntax:
+        "class BTreeNode {\n  constructor(minDegree, isLeaf = false) {\n    this.keys = [];\n    this.children = [];\n    this.isLeaf = isLeaf;\n    this.minDegree = minDegree;\n  }\n}",
+      example:
+        "// High branching factor reduces height\n// All leaves at same level\n// 2t-1 max keys per node (t = min degree)\n// Minimizes disk I/O operations",
+      complexity: "O(log n) with high branching factor",
+      usage: [
+        "Database indexes (MySQL, PostgreSQL)",
+        "File systems (NTFS, ext4)",
+        "Operating system storage",
+        "Big data systems",
+      ],
+      notes: [
+        "Optimized for block storage",
+        "High branching factor",
+        "Efficient range queries",
+        "B+ trees store data only in leaves",
+      ],
+    },
+    tags: ["disk-optimized", "database", "file-system"],
+    difficulty: "advanced" as const,
+    language: "TypeScript",
+  },
+  {
+    id: "rope-data-structure",
+    title: "Rope",
+    category: "Data Structures",
+    description: "Tree-based string structure for efficient text operations",
+    content: {
+      syntax:
+        "class RopeLeaf {\n  constructor(data) {\n    this.data = data;\n    this.length = data.length;\n  }\n}\n\nclass RopeInternal {\n  constructor(left, right) {\n    this.left = left;\n    this.right = right;\n    this.length = left.length + right.length;\n  }\n}",
+      example:
+        "// O(1) concatenation vs O(n+m) for strings\n// O(log n) insert/delete vs O(n)\n// Excellent for large text documents\n// Used in text editors and version control",
+      complexity: "O(1) concat, O(log n) insert/delete/access",
+      usage: [
+        "Text editors (large documents)",
+        "Version control systems",
+        "Collaborative editing",
+        "String processing",
+      ],
+      notes: [
+        "Trade random access for edit speed",
+        "Immutable operations create new ropes",
+        "Excellent for undo/redo systems",
+        "Shared subtrees save memory",
+      ],
+    },
+    tags: ["string", "text-editing", "immutable", "tree"],
+    difficulty: "advanced" as const,
+    language: "TypeScript",
+  },
+  {
+    id: "persistent-data-structures",
+    title: "Persistent Data Structures",
+    category: "Data Structures",
+    description: "Immutable structures preserving previous versions",
+    content: {
+      syntax:
+        "// Persistent List (functional)\nclass ConsList {\n  constructor(head, tail) {\n    this.head = head;\n    this.tail = tail;\n  }\n  push(value) {\n    return new ConsList(value, this);\n  }\n}",
+      example:
+        "const list1 = persistentList(1, 2, 3);\nconst list2 = list1.push(4); // New version\nconst list3 = list1.set(1, 99); // Another version\n// All versions coexist and share memory",
+      complexity: "O(log n) most ops, structural sharing",
+      usage: [
+        "Version control systems",
+        "Undo/redo functionality",
+        "Functional programming",
+        "Concurrent access",
+      ],
+      notes: [
+        "Immutable by design",
+        "Structural sharing saves memory",
+        "Thread-safe naturally",
+        "Used in Clojure, Immutable.js",
+      ],
+    },
+    tags: ["immutable", "functional", "versioning", "concurrent"],
+    difficulty: "advanced" as const,
+    language: "TypeScript",
+  },
 ];

@@ -61,7 +61,35 @@ export function InteractiveTree({
   const [zoom, setZoom] = useState(0.8);
   const [currentStep, setCurrentStep] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [treeData, setTreeData] = useState(data);
+
+  // Validate and clean tree data
+  const validateTreeData = (node: TreeNode): TreeNode => {
+    const cleanedNode: TreeNode = {
+      name: node.name || "unknown",
+      value: node.value,
+      attributes: node.attributes,
+    };
+
+    if (node.children && node.children.length > 0) {
+      const validChildren = node.children
+        .filter(
+          (child): child is TreeNode => child !== null && child !== undefined
+        )
+        .map(validateTreeData);
+
+      if (validChildren.length > 0) {
+        cleanedNode.children = validChildren;
+      }
+    }
+
+    return cleanedNode;
+  };
+
+  const [treeData, setTreeData] = useState(() => validateTreeData(data));
+
+  useEffect(() => {
+    setTreeData(validateTreeData(data));
+  }, [data]);
 
   useEffect(() => {
     const centerX = window.innerWidth / 4;
@@ -202,22 +230,24 @@ export function InteractiveTree({
           className="relative border-t bg-white dark:bg-gray-50"
           style={{ height: `${height}px` }}
         >
-          <Tree
-            data={treeData}
-            translate={translate}
-            zoom={zoom}
-            nodeSize={nodeSize}
-            separation={separation}
-            orientation={orientation}
-            renderCustomNodeElement={renderCustomNodeElement}
-            pathFunc="diagonal"
-            transitionDuration={300}
-            enableLegacyTransitions
-            scaleExtent={{ min: 0.1, max: 2 }}
-            zoomable
-            draggable
-            collapsible={false}
-          />
+          {treeData && treeData.name && (
+            <Tree
+              data={treeData}
+              translate={translate}
+              zoom={zoom}
+              nodeSize={nodeSize}
+              separation={separation}
+              orientation={orientation}
+              renderCustomNodeElement={renderCustomNodeElement}
+              pathFunc="diagonal"
+              transitionDuration={300}
+              enableLegacyTransitions
+              scaleExtent={{ min: 0.1, max: 2 }}
+              zoomable
+              draggable
+              collapsible={false}
+            />
+          )}
         </div>
       </CardContent>
     </Card>
@@ -254,9 +284,10 @@ export function BinarySearchTreeVisualizer({
         insertNode(node.children[0], value);
       }
     } else {
-      if (!node.children) node.children = [undefined, undefined];
-      if (node.children.length === 1) node.children.push(undefined);
-      if (!node.children[1]) {
+      if (!node.children) node.children = [];
+      if (node.children.length < 2) {
+        node.children.push({ name: value.toString(), value });
+      } else if (!node.children[1]) {
         node.children[1] = { name: value.toString(), value };
       } else {
         insertNode(node.children[1], value);
@@ -291,12 +322,17 @@ export function TreeTraversalDemo({
     const buildNode = (index: number): TreeNode | undefined => {
       if (index >= vals.length) return undefined;
 
+      const leftChild = buildNode(2 * index + 1);
+      const rightChild = buildNode(2 * index + 2);
+
+      const children = [leftChild, rightChild].filter(
+        (child): child is TreeNode => child !== undefined
+      );
+
       return {
         name: vals[index].toString(),
         value: vals[index],
-        children: [buildNode(2 * index + 1), buildNode(2 * index + 2)].filter(
-          Boolean
-        ),
+        children: children.length > 0 ? children : undefined,
       };
     };
 

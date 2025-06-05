@@ -168,6 +168,16 @@ export const Content: ContentItem[] = [
             icon: "💡",
           },
           {
+            title: "Circular Buffer",
+            url: "/data-structures/queue/circular-buffer",
+            icon: "🔄",
+          },
+          {
+            title: "Deque",
+            url: "/data-structures/queue/deque",
+            icon: "🔄",
+          },
+          {
             title: "Priority Queue",
             url: "/data-structures/queue/priority-queue",
             icon: "💾",
@@ -219,6 +229,11 @@ export const Content: ContentItem[] = [
             icon: "🌲",
           },
           {
+            title: "B-Tree",
+            url: "/data-structures/tree/b-tree",
+            icon: "🌲",
+          },
+          {
             title: "Fenwick Tree",
             url: "/data-structures/tree/fenwick-tree",
             icon: "🌲",
@@ -226,6 +241,26 @@ export const Content: ContentItem[] = [
           {
             title: "Heap",
             url: "/data-structures/tree/heap",
+            icon: "🌲",
+          },
+          {
+            title: "Red-Black Tree",
+            url: "/data-structures/tree/red-black-tree",
+            icon: "🔴",
+          },
+          {
+            title: "Segment Tree",
+            url: "/data-structures/tree/segment-tree",
+            icon: "📊",
+          },
+          {
+            title: "Skip List",
+            url: "/data-structures/tree/skip-list",
+            icon: "🌲",
+          },
+          {
+            title: "Splay Tree",
+            url: "/data-structures/tree/splay-tree",
             icon: "🌲",
           },
           {
@@ -237,6 +272,40 @@ export const Content: ContentItem[] = [
             title: "Union Find",
             url: "/data-structures/tree/union-find",
             icon: "🔗",
+          },
+        ],
+      },
+      {
+        title: "String",
+        url: "/data-structures/string",
+        icon: "📝",
+        items: [
+          {
+            title: "Rope",
+            url: "/data-structures/string/rope",
+            icon: "🪢",
+          },
+          {
+            title: "Suffix Tree",
+            url: "/data-structures/string/suffix-tree",
+            icon: "🌲",
+          },
+        ],
+      },
+      {
+        title: "Advanced",
+        url: "/data-structures/advanced",
+        icon: "🚀",
+        items: [
+          {
+            title: "Bloom Filter",
+            url: "/data-structures/bloom-filter",
+            icon: "🌸",
+          },
+          {
+            title: "Persistent Data Structures",
+            url: "/data-structures/advanced/persistent-data-structures",
+            icon: "💾",
           },
         ],
       },

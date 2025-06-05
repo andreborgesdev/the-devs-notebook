@@ -775,7 +775,7 @@ export function CSInteractiveVisualizers() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-4">
+        <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
           Interactive Computer Science Visualizers
         </h1>
         <p className="text-lg text-muted-foreground">
