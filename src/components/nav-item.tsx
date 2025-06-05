@@ -42,7 +42,8 @@ export function NavItem({ item, depth }: { item: ContentItem; depth: number }) {
   const isCurrentPage = activePath === item.url;
 
   // For parent items, determine if they should be open
-  const shouldBeOpen = hasChildren && (isMenuOpen(item.url) || isActive);
+  // Respect user's manual toggle state - don't force active sections to be open
+  const shouldBeOpen = hasChildren && isMenuOpen(item.url);
 
   const handleToggle = () => {
     if (hasChildren) {

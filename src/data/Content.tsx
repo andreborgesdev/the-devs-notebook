@@ -1089,14 +1089,634 @@ export const Content: ContentItem[] = [
     icon: "⚛️",
     items: [
       {
+        title: "Interactive Visualizers",
+        url: "/react/visualizers",
+        icon: "🎮",
+      },
+      {
         title: "Introduction",
         url: "/react/introduction",
         icon: "💡",
       },
       {
+        title: "Fundamentals",
+        url: "/react/fundamentals",
+        icon: "🔧",
+        items: [
+          {
+            title: "JSX",
+            url: "/react/fundamentals/jsx",
+            icon: "📄",
+          },
+          {
+            title: "Components",
+            url: "/react/fundamentals/components",
+            icon: "🧩",
+          },
+          {
+            title: "Props",
+            url: "/react/fundamentals/props",
+            icon: "📦",
+          },
+          {
+            title: "State",
+            url: "/react/fundamentals/state",
+            icon: "🔄",
+          },
+          {
+            title: "Event Handling",
+            url: "/react/fundamentals/event-handling",
+            icon: "👆",
+          },
+          {
+            title: "Conditional Rendering",
+            url: "/react/fundamentals/conditional-rendering",
+            icon: "🔀",
+          },
+          {
+            title: "Lists and Keys",
+            url: "/react/fundamentals/lists-and-keys",
+            icon: "📋",
+          },
+        ],
+      },
+      {
+        title: "Hooks",
+        url: "/react/hooks",
+        icon: "🪝",
+        items: [
+          {
+            title: "useState",
+            url: "/react/hooks/usestate",
+            icon: "🔄",
+          },
+          {
+            title: "useEffect",
+            url: "/react/hooks/useeffect",
+            icon: "⚡",
+          },
+          {
+            title: "useContext",
+            url: "/react/hooks/usecontext",
+            icon: "🌐",
+          },
+          {
+            title: "useReducer",
+            url: "/react/hooks/usereducer",
+            icon: "⚙️",
+          },
+          {
+            title: "useRef",
+            url: "/react/hooks/useref",
+            icon: "📍",
+          },
+          {
+            title: "useMemo",
+            url: "/react/hooks/usememo",
+            icon: "💾",
+          },
+          {
+            title: "useCallback",
+            url: "/react/hooks/usecallback",
+            icon: "🔗",
+          },
+          {
+            title: "Custom Hooks",
+            url: "/react/hooks/custom-hooks",
+            icon: "🛠️",
+          },
+          {
+            title: "useId",
+            url: "/react/hooks/useid",
+            icon: "🆔",
+          },
+          {
+            title: "useTransition",
+            url: "/react/hooks/usetransition",
+            icon: "🔄",
+          },
+          {
+            title: "useDeferredValue",
+            url: "/react/hooks/usedeferredvalue",
+            icon: "⏳",
+          },
+          {
+            title: "Advanced Hooks",
+            url: "/react/hooks/advanced-hooks",
+            icon: "🚀",
+          },
+        ],
+      },
+      {
+        title: "Advanced Concepts",
+        url: "/react/advanced",
+        icon: "🚀",
+        items: [
+          {
+            title: "Context API",
+            url: "/react/advanced/context-api",
+            icon: "🌐",
+          },
+          {
+            title: "Error Boundaries",
+            url: "/react/advanced/error-boundaries",
+            icon: "🛡️",
+          },
+          {
+            title: "Portals",
+            url: "/react/advanced/portals",
+            icon: "🌀",
+          },
+          {
+            title: "Refs and DOM",
+            url: "/react/advanced/refs-and-dom",
+            icon: "📍",
+          },
+          {
+            title: "Higher-Order Components",
+            url: "/react/advanced/higher-order-components",
+            icon: "🏗️",
+          },
+          {
+            title: "Render Props",
+            url: "/react/advanced/render-props",
+            icon: "🎭",
+          },
+          {
+            title: "Forwarding Refs",
+            url: "/react/advanced/forwarding-refs",
+            icon: "↗️",
+          },
+          {
+            title: "Lazy Loading",
+            url: "/react/advanced/lazy-loading",
+            icon: "💤",
+          },
+          {
+            title: "Suspense",
+            url: "/react/advanced/suspense",
+            icon: "⏳",
+          },
+          {
+            title: "Concurrent Features",
+            url: "/react/advanced/concurrent-features",
+            icon: "⚡",
+          },
+        ],
+      },
+      {
+        title: "Performance Optimization",
+        url: "/react/performance",
+        icon: "⚡",
+        items: [
+          {
+            title: "React.memo",
+            url: "/react/performance/react-memo",
+            icon: "💾",
+          },
+          {
+            title: "Memoization Techniques",
+            url: "/react/performance/memoization",
+            icon: "🧠",
+          },
+          {
+            title: "Virtual DOM Optimization",
+            url: "/react/performance/virtual-dom",
+            icon: "🖥️",
+          },
+          {
+            title: "Bundle Splitting",
+            url: "/react/performance/bundle-splitting",
+            icon: "📦",
+          },
+          {
+            title: "Automatic Batching",
+            url: "/react/performance/automatic-batching",
+            icon: "📦",
+          },
+          {
+            title: "Concurrent Rendering",
+            url: "/react/performance/concurrent-rendering",
+            icon: "⚡",
+          },
+          {
+            title: "Profiling and Debugging",
+            url: "/react/performance/profiling",
+            icon: "🔍",
+          },
+          {
+            title: "Performance Best Practices",
+            url: "/react/performance/best-practices",
+            icon: "✨",
+          },
+        ],
+      },
+      {
+        title: "State Management",
+        url: "/react/state-management",
+        icon: "🗄️",
+        items: [
+          {
+            title: "Local State Patterns",
+            url: "/react/state-management/local-state",
+            icon: "📍",
+          },
+          {
+            title: "Redux",
+            url: "/react/state-management/redux",
+            icon: "🔴",
+          },
+          {
+            title: "Redux Toolkit",
+            url: "/react/state-management/redux-toolkit",
+            icon: "🛠️",
+          },
+          {
+            title: "Zustand",
+            url: "/react/state-management/zustand",
+            icon: "🐻",
+          },
+          {
+            title: "Recoil",
+            url: "/react/state-management/recoil",
+            icon: "⚛️",
+          },
+          {
+            title: "Context vs Redux",
+            url: "/react/state-management/context-vs-redux",
+            icon: "⚖️",
+          },
+        ],
+      },
+      {
+        title: "Routing",
+        url: "/react/routing",
+        icon: "🗺️",
+        items: [
+          {
+            title: "React Router Basics",
+            url: "/react/routing/basics",
+            icon: "🚗",
+          },
+          {
+            title: "Navigation and Links",
+            url: "/react/routing/navigation",
+            icon: "🧭",
+          },
+          {
+            title: "Nested Routes",
+            url: "/react/routing/nested-routes",
+            icon: "🪜",
+          },
+          {
+            title: "Route Guards",
+            url: "/react/routing/route-guards",
+            icon: "🛡️",
+          },
+          {
+            title: "Dynamic Routing",
+            url: "/react/routing/dynamic-routing",
+            icon: "⚡",
+          },
+          {
+            title: "Query Parameters",
+            url: "/react/routing/query-parameters",
+            icon: "❓",
+          },
+        ],
+      },
+      {
+        title: "Forms and Validation",
+        url: "/react/forms",
+        icon: "📝",
+        items: [
+          {
+            title: "Controlled Components",
+            url: "/react/forms/controlled-components",
+            icon: "🎛️",
+          },
+          {
+            title: "Uncontrolled Components",
+            url: "/react/forms/uncontrolled-components",
+            icon: "🔓",
+          },
+          {
+            title: "React Hook Form",
+            url: "/react/forms/react-hook-form",
+            icon: "🪝",
+          },
+          {
+            title: "Formik",
+            url: "/react/forms/formik",
+            icon: "📋",
+          },
+          {
+            title: "Validation Patterns",
+            url: "/react/forms/validation",
+            icon: "✅",
+          },
+          {
+            title: "File Uploads",
+            url: "/react/forms/file-uploads",
+            icon: "📁",
+          },
+        ],
+      },
+      {
+        title: "Testing",
+        url: "/react/testing",
+        icon: "🧪",
+        items: [
+          {
+            title: "Jest Fundamentals",
+            url: "/react/testing/jest",
+            icon: "🃏",
+          },
+          {
+            title: "React Testing Library",
+            url: "/react/testing/react-testing-library",
+            icon: "📚",
+          },
+          {
+            title: "Component Testing",
+            url: "/react/testing/component-testing",
+            icon: "🧩",
+          },
+          {
+            title: "Hooks Testing",
+            url: "/react/testing/hooks-testing",
+            icon: "🪝",
+          },
+          {
+            title: "Mocking Strategies",
+            url: "/react/testing/mocking",
+            icon: "🎭",
+          },
+          {
+            title: "E2E Testing",
+            url: "/react/testing/e2e-testing",
+            icon: "🔄",
+          },
+          {
+            title: "Snapshot Testing",
+            url: "/react/testing/snapshot-testing",
+            icon: "📸",
+          },
+        ],
+      },
+      {
+        title: "Styling",
+        url: "/react/styling",
+        icon: "🎨",
+        items: [
+          {
+            title: "CSS Modules",
+            url: "/react/styling/css-modules",
+            icon: "📄",
+          },
+          {
+            title: "Styled Components",
+            url: "/react/styling/styled-components",
+            icon: "💅",
+          },
+          {
+            title: "Emotion",
+            url: "/react/styling/emotion",
+            icon: "😊",
+          },
+          {
+            title: "Tailwind CSS",
+            url: "/react/styling/tailwind",
+            icon: "🌊",
+          },
+          {
+            title: "CSS-in-JS",
+            url: "/react/styling/css-in-js",
+            icon: "🎭",
+          },
+          {
+            title: "Theming",
+            url: "/react/styling/theming",
+            icon: "🎨",
+          },
+        ],
+      },
+      {
+        title: "Data Fetching",
+        url: "/react/data-fetching",
+        icon: "📡",
+        items: [
+          {
+            title: "Fetch API",
+            url: "/react/data-fetching/fetch-api",
+            icon: "🌐",
+          },
+          {
+            title: "Axios",
+            url: "/react/data-fetching/axios",
+            icon: "📡",
+          },
+          {
+            title: "React Query",
+            url: "/react/data-fetching/react-query",
+            icon: "🔍",
+          },
+          {
+            title: "SWR",
+            url: "/react/data-fetching/swr",
+            icon: "🔄",
+          },
+          {
+            title: "Apollo GraphQL",
+            url: "/react/data-fetching/apollo-graphql",
+            icon: "🚀",
+          },
+          {
+            title: "Error Handling",
+            url: "/react/data-fetching/error-handling",
+            icon: "❌",
+          },
+          {
+            title: "Loading States",
+            url: "/react/data-fetching/loading-states",
+            icon: "⏳",
+          },
+        ],
+      },
+      {
+        title: "Patterns and Best Practices",
+        url: "/react/patterns",
+        icon: "🏗️",
+        items: [
+          {
+            title: "Component Composition",
+            url: "/react/patterns/composition",
+            icon: "🧩",
+          },
+          {
+            title: "Compound Components",
+            url: "/react/patterns/compound-components",
+            icon: "🔗",
+          },
+          {
+            title: "Provider Pattern",
+            url: "/react/patterns/provider-pattern",
+            icon: "🏪",
+          },
+          {
+            title: "Container Pattern",
+            url: "/react/patterns/container-pattern",
+            icon: "📦",
+          },
+          {
+            title: "Prop Drilling Solutions",
+            url: "/react/patterns/prop-drilling",
+            icon: "🕳️",
+          },
+          {
+            title: "Code Organization",
+            url: "/react/patterns/code-organization",
+            icon: "📁",
+          },
+          {
+            title: "Design Patterns",
+            url: "/react/patterns/design-patterns",
+            icon: "🎨",
+          },
+        ],
+      },
+      {
+        title: "Build Tools and Ecosystem",
+        url: "/react/build-tools",
+        icon: "🛠️",
+        items: [
+          {
+            title: "Create React App",
+            url: "/react/build-tools/create-react-app",
+            icon: "⚛️",
+          },
+          {
+            title: "Vite",
+            url: "/react/build-tools/vite",
+            icon: "⚡",
+          },
+          {
+            title: "Webpack",
+            url: "/react/build-tools/webpack",
+            icon: "📦",
+          },
+          {
+            title: "Babel",
+            url: "/react/build-tools/babel",
+            icon: "🗼",
+          },
+          {
+            title: "TypeScript Setup",
+            url: "/react/build-tools/typescript",
+            icon: "📘",
+          },
+          {
+            title: "ESLint and Prettier",
+            url: "/react/build-tools/linting",
+            icon: "✨",
+          },
+        ],
+      },
+      {
+        title: "TypeScript with React",
+        url: "/react/typescript",
+        icon: "📘",
+        items: [
+          {
+            title: "Basic Types",
+            url: "/react/typescript/basic-types",
+            icon: "🔤",
+          },
+          {
+            title: "Component Props",
+            url: "/react/typescript/component-props",
+            icon: "🧩",
+          },
+          {
+            title: "Event Handling",
+            url: "/react/typescript/event-handling",
+            icon: "👆",
+          },
+          {
+            title: "Hooks with TypeScript",
+            url: "/react/typescript/hooks",
+            icon: "🪝",
+          },
+          {
+            title: "Generic Components",
+            url: "/react/typescript/generic-components",
+            icon: "🔄",
+          },
+          {
+            title: "Advanced Patterns",
+            url: "/react/typescript/advanced-patterns",
+            icon: "🚀",
+          },
+        ],
+      },
+      {
+        title: "Server-Side Rendering",
+        url: "/react/ssr",
+        icon: "🖥️",
+        items: [
+          {
+            title: "Next.js Basics",
+            url: "/react/ssr/nextjs-basics",
+            icon: "⚡",
+          },
+          {
+            title: "Static Site Generation",
+            url: "/react/ssr/static-generation",
+            icon: "📄",
+          },
+          {
+            title: "Server Components",
+            url: "/react/ssr/server-components",
+            icon: "🖥️",
+          },
+          {
+            title: "Hydration",
+            url: "/react/ssr/hydration",
+            icon: "💧",
+          },
+          {
+            title: "Performance Optimization",
+            url: "/react/ssr/performance",
+            icon: "⚡",
+          },
+        ],
+      },
+      {
+        title: "Development Workflow",
+        url: "/react/development-workflow",
+        icon: "🔧",
+        items: [
+          {
+            title: "Strict Mode",
+            url: "/react/development-workflow/strict-mode",
+            icon: "🛡️",
+          },
+        ],
+      },
+      {
         title: "Interview Questions",
         url: "/react/interview-questions",
         icon: "❓",
+      },
+      {
+        title: "Cheat Sheet",
+        url: "/react/cheat-sheet",
+        icon: "📋",
+      },
+      {
+        title: "Best Practices Guide",
+        url: "/react/best-practices",
+        icon: "✨",
       },
     ],
   },
