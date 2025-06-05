@@ -552,6 +552,38 @@ export const Content: ContentItem[] = [
         icon: "💡",
       },
       {
+        title: "Core Language",
+        url: "/java/core",
+        icon: "🏗️",
+        items: [
+          {
+            title: "Fundamentals",
+            url: "/java/java-fundamentals",
+            icon: "🔤",
+          },
+          {
+            title: "Object-Oriented Programming",
+            url: "/java/java-oop",
+            icon: "🎯",
+          },
+          {
+            title: "Strings",
+            url: "/java/java-strings",
+            icon: "🔤",
+          },
+          {
+            title: "Exception Handling",
+            url: "/java/java-exception-handling",
+            icon: "⚠️",
+          },
+          {
+            title: "Generics",
+            url: "/java/java-generics",
+            icon: "🎭",
+          },
+        ],
+      },
+      {
         title: "Data Structures",
         url: "/java/data-structures",
         icon: "💾",
@@ -560,6 +592,11 @@ export const Content: ContentItem[] = [
             title: "Introduction",
             url: "/java/data-structures/introduction",
             icon: "💡",
+          },
+          {
+            title: "Collections Framework",
+            url: "/java/java-collections-comprehensive",
+            icon: "📦",
           },
           {
             title: "ArrayList",
@@ -574,39 +611,119 @@ export const Content: ContentItem[] = [
         ],
       },
       {
-        title: "Cheat sheets",
-        url: "/java/java-cheat-sheets",
-        icon: "📝",
+        title: "Modern Java",
+        url: "/java/modern",
+        icon: "🚀",
+        items: [
+          {
+            title: "Java 8+ Features",
+            url: "/java/java-8-features",
+            icon: "🚀",
+          },
+          {
+            title: "Streams",
+            url: "/java/java-streams",
+            icon: "💧",
+          },
+        ],
       },
       {
-        title: "Strings",
-        url: "/java/java-strings",
-        icon: "🔤",
+        title: "Advanced Topics",
+        url: "/java/advanced",
+        icon: "🎓",
+        items: [
+          {
+            title: "Concurrency & Multithreading",
+            url: "/java/java-concurrency",
+            icon: "⚡",
+          },
+          {
+            title: "JVM & Garbage Collection",
+            url: "/java/java-jvm-gc",
+            icon: "🗑️",
+          },
+          {
+            title: "Memory Management",
+            url: "/java/java-memory-management",
+            icon: "💾",
+          },
+          {
+            title: "Reflection & Annotations",
+            url: "/java/java-reflection-annotations",
+            icon: "🔍",
+          },
+          {
+            title: "Performance Tuning",
+            url: "/java/java-performance-tuning",
+            icon: "⚡",
+          },
+        ],
       },
       {
-        title: "Date API",
-        url: "/java/java-date-api",
-        icon: "📅",
+        title: "Enterprise Development",
+        url: "/java/enterprise",
+        icon: "🏢",
+        items: [
+          {
+            title: "Design Patterns",
+            url: "/java/java-design-patterns",
+            icon: "🏛️",
+          },
+          {
+            title: "Database & JDBC",
+            url: "/java/java-jdbc-database",
+            icon: "🗄️",
+          },
+          {
+            title: "I/O & NIO",
+            url: "/java/java-io-nio",
+            icon: "📁",
+          },
+          {
+            title: "Beans",
+            url: "/java/java-beans",
+            icon: "🫘",
+          },
+        ],
       },
       {
-        title: "Streams",
-        url: "/java/java-streams",
-        icon: "💧",
+        title: "Development Tools",
+        url: "/java/tools",
+        icon: "🔧",
+        items: [
+          {
+            title: "Testing Frameworks",
+            url: "/java/java-testing-frameworks",
+            icon: "🧪",
+          },
+          {
+            title: "Unit Testing",
+            url: "/java/java-unit-testing",
+            icon: "🧪",
+          },
+          {
+            title: "Build Tools",
+            url: "/java/java-build-tools",
+            icon: "🔨",
+          },
+        ],
       },
       {
-        title: "Memory Management",
-        url: "/java/java-memory-management",
-        icon: "💾",
-      },
-      {
-        title: "Unit Testing",
-        url: "/java/java-unit-testing",
-        icon: "🧪",
-      },
-      {
-        title: "Beans",
-        url: "/java/java-beans",
-        icon: "🫘",
+        title: "Quick Reference",
+        url: "/java/reference",
+        icon: "📚",
+        items: [
+          {
+            title: "Cheat Sheets",
+            url: "/java/java-cheat-sheets",
+            icon: "📝",
+          },
+          {
+            title: "Date API",
+            url: "/java/java-date-api",
+            icon: "📅",
+          },
+        ],
       },
       {
         title: "How to",
