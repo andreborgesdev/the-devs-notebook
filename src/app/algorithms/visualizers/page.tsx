@@ -17,6 +17,7 @@ import {
 import { AlgorithmVisualizer } from "@/src/components/visuals/algorithm-visualizer";
 import { DataStructureVisualizer } from "@/src/components/visuals/data-structure-visualizer";
 import ProgrammingConceptsVisualizer from "@/src/components/visuals/programming-concepts-visualizer";
+import { SortingAlgorithmVisualizer } from "@/src/components/visuals/sorting-visualizer";
 import { BarChart3, Search, Route, Zap, Brain, Target } from "lucide-react";
 
 function renderVisualizer(visualizer: any) {
@@ -40,6 +41,8 @@ function renderVisualizer(visualizer: any) {
       );
     case "programming-concepts-visualizer":
       return <ProgrammingConceptsVisualizer />;
+    case "interactive-sorting-visualizer":
+      return <SortingAlgorithmVisualizer />;
     default:
       return <div>Visualizer type not supported: {visualizer.type}</div>;
   }
@@ -53,6 +56,19 @@ export default function AlgorithmsVisualizersPage() {
       icon: <BarChart3 className="h-5 w-5" />,
       description: "Compare and visualize different sorting algorithms",
       visualizers: [
+        {
+          title: "Interactive Sorting Visualizer",
+          description:
+            "Step-by-step interactive visualization of sorting algorithms with detailed controls",
+          type: "interactive-sorting-visualizer",
+          tags: [
+            "Interactive",
+            "Step-by-step",
+            "Bubble Sort",
+            "Selection Sort",
+            "Insertion Sort",
+          ],
+        },
         {
           title: "Sorting Algorithm Race",
           description:

@@ -51,6 +51,46 @@ export const Content: ContentItem[] = [
         url: "/computer-science/operating-system",
         icon: "💻",
       },
+      {
+        title: "Compilers",
+        url: "/computer-science/compilers",
+        icon: "🔧",
+      },
+      {
+        title: "Database Systems",
+        url: "/computer-science/database-systems",
+        icon: "🗄️",
+      },
+      {
+        title: "Machine Learning",
+        url: "/computer-science/machine-learning",
+        icon: "🤖",
+      },
+      {
+        title: "Computer Graphics",
+        url: "/computer-science/computer-graphics",
+        icon: "🎨",
+      },
+      {
+        title: "Distributed Systems",
+        url: "/computer-science/distributed-systems",
+        icon: "🌐",
+      },
+      {
+        title: "Software Engineering",
+        url: "/computer-science/software-engineering",
+        icon: "⚙️",
+      },
+      {
+        title: "Formal Methods",
+        url: "/computer-science/formal-methods",
+        icon: "📐",
+      },
+      {
+        title: "Human-Computer Interaction",
+        url: "/computer-science/human-computer-interaction",
+        icon: "👤",
+      },
     ],
   },
   {
