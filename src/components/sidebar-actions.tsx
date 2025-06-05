@@ -101,12 +101,12 @@ export function SidebarActions({
       label: "Settings",
       onClick: onSettingsClick,
     },
-    {
-      id: "contribution",
-      icon: Heart,
-      label: "Contribution",
-      onClick: onContributionClick,
-    },
+    // {
+    //   id: "contribution",
+    //   icon: Heart,
+    //   label: "Contribution",
+    //   onClick: onContributionClick,
+    // },
   ];
 
   return (

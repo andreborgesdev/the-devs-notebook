@@ -15,7 +15,6 @@ import {
 } from "@/src/components/ui/sidebar";
 import { SidebarActions } from "./sidebar-actions";
 import { SettingsPanel } from "./settings-panel";
-import { ContributionButton } from "./contribution-button";
 import { ContributionModal } from "./contribution-modal";
 import { cn } from "../lib/utils";
 import { Content } from "../data/Content";
