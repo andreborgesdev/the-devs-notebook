@@ -57,7 +57,7 @@ export function NavMain({ items }: { items: ContentItem[] }) {
 
   // Frameworks and libraries
   const frameworkItems = items.filter((item) =>
-    ["React", "React Native", "Kafka"].includes(item.title)
+    ["React", "React Native", "Kafka", "Spring"].includes(item.title)
   );
 
   // Resources and reference materials

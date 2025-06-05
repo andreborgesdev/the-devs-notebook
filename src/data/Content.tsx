@@ -743,75 +743,6 @@ export const Content: ContentItem[] = [
         ],
       },
       {
-        title: "Spring",
-        url: "/java/spring",
-        icon: "🍃",
-        items: [
-          {
-            title: "Introduction",
-            url: "/java/spring/introduction",
-            icon: "💡",
-          },
-          {
-            title: "APIs",
-            url: "/java/spring/spring-apis",
-            icon: "🍃",
-          },
-          {
-            title: "Security",
-            url: "/java/spring/spring-security",
-            icon: "🔒",
-          },
-          {
-            title: "Data",
-            url: "/java/spring/spring-data",
-            icon: "💾",
-          },
-          {
-            title: "JPA",
-            url: "/java/spring/spring-jpa",
-            icon: "💾",
-          },
-          {
-            title: "Caching",
-            url: "/java/spring/spring-caching",
-            icon: "💾",
-          },
-          {
-            title: "Interview Questions",
-            url: "/java/spring/spring-interview-questions",
-            icon: "❓",
-            items: [
-              {
-                title: "Spring Core",
-                url: "/java/spring/interview-questions/spring-core-interview-questions",
-                icon: "❓",
-              },
-              {
-                title: "Spring 5",
-                url: "/java/spring/interview-questions/spring-5-interview-questions",
-                icon: "❓",
-              },
-              {
-                title: "Spring Data Access",
-                url: "/java/spring/interview-questions/spring-data-access-interview-questions",
-                icon: "❓",
-              },
-              {
-                title: "Spring Web MVC",
-                url: "/java/spring/interview-questions/spring-web-mvc-interview-questions",
-                icon: "❓",
-              },
-              {
-                title: "Spring Aspect Oriented Programming",
-                url: "/java/spring/interview-questions/spring-aspect-oriented-interview-questions",
-                icon: "❓",
-              },
-            ],
-          },
-        ],
-      },
-      {
         title: "Interview questions",
         url: "/java/java-interview-questions",
         icon: "❓",
@@ -978,6 +909,125 @@ export const Content: ContentItem[] = [
         title: "Interview Questions",
         url: "/kafka/interview-questions",
         icon: "❓",
+      },
+    ],
+  },
+  {
+    title: "Spring",
+    url: "/java/spring",
+    icon: "🍃",
+    items: [
+      {
+        title: "Introduction",
+        url: "/java/spring/introduction",
+        icon: "💡",
+      },
+      {
+        title: "APIs",
+        url: "/java/spring/spring-apis",
+        icon: "🍃",
+      },
+      {
+        title: "Security",
+        url: "/java/spring/spring-security",
+        icon: "🔒",
+      },
+      {
+        title: "Data",
+        url: "/java/spring/spring-data",
+        icon: "💾",
+      },
+      {
+        title: "JPA",
+        url: "/java/spring/spring-jpa",
+        icon: "💾",
+      },
+      {
+        title: "Caching",
+        url: "/java/spring/spring-caching",
+        icon: "💾",
+      },
+      {
+        title: "Boot Configuration",
+        url: "/java/spring/spring-boot-configuration",
+        icon: "⚙️",
+      },
+      {
+        title: "WebFlux",
+        url: "/java/spring/spring-webflux",
+        icon: "🌊",
+      },
+      {
+        title: "Cloud",
+        url: "/java/spring/spring-cloud",
+        icon: "☁️",
+      },
+      {
+        title: "AOP",
+        url: "/java/spring/spring-aop",
+        icon: "🎯",
+      },
+      {
+        title: "Actuator",
+        url: "/java/spring/spring-actuator",
+        icon: "📊",
+      },
+      {
+        title: "Validation",
+        url: "/java/spring/spring-validation",
+        icon: "✅",
+      },
+      {
+        title: "Testing",
+        url: "/java/spring/spring-testing",
+        icon: "🧪",
+      },
+      {
+        title: "Transactions",
+        url: "/java/spring/spring-transactions",
+        icon: "💳",
+      },
+      {
+        title: "Batch",
+        url: "/java/spring/spring-batch",
+        icon: "⚡",
+      },
+      {
+        title: "Integration",
+        url: "/java/spring/spring-integration",
+        icon: "🔗",
+      },
+      {
+        title: "Interview Questions",
+        url: "/java/spring/spring-interview-questions",
+        icon: "❓",
+        items: [
+          {
+            title: "Spring Core",
+            url: "/java/spring/interview-questions/spring-core-interview-questions",
+            icon: "❓",
+          },
+          {
+            title: "Spring 5",
+            url: "/java/spring/interview-questions/spring-5-interview-questions",
+            icon: "❓",
+          },
+          {
+            title: "Spring Data Access",
+            url: "/java/spring/interview-questions/spring-data-access-interview-questions",
+            icon: "❓",
+          },
+          {
+            title: "Spring Web MVC",
+            url: "/java/spring/interview-questions/spring-web-mvc-interview-questions",
+            icon: "❓",
+          },
+          {
+            title: "Spring Aspect Oriented Programming",
+            url: "/java/spring/interview-questions/spring-aspect-oriented-interview-questions",
+            icon: "❓",
+          },
+        ],
       },
     ],
   },
