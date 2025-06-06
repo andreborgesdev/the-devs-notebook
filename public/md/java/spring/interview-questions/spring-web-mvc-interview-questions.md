@@ -330,4 +330,57 @@ public class UserController {
 }
 ```
 
+## What Is the Use of WebClient and WebTestClient?
+
+- **WebClient**: A reactive, non-blocking HTTP client.
+- **WebTestClient**: Similar to WebClient but designed for testing. It can connect to servers or mock WebFlux applications without needing an actual HTTP server.
+
+## What Is WebClient and How to Use It?
+
+WebClient is the reactive HTTP client replacing RestTemplate:
+
+```java
+@Service
+public class ExternalApiService {
+
+    private final WebClient webClient;
+
+    public ExternalApiService(WebClient.Builder webClientBuilder) {
+        this.webClient = webClientBuilder
+                .baseUrl("https://api.example.com")
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .build();
+    }
+
+    public Mono<User> getUser(String id) {
+        return webClient.get()
+                .uri("/users/{id}", id)
+                .retrieve()
+                .onStatus(HttpStatus::is4xxClientError,
+                    response -> Mono.error(new ClientException("Client error")))
+                .bodyToMono(User.class)
+                .timeout(Duration.ofSeconds(10))
+                .retryWhen(Retry.backoff(3, Duration.ofSeconds(1)));
+    }
+
+    public Mono<User> createUser(User user) {
+        return webClient.post()
+                .uri("/users")
+                .body(Mono.just(user), User.class)
+                .retrieve()
+                .bodyToMono(User.class);
+    }
+}
+```
+
+**WebClient example:**
+
+```java
+WebClient.create()
+    .get()
+    .uri("/api/data")
+    .retrieve()
+    .bodyToMono(String.class);
+```
+
 **Reference:** [Java Code Geeks](https://www.javacodegeeks.com/2017/08/difference-restcontroller-controller-annotation-spring-mvc-rest.html)

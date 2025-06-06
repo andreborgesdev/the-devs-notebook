@@ -1008,8 +1008,23 @@ export const Content: ContentItem[] = [
             icon: "❓",
           },
           {
-            title: "Spring 5",
-            url: "/java/spring/interview-questions/spring-5-interview-questions",
+            title: "Spring Boot",
+            url: "/java/spring/interview-questions/spring-boot-interview-questions",
+            icon: "❓",
+          },
+          {
+            title: "Spring Security",
+            url: "/java/spring/interview-questions/spring-security-interview-questions",
+            icon: "❓",
+          },
+          {
+            title: "Spring Testing",
+            url: "/java/spring/interview-questions/spring-testing-interview-questions",
+            icon: "❓",
+          },
+          {
+            title: "Spring Cloud & Microservices",
+            url: "/java/spring/interview-questions/spring-cloud-microservices-interview-questions",
             icon: "❓",
           },
           {
