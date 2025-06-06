@@ -357,6 +357,16 @@ export const Content: ContentItem[] = [
             icon: "📊",
           },
           {
+            title: "Counting Sort",
+            url: "/algorithms/sort/counting-sort",
+            icon: "📊",
+          },
+          {
+            title: "Heap Sort",
+            url: "/algorithms/sort/heap-sort",
+            icon: "📊",
+          },
+          {
             title: "Insertion Sort",
             url: "/algorithms/sort/insertion-sort",
             icon: "📊",
@@ -379,6 +389,11 @@ export const Content: ContentItem[] = [
           {
             title: "Selection Sort",
             url: "/algorithms/sort/selection-sort",
+            icon: "📊",
+          },
+          {
+            title: "Shell Sort",
+            url: "/algorithms/sort/shell-sort",
             icon: "📊",
           },
         ],
@@ -420,26 +435,214 @@ export const Content: ContentItem[] = [
           },
         ],
       },
-
       {
-        title: "Kruskal’s Minimum Spanning Tree",
-        url: "/algorithms/kruskal-minimum-spanning-tree",
-        icon: "🌲",
+        title: "String Algorithms",
+        url: "/algorithms/string",
+        icon: "🔤",
+        items: [
+          {
+            title: "Aho-Corasick Algorithm",
+            url: "/algorithms/string/aho-corasick-algorithm",
+            icon: "🔍",
+          },
+          {
+            title: "Boyer-Moore Algorithm",
+            url: "/algorithms/string/boyer-moore-algorithm",
+            icon: "🔍",
+          },
+          {
+            title: "KMP Algorithm",
+            url: "/algorithms/string/kmp-algorithm",
+            icon: "🔍",
+          },
+          {
+            title: "Rabin-Karp Algorithm",
+            url: "/algorithms/string/rabin-karp-algorithm",
+            icon: "🔍",
+          },
+          {
+            title: "Z Algorithm",
+            url: "/algorithms/string/z-algorithm",
+            icon: "🔍",
+          },
+        ],
       },
       {
-        title: "Bit manipulation",
-        url: "/algorithms/bit-manipulation",
-        icon: "📝",
+        title: "Graph Algorithms",
+        url: "/algorithms/graph",
+        icon: "🌐",
+        items: [
+          {
+            title: "A* Pathfinding",
+            url: "/algorithms/graph/a-star-pathfinding",
+            icon: "🎯",
+          },
+          {
+            title: "Bellman-Ford Algorithm",
+            url: "/algorithms/graph/bellman-ford-algorithm",
+            icon: "📊",
+          },
+          {
+            title: "Dijkstra Algorithm",
+            url: "/algorithms/graph/dijkstra-algorithm",
+            icon: "🛣️",
+          },
+          {
+            title: "Floyd-Warshall Algorithm",
+            url: "/algorithms/graph/floyd-warshall-algorithm",
+            icon: "🔄",
+          },
+          {
+            title: "Kruskal's Minimum Spanning Tree",
+            url: "/algorithms/kruskal-minimum-spanning-tree",
+            icon: "🌲",
+          },
+        ],
       },
       {
-        title: "Recursion",
-        url: "/algorithms/recursion",
-        icon: "📝",
+        title: "Mathematical Algorithms",
+        url: "/algorithms/mathematical",
+        icon: "🔢",
+        items: [
+          {
+            title: "Euclidean Algorithm",
+            url: "/algorithms/mathematical/euclidean-algorithm",
+            icon: "🔢",
+          },
+          {
+            title: "Fast Exponentiation",
+            url: "/algorithms/mathematical/fast-exponentiation",
+            icon: "⚡",
+          },
+          {
+            title: "Lowest Common Ancestor",
+            url: "/algorithms/mathematical/lowest-common-ancestor",
+            icon: "🌲",
+          },
+          {
+            title: "Modular Arithmetic",
+            url: "/algorithms/mathematical/modular-arithmetic",
+            icon: "🔢",
+          },
+          {
+            title: "Sieve of Eratosthenes",
+            url: "/algorithms/mathematical/sieve-of-eratosthenes",
+            icon: "🔍",
+          },
+          {
+            title: "Bit Manipulation",
+            url: "/algorithms/bit-manipulation",
+            icon: "🔢",
+          },
+        ],
+      },
+      {
+        title: "Backtracking Algorithms",
+        url: "/algorithms/backtracking",
+        icon: "🔄",
+        items: [
+          {
+            title: "N-Queens",
+            url: "/algorithms/backtracking/n-queens",
+            icon: "♛",
+          },
+          {
+            title: "Permutations & Combinations",
+            url: "/algorithms/backtracking/permutations-combinations",
+            icon: "🔀",
+          },
+          {
+            title: "Subset Sum",
+            url: "/algorithms/backtracking/subset-sum",
+            icon: "➕",
+          },
+          {
+            title: "Sudoku Solver",
+            url: "/algorithms/backtracking/sudoku-solver",
+            icon: "🧩",
+          },
+        ],
+      },
+      {
+        title: "Greedy Algorithms",
+        url: "/algorithms/greedy",
+        icon: "🎯",
+        items: [
+          {
+            title: "Activity Selection",
+            url: "/algorithms/greedy/activity-selection",
+            icon: "📅",
+          },
+        ],
+      },
+      {
+        title: "Data Structure Operations",
+        url: "/algorithms/data-structures",
+        icon: "🗃️",
+        items: [
+          {
+            title: "Trie Operations",
+            url: "/algorithms/data-structures/trie-operations",
+            icon: "🌲",
+          },
+        ],
       },
       {
         title: "Dynamic programming",
         url: "/algorithms/dynamic-programming",
-        icon: "📝",
+        icon: "🧩",
+        items: [
+          {
+            title: "Introduction",
+            url: "/algorithms/dynamic-programming",
+            icon: "💡",
+          },
+          {
+            title: "Coin Change",
+            url: "/algorithms/dynamic-programming/coin-change",
+            icon: "🪙",
+          },
+          {
+            title: "Edit Distance",
+            url: "/algorithms/dynamic-programming/edit-distance",
+            icon: "✏️",
+          },
+          {
+            title: "Kadane's Algorithm",
+            url: "/algorithms/dynamic-programming/kadanes-algorithm",
+            icon: "📈",
+          },
+          {
+            title: "Knapsack 0-1",
+            url: "/algorithms/dynamic-programming/knapsack-0-1",
+            icon: "🎒",
+          },
+          {
+            title: "Longest Common Subsequence",
+            url: "/algorithms/dynamic-programming/longest-common-subsequence",
+            icon: "🔗",
+          },
+          {
+            title: "Longest Increasing Subsequence",
+            url: "/algorithms/dynamic-programming/longest-increasing-subsequence",
+            icon: "📊",
+          },
+          {
+            title: "Matrix Chain Multiplication",
+            url: "/algorithms/dynamic-programming/matrix-chain-multiplication",
+            icon: "🔢",
+          },
+          {
+            title: "Palindrome Partitioning",
+            url: "/algorithms/dynamic-programming/palindrome-partitioning",
+            icon: "🪞",
+          },
+        ],
+      },
+      {
+        title: "Recursion",
+        url: "/algorithms/recursion",
+        icon: "🔄",
       },
       {
         title: "Cheat sheets",
@@ -1156,6 +1359,21 @@ export const Content: ContentItem[] = [
             icon: "🌍",
           },
         ],
+      },
+      {
+        title: "Design Patterns",
+        url: "/system-design/design-patterns",
+        icon: "🏗️",
+      },
+      {
+        title: "Advanced Caching",
+        url: "/system-design/advanced-caching",
+        icon: "⚡",
+      },
+      {
+        title: "Observability & Monitoring",
+        url: "/system-design/observability-monitoring",
+        icon: "📊",
       },
       {
         title: "Interview Tips",
