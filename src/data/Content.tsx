@@ -1885,6 +1885,46 @@ export const Content: ContentItem[] = [
         icon: "💡",
       },
       {
+        title: "Fundamentals",
+        url: "/typescript/fundamentals",
+        icon: "🔤",
+      },
+      {
+        title: "Interfaces & Types",
+        url: "/typescript/interfaces-and-types",
+        icon: "🏗️",
+      },
+      {
+        title: "Generics",
+        url: "/typescript/generics",
+        icon: "🔧",
+      },
+      {
+        title: "Advanced Types",
+        url: "/typescript/advanced-types",
+        icon: "🚀",
+      },
+      {
+        title: "Classes & OOP",
+        url: "/typescript/classes-and-oop",
+        icon: "🏛️",
+      },
+      {
+        title: "Modules & Namespaces",
+        url: "/typescript/modules-and-namespaces",
+        icon: "📦",
+      },
+      {
+        title: "Decorators",
+        url: "/typescript/decorators",
+        icon: "✨",
+      },
+      {
+        title: "Configuration & Tooling",
+        url: "/typescript/configuration-and-tooling",
+        icon: "⚙️",
+      },
+      {
         title: "Interview Questions",
         url: "/typescript/interview-questions",
         icon: "❓",
