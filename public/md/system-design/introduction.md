@@ -1,54 +1,245 @@
-# System Design
+# System Design Fundamentals
 
 ## Introduction
 
-**System Design** involves defining the architecture, components, modules, interfaces, and data for a system to satisfy specified requirements. It plays a crucial role in building scalable, reliable, and maintainable software systems.
+System design is the process of defining the architecture, components, modules, interfaces, and data for a system to satisfy specified requirements. It encompasses both the high-level architecture decisions and low-level implementation details needed to build scalable, reliable, and maintainable software systems.
+
+In technical interviews and real-world scenarios, system design demonstrates your ability to:
+
+- Think at scale and handle complexity
+- Make informed trade-offs between competing requirements
+- Design for failure and recovery
+- Balance technical and business constraints
+- Communicate architectural decisions effectively
 
 ## Core Performance Metrics
 
 ### Scalability
 
-- Ability of a system to handle growth in users, requests, or data.
-- Two types:
+**Definition**: The capability of a system to handle increased load by adding resources.
 
-  - **Horizontal scaling**: Adding more servers.
-  - **Vertical scaling**: Adding more resources (CPU/RAM) to existing servers.
+**Types of Scaling**:
+
+**Horizontal Scaling (Scale Out)**
+
+```
+Advantages:
+- Nearly unlimited scaling potential
+- Improved fault tolerance
+- Cost-effective with commodity hardware
+- Geographic distribution possible
+
+Challenges:
+- Increased complexity
+- Data consistency issues
+- Network latency between nodes
+- Load balancing requirements
+
+Best For:
+- Web applications
+- Microservices
+- Stateless applications
+- High-availability systems
+```
+
+**Vertical Scaling (Scale Up)**
+
+```
+Advantages:
+- Simple implementation
+- No application changes required
+- Strong consistency maintained
+- Lower operational complexity
+
+Limitations:
+- Hardware ceiling limits
+- Exponential cost increases
+- Single point of failure
+- Downtime during upgrades
+
+Best For:
+- Legacy applications
+- Databases requiring ACID properties
+- Monolithic architectures
+- Early-stage applications
+```
+
+**Scalability Patterns**:
+
+- Load balancing and distribution
+- Caching at multiple levels
+- Database sharding and replication
+- Microservices architecture
+- Content delivery networks (CDNs)
+- Auto-scaling based on metrics
 
 ### Reliability
 
-- Probability that a system will perform without failure over a period.
-- Common metric: **Mean Time Between Failures (MTBF)**.
+**Definition**: The probability that a system performs correctly during a specific time duration.
 
-**MTBF = (Total Elapsed Time - total downtime) / number of failures**
+**Key Concepts**:
 
-Example: (24 hours - 4 hours downtime) / 4 failures = 5 hour MTBF
+**Mean Time Between Failures (MTBF)**
+
+```
+MTBF = (Total Elapsed Time - Total Downtime) / Number of Failures
+
+Example:
+- Operating time: 8,760 hours (1 year)
+- Downtime: 8.76 hours
+- Failures: 3
+- MTBF = (8,760 - 8.76) / 3 = 2,917 hours
+```
+
+**Mean Time To Recovery (MTTR)**
+
+```
+MTTR = Total Downtime / Number of Incidents
+
+Target MTTR varies by system criticality:
+- Critical systems: < 1 hour
+- Business systems: < 4 hours
+- Development systems: < 24 hours
+```
+
+**Reliability Strategies**:
+
+- Redundancy and replication
+- Graceful degradation
+- Circuit breaker patterns
+- Health checks and monitoring
+- Automated failover
+- Disaster recovery planning
 
 ### Availability
 
-- Percentage of time the system is operational.
-- **Availability (%) = Uptime / (Uptime + Downtime) × 100 or (available time / total time) × 100**.
-- **Highly available systems** use redundancy and failover strategies.
+**Definition**: The percentage of time a system is operational and accessible.
 
-Example: ( 23 hours / 24 hours ) × 100 = 95.83%
+**Calculation**:
 
-**Downtime Table for Availability ("Nines")**
+```
+Availability = (Uptime / Total Time) × 100
+Availability = (MTBF / (MTBF + MTTR)) × 100
 
-| Availability | Annual Downtime              |
-| ------------ | ---------------------------- |
-| 99%          | 3 days, 15 hours, 40 minutes |
-| 99.9%        | 8 hours, 46 minutes          |
-| 99.99%       | 52 minutes, 36 seconds       |
-| 99.999%      | 5.26 minutes                 |
+Example:
+- Uptime: 8,751.24 hours
+- Total time: 8,760 hours
+- Availability = (8,751.24 / 8,760) × 100 = 99.90%
+```
 
-### Efficiency
+**Availability Levels ("Nines")**:
 
-- Measures how well the system utilizes resources.
-- Key metrics: **Latency** (response time) and **Throughput** (requests processed per second).
+| Availability | Annual Downtime | Monthly Downtime | Daily Downtime |
+| ------------ | --------------- | ---------------- | -------------- |
+| 90%          | 36.53 days      | 73 hours         | 2.4 hours      |
+| 99%          | 3.65 days       | 7.31 hours       | 14.40 minutes  |
+| 99.9%        | 8.77 hours      | 43.83 minutes    | 1.44 minutes   |
+| 99.99%       | 52.60 minutes   | 4.38 minutes     | 8.64 seconds   |
+| 99.999%      | 5.26 minutes    | 26.30 seconds    | 0.864 seconds  |
+| 99.9999%     | 31.56 seconds   | 2.63 seconds     | 0.0864 seconds |
 
-### Manageability
+**High Availability Patterns**:
 
-- How easily the system can be monitored, maintained, and debugged.
-- Good observability and clear logging are essential.
+- Active-active configurations
+- Load balancing across multiple zones
+- Database master-slave replication
+- Content delivery networks
+- Circuit breakers and bulkheads
+- Graceful degradation strategies
+
+### Performance
+
+**Latency**: Time to process a single request
+
+```
+Types of Latency:
+- Network latency: 1-100ms (depending on distance)
+- Database query: 1-100ms (depending on complexity)
+- Cache lookup: 0.1-1ms
+- Memory access: 100ns
+- Disk seek: 10ms
+```
+
+**Throughput**: Number of requests processed per unit time
+
+```
+Factors Affecting Throughput:
+- Server capacity (CPU, memory, I/O)
+- Network bandwidth
+- Database performance
+- Application efficiency
+- Caching effectiveness
+```
+
+**Response Time Distribution**:
+
+```
+Percentiles Matter:
+- p50 (median): 50% of requests faster than this
+- p95: 95% of requests faster than this
+- p99: 99% of requests faster than this
+- p99.9: 99.9% of requests faster than this
+
+Focus on high percentiles for user experience
+Tail latency can significantly impact overall system performance
+```
+
+### Consistency
+
+**Definition**: All nodes see the same data at the same time.
+
+**Consistency Models**:
+
+**Strong Consistency**
+
+```
+Guarantees:
+- All reads receive the most recent write
+- All nodes see identical data simultaneously
+- ACID properties maintained
+
+Trade-offs:
++ Data accuracy guaranteed
+- Higher latency
+- Reduced availability during partitions
+- Scalability limitations
+
+Use Cases: Financial transactions, inventory management
+```
+
+**Eventual Consistency**
+
+```
+Guarantees:
+- System will become consistent over time
+- No guarantees on convergence timing
+- Temporary inconsistencies allowed
+
+Trade-offs:
++ Better performance and availability
++ Improved scalability
+- Complex application logic
+- User experience considerations
+
+Use Cases: Social media feeds, DNS, email systems
+```
+
+**Weak Consistency**
+
+```
+Guarantees:
+- Best effort consistency
+- No timing guarantees
+- Applications handle inconsistencies
+
+Trade-offs:
++ Highest performance
++ Maximum availability
+- Complex error handling
+- Potential data loss scenarios
+
+Use Cases: Real-time gaming, live streaming, sensor data
+```
 
 ## Key Design Principles
 

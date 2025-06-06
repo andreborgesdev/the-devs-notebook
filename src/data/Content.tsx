@@ -1283,107 +1283,304 @@ export const Content: ContentItem[] = [
     url: "/system-design",
     icon: "🗺️",
     items: [
-      // {
-      //   title: "Interactive Visualizers",
-      //   url: "/system-design/visualizers",
-      //   icon: "🎮",
-      // },
       {
-        title: "Introduction",
-        url: "/system-design/introduction",
-        icon: "💡",
-      },
-      {
-        title: "Microservices",
-        url: "/system-design/microservices",
-        icon: "🗺️",
-      },
-      {
-        title: "Distributed Systems",
-        url: "/system-design/distributed-systems",
-        icon: "🌍",
-      },
-      {
-        title: "Caching",
-        url: "/system-design/caching",
-        icon: "💾",
-      },
-      {
-        title: "Load Balancer",
-        url: "/system-design/load-balancer",
-        icon: "⚖️",
-      },
-      {
-        title: "Scaling",
-        url: "/system-design/scaling",
-        icon: "⬆️",
-      },
-      {
-        title: "CDN",
-        url: "/system-design/cdn",
-        icon: "🌍",
-      },
-      {
-        title: "Message Queues",
-        url: "/system-design/message-queues",
-        icon: "📥",
-      },
-      {
-        title: "Processing Queues",
-        url: "/system-design/processing-queues",
-        icon: "📥",
-      },
-      {
-        title: "Storage",
-        url: "/system-design/storage",
-        icon: "💾",
-      },
-      {
-        title: "Distributed file system",
-        url: "/system-design/distributed-file-system",
-        icon: "🌍",
-      },
-      {
-        title: "Communication",
-        url: "/system-design/communication",
-        icon: "☎️",
+        title: "Fundamentals",
+        url: "/system-design/fundamentals",
+        icon: "🏗️",
         items: [
           {
-            title: "HTTP",
-            url: "/system-design/communication/http",
-            icon: "🌍",
+            title: "Introduction",
+            url: "/system-design/introduction",
+            icon: "💡",
           },
           {
-            title: "Web Sockets",
-            url: "/system-design/communication/web-sockets",
-            icon: "🌍",
+            title: "System Design Fundamentals",
+            url: "/system-design/fundamentals",
+            icon: "🏛️",
+          },
+          {
+            title: "Design Patterns",
+            url: "/system-design/design-patterns",
+            icon: "🧩",
           },
         ],
       },
       {
-        title: "Design Patterns",
-        url: "/system-design/design-patterns",
-        icon: "🏗️",
+        title: "Architecture Patterns",
+        url: "/system-design/architecture",
+        icon: "🏛️",
+        items: [
+          {
+            title: "Microservices",
+            url: "/system-design/microservices",
+            icon: "🔬",
+          },
+          {
+            title: "Distributed Systems",
+            url: "/system-design/distributed-systems",
+            icon: "🌐",
+          },
+          {
+            title: "Event-Driven Architecture",
+            url: "/system-design/event-driven-architecture",
+            icon: "⚡",
+          },
+          {
+            title: "Actor-Driven Architecture",
+            url: "/system-design/actor-driven-architecture",
+            icon: "🎭",
+          },
+          {
+            title: "CQRS Architecture",
+            url: "/system-design/cqrs-architecture",
+            icon: "🔄",
+          },
+          {
+            title: "Hexagonal Architecture",
+            url: "/system-design/hexagonal-architecture",
+            icon: "⬡",
+          },
+          {
+            title: "Serverless Architecture",
+            url: "/system-design/serverless-architecture",
+            icon: "☁️",
+          },
+          {
+            title: "Containerization & Orchestration",
+            url: "/system-design/containerization-orchestration",
+            icon: "📦",
+          },
+        ],
       },
       {
-        title: "Advanced Caching",
-        url: "/system-design/advanced-caching",
+        title: "Data & Storage",
+        url: "/system-design/data",
+        icon: "💾",
+        items: [
+          {
+            title: "Databases",
+            url: "/system-design/databases",
+            icon: "🗄️",
+          },
+          {
+            title: "Storage",
+            url: "/system-design/storage",
+            icon: "💿",
+          },
+          {
+            title: "Distributed File System",
+            url: "/system-design/distributed-file-system",
+            icon: "📁",
+          },
+          {
+            title: "Data Consistency",
+            url: "/system-design/data-consistency",
+            icon: "🔄",
+          },
+        ],
+      },
+      {
+        title: "Performance & Scalability",
+        url: "/system-design/performance",
         icon: "⚡",
+        items: [
+          {
+            title: "Caching",
+            url: "/system-design/caching",
+            icon: "⚡",
+          },
+          {
+            title: "Advanced Caching",
+            url: "/system-design/advanced-caching",
+            icon: "🚀",
+          },
+          {
+            title: "Load Balancer",
+            url: "/system-design/load-balancer",
+            icon: "⚖️",
+          },
+          {
+            title: "Scaling",
+            url: "/system-design/scaling",
+            icon: "📈",
+          },
+          {
+            title: "CDN",
+            url: "/system-design/cdn",
+            icon: "🌍",
+          },
+          {
+            title: "Performance Optimization",
+            url: "/system-design/performance-optimization",
+            icon: "🏃",
+          },
+        ],
       },
       {
-        title: "Observability & Monitoring",
-        url: "/system-design/observability-monitoring",
+        title: "Communication & Integration",
+        url: "/system-design/communication",
+        icon: "📡",
+        items: [
+          {
+            title: "API Design",
+            url: "/system-design/api-design",
+            icon: "🔌",
+          },
+          {
+            title: "Message Queues",
+            url: "/system-design/message-queues",
+            icon: "📥",
+          },
+          {
+            title: "Processing Queues",
+            url: "/system-design/processing-queues",
+            icon: "⚙️",
+          },
+          {
+            title: "HTTP",
+            url: "/system-design/communication/http",
+            icon: "🌐",
+          },
+          {
+            title: "Web Sockets",
+            url: "/system-design/communication/web-sockets",
+            icon: "🔗",
+          },
+        ],
+      },
+      {
+        title: "Reliability & Security",
+        url: "/system-design/reliability",
+        icon: "🛡️",
+        items: [
+          {
+            title: "Reliability Patterns",
+            url: "/system-design/reliability-patterns",
+            icon: "🔒",
+          },
+          {
+            title: "Security",
+            url: "/system-design/security",
+            icon: "🔐",
+          },
+        ],
+      },
+      {
+        title: "Cloud Architecture",
+        url: "/system-design/cloud-architecture",
+        icon: "☁️",
+        items: [
+          {
+            title: "Cloud Fundamentals",
+            url: "/system-design/cloud-architecture/cloud-fundamentals",
+            icon: "🌤️",
+          },
+          {
+            title: "AWS Patterns",
+            url: "/system-design/cloud-architecture/aws-patterns",
+            icon: "🟠",
+          },
+        ],
+      },
+      {
+        title: "Monitoring & Operations",
+        url: "/system-design/monitoring",
         icon: "📊",
+        items: [
+          {
+            title: "Observability & Monitoring",
+            url: "/system-design/observability-monitoring",
+            icon: "📈",
+          },
+          {
+            title: "Advanced Monitoring",
+            url: "/system-design/monitoring/advanced-monitoring",
+            icon: "🔍",
+          },
+          {
+            title: "SRE Principles",
+            url: "/system-design/monitoring/sre-principles",
+            icon: "⚙️",
+          },
+        ],
       },
       {
-        title: "Interview Tips",
-        url: "/system-design/interview-tips",
-        icon: "💡",
+        title: "Deployment & DevOps",
+        url: "/system-design/deployment",
+        icon: "🚀",
+        items: [
+          {
+            title: "CI/CD Strategies",
+            url: "/system-design/deployment/ci-cd-strategies",
+            icon: "🔄",
+          },
+          {
+            title: "DevOps Culture",
+            url: "/system-design/deployment/devops-culture",
+            icon: "🤝",
+          },
+        ],
       },
       {
-        title: "Interview Questions",
-        url: "/system-design/interview-questions",
-        icon: "❓",
+        title: "Advanced Topics",
+        url: "/system-design/advanced-topics",
+        icon: "🎓",
+        items: [
+          {
+            title: "Distributed Consensus",
+            url: "/system-design/advanced-topics/distributed-consensus",
+            icon: "🤝",
+          },
+          {
+            title: "Capacity Planning",
+            url: "/system-design/advanced-topics/capacity-planning",
+            icon: "📊",
+          },
+          {
+            title: "Disaster Recovery",
+            url: "/system-design/advanced-topics/disaster-recovery",
+            icon: "🛡️",
+          },
+          {
+            title: "System Design Trade-offs",
+            url: "/system-design/advanced-topics/trade-offs",
+            icon: "⚖️",
+          },
+        ],
+      },
+      {
+        title: "Real-World Systems",
+        url: "/system-design/real-world-systems",
+        icon: "🏢",
+        items: [
+          {
+            title: "Large-Scale Examples",
+            url: "/system-design/real-world-systems/large-scale-examples",
+            icon: "🏗️",
+          },
+        ],
+      },
+      {
+        title: "Interview Preparation",
+        url: "/system-design/interview",
+        icon: "💼",
+        items: [
+          {
+            title: "Interview Cheatsheet",
+            url: "/system-design/interview-cheatsheet",
+            icon: "📋",
+          },
+          {
+            title: "Interview Tips",
+            url: "/system-design/interview-tips",
+            icon: "💡",
+          },
+          {
+            title: "Interview Questions",
+            url: "/system-design/interview-questions",
+            icon: "❓",
+          },
+        ],
       },
     ],
   },
