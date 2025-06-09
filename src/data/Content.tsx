@@ -1284,20 +1284,15 @@ export const Content: ContentItem[] = [
     icon: "🗺️",
     items: [
       {
+        title: "Introduction",
+        url: "/system-design/introduction",
+        icon: "💡",
+      },
+      {
         title: "Fundamentals",
         url: "/system-design/fundamentals",
         icon: "🏗️",
         items: [
-          {
-            title: "Introduction",
-            url: "/system-design/introduction",
-            icon: "💡",
-          },
-          {
-            title: "System Design Fundamentals",
-            url: "/system-design/fundamentals",
-            icon: "🏛️",
-          },
           {
             title: "Design Patterns",
             url: "/system-design/design-patterns",

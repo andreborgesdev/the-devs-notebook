@@ -30,57 +30,6 @@ Load balancing is a critical technique in system design that distributes incomin
 
 Operates at the TCP/UDP level, making routing decisions based on IP addresses and ports.
 
-```typescript
-interface Layer4LoadBalancer {
-  distributeConnection(
-    clientIP: string,
-    clientPort: number,
-    protocol: "TCP" | "UDP"
-  ): ServerEndpoint;
-}
-
-class NetworkLoadBalancer implements Layer4LoadBalancer {
-  private servers: ServerEndpoint[] = [];
-  private algorithm: LoadBalancingAlgorithm;
-
-  distributeConnection(
-    clientIP: string,
-    clientPort: number,
-    protocol: "TCP" | "UDP"
-  ): ServerEndpoint {
-    return this.algorithm.selectServer(this.servers, {
-      clientIP,
-      clientPort,
-      protocol,
-    });
-  }
-
-  addServer(server: ServerEndpoint): void {
-    this.servers.push(server);
-  }
-
-  removeServer(serverIP: string): void {
-    this.servers = this.servers.filter((s) => s.ip !== serverIP);
-  }
-
-  healthCheck(): void {
-    this.servers.forEach((server) => {
-      if (!this.isHealthy(server)) {
-        this.markUnhealthy(server);
-      }
-    });
-  }
-}
-
-interface ServerEndpoint {
-  ip: string;
-  port: number;
-  isHealthy: boolean;
-  activeConnections: number;
-  weight: number;
-}
-```
-
 **Characteristics:**
 
 - Fast and efficient (lower latency)
@@ -91,63 +40,6 @@ interface ServerEndpoint {
 ### Layer 7 (Application Layer) Load Balancing
 
 Operates at the HTTP/HTTPS level, making routing decisions based on application data.
-
-```typescript
-interface Layer7LoadBalancer {
-  routeRequest(request: HttpRequest): ServerEndpoint;
-}
-
-class ApplicationLoadBalancer implements Layer7LoadBalancer {
-  private servers: ServerEndpoint[] = [];
-  private routingRules: RoutingRule[] = [];
-
-  routeRequest(request: HttpRequest): ServerEndpoint {
-    const applicableRule = this.findMatchingRule(request);
-    if (applicableRule) {
-      return applicableRule.targetServer;
-    }
-
-    return this.algorithm.selectServer(this.servers, request);
-  }
-
-  addRoutingRule(rule: RoutingRule): void {
-    this.routingRules.push(rule);
-  }
-
-  private findMatchingRule(request: HttpRequest): RoutingRule | null {
-    return this.routingRules.find((rule) => rule.matches(request)) || null;
-  }
-}
-
-interface HttpRequest {
-  method: string;
-  path: string;
-  headers: Record<string, string>;
-  body?: any;
-  clientIP: string;
-}
-
-interface RoutingRule {
-  condition: (request: HttpRequest) => boolean;
-  targetServer: ServerEndpoint;
-  matches(request: HttpRequest): boolean;
-}
-
-class PathBasedRoutingRule implements RoutingRule {
-  constructor(
-    private pathPattern: RegExp,
-    public targetServer: ServerEndpoint
-  ) {}
-
-  matches(request: HttpRequest): boolean {
-    return this.pathPattern.test(request.path);
-  }
-
-  condition(request: HttpRequest): boolean {
-    return this.matches(request);
-  }
-}
-```
 
 **Characteristics:**
 
@@ -162,23 +54,6 @@ class PathBasedRoutingRule implements RoutingRule {
 ### 1. Round Robin
 
 Distributes requests sequentially across servers.
-
-```typescript
-class RoundRobinAlgorithm implements LoadBalancingAlgorithm {
-  private currentIndex = 0;
-
-  selectServer(servers: ServerEndpoint[], context?: any): ServerEndpoint {
-    const healthyServers = servers.filter((s) => s.isHealthy);
-    if (healthyServers.length === 0) {
-      throw new Error("No healthy servers available");
-    }
-
-    const server = healthyServers[this.currentIndex % healthyServers.length];
-    this.currentIndex++;
-    return server;
-  }
-}
-```
 
 **Pros:**
 
@@ -196,55 +71,15 @@ class RoundRobinAlgorithm implements LoadBalancingAlgorithm {
 
 Distributes requests based on server weights/capacities.
 
-```typescript
-class WeightedRoundRobinAlgorithm implements LoadBalancingAlgorithm {
-  private weightedQueue: ServerEndpoint[] = [];
-  private currentIndex = 0;
+**Benefits:**
 
-  constructor(servers: ServerEndpoint[]) {
-    this.buildWeightedQueue(servers);
-  }
-
-  selectServer(servers: ServerEndpoint[]): ServerEndpoint {
-    const healthyServers = this.weightedQueue.filter((s) => s.isHealthy);
-    if (healthyServers.length === 0) {
-      throw new Error("No healthy servers available");
-    }
-
-    const server = healthyServers[this.currentIndex % healthyServers.length];
-    this.currentIndex++;
-    return server;
-  }
-
-  private buildWeightedQueue(servers: ServerEndpoint[]): void {
-    this.weightedQueue = [];
-    for (const server of servers) {
-      for (let i = 0; i < server.weight; i++) {
-        this.weightedQueue.push(server);
-      }
-    }
-  }
-}
-```
+- Accounts for different server capabilities
+- More intelligent distribution than basic round robin
+- Good for heterogeneous server environments
 
 ### 3. Least Connections
 
 Routes requests to the server with the fewest active connections.
-
-```typescript
-class LeastConnectionsAlgorithm implements LoadBalancingAlgorithm {
-  selectServer(servers: ServerEndpoint[]): ServerEndpoint {
-    const healthyServers = servers.filter((s) => s.isHealthy);
-    if (healthyServers.length === 0) {
-      throw new Error("No healthy servers available");
-    }
-
-    return healthyServers.reduce((min, current) =>
-      current.activeConnections < min.activeConnections ? current : min
-    );
-  }
-}
-```
 
 **Best for:**
 
@@ -257,54 +92,15 @@ class LeastConnectionsAlgorithm implements LoadBalancingAlgorithm {
 
 Combines least connections with server weights.
 
-```typescript
-class WeightedLeastConnectionsAlgorithm implements LoadBalancingAlgorithm {
-  selectServer(servers: ServerEndpoint[]): ServerEndpoint {
-    const healthyServers = servers.filter((s) => s.isHealthy);
-    if (healthyServers.length === 0) {
-      throw new Error("No healthy servers available");
-    }
+**Advantages:**
 
-    return healthyServers.reduce((min, current) => {
-      const currentRatio = current.activeConnections / current.weight;
-      const minRatio = min.activeConnections / min.weight;
-      return currentRatio < minRatio ? current : min;
-    });
-  }
-}
-```
+- Considers both server capacity and current load
+- Optimal for mixed server environments
+- Better performance than simple least connections
 
 ### 5. IP Hash (Session Affinity)
 
 Routes requests from the same client IP to the same server.
-
-```typescript
-class IPHashAlgorithm implements LoadBalancingAlgorithm {
-  selectServer(servers: ServerEndpoint[], context: any): ServerEndpoint {
-    const healthyServers = servers.filter((s) => s.isHealthy);
-    if (healthyServers.length === 0) {
-      throw new Error("No healthy servers available");
-    }
-
-    const clientIP = context.clientIP || context.request?.clientIP;
-    if (!clientIP) {
-      return healthyServers[0];
-    }
-
-    const hash = this.hashIP(clientIP);
-    const index = hash % healthyServers.length;
-    return healthyServers[index];
-  }
-
-  private hashIP(ip: string): number {
-    let hash = 0;
-    for (let i = 0; i < ip.length; i++) {
-      hash = ((hash << 5) - hash + ip.charCodeAt(i)) & 0xffffffff;
-    }
-    return Math.abs(hash);
-  }
-}
-```
 
 **Use Cases:**
 
@@ -317,638 +113,156 @@ class IPHashAlgorithm implements LoadBalancingAlgorithm {
 
 Routes to the server with the lowest response time.
 
-```typescript
-class LeastResponseTimeAlgorithm implements LoadBalancingAlgorithm {
-  private responseTimeTracker: Map<string, number> = new Map();
+**Benefits:**
 
-  selectServer(servers: ServerEndpoint[]): ServerEndpoint {
-    const healthyServers = servers.filter((s) => s.isHealthy);
-    if (healthyServers.length === 0) {
-      throw new Error("No healthy servers available");
-    }
-
-    return healthyServers.reduce((fastest, current) => {
-      const currentTime = this.getAverageResponseTime(current);
-      const fastestTime = this.getAverageResponseTime(fastest);
-      return currentTime < fastestTime ? current : fastest;
-    });
-  }
-
-  updateResponseTime(server: ServerEndpoint, responseTime: number): void {
-    const key = `${server.ip}:${server.port}`;
-    const currentAvg = this.responseTimeTracker.get(key) || responseTime;
-    const newAvg = currentAvg * 0.8 + responseTime * 0.2;
-    this.responseTimeTracker.set(key, newAvg);
-  }
-
-  private getAverageResponseTime(server: ServerEndpoint): number {
-    const key = `${server.ip}:${server.port}`;
-    return this.responseTimeTracker.get(key) || Infinity;
-  }
-}
-```
+- Optimizes for performance
+- Adapts to changing server conditions
+- Good for latency-sensitive applications
 
 ### 7. Random with Two Choices
 
 Selects two random servers and chooses the one with fewer connections.
 
-```typescript
-class RandomTwoChoicesAlgorithm implements LoadBalancingAlgorithm {
-  selectServer(servers: ServerEndpoint[]): ServerEndpoint {
-    const healthyServers = servers.filter((s) => s.isHealthy);
-    if (healthyServers.length === 0) {
-      throw new Error("No healthy servers available");
-    }
+**Advantages:**
 
-    if (healthyServers.length === 1) {
-      return healthyServers[0];
-    }
-
-    const index1 = Math.floor(Math.random() * healthyServers.length);
-    let index2 = Math.floor(Math.random() * healthyServers.length);
-    while (index2 === index1) {
-      index2 = Math.floor(Math.random() * healthyServers.length);
-    }
-
-    const server1 = healthyServers[index1];
-    const server2 = healthyServers[index2];
-
-    return server1.activeConnections <= server2.activeConnections
-      ? server1
-      : server2;
-  }
-}
-```
+- Better than pure random selection
+- Good load distribution
+- Low computational complexity
 
 ## Health Checking and Monitoring
 
-### Health Check Implementation
+### Health Check Types
 
-```typescript
-class HealthChecker {
-  private healthCheckInterval: number = 30000;
-  private timeout: number = 5000;
-  private maxRetries: number = 3;
+**Active Health Checks**
 
-  async performHealthCheck(server: ServerEndpoint): Promise<boolean> {
-    let retries = 0;
+- Proactively tests server availability
+- Sends periodic requests to health endpoints
+- Can detect failures quickly
 
-    while (retries < this.maxRetries) {
-      try {
-        const isHealthy = await this.checkServerHealth(server);
-        if (isHealthy) {
-          return true;
-        }
-      } catch (error) {
-        console.error(
-          `Health check failed for ${server.ip}:${server.port}`,
-          error
-        );
-      }
+**Passive Health Checks**
 
-      retries++;
-      await this.delay(1000 * retries);
-    }
+- Monitors actual request success/failure rates
+- Less overhead than active checks
+- May take longer to detect failures
 
-    return false;
-  }
+### Health Check Strategies
 
-  private async checkServerHealth(server: ServerEndpoint): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      const startTime = Date.now();
+**HTTP Health Checks**
 
-      const timeoutId = setTimeout(() => {
-        reject(new Error("Health check timeout"));
-      }, this.timeout);
+- Tests application-level functionality
+- Can verify complex application state
+- Most comprehensive but higher overhead
 
-      this.sendHealthCheckRequest(server)
-        .then((response) => {
-          clearTimeout(timeoutId);
-          const responseTime = Date.now() - startTime;
-          resolve(response.status === 200 && responseTime < this.timeout);
-        })
-        .catch((error) => {
-          clearTimeout(timeoutId);
-          reject(error);
-        });
-    });
-  }
+**TCP Health Checks**
 
-  private async sendHealthCheckRequest(server: ServerEndpoint): Promise<any> {
-    const url = `http://${server.ip}:${server.port}/health`;
+- Tests basic connectivity
+- Fast and lightweight
+- Limited insight into application health
 
-    try {
-      const response = await fetch(url, {
-        method: "GET",
-        timeout: this.timeout,
-      });
-      return response;
-    } catch (error) {
-      throw new Error(`Failed to reach server: ${error.message}`);
-    }
-  }
+**Custom Health Checks**
 
-  private delay(ms: number): Promise<void> {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-
-  startMonitoring(servers: ServerEndpoint[]): void {
-    setInterval(async () => {
-      const healthChecks = servers.map(async (server) => {
-        const isHealthy = await this.performHealthCheck(server);
-        server.isHealthy = isHealthy;
-
-        if (!isHealthy) {
-          console.warn(
-            `Server ${server.ip}:${server.port} marked as unhealthy`
-          );
-        }
-      });
-
-      await Promise.all(healthChecks);
-    }, this.healthCheckInterval);
-  }
-}
-```
-
-### Advanced Health Checks
-
-```typescript
-interface HealthCheckStrategy {
-  check(server: ServerEndpoint): Promise<HealthStatus>;
-}
-
-interface HealthStatus {
-  isHealthy: boolean;
-  responseTime: number;
-  details?: any;
-}
-
-class HTTPHealthCheck implements HealthCheckStrategy {
-  constructor(
-    private path: string = "/health",
-    private expectedStatusCode: number = 200,
-    private timeout: number = 5000
-  ) {}
-
-  async check(server: ServerEndpoint): Promise<HealthStatus> {
-    const startTime = Date.now();
-
-    try {
-      const response = await fetch(
-        `http://${server.ip}:${server.port}${this.path}`,
-        {
-          method: "GET",
-          timeout: this.timeout,
-        }
-      );
-
-      const responseTime = Date.now() - startTime;
-      const isHealthy = response.status === this.expectedStatusCode;
-
-      return {
-        isHealthy,
-        responseTime,
-        details: {
-          statusCode: response.status,
-          statusText: response.statusText,
-        },
-      };
-    } catch (error) {
-      return {
-        isHealthy: false,
-        responseTime: Date.now() - startTime,
-        details: { error: error.message },
-      };
-    }
-  }
-}
-
-class TCPHealthCheck implements HealthCheckStrategy {
-  constructor(private timeout: number = 3000) {}
-
-  async check(server: ServerEndpoint): Promise<HealthStatus> {
-    const startTime = Date.now();
-
-    return new Promise((resolve) => {
-      const socket = new net.Socket();
-
-      socket.setTimeout(this.timeout);
-
-      socket.connect(server.port, server.ip, () => {
-        const responseTime = Date.now() - startTime;
-        socket.destroy();
-        resolve({
-          isHealthy: true,
-          responseTime,
-          details: { connectionSuccessful: true },
-        });
-      });
-
-      socket.on("error", (error) => {
-        const responseTime = Date.now() - startTime;
-        resolve({
-          isHealthy: false,
-          responseTime,
-          details: { error: error.message },
-        });
-      });
-
-      socket.on("timeout", () => {
-        const responseTime = Date.now() - startTime;
-        socket.destroy();
-        resolve({
-          isHealthy: false,
-          responseTime,
-          details: { error: "Connection timeout" },
-        });
-      });
-    });
-  }
-}
-```
+- Application-specific health verification
+- Can test database connections, external dependencies
+- Most accurate but requires custom implementation
 
 ## SSL Termination and Security
 
-### SSL Termination Implementation
+### Network Security Benefits
 
-```typescript
-class SSLTerminatingLoadBalancer {
-  private sslContext: any;
-  private backends: ServerEndpoint[] = [];
+**Private Network Protection**
 
-  constructor(sslCertPath: string, sslKeyPath: string) {
-    this.initializeSSL(sslCertPath, sslKeyPath);
-  }
+- Backend servers remain in private subnets/networks
+- No direct external access to application servers
+- Load balancer acts as the only public-facing entry point
+- Reduces attack surface significantly
 
-  private initializeSSL(certPath: string, keyPath: string): void {
-    const fs = require("fs");
-    const https = require("https");
+**Network Segmentation**
 
-    const options = {
-      cert: fs.readFileSync(certPath),
-      key: fs.readFileSync(keyPath),
-    };
+- Creates clear security boundaries between public and private networks
+- Backend servers only accept traffic from load balancer IPs
+- Enables network-level access controls and firewall rules
+- Simplifies security group and ACL management
 
-    this.sslContext = https.createServer(
-      options,
-      this.handleRequest.bind(this)
-    );
-  }
+**Attack Surface Reduction**
 
-  private async handleRequest(req: any, res: any): Promise<void> {
-    try {
-      const targetServer = this.selectBackendServer();
-      const response = await this.proxyRequest(req, targetServer);
+- Only load balancer exposed to internet threats
+- Backend servers protected from direct attacks
+- Centralized security hardening and monitoring
+- Easier to implement security patches and updates
 
-      res.writeHead(response.statusCode, response.headers);
-      res.end(response.body);
-    } catch (error) {
-      res.writeHead(502, { "Content-Type": "text/plain" });
-      res.end("Bad Gateway");
-    }
-  }
+### SSL Termination Benefits
 
-  private selectBackendServer(): ServerEndpoint {
-    const healthyServers = this.backends.filter((s) => s.isHealthy);
-    if (healthyServers.length === 0) {
-      throw new Error("No healthy backend servers");
-    }
+- Offloads encryption processing from backend servers
+- Centralized certificate management
+- Enables content inspection and modification
+- Simplifies backend server configuration
 
-    return healthyServers[Math.floor(Math.random() * healthyServers.length)];
-  }
+### Security Features
 
-  private async proxyRequest(req: any, target: ServerEndpoint): Promise<any> {
-    const http = require("http");
+**DDoS Protection**
 
-    return new Promise((resolve, reject) => {
-      const options = {
-        hostname: target.ip,
-        port: target.port,
-        path: req.url,
-        method: req.method,
-        headers: { ...req.headers, host: `${target.ip}:${target.port}` },
-      };
+- Rate limiting and traffic shaping
+- Connection throttling
+- Malformed request filtering
 
-      const proxyReq = http.request(options, (proxyRes: any) => {
-        let body = "";
-        proxyRes.on("data", (chunk: any) => (body += chunk));
-        proxyRes.on("end", () => {
-          resolve({
-            statusCode: proxyRes.statusCode,
-            headers: proxyRes.headers,
-            body,
-          });
-        });
-      });
+**Web Application Firewall (WAF)**
 
-      proxyReq.on("error", reject);
-
-      if (req.body) {
-        proxyReq.write(req.body);
-      }
-
-      proxyReq.end();
-    });
-  }
-}
-```
+- SQL injection protection
+- Cross-site scripting (XSS) prevention
+- OWASP Top 10 protection
 
 ## High Availability Patterns
 
-### Active-Passive Load Balancer Setup
+### Active-Passive Setup
 
-```typescript
-class HALoadBalancerPair {
-  private primaryLB: LoadBalancer;
-  private secondaryLB: LoadBalancer;
-  private virtualIP: string;
-  private isPrimary: boolean = true;
-  private heartbeatInterval: number = 1000;
+- One primary load balancer handles all traffic
+- Secondary load balancer on standby
+- Automatic failover when primary fails
+- Simple but potentially wasteful of resources
 
-  constructor(primaryLB: LoadBalancer, secondaryLB: LoadBalancer, vip: string) {
-    this.primaryLB = primaryLB;
-    this.secondaryLB = secondaryLB;
-    this.virtualIP = vip;
-    this.startHeartbeat();
-  }
+### Active-Active Setup
 
-  private startHeartbeat(): void {
-    setInterval(() => {
-      this.performFailoverCheck();
-    }, this.heartbeatInterval);
-  }
-
-  private async performFailoverCheck(): Promise<void> {
-    if (this.isPrimary) {
-      const primaryHealthy = await this.checkLoadBalancerHealth(this.primaryLB);
-      if (!primaryHealthy) {
-        await this.failover();
-      }
-    } else {
-      const primaryHealthy = await this.checkLoadBalancerHealth(this.primaryLB);
-      if (primaryHealthy) {
-        await this.failback();
-      }
-    }
-  }
-
-  private async checkLoadBalancerHealth(lb: LoadBalancer): Promise<boolean> {
-    try {
-      return await lb.healthCheck();
-    } catch (error) {
-      return false;
-    }
-  }
-
-  private async failover(): Promise<void> {
-    console.log("Initiating failover to secondary load balancer");
-    this.isPrimary = false;
-    await this.updateVirtualIPRouting(this.secondaryLB);
-  }
-
-  private async failback(): Promise<void> {
-    console.log("Initiating failback to primary load balancer");
-    this.isPrimary = true;
-    await this.updateVirtualIPRouting(this.primaryLB);
-  }
-
-  private async updateVirtualIPRouting(activeLB: LoadBalancer): Promise<void> {}
-}
-```
+- Multiple load balancers handle traffic simultaneously
+- Better resource utilization
+- More complex configuration and synchronization
+- Higher availability and performance
 
 ### Global Server Load Balancing (GSLB)
 
-```typescript
-class GlobalLoadBalancer {
-  private regions: Map<string, RegionalLoadBalancer> = new Map();
-  private dnsResolver: DNSResolver;
-
-  addRegion(name: string, loadBalancer: RegionalLoadBalancer): void {
-    this.regions.set(name, loadBalancer);
-  }
-
-  async routeRequest(clientIP: string, hostname: string): Promise<string> {
-    const clientLocation = await this.getClientLocation(clientIP);
-    const optimalRegion = this.selectOptimalRegion(clientLocation);
-
-    const regionalLB = this.regions.get(optimalRegion);
-    if (!regionalLB || !regionalLB.isHealthy()) {
-      return this.getBackupRegion(optimalRegion);
-    }
-
-    return regionalLB.getEndpoint();
-  }
-
-  private async getClientLocation(clientIP: string): Promise<Location> {
-    return { country: "US", region: "west" };
-  }
-
-  private selectOptimalRegion(location: Location): string {
-    const regionPreferences = {
-      US: ["us-west", "us-east"],
-      EU: ["eu-west", "eu-central"],
-      ASIA: ["asia-pacific", "asia-northeast"],
-    };
-
-    return regionPreferences[location.country]?.[0] || "us-east";
-  }
-
-  private getBackupRegion(primaryRegion: string): string {
-    const backupMappings = {
-      "us-west": "us-east",
-      "us-east": "us-west",
-      "eu-west": "eu-central",
-      "eu-central": "eu-west",
-    };
-
-    return backupMappings[primaryRegion] || "us-east";
-  }
-}
-
-interface Location {
-  country: string;
-  region: string;
-}
-
-interface RegionalLoadBalancer {
-  isHealthy(): boolean;
-  getEndpoint(): string;
-}
-```
+- Distributes traffic across multiple geographic regions
+- DNS-based routing decisions
+- Considers latency, server health, and geographic proximity
+- Essential for global applications
 
 ## Performance Optimization
 
 ### Connection Pooling
 
-```typescript
-class ConnectionPool {
-  private pools: Map<string, Connection[]> = new Map();
-  private maxConnections: number = 100;
-  private minConnections: number = 5;
+- Reuses existing connections to backend servers
+- Reduces connection establishment overhead
+- Improves response times and throughput
+- Requires careful connection lifecycle management
 
-  async getConnection(server: ServerEndpoint): Promise<Connection> {
-    const key = `${server.ip}:${server.port}`;
-    let pool = this.pools.get(key);
+### Caching
 
-    if (!pool) {
-      pool = [];
-      this.pools.set(key, pool);
-      await this.initializePool(server, pool);
-    }
+**Response Caching**
 
-    const availableConnection = pool.find((conn) => !conn.inUse);
-    if (availableConnection) {
-      availableConnection.inUse = true;
-      return availableConnection;
-    }
+- Stores frequently requested content
+- Reduces backend server load
+- Improves response times
 
-    if (pool.length < this.maxConnections) {
-      const newConnection = await this.createConnection(server);
-      pool.push(newConnection);
-      newConnection.inUse = true;
-      return newConnection;
-    }
+**Routing Decision Caching**
 
-    return this.waitForAvailableConnection(pool);
-  }
-
-  releaseConnection(connection: Connection): void {
-    connection.inUse = false;
-    connection.lastUsed = Date.now();
-  }
-
-  private async initializePool(
-    server: ServerEndpoint,
-    pool: Connection[]
-  ): Promise<void> {
-    const connections = await Promise.all(
-      Array(this.minConnections)
-        .fill(null)
-        .map(() => this.createConnection(server))
-    );
-    pool.push(...connections);
-  }
-
-  private async createConnection(server: ServerEndpoint): Promise<Connection> {
-    return {
-      id: generateId(),
-      server,
-      socket: await this.establishSocket(server),
-      inUse: false,
-      createdAt: Date.now(),
-      lastUsed: Date.now(),
-    };
-  }
-
-  private async waitForAvailableConnection(
-    pool: Connection[]
-  ): Promise<Connection> {
-    return new Promise((resolve) => {
-      const checkInterval = setInterval(() => {
-        const available = pool.find((conn) => !conn.inUse);
-        if (available) {
-          clearInterval(checkInterval);
-          available.inUse = true;
-          resolve(available);
-        }
-      }, 10);
-    });
-  }
-}
-
-interface Connection {
-  id: string;
-  server: ServerEndpoint;
-  socket: any;
-  inUse: boolean;
-  createdAt: number;
-  lastUsed: number;
-}
-```
+- Caches load balancing decisions
+- Reduces algorithm computation overhead
+- Must handle cache invalidation properly
 
 ### Rate Limiting Integration
 
-```typescript
-class RateLimitingLoadBalancer {
-  private rateLimiter: RateLimiter;
-  private loadBalancer: LoadBalancer;
-
-  constructor(rateLimiter: RateLimiter, loadBalancer: LoadBalancer) {
-    this.rateLimiter = rateLimiter;
-    this.loadBalancer = loadBalancer;
-  }
-
-  async handleRequest(request: HttpRequest): Promise<HttpResponse> {
-    const isAllowed = await this.rateLimiter.isAllowed(request.clientIP);
-
-    if (!isAllowed) {
-      return {
-        statusCode: 429,
-        headers: { "Content-Type": "text/plain" },
-        body: "Too Many Requests",
-      };
-    }
-
-    return this.loadBalancer.handleRequest(request);
-  }
-}
-
-class TokenBucketRateLimiter implements RateLimiter {
-  private buckets: Map<string, TokenBucket> = new Map();
-  private capacity: number;
-  private refillRate: number;
-
-  constructor(capacity: number = 100, refillRate: number = 10) {
-    this.capacity = capacity;
-    this.refillRate = refillRate;
-  }
-
-  async isAllowed(clientIP: string): Promise<boolean> {
-    const bucket = this.getBucket(clientIP);
-    return bucket.consume();
-  }
-
-  private getBucket(clientIP: string): TokenBucket {
-    let bucket = this.buckets.get(clientIP);
-    if (!bucket) {
-      bucket = new TokenBucket(this.capacity, this.refillRate);
-      this.buckets.set(clientIP, bucket);
-    }
-    return bucket;
-  }
-}
-
-class TokenBucket {
-  private tokens: number;
-  private lastRefill: number;
-
-  constructor(private capacity: number, private refillRate: number) {
-    this.tokens = capacity;
-    this.lastRefill = Date.now();
-  }
-
-  consume(): boolean {
-    this.refill();
-
-    if (this.tokens > 0) {
-      this.tokens--;
-      return true;
-    }
-
-    return false;
-  }
-
-  private refill(): void {
-    const now = Date.now();
-    const timePassed = (now - this.lastRefill) / 1000;
-    const tokensToAdd = Math.floor(timePassed * this.refillRate);
-
-    this.tokens = Math.min(this.capacity, this.tokens + tokensToAdd);
-    this.lastRefill = now;
-  }
-}
-```
+- Protects backend servers from overload
+- Implements fair usage policies
+- Can be applied per-client or globally
+- Various algorithms: token bucket, sliding window, fixed window
 
 ## Load Balancer Technologies
 
@@ -965,161 +279,58 @@ class TokenBucket {
 
 ### Cloud-Native Load Balancing
 
-```typescript
-class CloudLoadBalancerAdapter {
-  private provider: CloudProvider;
-  private loadBalancerConfig: LoadBalancerConfig;
+**Auto Scaling Integration**
 
-  constructor(provider: CloudProvider) {
-    this.provider = provider;
-  }
+- Automatically adjusts backend server capacity
+- Responds to traffic patterns and metrics
+- Integrates with cloud provider scaling services
 
-  async createLoadBalancer(config: LoadBalancerConfig): Promise<string> {
-    const lbId = await this.provider.createLoadBalancer({
-      name: config.name,
-      type: config.type,
-      scheme: config.scheme,
-      subnets: config.subnetIds,
-      securityGroups: config.securityGroupIds,
-    });
+**Service Mesh Integration**
 
-    await this.configureTargetGroup(lbId, config.targets);
-    await this.configureListeners(lbId, config.listeners);
-
-    return lbId;
-  }
-
-  async updateTargets(lbId: string, targets: Target[]): Promise<void> {
-    await this.provider.registerTargets(lbId, targets);
-  }
-
-  async enableAutoScaling(
-    lbId: string,
-    scalingConfig: AutoScalingConfig
-  ): Promise<void> {
-    await this.provider.enableAutoScaling(lbId, scalingConfig);
-  }
-}
-
-interface LoadBalancerConfig {
-  name: string;
-  type: "application" | "network" | "gateway";
-  scheme: "internet-facing" | "internal";
-  subnetIds: string[];
-  securityGroupIds: string[];
-  targets: Target[];
-  listeners: Listener[];
-}
-
-interface Target {
-  id: string;
-  port: number;
-  healthCheckPath?: string;
-}
-
-interface Listener {
-  port: number;
-  protocol: "HTTP" | "HTTPS" | "TCP" | "UDP";
-  sslCertificateArn?: string;
-  defaultAction: ListenerAction;
-}
-```
+- Works with Kubernetes and microservices
+- Provides service-to-service load balancing
+- Advanced traffic management and observability
 
 ## Monitoring and Observability
 
-### Load Balancer Metrics
+### Key Metrics to Monitor
 
-```typescript
-class LoadBalancerMetrics {
-  private metrics: Map<string, MetricValue[]> = new Map();
+**Request Metrics**
 
-  recordRequest(
-    serverId: string,
-    responseTime: number,
-    statusCode: number
-  ): void {
-    this.recordMetric("requests_total", serverId, 1);
-    this.recordMetric("response_time", serverId, responseTime);
+- Requests per second (RPS)
+- Response time percentiles (P50, P95, P99)
+- Error rates (4xx, 5xx)
+- Throughput and bandwidth utilization
 
-    if (statusCode >= 500) {
-      this.recordMetric("errors_5xx", serverId, 1);
-    } else if (statusCode >= 400) {
-      this.recordMetric("errors_4xx", serverId, 1);
-    }
-  }
+**Server Health Metrics**
 
-  recordConnectionCount(serverId: string, count: number): void {
-    this.recordMetric("active_connections", serverId, count);
-  }
+- Active connections per server
+- Server response times
+- Health check success rates
+- Server availability and uptime
 
-  getMetrics(metricName: string, timeWindow: number = 300000): MetricsSummary {
-    const key = metricName;
-    const values = this.metrics.get(key) || [];
-    const cutoff = Date.now() - timeWindow;
-    const recentValues = values.filter((v) => v.timestamp > cutoff);
+**Load Balancer Metrics**
 
-    return {
-      count: recentValues.length,
-      average: this.calculateAverage(recentValues),
-      min: Math.min(...recentValues.map((v) => v.value)),
-      max: Math.max(...recentValues.map((v) => v.value)),
-      percentile95: this.calculatePercentile(recentValues, 0.95),
-      percentile99: this.calculatePercentile(recentValues, 0.99),
-    };
-  }
+- CPU and memory utilization
+- Connection queue lengths
+- SSL handshake rates
+- Geographic distribution of traffic
 
-  private recordMetric(name: string, serverId: string, value: number): void {
-    const key = `${name}_${serverId}`;
-    if (!this.metrics.has(key)) {
-      this.metrics.set(key, []);
-    }
+### Alerting and Monitoring
 
-    this.metrics.get(key)!.push({
-      value,
-      timestamp: Date.now(),
-    });
+**Critical Alerts**
 
-    this.cleanupOldMetrics(key);
-  }
+- Server failures and health check failures
+- High error rates or response times
+- Load balancer resource exhaustion
+- SSL certificate expiration
 
-  private cleanupOldMetrics(key: string, maxAge: number = 3600000): void {
-    const values = this.metrics.get(key) || [];
-    const cutoff = Date.now() - maxAge;
-    const filtered = values.filter((v) => v.timestamp > cutoff);
-    this.metrics.set(key, filtered);
-  }
+**Capacity Planning**
 
-  private calculateAverage(values: MetricValue[]): number {
-    if (values.length === 0) return 0;
-    const sum = values.reduce((acc, v) => acc + v.value, 0);
-    return sum / values.length;
-  }
-
-  private calculatePercentile(
-    values: MetricValue[],
-    percentile: number
-  ): number {
-    if (values.length === 0) return 0;
-    const sorted = values.map((v) => v.value).sort((a, b) => a - b);
-    const index = Math.ceil(sorted.length * percentile) - 1;
-    return sorted[index];
-  }
-}
-
-interface MetricValue {
-  value: number;
-  timestamp: number;
-}
-
-interface MetricsSummary {
-  count: number;
-  average: number;
-  min: number;
-  max: number;
-  percentile95: number;
-  percentile99: number;
-}
-```
+- Traffic growth trends
+- Peak usage patterns
+- Resource utilization trends
+- Performance degradation indicators
 
 ## Best Practices and Guidelines
 
@@ -1131,19 +342,31 @@ interface MetricsSummary {
 4. **Security**: Implement SSL termination, rate limiting, and DDoS protection
 5. **Monitoring**: Track key metrics like response times, error rates, and connection counts
 
-### Common Anti-Patterns
+### Common Anti-Patterns to Avoid
 
-```typescript
-class LoadBalancerAntiPatterns {
-  antiPattern1_NoHealthChecks(): void {}
+**No Health Checks**
 
-  antiPattern2_OverlyComplexRouting(): void {}
+- Routing traffic to failed servers
+- Poor user experience and cascading failures
+- Always implement proper health checking
 
-  antiPattern3_IgnoringMetrics(): void {}
+**Overly Complex Routing**
 
-  goodPattern_SimpleEffectiveDesign(): void {}
-}
-```
+- Difficult to debug and maintain
+- Keep routing logic simple and predictable
+- Document complex routing rules thoroughly
+
+**Ignoring Metrics**
+
+- Flying blind without proper monitoring
+- Unable to identify performance issues
+- Implement comprehensive observability
+
+**Single Point of Failure**
+
+- Load balancer itself becomes bottleneck
+- Always plan for load balancer redundancy
+- Implement proper failover mechanisms
 
 ### Performance Optimization Tips
 
@@ -1152,5 +375,25 @@ class LoadBalancerAntiPatterns {
 3. **Caching**: Cache routing decisions and health check results appropriately
 4. **Horizontal Scaling**: Scale load balancers horizontally for high availability
 5. **Geographic Distribution**: Use multiple load balancers across regions for global applications
+
+### Capacity Planning Guidelines
+
+**Traffic Analysis**
+
+- Monitor traffic patterns and growth trends
+- Plan for peak traffic scenarios
+- Consider seasonal variations and marketing campaigns
+
+**Server Sizing**
+
+- Right-size backend servers for expected load
+- Plan for N+1 redundancy (handle one server failure)
+- Consider different server types for different workloads
+
+**Testing and Validation**
+
+- Load test your entire system regularly
+- Test failover scenarios and recovery procedures
+- Validate monitoring and alerting systems
 
 This comprehensive load balancing guide covers essential concepts, implementation patterns, and best practices for designing scalable and reliable distributed systems.
