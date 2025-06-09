@@ -22,6 +22,8 @@ import { SearchScroller } from "@/src/components/search-scroller";
 import { Toaster } from "@/src/components/ui/toaster";
 import { ServiceWorkerRegistration } from "@/src/components/service-worker-registration";
 import { PWAInstallPrompt } from "@/src/components/pwa-install-prompt";
+import { GoogleAnalytics } from "@/src/components/analytics/GoogleAnalytics";
+import { AnalyticsProvider } from "@/src/components/analytics/AnalyticsProvider";
 
 import "katex/dist/katex.min.css";
 
@@ -121,58 +123,61 @@ export default function RootLayout({
       >
         <AccessibilityProvider>
           <AccessibilityWrapper>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <SkipNavigation />
-              <BookmarkProvider>
-                <NavigationProvider>
-                  <ImageOptimizationProvider />
-                  <SidebarProvider>
-                    <AppSidebar />
-                    <SidebarInset>
-                      <header
-                        id="main-header"
-                        className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between gap-2 border-b bg-background/80 backdrop-blur-md px-4 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12"
-                        role="banner"
-                      >
-                        <div className="flex items-center gap-2">
-                          <SidebarTrigger className="-ml-1 hover:bg-accent/50" />
-                          <Separator
-                            orientation="vertical"
-                            className="mr-2 h-4"
-                          />
-                          <Breadcrumbs />
-                        </div>
-                        <div className="flex items-center">
-                          <CompactSearchBar />
-                        </div>
-                      </header>
-                      <main
-                        id="main-content"
-                        className="flex flex-1 flex-col gap-4 p-4"
-                        role="main"
-                        tabIndex={-1}
-                      >
-                        <Suspense fallback={null}>
-                          <SearchScroller contentSelector="#main-content" />
-                        </Suspense>
-                        <div className="min-h-[100vh] flex-1 rounded-xl bg-gradient-to-br from-background to-muted/30 border shadow-sm md:min-h-min">
-                          {children}
-                        </div>
-                      </main>
-                    </SidebarInset>
-                  </SidebarProvider>
-                </NavigationProvider>
-              </BookmarkProvider>
-            </ThemeProvider>
+            <AnalyticsProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+              >
+                <SkipNavigation />
+                <BookmarkProvider>
+                  <NavigationProvider>
+                    <ImageOptimizationProvider />
+                    <SidebarProvider>
+                      <AppSidebar />
+                      <SidebarInset>
+                        <header
+                          id="main-header"
+                          className="sticky top-0 z-40 flex h-16 shrink-0 items-center justify-between gap-2 border-b bg-background/80 backdrop-blur-md px-4 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12"
+                          role="banner"
+                        >
+                          <div className="flex items-center gap-2">
+                            <SidebarTrigger className="-ml-1 hover:bg-accent/50" />
+                            <Separator
+                              orientation="vertical"
+                              className="mr-2 h-4"
+                            />
+                            <Breadcrumbs />
+                          </div>
+                          <div className="flex items-center">
+                            <CompactSearchBar />
+                          </div>
+                        </header>
+                        <main
+                          id="main-content"
+                          className="flex flex-1 flex-col gap-4 p-4"
+                          role="main"
+                          tabIndex={-1}
+                        >
+                          <Suspense fallback={null}>
+                            <SearchScroller contentSelector="#main-content" />
+                          </Suspense>
+                          <div className="min-h-[100vh] flex-1 rounded-xl bg-gradient-to-br from-background to-muted/30 border shadow-sm md:min-h-min">
+                            {children}
+                          </div>
+                        </main>
+                      </SidebarInset>
+                    </SidebarProvider>
+                  </NavigationProvider>
+                </BookmarkProvider>
+              </ThemeProvider>
+            </AnalyticsProvider>
           </AccessibilityWrapper>
         </AccessibilityProvider>
         <ServiceWorkerRegistration />
         <PWAInstallPrompt />
+        <GoogleAnalytics />
         <Toaster />
       </body>
     </html>
