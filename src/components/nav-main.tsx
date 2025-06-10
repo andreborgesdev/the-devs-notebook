@@ -64,7 +64,7 @@ export function NavMain({ items }: { items: ContentItem[] }) {
   const resourceItems = items.filter((item) =>
     [
       "Quick Reference Cards",
-      "Cheat Sheet",
+      "General Cheat Sheet",
       "IT Books Summarized",
       "Interviews",
       "Misc",

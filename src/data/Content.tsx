@@ -17,7 +17,7 @@ export const Content: ContentItem[] = [
     icon: "📚",
   },
   {
-    title: "Cheat Sheet",
+    title: "General Cheat Sheet",
     url: "/cheat-sheet",
     icon: "💾",
   },
@@ -1569,11 +1569,6 @@ export const Content: ContentItem[] = [
             title: "Interview Tips",
             url: "/system-design/interview-tips",
             icon: "💡",
-          },
-          {
-            title: "Interview Questions",
-            url: "/system-design/interview-questions",
-            icon: "❓",
           },
         ],
       },

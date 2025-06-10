@@ -68,6 +68,7 @@ export function NavItem({ item, depth }: { item: ContentItem; depth: number }) {
           className="transition-transform duration-200"
           style={{
             transform: `rotate(${shouldBeOpen ? "90deg" : "0deg"})`,
+            display: sidebarOpen ? "block" : "none",
           }}
         />
       </Button>

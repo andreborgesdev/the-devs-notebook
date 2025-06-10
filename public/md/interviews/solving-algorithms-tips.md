@@ -71,6 +71,15 @@ Adopt a systematic approach to tackle coding problems:
 | “What’s the runtime?”        | They want performance analysis        | Explain time and space complexity  |
 | Silence / raised eyebrow     | Potential bug or logic error          | Step through your code aloud       |
 
+## Back-of-the-Envelope Calculations
+
+Back-of-the-envelope estimation is all about the process. Solving the problem is more important than obtaining results. Interviewers may test your problem-solving skills. Here are a few tips to follow:
+
+- **_Rounding and Approximation._** It is difficult to perform complicated math operations during the interview. For example, what is the result of “99987 / 9.1”? There is no need to spend valuable time to solve complicated math problems. Precision is not expected. Use round numbers and approximation to your advantage. The division question can be simplified as follows: “100,000 / 10”.
+- **_Write down your assumptions._** It is a good idea to write down your assumptions to be referenced later.
+- **_Label your units._** When you write down “5”, does it mean 5 KB or 5 MB? You might confuse yourself with this. Write down the units because “5 MB” helps to remove ambiguity.
+- **_Commonly asked back-of-the-envelope estimations:_** QPS, peak QPS, storage, cache, number of servers, etc. You can practice these calculations when preparing for an interview. Practice makes perfect.
+
 ## Final Tips
 
 - Think before coding: **clarity > speed**
