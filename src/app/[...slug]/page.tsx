@@ -20,6 +20,7 @@ import {
   getImageDimensions,
 } from "@/src/lib/image-utils";
 import { CopyButton } from "@/src/components/copy-button";
+import { CollapsibleCodeBlock } from "@/src/components/collapsible-code-block";
 
 export default async function ContentPage({
   params,
@@ -262,16 +263,35 @@ export default async function ContentPage({
                 );
               },
               pre: ({ children, ...props }) => {
+                // Extract language from the code element's className
+                let language = "";
+
+                const extractLanguage = (node: any): string => {
+                  if (node?.props?.className) {
+                    const match = node.props.className.match(/language-(\w+)/);
+                    if (match) return match[1];
+                  }
+
+                  if (Array.isArray(node)) {
+                    for (const child of node) {
+                      const lang = extractLanguage(child);
+                      if (lang) return lang;
+                    }
+                  }
+
+                  if (node?.props?.children) {
+                    return extractLanguage(node.props.children);
+                  }
+
+                  return "";
+                };
+
+                language = extractLanguage(children) || extractLanguage(props);
+
                 return (
-                  <div className="relative group">
-                    <pre
-                      className="relative rounded-lg border bg-muted overflow-x-auto shadow-sm"
-                      {...props}
-                    >
-                      {children}
-                    </pre>
-                    <CopyButton />
-                  </div>
+                  <CollapsibleCodeBlock language={language}>
+                    {children}
+                  </CollapsibleCodeBlock>
                 );
               },
             }}

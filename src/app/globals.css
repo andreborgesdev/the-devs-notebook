@@ -207,6 +207,29 @@
   overflow-x: auto;
 }
 
+/* Collapsible code blocks */
+.collapsible-code-expanded {
+  max-height: 2000px !important;
+  opacity: 1 !important;
+}
+
+.collapsible-code-collapsed {
+  max-height: 0 !important;
+  opacity: 0 !important;
+}
+
+/* Print styles for collapsible code blocks */
+@media print {
+  .collapsible-code-collapsed {
+    max-height: none !important;
+    opacity: 1 !important;
+  }
+
+  .collapsible-code-block .toggle-button {
+    display: none !important;
+  }
+}
+
 .markdown-content code {
   @apply relative rounded bg-slate-100 dark:bg-slate-800 font-medium;
   font-family: var(--font-jetbrains-mono), Monaco, Consolas, monospace;

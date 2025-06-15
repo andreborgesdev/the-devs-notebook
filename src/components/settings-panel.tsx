@@ -18,9 +18,12 @@ import {
   Maximize,
   AlignLeft,
   Printer,
+  Code,
+  EyeOff,
 } from "lucide-react";
 import { useAccessibility } from "@/src/contexts/AccessibilityContext";
 import { useTheme } from "next-themes";
+import { useUserPreferences } from "@/src/contexts/user-preferences";
 import { cn } from "@/src/lib/utils";
 
 interface SettingsPanelProps {
@@ -39,6 +42,7 @@ export function SettingsPanel({
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const { theme, setTheme } = useTheme();
+  const { codeBlocksExpanded, setCodeBlocksExpanded } = useUserPreferences();
 
   const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
   const setIsOpen = onClose
@@ -155,6 +159,14 @@ export function SettingsPanel({
   const handleThemeChange = (newTheme: string) => {
     setTheme(newTheme);
     announceToScreenReader(`Theme changed to ${newTheme}`);
+  };
+
+  const handleCodeBlockToggle = () => {
+    const newState = !codeBlocksExpanded;
+    setCodeBlocksExpanded(newState);
+    announceToScreenReader(
+      `Code blocks ${newState ? "expanded" : "collapsed"} by default`
+    );
   };
 
   React.useEffect(() => {
@@ -374,6 +386,51 @@ export function SettingsPanel({
                     <Plus className="h-3 w-3" />
                   </Button>
                 </div>
+              </div>
+            </div>
+
+            <Separator />
+
+            {/* Code Blocks Section */}
+            <div className="space-y-4">
+              <h4 className="font-medium text-sm text-muted-foreground uppercase tracking-wide">
+                Code Blocks
+              </h4>
+
+              {/* Code Block Visibility */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  {codeBlocksExpanded ? (
+                    <Eye className="h-4 w-4" />
+                  ) : (
+                    <EyeOff className="h-4 w-4" />
+                  )}
+                  <label htmlFor="code-blocks" className="text-sm font-medium">
+                    Show Code Blocks
+                  </label>
+                </div>
+                <Button
+                  id="code-blocks"
+                  onClick={handleCodeBlockToggle}
+                  variant={codeBlocksExpanded ? "default" : "outline"}
+                  size="sm"
+                  aria-pressed={codeBlocksExpanded}
+                  className="min-w-16"
+                >
+                  {codeBlocksExpanded ? "On" : "Off"}
+                </Button>
+              </div>
+
+              <div className="text-xs text-muted-foreground space-y-1">
+                <p>
+                  •{" "}
+                  {codeBlocksExpanded
+                    ? "Code blocks are expanded"
+                    : "Code blocks are collapsed"}{" "}
+                  by default
+                </p>
+                <p>• Click any code block header to toggle individual blocks</p>
+                <p>• All code blocks are visible when printing</p>
               </div>
             </div>
 
