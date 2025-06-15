@@ -1094,6 +1094,187 @@ export const Content: ContentItem[] = [
     ],
   },
   {
+    title: "JavaScript",
+    url: "/javascript",
+    icon: "🧩",
+    items: [
+      // {
+      //   title: "Interactive Visualizers",
+      //   url: "/javascript/visualizers",
+      //   icon: "🎮",
+      // },
+      {
+        title: "Complete Reference Guide",
+        url: "/javascript/introduction",
+        icon: "💡",
+      },
+      {
+        title: "Core Language",
+        url: "/javascript/core",
+        icon: "🔧",
+        items: [
+          {
+            title: "Fundamentals",
+            url: "/javascript/fundamentals",
+            icon: "🔤",
+          },
+          {
+            title: "Functions and Scope",
+            url: "/javascript/functions-and-scope",
+            icon: "🔧",
+          },
+          {
+            title: "Objects and Prototypes",
+            url: "/javascript/objects-and-prototypes",
+            icon: "🎯",
+          },
+          {
+            title: "ES6+ Modern Features",
+            url: "/javascript/es6-modern-features",
+            icon: "⚡",
+          },
+        ],
+      },
+      {
+        title: "Asynchronous Programming",
+        url: "/javascript/async",
+        icon: "🔄",
+        items: [
+          {
+            title: "Asynchronous JavaScript",
+            url: "/javascript/asynchronous-javascript",
+            icon: "⚡",
+          },
+        ],
+      },
+      {
+        title: "Browser & DOM",
+        url: "/javascript/browser",
+        icon: "🌐",
+        items: [
+          {
+            title: "DOM and Browser APIs",
+            url: "/javascript/dom-and-browser-apis",
+            icon: "🌐",
+          },
+        ],
+      },
+      {
+        title: "Development Practices",
+        url: "/javascript/development",
+        icon: "🛠️",
+        items: [
+          {
+            title: "Error Handling and Debugging",
+            url: "/javascript/error-handling-debugging",
+            icon: "🐛",
+          },
+          {
+            title: "Testing Patterns",
+            url: "/javascript/testing-patterns",
+            icon: "🧪",
+          },
+          {
+            title: "Memory and Performance",
+            url: "/javascript/memory-performance",
+            icon: "⚡",
+          },
+        ],
+      },
+      {
+        title: "Architecture & Patterns",
+        url: "/javascript/patterns",
+        icon: "🏗️",
+        items: [
+          {
+            title: "Design Patterns",
+            url: "/javascript/design-patterns",
+            icon: "🎨",
+          },
+        ],
+      },
+      {
+        title: "Interview Preparation",
+        url: "/javascript/interview",
+        icon: "💼",
+        items: [
+          {
+            title: "Interview Questions",
+            url: "/javascript/interview-questions",
+            icon: "❓",
+          },
+          {
+            title: "Comprehensive Interview Questions",
+            url: "/javascript/comprehensive-interview-questions",
+            icon: "📋",
+          },
+        ],
+      },
+      {
+        title: "Quick Reference",
+        url: "/javascript/cheat-sheet",
+        icon: "📄",
+      },
+    ],
+  },
+  {
+    title: "Typescript",
+    url: "/typescript",
+    icon: "🧩",
+    items: [
+      {
+        title: "Introduction",
+        url: "/typescript/introduction",
+        icon: "💡",
+      },
+      {
+        title: "Fundamentals",
+        url: "/typescript/fundamentals",
+        icon: "🔤",
+      },
+      {
+        title: "Interfaces & Types",
+        url: "/typescript/interfaces-and-types",
+        icon: "🏗️",
+      },
+      {
+        title: "Generics",
+        url: "/typescript/generics",
+        icon: "🔧",
+      },
+      {
+        title: "Advanced Types",
+        url: "/typescript/advanced-types",
+        icon: "🚀",
+      },
+      {
+        title: "Classes & OOP",
+        url: "/typescript/classes-and-oop",
+        icon: "🏛️",
+      },
+      {
+        title: "Modules & Namespaces",
+        url: "/typescript/modules-and-namespaces",
+        icon: "📦",
+      },
+      {
+        title: "Decorators",
+        url: "/typescript/decorators",
+        icon: "✨",
+      },
+      {
+        title: "Configuration & Tooling",
+        url: "/typescript/configuration-and-tooling",
+        icon: "⚙️",
+      },
+      {
+        title: "Interview Questions",
+        url: "/typescript/interview-questions",
+        icon: "❓",
+      },
+    ],
+  },
+  {
     title: "Kafka",
     url: "/kafka",
     icon: "📥",
@@ -1737,187 +1918,6 @@ export const Content: ContentItem[] = [
         title: "Unit tests",
         url: "/misc/unit-tests",
         icon: "🗺️",
-      },
-    ],
-  },
-  {
-    title: "JavaScript",
-    url: "/javascript",
-    icon: "🧩",
-    items: [
-      // {
-      //   title: "Interactive Visualizers",
-      //   url: "/javascript/visualizers",
-      //   icon: "🎮",
-      // },
-      {
-        title: "Complete Reference Guide",
-        url: "/javascript/introduction",
-        icon: "💡",
-      },
-      {
-        title: "Core Language",
-        url: "/javascript/core",
-        icon: "🔧",
-        items: [
-          {
-            title: "Fundamentals",
-            url: "/javascript/fundamentals",
-            icon: "🔤",
-          },
-          {
-            title: "Functions and Scope",
-            url: "/javascript/functions-and-scope",
-            icon: "🔧",
-          },
-          {
-            title: "Objects and Prototypes",
-            url: "/javascript/objects-and-prototypes",
-            icon: "🎯",
-          },
-          {
-            title: "ES6+ Modern Features",
-            url: "/javascript/es6-modern-features",
-            icon: "⚡",
-          },
-        ],
-      },
-      {
-        title: "Asynchronous Programming",
-        url: "/javascript/async",
-        icon: "🔄",
-        items: [
-          {
-            title: "Asynchronous JavaScript",
-            url: "/javascript/asynchronous-javascript",
-            icon: "⚡",
-          },
-        ],
-      },
-      {
-        title: "Browser & DOM",
-        url: "/javascript/browser",
-        icon: "🌐",
-        items: [
-          {
-            title: "DOM and Browser APIs",
-            url: "/javascript/dom-and-browser-apis",
-            icon: "🌐",
-          },
-        ],
-      },
-      {
-        title: "Development Practices",
-        url: "/javascript/development",
-        icon: "🛠️",
-        items: [
-          {
-            title: "Error Handling and Debugging",
-            url: "/javascript/error-handling-debugging",
-            icon: "🐛",
-          },
-          {
-            title: "Testing Patterns",
-            url: "/javascript/testing-patterns",
-            icon: "🧪",
-          },
-          {
-            title: "Memory and Performance",
-            url: "/javascript/memory-performance",
-            icon: "⚡",
-          },
-        ],
-      },
-      {
-        title: "Architecture & Patterns",
-        url: "/javascript/patterns",
-        icon: "🏗️",
-        items: [
-          {
-            title: "Design Patterns",
-            url: "/javascript/design-patterns",
-            icon: "🎨",
-          },
-        ],
-      },
-      {
-        title: "Interview Preparation",
-        url: "/javascript/interview",
-        icon: "💼",
-        items: [
-          {
-            title: "Interview Questions",
-            url: "/javascript/interview-questions",
-            icon: "❓",
-          },
-          {
-            title: "Comprehensive Interview Questions",
-            url: "/javascript/comprehensive-interview-questions",
-            icon: "📋",
-          },
-        ],
-      },
-      {
-        title: "Quick Reference",
-        url: "/javascript/cheat-sheet",
-        icon: "📄",
-      },
-    ],
-  },
-  {
-    title: "Typescript",
-    url: "/typescript",
-    icon: "🧩",
-    items: [
-      {
-        title: "Introduction",
-        url: "/typescript/introduction",
-        icon: "💡",
-      },
-      {
-        title: "Fundamentals",
-        url: "/typescript/fundamentals",
-        icon: "🔤",
-      },
-      {
-        title: "Interfaces & Types",
-        url: "/typescript/interfaces-and-types",
-        icon: "🏗️",
-      },
-      {
-        title: "Generics",
-        url: "/typescript/generics",
-        icon: "🔧",
-      },
-      {
-        title: "Advanced Types",
-        url: "/typescript/advanced-types",
-        icon: "🚀",
-      },
-      {
-        title: "Classes & OOP",
-        url: "/typescript/classes-and-oop",
-        icon: "🏛️",
-      },
-      {
-        title: "Modules & Namespaces",
-        url: "/typescript/modules-and-namespaces",
-        icon: "📦",
-      },
-      {
-        title: "Decorators",
-        url: "/typescript/decorators",
-        icon: "✨",
-      },
-      {
-        title: "Configuration & Tooling",
-        url: "/typescript/configuration-and-tooling",
-        icon: "⚙️",
-      },
-      {
-        title: "Interview Questions",
-        url: "/typescript/interview-questions",
-        icon: "❓",
       },
     ],
   },

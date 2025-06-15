@@ -83,17 +83,158 @@ LIMIT 10;
 
 ## Joins
 
-- **INNER JOIN**
-- **LEFT JOIN**
-- **RIGHT JOIN**
-- **FULL OUTER JOIN**
-- **SELF JOIN**
-- **CROSS JOIN**
+SQL joins combine rows from two or more tables based on related columns between them. Understanding joins is crucial for working with relational databases.
+
+### Sample Tables
 
 ```sql
-SELECT e.name, d.name
+-- employees table
+id | name     | department_id | salary
+1  | Alice    | 101          | 75000
+2  | Bob      | 102          | 65000
+3  | Charlie  | 101          | 85000
+4  | Diana    | NULL         | 70000
+
+-- departments table
+id  | name        | location
+101 | Engineering | New York
+102 | Marketing   | Boston
+103 | Sales       | Chicago
+```
+
+### INNER JOIN
+
+Returns only rows that have matching values in both tables.
+
+```sql
+SELECT e.name, d.name AS department_name
 FROM employees e
 INNER JOIN departments d ON e.department_id = d.id;
+```
+
+**Result:**
+
+```
+name    | department_name
+Alice   | Engineering
+Bob     | Marketing
+Charlie | Engineering
+```
+
+_Note: Diana is excluded (NULL department_id), Sales department is excluded (no employees)_
+
+### LEFT JOIN (LEFT OUTER JOIN)
+
+Returns all rows from the left table and matching rows from the right table. NULL values for non-matching right table columns.
+
+```sql
+SELECT e.name, d.name AS department_name
+FROM employees e
+LEFT JOIN departments d ON e.department_id = d.id;
+```
+
+**Result:**
+
+```
+name    | department_name
+Alice   | Engineering
+Bob     | Marketing
+Charlie | Engineering
+Diana   | NULL
+```
+
+_Note: All employees included, Diana gets NULL for department_
+
+### RIGHT JOIN (RIGHT OUTER JOIN)
+
+Returns all rows from the right table and matching rows from the left table. NULL values for non-matching left table columns.
+
+```sql
+SELECT e.name, d.name AS department_name
+FROM employees e
+RIGHT JOIN departments d ON e.department_id = d.id;
+```
+
+**Result:**
+
+```
+name    | department_name
+Alice   | Engineering
+Bob     | Marketing
+Charlie | Engineering
+NULL    | Sales
+```
+
+_Note: All departments included, Sales gets NULL for employee_
+
+### FULL OUTER JOIN
+
+Returns all rows when there's a match in either table. NULL values where no match exists.
+
+```sql
+SELECT e.name, d.name AS department_name
+FROM employees e
+FULL OUTER JOIN departments d ON e.department_id = d.id;
+```
+
+**Result:**
+
+```
+name    | department_name
+Alice   | Engineering
+Bob     | Marketing
+Charlie | Engineering
+Diana   | NULL
+NULL    | Sales
+```
+
+_Note: All employees and all departments included_
+
+### SELF JOIN
+
+Joins a table with itself, useful for hierarchical data or comparing rows within the same table.
+
+```sql
+-- Find employees with higher salaries than Alice
+SELECT e1.name AS employee, e2.name AS higher_paid_than
+FROM employees e1
+JOIN employees e2 ON e1.salary > e2.salary
+WHERE e2.name = 'Alice';
+```
+
+### CROSS JOIN
+
+Returns the Cartesian product of both tables (every row from first table combined with every row from second table).
+
+```sql
+SELECT e.name, d.name AS department_name
+FROM employees e
+CROSS JOIN departments d;
+```
+
+**Result:** 4 employees × 3 departments = 12 rows
+
+### Join Performance Tips
+
+1. **Use indexes** on join columns
+2. **Filter early** with WHERE clauses
+3. **Choose appropriate join types** based on data requirements
+4. **Avoid unnecessary columns** in SELECT clause
+
+### Common Join Patterns
+
+```sql
+-- Multiple table joins
+SELECT e.name, d.name AS dept, p.title AS project
+FROM employees e
+JOIN departments d ON e.department_id = d.id
+JOIN employee_projects ep ON e.id = ep.employee_id
+JOIN projects p ON ep.project_id = p.id;
+
+-- Conditional joins
+SELECT e.name, d.name AS department_name
+FROM employees e
+LEFT JOIN departments d ON e.department_id = d.id AND d.location = 'New York';
 ```
 
 ## Subqueries
