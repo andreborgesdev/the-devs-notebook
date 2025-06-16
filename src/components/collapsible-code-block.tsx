@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ChevronDown, ChevronRight, Code } from "lucide-react";
+import { ChevronDown, ChevronRight, Code, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/src/components/ui/button";
 import { CopyButton } from "@/src/components/copy-button";
 import { cn } from "@/src/lib/utils";
@@ -20,7 +20,7 @@ export function CollapsibleCodeBlock({
   language,
   defaultExpanded,
 }: CollapsibleCodeBlockProps) {
-  const { codeBlocksExpanded } = useUserPreferences();
+  const { codeBlocksExpanded, setCodeBlocksExpanded } = useUserPreferences();
   // Use user preference if no explicit defaultExpanded is provided
   const initialExpanded =
     defaultExpanded !== undefined ? defaultExpanded : codeBlocksExpanded;
@@ -97,6 +97,25 @@ export function CollapsibleCodeBlock({
           {getLanguageLabel(language)}
           <span className="text-xs text-slate-500 dark:text-slate-400">
             ({isExpanded ? "Hide" : "Show"} code)
+          </span>
+        </Button>
+
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => setCodeBlocksExpanded(!codeBlocksExpanded)}
+          className="flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 p-0 h-auto"
+          title={
+            codeBlocksExpanded ? "Hide all code blocks" : "Show all code blocks"
+          }
+        >
+          {codeBlocksExpanded ? (
+            <EyeOff className="h-4 w-4" />
+          ) : (
+            <Eye className="h-4 w-4" />
+          )}
+          <span className="text-xs text-slate-500 dark:text-slate-400">
+            {codeBlocksExpanded ? "Hide All" : "Show All"}
           </span>
         </Button>
       </div>

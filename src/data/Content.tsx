@@ -1809,7 +1809,7 @@ export const Content: ContentItem[] = [
         items: [
           {
             title: "Introduction",
-            url: "/databases/sql/introduction",
+            url: "/databases/no-sql/introduction",
             icon: "💡",
           },
           {

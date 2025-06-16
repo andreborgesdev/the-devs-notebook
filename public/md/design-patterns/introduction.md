@@ -8,6 +8,7 @@ Design Patterns are proven solutions to common software design problems. They he
 ## SOLID Principles
 
 ### Single Responsibility Principle (SRP)
+
 A class should have only one reason to change.
 
 ```java
@@ -15,15 +16,15 @@ A class should have only one reason to change.
 class User {
     private String name;
     private String email;
-    
+
     public void save() {
         // Database logic
     }
-    
+
     public void sendEmail() {
         // Email logic
     }
-    
+
     public void generateReport() {
         // Report logic
     }
@@ -55,6 +56,7 @@ class ReportGenerator {
 ```
 
 ### Open/Closed Principle (OCP)
+
 Classes should be open for extension but closed for modification.
 
 ```java
@@ -79,7 +81,7 @@ interface Shape {
 
 class Rectangle implements Shape {
     private double width, height;
-    
+
     public double calculateArea() {
         return width * height;
     }
@@ -87,7 +89,7 @@ class Rectangle implements Shape {
 
 class Circle implements Shape {
     private double radius;
-    
+
     public double calculateArea() {
         return Math.PI * radius * radius;
     }
@@ -101,6 +103,7 @@ class AreaCalculator {
 ```
 
 ### Liskov Substitution Principle (LSP)
+
 Subtypes must be substitutable for their base types.
 
 ```java
@@ -127,7 +130,7 @@ class FlyingBird extends Bird {
     public void move() {
         fly();
     }
-    
+
     public void fly() {
         System.out.println("Flying");
     }
@@ -137,7 +140,7 @@ class Penguin extends Bird {
     public void move() {
         swim();
     }
-    
+
     public void swim() {
         System.out.println("Swimming");
     }
@@ -145,6 +148,7 @@ class Penguin extends Bird {
 ```
 
 ### Interface Segregation Principle (ISP)
+
 Prefer small, client-specific interfaces over large general-purpose ones.
 
 ```java
@@ -186,6 +190,7 @@ class Robot implements Workable {
 ```
 
 ### Dependency Inversion Principle (DIP)
+
 High-level modules should not depend on low-level modules; both should depend on abstractions.
 
 ```java
@@ -198,7 +203,7 @@ class MySQLDatabase {
 
 class OrderService {
     private MySQLDatabase database = new MySQLDatabase();
-    
+
     public void processOrder(String order) {
         database.save(order);
     }
@@ -223,11 +228,11 @@ class PostgreSQLDatabase implements Database {
 
 class OrderService {
     private Database database;
-    
+
     public OrderService(Database database) {
         this.database = database;
     }
-    
+
     public void processOrder(String order) {
         database.save(order);
     }
@@ -251,20 +256,6 @@ public class Singleton {
         }
         return instance;
     }
-}
-```
-
-```typescript
-class Singleton {
-  private static instance: Singleton;
-  private constructor() {}
-
-  static getInstance(): Singleton {
-    if (!Singleton.instance) {
-      Singleton.instance = new Singleton();
-    }
-    return Singleton.instance;
-  }
 }
 ```
 
