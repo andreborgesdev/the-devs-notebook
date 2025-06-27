@@ -37,6 +37,21 @@
 - **Average time complexity**: O(1) for put/get.
 - **Worst case**: O(log n) if many keys collide into the same bucket.
 
+### Explain the internal implementation details of HashMap in Java 8+. How does it handle collisions?
+
+- **Bucket Array**: HashMap maintains an array of _Node_ objects (buckets). The array size is always a power of 2.
+- **Hash Function**: Uses `(key.hashCode() ^ (key.hashCode() >>> 16)) & (capacity - 1)` to determine bucket index.
+- **Collision Handling**:
+  - **Chaining**: Initially uses linked list for collisions in the same bucket.
+  - **Treeification**: When a bucket's linked list exceeds 8 nodes, it converts to a red-black tree for O(log n) operations.
+  - **Untreeification**: Converts back to linked list when nodes drop below 6 during removal.
+- **Resizing**: Doubles capacity when load exceeds threshold (capacity × load factor). Rehashes all existing entries.
+- **Key Lookup Process**:
+  1. Calculate hash and find bucket index
+  2. Compare first node using `equals()`
+  3. If not found, traverse linked list or search tree
+  4. Use `equals()` for final key comparison
+
 ### What is the purpose of the initial capacity and load factor in a HashMap? What are their default values?
 
 - **Initial capacity**: Size of the internal array (rounded to the nearest power of two). Default: 16.
